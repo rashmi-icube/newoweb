@@ -1,0 +1,654 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/open_sans/open-sans.regular-webfont.eot');
+  src: url('../fonts/open_sans/open-sans.regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/open_sans/open-sans.regular-webfont.woff2') format('woff2'),
+       url('../fonts/open_sans/open-sans.regular-webfont.woff') format('woff'),
+       url('../fonts/open_sans/open-sans.regular-webfont.ttf') format('truetype'),
+       url('../fonts/open_sans/open-sans.regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url('../fonts/open_sansbold/open-sans.bold-webfont.eot');
+  src: url('../fonts/open_sansbold/open-sans.bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/open_sansbold/open-sans.bold-webfont.woff2') format('woff2'),
+       url('../fonts/open_sansbold/open-sans.bold-webfont.woff') format('woff'),
+       url('../fonts/open_sansbold/open-sans.bold-webfont.ttf') format('truetype'),
+       url('../fonts/open_sansbold/open-sans.bold-webfont.svg#open_sansbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src: url('../fonts/open_sanslight/open-sans.light-webfont.eot');
+  src: url('../fonts/open_sanslight/open-sans.light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/open_sanslight/open-sans.light-webfont.woff2') format('woff2'),
+       url('../fonts/open_sanslight/open-sans.light-webfont.woff') format('woff'),
+       url('../fonts/open_sanslight/open-sans.light-webfont.ttf') format('truetype'),
+       url('../fonts/open_sanslight/open-sans.light-webfont.svg#open_sanslight') format('svg');
+}
+
+@font-face {
+  font-family: 'Open Sans Semibold';
+  src: url('../fonts/open_sanssemibold/opensans-semibold-webfont.eot');
+  src: url('../fonts/open_sanssemibold/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/open_sanssemibold/opensans-semibold-webfont.woff2') format('woff2'),
+       url('../fonts/open_sanssemibold/opensans-semibold-webfont.woff') format('woff'),
+       url('../fonts/open_sanssemibold/opensans-semibold-webfont.ttf') format('truetype'),
+       url('../fonts/open_sanssemibold/opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Extrabold';
+  src: url('../fonts/open_sansextrabold/opensans-extrabold-webfont.eot');
+  src: url('../fonts/open_sansextrabold/opensans-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/open_sansextrabold/opensans-extrabold-webfont.woff2') format('woff2'),
+       url('../fonts/open_sansextrabold/opensans-extrabold-webfont.woff') format('woff'),
+       url('../fonts/open_sansextrabold/opensans-extrabold-webfont.ttf') format('truetype'),
+       url('../fonts/open_sansextrabold/opensans-extrabold-webfont.svg#open_sansextrabold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+} 
+
+* {
+  padding: 0;
+  margin: 0;
+  font-feature-settings: "kern" 1;
+  -webkit-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern=1";
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a { text-decoration: none; }
+
+button { 
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer; 
+}
+
+/**************   CLEARFIX  ******************/
+  .clearfix::before,
+  .clearfix::after {
+    content:"";
+    display:table;
+  }
+
+  .clearfix::after {
+    clear:both;
+  }
+
+  .clearfix {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+  }
+
+
+/*********************************************/
+
+body {
+	background-color: #e9e9e9;
+}
+
+header {
+	padding: 5px 0;
+	background-color: #388e3c;
+}
+
+.hrdb header { background-color: #ff9800; }
+
+header .wrapper {
+	width: 980px;
+	margin: 0 auto;
+}
+
+header h1 { 
+	display: inline-block;
+	color: #fff; 
+}
+
+h1 span:first-child {
+	margin-right: -8px;
+	font: 700 32px 'Open Sans Bold', 'Open Sans';
+}
+
+h1 span:nth-child(2) { font: 300 12px 'Open Sans Light', 'Open Sans'; }
+
+.hrdb h1 span:nth-child(2) { visibility: hidden; } 
+
+/*************************************** LOGIN ******************************************/
+
+.login-box {
+	width: 416px;
+	margin: 62px auto 0;
+}
+
+.login-box>img { margin-left: 12px; }
+
+.login-form {
+	box-sizing: border-box;
+	height: 497px;
+	padding: 77px 50px 0 50px;
+	margin-top: -12px;
+	position: relative;
+	background: url(../images/id_pwd_bg.png);
+}
+
+h2 {
+  position: relative;
+  color: #4caf50;
+  font: 600 28px 'Open Sans Semibold', 'Open Sans';
+}
+
+.login-form h2 { margin-bottom: 42px; }
+
+.hrdb h2 { color: #ff9800; }
+
+h2::before {
+  content: "";
+  width: 5px;
+  height: 60px;  
+  position: absolute;
+  top: -10px;
+  transition: transform 0.7s;
+  transform: rotateX(0);
+}
+
+.login-form h2::before {
+	left: -44px;
+	background-color: #4caf50;
+}
+
+.login-form h2.flip::before {
+	transform: rotateX(180deg);
+  background-color: #ff9800;
+}
+
+.invalid-warning {
+  box-sizing: border-box;
+  width: 320px;
+  height: 39px;
+  padding: 4px 0 0 16px;
+  border: 1px solid #ff9800;
+  border-radius: 106px;
+  display: none;
+  position: absolute;
+  top: 114px;
+}
+
+.invalid-warning.show { display: block; }
+
+.invalid-warning>span:first-child {
+  box-sizing: border-box;
+  width: 27px;
+  height: 27px;
+  padding-top: 8px;
+  margin-right: 4px;
+  display: inline-block;
+  vertical-align: -1px;
+  background: url(../images/warning_icon.png);
+  color: #fff;
+  font: 700 12px 'Open Sans Bold', 'Open Sans';
+  text-align: center;
+}
+
+.invalid-warning .warning-text {
+  color: #ff9800;
+  font: 12px 'Open Sans Regular', 'Open Sans';
+}
+
+.invalid-warning .warning-text .bold {
+  font: 700 12px 'Open Sans Bold', 'Open Sans';
+}
+
+.register-symbol {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+  position: absolute;
+  top: 38px;
+  right: -13%;
+	background-color: #4CAF50;
+	cursor: pointer;
+	text-align: center;
+	transition: transform 0.2s;
+}
+
+.hrdb .register-symbol {
+	background-color: #ff9800;
+}
+
+.register-symbol:hover {
+	transform: scale(1.05, 1.05);
+}
+
+.register-symbol span {
+  display: block;
+  color: #fff;
+  font: 400 64px/122px 'Open Sans Regular', 'Open Sans';
+  transform: rotate(90deg);
+}
+
+.login-form form { padding: 0 5px; }
+
+.login-form label,
+.login-form input:not([type="radio"]) { display: block; }
+
+.login-form label {
+	margin-bottom: 9px;
+	position: relative;
+	top: 14px;
+  color: #212121;
+	font: 400 14px 'Open Sans Regular', 'Open Sans';
+}
+
+.login-form label.done {
+	margin-bottom: 10px;
+  color: #727272;
+	font: 12px 'Open Sans Regular', 'Open Sans';
+}
+
+.login-form label:nth-child(3) { margin-top: 18px; }
+
+.login-form input:not([type="radio"]) {
+	appearance: none;
+	-webkit-appearance: none;
+	width: 100%;
+	padding-bottom: 13px;
+	border: 0;
+	border-bottom: 1px solid #797979;
+	outline: 0;
+	font: 13px 'Arial Regular', 'Arial';
+}
+
+.login-form .done+input { border-bottom: 2px solid #4caf50; }
+
+.hrdb .login-form .done+input { border-bottom: 2px solid #ff9800; }
+
+.login-form .login-role {
+	margin-top: 35px;
+	position: relative;
+	text-align: center;
+}
+
+.login-form .login-role span {
+	box-sizing: border-box;
+	width: 73px;
+	height: 73px;
+	padding-top: 17px;
+	display: inline-block;
+	cursor: pointer;
+	font: 600 20px 'Open Sans Semibold', 'Open Sans';
+	transition: background 0.5s;
+}
+
+.login-form div span.clicked {
+	color: #fff;
+	cursor: default;
+}
+
+.login-form div .emp {
+	background: url('../images/login_button_employee.png') no-repeat top center;
+	color: #388e3c;
+}
+
+.login-form div .emp:hover {
+	background: url('../images/login_button_employee_hover.png') no-repeat top center;
+}
+
+.login-form div .emp.clicked {
+	background: url('../images/login_button_employee_selected.png') no-repeat top center;	
+}
+
+.login-form div .hr {
+	background: url('../images/login_button_hr.png') no-repeat top center;
+	color: #ff9800;
+}
+
+.login-form div .hr:hover {
+	background: url('../images/login_button_hr_hover.png') no-repeat top center;
+}
+
+.login-form div .hr.clicked {
+	background: url('../images/login_button_hr_selected.png') no-repeat top center;	
+}
+
+.login-form div input {
+	visibility: hidden;
+	position: absolute;
+	top: 0;
+}
+
+.login-form div .emp+input { left: 35%; }
+
+.login-form div .hr+input { left: 61%; }
+
+.login-form form button {
+	width: 140px;
+  height: 40px;
+	border: 1px solid #797979;
+	border-radius: 5px;
+	margin: 12px auto 0;
+	display: block;
+	font: 600 18px 'Open Sans Semibold', 'Open Sans';
+}
+
+.login-form form button:hover {
+	border-color: #ffc107;
+	color: #ffc107;
+}
+
+.hrdb .login-form form button:hover {
+	border-color: #46c7c6;
+	color: #46c7c6;
+}
+
+.login-form form button:active {
+	border-color: #ffc107;
+	background-color: #ffc107;
+	color: #fff;
+}
+
+.hrdb .login-form form button:active {
+	border-color: #46c7c6;
+	background-color: #46c7c6;
+	color: #fff;
+}
+
+.forgot-pwd {
+  margin-top: 12px;
+  display: block;
+	color: #666;
+  font: 14px 'Open Sans Light', 'Open Sans';
+  text-align: center;	
+}
+
+.forgot-pwd:hover { text-decoration: underline; }
+
+.caps-warning {
+  width: 133px;
+  margin: 3px auto 0;
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.caps-warning>span {
+  color: #212121;
+  font: 400 14px 'Open Sans Regular', 'Open Sans';
+}
+
+.caps-warning span span {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  margin-right: 3px;
+  display: inline-block;
+  vertical-align: -1px;
+  background-color: #ffb84e;
+  color: #fff;
+  font: 700 20px 'Times New Roman', serif;
+  text-align: center;
+}
+
+.forgot-password-form {
+  box-sizing: border-box;
+  height: 497px;
+  padding: 12px 5px 0;
+  margin-top: -12px;
+  display: none;
+  position: relative;
+  background: url(../images/id_pwd_bg.png);
+}
+
+.forgot-password-form a {
+  width: 46px;
+  height: 46px;
+  display: inline-block;
+  background: url(../images/arrow_back_login_emp.png) 0 0/contain;
+}
+
+.hrdb .forgot-password-form a {
+  background: url(../images/arrow_back_login_hr.png) 0 0/contain;
+}
+
+.forgot-password-form h2 {
+  padding-left: 45px;
+  margin: 15px 0 42px;
+}
+
+.hrdb .forgot-password-form h2 { color: #ff9800; }
+
+.forgot-password-form h2::before {
+  left: 1px;
+  background-color: #4caf50;
+}
+
+.hrdb .forgot-password-form h2::before { background-color: #ff9800; }
+
+.forgot-password-form .invalid-warning {
+    width: 355px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.forgot-password-form form { padding: 0 50px; }
+
+.forgot-password-form label,
+.forgot-password-form input { display: block; }
+
+.forgot-password-form label {
+  margin-bottom: 9px;
+  position: relative;
+  top: 14px;
+  color: #212121;
+  font: 400 14px 'Open Sans Regular', 'Open Sans';
+}
+
+.forgot-password-form label.done {
+  margin-bottom: 10px;
+  color: #727272;
+  font: 12px 'Open Sans Regular', 'Open Sans';
+}
+
+.forgot-password-form input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding-bottom: 13px;
+  border: 0;
+  border-bottom: 1px solid #797979;
+  outline: 0;
+  font: 13px 'Arial Regular', 'Arial';
+}
+
+.hrdb .forgot-password-form .done+input {
+  border-bottom: 2px solid #ff9800;
+}
+
+.forgot-password-form .done+input { border-bottom: 2px solid #4caf50; }
+
+.forgot-password-form form button {
+  width: 140px;
+  height: 40px;
+  border: 1px solid #797979;
+  border-radius: 5px;
+  margin: 195px auto 0;
+  display: block;
+  font: 600 18px 'Open Sans Semibold', 'Open Sans';
+}
+
+.forgot-password-form form button:hover {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.hrdb .forgot-password-form form button:hover {
+  border-color: #46c7c6;
+  color: #46c7c6;
+}
+
+.forgot-password-form form button:active {
+  border-color: #ffc107;
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.hrdb .forgot-password-form form button:active {
+  border-color: #46c7c6;
+  background-color: #46c7c6;
+  color: #fff;
+}
+
+.thank-you-msg {
+  box-sizing: border-box;
+  height: 497px;
+  padding: 77px 50px 0 50px;
+  margin-top: -12px;
+  display: none;
+  position: relative;
+  background: url(../images/id_pwd_bg.png);
+}
+
+.thank-you-msg h2 { margin-bottom: 20px; }
+
+.thank-you-msg h2::before {
+  left: -44px;
+  background-color: #4caf50;
+}
+
+.hrdb .thank-you-msg h2::before { background-color: #ff9800; }
+
+.thank-you-msg p {
+  margin-bottom: 18px;
+  color: #333;
+  font: 13px 'Open Sans Regular', 'Open Sans';
+}
+
+.thank-you-msg p:first-child span { color: #169bd5; }
+
+.thank-you-msg p:nth-child(2) span { display: block; }
+
+.thank-you-msg p:nth-child(2) a { 
+  color: #333;
+  font: 700 13px 'Open Sans Bold', 'Open Sans'; 
+}
+
+.thank-you-msg p:nth-child(3) a { 
+  color: #333;
+  text-decoration: underline;
+}
+
+
+
+/********************************************** MEDIA QUERIES ****************************************/
+
+@media screen and (max-width: 979px) and (min-width: 768px) {
+	header .wrapper { width: 768px; }
+}
+
+@media screen and (max-width: 767px) and (min-width: 540px) {
+	header .wrapper {
+		box-sizing: border-box; 
+		width: 100%; 
+		padding-left: 2%;
+	}
+}
+
+@media screen and (max-width: 539px) {
+	header .wrapper {
+		box-sizing: border-box;
+		width: 100%; 
+		padding: 0 0 0 2%; 
+	}
+
+	h1 span:first-child {
+		margin-right: 0;
+		margin-bottom: -25px;
+		display: block;
+	}
+
+	h1 span:nth-child(2) { margin-left: 3px; }
+
+	.register-symbol {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.main { 
+    min-height: calc(100vh - 65px);
+		background-color: #fff; 
+	}
+
+	.login-box {
+		width: 100%; 
+		margin-top: 0; 
+	}
+
+	.login-box>img { display: none; }
+
+  .login-form,
+  .forgot-password-form,
+  .thank-you-msg { 
+    height: auto;
+    margin-top: 0;
+    background: #fff; 
+  }
+
+	.login-form { padding: 30px 15px 0 15px; }
+
+	.login-form h2 { padding-left: 15px; }
+
+	.login-form h2::before { left: -15px; }
+    
+  .invalid-warning { top: 70px; }
+
+	.forgot-pwd {  
+    margin: 20px 0 0 0;
+	  display: block;
+    text-align: center;
+	}
+
+  .forgot-password-form { padding: 12px 0 0; }
+
+  .forgot-password-form h2 { padding-left: 28px; }
+
+  .forgot-password-form h2::before { left: 0; }
+
+  .forgot-password-form form { padding: 0 20px; }
+
+  .forgot-password-form form button { margin: 148px auto 0; }
+
+  .thank-you-msg { 
+    padding: 30px 15px 0 20px; 
+    border: 1px solid transparent;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  .main { min-height: 100vh; }
+
+  .invalid-warning {
+    width: 300px;
+    padding: 4px 0 0 8px;
+  }
+  
+  .invalid-warning>span:first-child { margin-right: -4px; }
+
+  .forgot-password-form h2 { padding-left: 20px; }
+
+  .forgot-password-form form button { margin: 125px auto 0; }
+}
