@@ -71,17 +71,6 @@
             <% }%>
 
             <div class="main">
-                <!--            DEMO01
-                                        <div id="animatedModal" class="animated animatedModal-on zoomIn" style="position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; overflow-y: auto; z-index: 9999; opacity: 1; animation-duration: 0.6s; background-color: #ff0000;">
-                                            THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID 
-                                            <div id="btn-close-modal" class="close-animatedModal" style="width:100%; text-align: center;cursor:pointer;color:#fff;"> 
-                                                CLOSE MODAL
-                                            </div>
-                
-                                            <div class="modal-content">
-                                            Your modal content goes here
-                                            </div>
-                                        </div>-->
                 <input type="hidden" id="total_ques" value="<%= len%>" />
                 <input type="hidden" id="remaining_ques" value="<%= len%>" />
                 <%
