@@ -160,40 +160,10 @@
                             <div class="people-list-box clearfix">                       
                                 <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
                                 <button>&#x1F50D;</button>
-
-                                <div class="no-key-selected">
-                                    <%
-                                        String empRating = request.getParameter("emp_rating");
-                                        List<Employee> employeeList = null;
-                                        System.out.println("***************" + empRating);
-                                        if (empRating != null && !empRating.isEmpty()) {
-                                            try {
-                                                JSONObject jObj = new JSONObject(request.getParameter("emp_rating"));
-                                                Iterator<String> keys = jObj.keys();
-                                                while (keys.hasNext()) {
-                                                    String key = (String) keys.next();
-                                                    int ratEmpId = Util.getIntValue(key);
-                                                    Employee employee = (Employee) ObjectFactory.getInstance("org.icube.owen.employee.Employee");
-                                                    employeeList.add(employee.get(comid, ratEmpId));
-                                                    System.out.println("***************" + employee.getFirstName());
-                                                }
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                        String ownerEmpIds = "";
-                                        if (employeeList != null) {
-                                            int count = employeeList.size() > 5 ? 5 : employeeList.size();
-                                            String remaining = employeeList.size() > 5 ? "and " + (employeeList.size() - 5) + " more" : "";
-                                            for (int j = 0; j < employeeList.size(); j++) {
-                                                ownerEmpIds += "\"" + employeeList.get(j).getEmployeeId() + "\",";
-                                                if (j < count) {
-                                    %>
-                                    <p><%= employeeList.get(j).getFirstName().substring(0, 1) + (employeeList.get(j).getLastName() != null ? employeeList.get(j).getLastName().substring(0, 1) : "")%></p>
-                                    <% }
-                                            }
-                                        }%>
-                                </div>
+<!-- TODO we question bubbles -->
+<!--                                <div class="no-key-selected">
+                                   
+                                </div>-->
 
                                 <div class="mobile-filter-row">
                                     <div>
@@ -383,8 +353,8 @@
 
                 </body>
                 </html>
-
-                <script>
+<!--TODO we question bubbles -->
+<!--                <script>
                     var arr = [];
                     $('.rating-star').on('click', function () {
                         //var text = $(this).text();
@@ -452,4 +422,4 @@
                             });
                         }
                     });
-                </script>
+                </script>-->
