@@ -95,7 +95,7 @@ header h1 {
   transition: visibility 0s 0.3s, opacity 0.3s 0s, z-index 0s 0.3s;
 }
 .cd-modal::after {
-  /* gradient overlay at bottom of modal window */
+   gradient overlay at bottom of modal window 
   content: '';
   position: absolute;
   left: 0;
@@ -104,8 +104,8 @@ header h1 {
   height: 60px;
   pointer-events: none;
   background: transparent;
-  background: -webkit-linear-gradient( bottom , #34383c, rgba(52, 56, 60, 0));
-  background: linear-gradient(to top, #34383c, rgba(52, 56, 60, 0));
+/*  background: -webkit-linear-gradient( bottom , #34383c, rgba(52, 56, 60, 0));
+  background: linear-gradient(to top, #34383c, rgba(52, 56, 60, 0));*/
 }
 .cd-modal .cd-modal-content {
   height: 100%;
@@ -117,12 +117,19 @@ header h1 {
   -moz-osx-font-smoothing: grayscale;
 }
 .cd-modal p {
-  color: #ffffff;
-  line-height: 1.6;
+  color: #333;
+  /*line-height: 1.6;*/
   margin: 2em 0;
+  font:14px 'Open Sans Light', 'Open Sans';
+}
+.cd-modal h2{
+    font:700 32px 'Open Sans Bold', 'Open Sans';
+}
+.cd-modal h4{
+    font:500 24px 'Open Sans Bold', 'Open Sans';
 }
 .modal-is-visible .cd-modal {
-  z-index: 1;
+  z-index: 100;
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
@@ -143,8 +150,6 @@ header h1 {
     /*padding: 6em 20%;*/
   }
   .cd-modal p {
-    font-size: 2rem;
-    line-height: 2;
   }
 }
 
@@ -184,7 +189,7 @@ header h1 {
   left: 50%;
   top: 0;
   width: 4em;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   opacity: 0;
   visibility: hidden;
   -webkit-transform: translateZ(0);
@@ -241,6 +246,7 @@ header h1 {
 .modal-is-visible .cd-modal-close {
   visibility: visible;
   opacity: 1;
+  z-index: 101;
   -webkit-transition: -webkit-transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
   -moz-transition: -moz-transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
   transition: transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
@@ -252,6 +258,29 @@ header h1 {
 }
 @media only screen and (min-width: 768px) {
   .cd-modal-close {
-    top: 70px;
+    top: 5px;
   }
+}
+
+@media screen and (max-width: 480px)
+header .wrapper {
+    width: 100%;
+}
+@media screen and (max-width: 767px) and (min-width: 481px)
+header .wrapper {
+    width: 100%;
+}
+
+.modal-content-1 .main .main-settings button:hover {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+.modal-content-1 .main .main-settings button {
+    width: 140px;
+    height: 40px;
+    border: 1px solid #797979;
+    border-radius: 5px;
+    /*margin: 12px auto 0;*/
+    /*display: block;*/
+    font: 600 18px 'Open Sans Semibold', 'Open Sans';
 }

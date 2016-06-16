@@ -79,7 +79,7 @@
                             <img src="/assets/images/help-circle.png" alt="Help Popup" width="23" height="23">
                         </a>-->
               
-<section class="cd-section">    
+                <section class="cd-section">    
                     <div class="cd-modal-action">
                         <a href="#0" class="btn" data-type="modal-trigger">
                             <img src="/assets/images/help-circle.png" alt="Help Popup" width="23" height="23">
@@ -89,17 +89,45 @@
                     
                     <div class="cd-modal">
 			<div class="cd-modal-content">
-				<p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
-				</p>
-				<p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
-				</p>
+                            <section class="modal-header" style="padding: 8px;">
+                                <div class="wrapper clearfix">
+                                    <a>
+                                        <h1>
+                                            <span>OWEN</span>
+                                            <span>Individual</span>
+                                        </h1>
+                                    </a>
+                                </div>
+                            </section>
+                            <section class="modal-content-1">
+                                <div class="main" style="background: #ffffff; padding:2% 11.5rem; height:100vh;">
+                                    <h2>Welcome to OWEN</h2>
+                                    <p>Just wanted to show you a short(ish) note welcoming you to my network. If you ever have a question, comment or conundrum, please reach out.<br>The best way to get in touch is <a href="mailto:support@owenanalytics.com" style="display: inline !important;">support@owenanalytics.com </a><p>
+                                    <div class="main-settings">
+                                        <h2>SETTINGS</h2>
+                                        <h4>Quick tips to get started</h4>
+                                        <p>1. Answer a quick survey
+                                            <button type="submit">
+                                                <a href='/individual/survey.jsp'>SURVEY</a>
+                                            </button>
+                                            
+                                                
+                                        </p>
+                                        <p>2. Setup a profile
+                                             <button type="submit">
+                                                <a href='/individual/profile.jsp'>SETTINGS</a>
+                                            </button>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                           
 			</div> <!-- cd-modal-content -->
                     </div> <!-- cd-modal -->
                     
                     <a href="#0" class="cd-modal-close">Close</a>
-</section>                    
+                </section>                    
 
                 
             </div>
