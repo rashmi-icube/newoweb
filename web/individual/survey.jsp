@@ -145,7 +145,7 @@
                             <input type="hidden" class="question_no" value="<%= i%>" />
                             <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
                             <h2></h2>
-                            <h3><%= ques.getQuestionText()%>?</h3>
+                            <h3><%= ques.getQuestionText()%></h3>
                             <div class="people-list-box clearfix">
                                 <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation  by the number of stars</p>
                                 <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
