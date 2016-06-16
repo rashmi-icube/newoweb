@@ -15,10 +15,12 @@
     int empid  = 0;
     int comid = 0;
     String email = "";
+    boolean firstTimeLogin = false;
     if(session.getAttribute("empid") != null && session.getAttribute("comid") != null) {
         empid = (Integer) session.getAttribute("empid");
         comid = (Integer) session.getAttribute("comid");
         email = (String) session.getAttribute("email");
+        firstTimeLogin = (Boolean) session.getAttribute("firstTimeLogin");
     }
     if(empid == 0 || comid == 0) {
         response.sendRedirect("../login.jsp");
