@@ -62,7 +62,7 @@
                         <div>
                             <span class="set-full-name"><%=session.getAttribute("ename")%></span>
                             <span class="set-username"><%=session.getAttribute("esname")%></span>
-                            <span class="set-company">i-Cube Analytics &amp; Data Services</span>
+                            <span class="set-company"><%=session.getAttribute("companyName")%></span>
                         </div>
                         <div>
                             <!--<a id="demo01" href="#animatedModal"><img src="/assets/images/help-circle.png" alt="Help Popup" width="27" height="27" onClick=""> Welcome</a>-->
@@ -184,7 +184,7 @@
                 
             <div class="user-name-company">
                 <span><%=session.getAttribute("esname")%></span>
-                <span>i-Cube</span>
+                <span><%=session.getAttribute("companyName")%></span>
             </div>
         </div>
     </div>

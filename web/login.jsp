@@ -36,7 +36,7 @@
             </header>
             <div class="main">
                 <div class="login-box">
-                    <img src="<%=Constant.WEB_ASSETS%>images/id_pwd_top_bg.png" alt="Border">
+                    
                     <div class="login-form">
                         <h2  <%= (roleid == 2 ? "class=\"flip\"" : "")%>>LOGIN</h2>
                         <!--<button class="register-symbol"><span>&#x270E;</span></button>-->
