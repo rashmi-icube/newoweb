@@ -124,10 +124,12 @@ header h1 {
 }
 .cd-modal h2{
     font:24px 'Open Sans Bold', 'Open Sans';
+    box-sizing: border-box;
+    padding: 2px 0 0 10px;
+    background-color: #d7d7d7;
+    color: #388e3c;
 }
-.cd-modal h4{
-    font:500 18px 'Open Sans Semibold', 'Open Sans';
-}
+
 .modal-is-visible .cd-modal {
   z-index: 100;
   visibility: visible;
@@ -214,7 +216,7 @@ header h1 {
 .cd-modal-close {
   position: fixed;
   z-index: 1;
-  top: 20px;
+  top: 2px;
   right: 5%;
   height: 50px;
   width: 50px;
@@ -258,7 +260,7 @@ header h1 {
 }
 @media only screen and (min-width: 768px) {
   .cd-modal-close {
-    top: 5px;
+    top: 2px;
   }
 }
 
