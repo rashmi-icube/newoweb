@@ -91,55 +91,52 @@
                     
                     <div class="cd-modal">
 			<div class="cd-modal-content">
-                            <section class="modal-header" style="padding: 8px;">
+                            <section class="modal-header" style="padding: 5px;">
+                                <!--<header>-->
                                 <div class="wrapper clearfix">
-                                    <a>
+                                    <a href="/individual/dashboard.jsp" style="display: inline">
                                         <h1>
-                                            <span>OWEN</span>
+                                            <span>OWEN  </span>
                                             <span>Individual</span>
                                         </h1>
                                     </a>
                                 </div>
+                                <!--</header>-->
                             </section>
                             <section class="modal-content">
-                                <div class="main" style="background: #ffffff; padding:2% 11.5rem; height:100vh;">
-                                    <h2>Welcome to OWEN</h2>
-                                    <p>Just wanted to show you a short(ish) note to help you know me better. If you ever have a question, comment or conundrum, please reach out.<br>The best way to get in touch is <a href="mailto:support@owenanalytics.com" style="display: inline !important;">support@owenanalytics.com </a><p>
-                                    <div class="main-settings">
-                                        <h2>SETTINGS</h2>
-                                        <h4>Quick tips to get started</h4>
+                                <div class="main" style="background: #ffffff; padding:2% 11.5rem;">
+                                    <h2>Welcome!</h2>
+                                    <p>OWEN helps you provide feedback about your experience at work as well as recognize your colleagues for their support. Please be assured that all your responses are <strong style="font: 500 14px 'Open Sans Bold', 'Open Sans';">strictly confidential</strong>, and that management will never see the names of the respondents.</p>
+                                    <p>Let's get started...</p>
+                                    <div class="main-survey" style="padding-top: 1em;">
+                                        <h2>Survey</h2>
                                         <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
-                                            <li>
-                                                <a href='/individual/survey.jsp' style='display:inline;'>Answer a quick survey</a>
-                                            </li>
-                                            <li>
-                                                <a href='/individual/profile.jsp' style='display:inline;'>Setup a profile</a>
-                                            </li>
-                                        </ol>     
-                                    </div>
-                                    <div class="main-survey" style='padding-top: 1em;'>
-                                        <h2>SURVEY</h2>
-                                        <h4>Take a survey to help me know you better</h4>
-                                        <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
-                                            <li>For questions that show a numeric scale of 1-5, select any one value that indicates your answer most correctly</li>
-                                            <li>For questions that show a scale of stars, show your appreciation for fellow colleagues by showering them with stars</li>
-                                            <li>Use the Search Bar and filters to find more colleagues you want to appreciate</li>
-                                            <li>Reset your filter or search to the original smart list, by clicking on "Smart" </li>
-                                            <li>Once you are done answering, you can click on the yellow submit button to proceed to the next question</li>
-                                            <li>To get the most out of me, I'd recommend you to answer all of my questions </li>
+                                            <li style="padding-top: 1em;">For questions with a numerical scale, select any one value that indicates your answer most correctly</li>
+                                            <img src="/assets/images/survey_numeric_scale.gif" alt="Survey Numeric Scale" width = 40% height = auto>
+                                            <li>For questions that show a scale of stars, show your appreciation to fellow colleagues by showering them with the appropriate number of stars</li>
+                                            <img src="/assets/images/survey_stars.gif" alt="Survey Star Scale" width = 30%>
+                                            <br>
+                                            <em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em>
+                                            <li>Once you've answered the questions, click on the submit button! That's it…</li>
+                                            <img src="/assets/images/survey_submit_button.gif" alt="Survey Submit Button" width = 10%>
+                                            <br>
                                         </ol>
                                     </div>
-                                    <div class="main-dashboard" style='padding-top: 1em;'>
-                                        <h2>DASHBOARD</h2>
-                                        <h4>Here's how you can know me better</h4>
+                                    <div class="main-dashboard" style="padding-top: 1em;">
+                                        <h2>Dashboard</h2>
                                         <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
-                                            <li>The metrics and trendline show your Expertise, Mentorship and Influence scores across the organization</li>
-                                            <em>OWEN Tip - Answer your surveys regularly to earn a higher score in your organization</em>
+                                            <li style="padding-top: 1em;">The metrics and trendline show your scores for Expertise, Mentorship and Influence</li>
+                                            <img src="/assets/images/dashboard_metric_expertise.png" alt="Dashboard Expertise" width = 30%>
+                                            <br>
+                                            <em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em>
                                             <li>Use the thumbs up to appreciate your colleagues for their Expertise, Mentorship and Influence</li>
+                                            <img src="/assets/images/dashboard_metric_appreciate.png" alt="Dashboard Expertise" width = 10%>
                                             <li>Search, monitor, track or comment initiatives that you are a part of</li>
                                             <li>Use the activity feed to stay on top of all your work</li>
                                         </ol>
                                     </div>
+                                    <p>Hopefully this will give you enough so you can breeze through your surveys and make the most of your dashboard.
+                                    If you still have questions, comments or conundrums, write to us at <a style ='display: inline ;' href=mailto:support@owenanalytics.com>support@owenanalytics.com</p>
                                 </div>
                             </section>
 			</div> <!-- cd-modal-content -->
