@@ -99,30 +99,47 @@
                                     </a>
                                 </div>
                             </section>
-                            <section class="modal-content-1">
+                            <section class="modal-content">
                                 <div class="main" style="background: #ffffff; padding:2% 11.5rem; height:100vh;">
                                     <h2>Welcome to OWEN</h2>
-                                    <p>Just wanted to show you a short(ish) note welcoming you to my network. If you ever have a question, comment or conundrum, please reach out.<br>The best way to get in touch is <a href="mailto:support@owenanalytics.com" style="display: inline !important;">support@owenanalytics.com </a><p>
+                                    <p>Just wanted to show you a short(ish) note to help you know me better. If you ever have a question, comment or conundrum, please reach out.<br>The best way to get in touch is <a href="mailto:support@owenanalytics.com" style="display: inline !important;">support@owenanalytics.com </a><p>
                                     <div class="main-settings">
                                         <h2>SETTINGS</h2>
                                         <h4>Quick tips to get started</h4>
-                                        <p>1. Answer a quick survey
-                                            <button type="submit">
-                                                <a href='/individual/survey.jsp'>SURVEY</a>
-                                            </button>
-                                            
-                                                
-                                        </p>
-                                        <p>2. Setup a profile
-                                             <button type="submit">
-                                                <a href='/individual/profile.jsp'>SETTINGS</a>
-                                            </button>
-                                        </p>
+                                        <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
+                                            <li>
+                                                <a href='/individual/survey.jsp' style='display:inline;'>Answer a quick survey</a>
+                                            </li>
+                                            <li>
+                                                <a href='/individual/profile.jsp' style='display:inline;'>Setup a profile</a>
+                                            </li>
+                                        </ol>     
+                                    </div>
+                                    <div class="main-survey" style='padding-top: 1em;'>
+                                        <h2>SURVEY</h2>
+                                        <h4>Take a survey to help me know you better</h4>
+                                        <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
+                                            <li>For questions that show a numeric scale of 1-5, select any one value that indicates your answer most correctly</li>
+                                            <li>For questions that show a scale of stars, show your appreciation for fellow colleagues by showering them with stars</li>
+                                            <li>Use the Search Bar and filters to find more colleagues you want to appreciate</li>
+                                            <li>Reset your filter or search to the original smart list, by clicking on "Smart" </li>
+                                            <li>Once you are done answering, you can click on the yellow submit button to proceed to the next question</li>
+                                            <li>To get the most out of me, I'd recommend you to answer all of my questions </li>
+                                        </ol>
+                                    </div>
+                                    <div class="main-dashboard" style='padding-top: 1em;'>
+                                        <h2>DASHBOARD</h2>
+                                        <h4>Here's how you can know me better</h4>
+                                        <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
+                                            <li>The metrics and trendline show your Expertise, Mentorship and Influence scores across the organization</li>
+                                            <em>OWEN Tip - Answer your surveys regularly to earn a higher score in your organization</em>
+                                            <li>Use the thumbs up to appreciate your colleagues for their Expertise, Mentorship and Influence</li>
+                                            <li>Search, monitor, track or comment initiatives that you are a part of</li>
+                                            <li>Use the activity feed to stay on top of all your work</li>
+                                        </ol>
                                     </div>
                                 </div>
-                                
                             </section>
-                           
 			</div> <!-- cd-modal-content -->
                     </div> <!-- cd-modal -->
                     

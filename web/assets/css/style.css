@@ -59,13 +59,13 @@ header h1 {
   text-align: center;
   background-color: #03bb91;
 }
-.cd-section p {
+/*.cd-section p {
   margin: 2em 0;
   line-height: 1.6;
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} 
+} */
 @media only screen and (min-width: 768px) {
 /*   .cd-section {
     padding: 4em 10%;
@@ -116,17 +116,17 @@ header h1 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.cd-modal p {
+.cd-modal .modal-content p {
   color: #333;
   /*line-height: 1.6;*/
-  margin: 2em 0;
+  margin: 1em 0;
   font:14px 'Open Sans Light', 'Open Sans';
 }
 .cd-modal h2{
-    font:700 32px 'Open Sans Bold', 'Open Sans';
+    font:24px 'Open Sans Bold', 'Open Sans';
 }
 .cd-modal h4{
-    font:500 24px 'Open Sans Bold', 'Open Sans';
+    font:500 18px 'Open Sans Semibold', 'Open Sans';
 }
 .modal-is-visible .cd-modal {
   z-index: 100;
@@ -271,16 +271,11 @@ header .wrapper {
     width: 100%;
 }
 
-.modal-content-1 .main .main-settings button:hover {
-    border-color: #ffc107;
-    color: #ffc107;
+.cd-modal .main-settings .li .a:hover{
+    color:#169bd5;
 }
-.modal-content-1 .main .main-settings button {
-    width: 140px;
-    height: 40px;
-    border: 1px solid #797979;
-    border-radius: 5px;
-    /*margin: 12px auto 0;*/
-    /*display: block;*/
-    font: 600 18px 'Open Sans Semibold', 'Open Sans';
+
+modal-content .ol{
+    padding-left: 1em;
+    font: 100 14px 'Open Sans Light', 'Open Sans';
 }
