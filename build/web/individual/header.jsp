@@ -15,10 +15,12 @@
     int empid  = 0;
     int comid = 0;
     String email = "";
+    boolean firstTimeLogin = false;
     if(session.getAttribute("empid") != null && session.getAttribute("comid") != null) {
         empid = (Integer) session.getAttribute("empid");
         comid = (Integer) session.getAttribute("comid");
         email = (String) session.getAttribute("email");
+        firstTimeLogin = (Boolean) session.getAttribute("firstTimeLogin");
     }
     if(empid == 0 || comid == 0) {
         response.sendRedirect("../login.jsp");
@@ -60,7 +62,7 @@
                         <div>
                             <span class="set-full-name"><%=session.getAttribute("ename")%></span>
                             <span class="set-username"><%=session.getAttribute("esname")%></span>
-                            <span class="set-company">i-Cube Analytics &amp; Data Services</span>
+                            <span class="set-company"><%=session.getAttribute("companyName")%></span>
                         </div>
                         <div>
                             <!--<a id="demo01" href="#animatedModal"><img src="/assets/images/help-circle.png" alt="Help Popup" width="27" height="27" onClick=""> Welcome</a>-->
@@ -79,7 +81,7 @@
                             <img src="/assets/images/help-circle.png" alt="Help Popup" width="23" height="23">
                         </a>-->
               
-<section class="cd-section">    
+                <section class="cd-section">    
                     <div class="cd-modal-action">
                         <a href="#0" class="btn" data-type="modal-trigger">
                             <img src="/assets/images/help-circle.png" alt="Help Popup" width="23" height="23">
@@ -89,17 +91,59 @@
                     
                     <div class="cd-modal">
 			<div class="cd-modal-content">
-				<p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
-				</p>
-				<p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
-				</p>
+                            <section class="modal-header" style="padding: 5px;">
+                                <!--<header>-->
+                                <div class="wrapper clearfix">
+                                    <a href="/individual/dashboard.jsp" style="display: inline">
+                                        <h1>
+                                            <span>OWEN  </span>
+                                            <span>Individual</span>
+                                        </h1>
+                                    </a>
+                                </div>
+                                <!--</header>-->
+                            </section>
+                            <section class="modal-content">
+                                <div class="main" style="background: #ffffff; padding:2% 11.5rem;">
+                                    <h2>Welcome!</h2>
+                                    <p>OWEN helps you provide feedback about your experience at work as well as recognize your colleagues for their support. Please be assured that all your responses are <strong style="font: 500 14px 'Open Sans Bold', 'Open Sans';">strictly confidential</strong>, and that management will never see the names of the respondents.</p>
+                                    <p>Let's get started...</p>
+                                    <div class="main-survey" style="padding-top: 1em;">
+                                        <h2>Survey</h2>
+                                        <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
+                                            <li style="padding-top: 1em;">For questions with a numerical scale, select any one value that indicates your answer most correctly</li>
+                                            <img src="/assets/images/survey_numeric_scale.gif" alt="Survey Numeric Scale" width = 40% height = auto>
+                                            <li>For questions that show a scale of stars, show your appreciation to fellow colleagues by showering them with the appropriate number of stars</li>
+                                            <img src="/assets/images/survey_stars.gif" alt="Survey Star Scale" width = 30%>
+                                            <br>
+                                            <em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em>
+                                            <li>Once you've answered the questions, click on the submit button! That's it…</li>
+                                            <img src="/assets/images/survey_submit_button.gif" alt="Survey Submit Button" width = 10%>
+                                            <br>
+                                        </ol>
+                                    </div>
+                                    <div class="main-dashboard" style="padding-top: 1em;">
+                                        <h2>Dashboard</h2>
+                                        <ol style="padding-left: 1em; font: 14px 'Open Sans Light', 'Open Sans';">
+                                            <li style="padding-top: 1em;">The metrics and trendline show your scores for Expertise, Mentorship and Influence</li>
+                                            <img src="/assets/images/dashboard_metric_expertise.png" alt="Dashboard Expertise" width = 30%>
+                                            <br>
+                                            <em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em>
+                                            <li>Use the thumbs up to appreciate your colleagues for their Expertise, Mentorship and Influence</li>
+                                            <img src="/assets/images/dashboard_metric_appreciate.png" alt="Dashboard Expertise" width = 10%>
+                                            <li>Search, monitor, track or comment initiatives that you are a part of</li>
+                                            <li>Use the activity feed to stay on top of all your work</li>
+                                        </ol>
+                                    </div>
+                                    <p>Hopefully this will give you enough so you can breeze through your surveys and make the most of your dashboard.
+                                    If you still have questions, comments or conundrums, write to us at <a style ='display: inline ;' href=mailto:support@owenanalytics.com>support@owenanalytics.com</p>
+                                </div>
+                            </section>
 			</div> <!-- cd-modal-content -->
                     </div> <!-- cd-modal -->
                     
                     <a href="#0" class="cd-modal-close">Close</a>
-</section>                    
+                </section>                    
 
                 
             </div>
@@ -140,7 +184,7 @@
                 
             <div class="user-name-company">
                 <span><%=session.getAttribute("esname")%></span>
-                <span>i-Cube</span>
+                <span><%=session.getAttribute("companyName")%></span>
             </div>
         </div>
     </div>

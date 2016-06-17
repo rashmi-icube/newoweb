@@ -71,17 +71,6 @@
             <% }%>
 
             <div class="main">
-                <!--            DEMO01
-                                        <div id="animatedModal" class="animated animatedModal-on zoomIn" style="position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; overflow-y: auto; z-index: 9999; opacity: 1; animation-duration: 0.6s; background-color: #ff0000;">
-                                            THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID 
-                                            <div id="btn-close-modal" class="close-animatedModal" style="width:100%; text-align: center;cursor:pointer;color:#fff;"> 
-                                                CLOSE MODAL
-                                            </div>
-                
-                                            <div class="modal-content">
-                                            Your modal content goes here
-                                            </div>
-                                        </div>-->
                 <input type="hidden" id="total_ques" value="<%= len%>" />
                 <input type="hidden" id="remaining_ques" value="<%= len%>" />
                 <%
@@ -156,44 +145,15 @@
                             <input type="hidden" class="question_no" value="<%= i%>" />
                             <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
                             <h2></h2>
-                            <h3><%= ques.getQuestionText()%>?</h3>
-                            <div class="people-list-box clearfix">                       
+                            <h3><%= ques.getQuestionText()%></h3>
+                            <div class="people-list-box clearfix">
+                                <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation  by the number of stars</p>
                                 <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
                                 <button>&#x1F50D;</button>
-
-                                <div class="no-key-selected">
-                                    <%
-                                        String empRating = request.getParameter("emp_rating");
-                                        List<Employee> employeeList = null;
-                                        System.out.println("***************" + empRating);
-                                        if (empRating != null && !empRating.isEmpty()) {
-                                            try {
-                                                JSONObject jObj = new JSONObject(request.getParameter("emp_rating"));
-                                                Iterator<String> keys = jObj.keys();
-                                                while (keys.hasNext()) {
-                                                    String key = (String) keys.next();
-                                                    int ratEmpId = Util.getIntValue(key);
-                                                    Employee employee = (Employee) ObjectFactory.getInstance("org.icube.owen.employee.Employee");
-                                                    employeeList.add(employee.get(comid, ratEmpId));
-                                                    System.out.println("***************" + employee.getFirstName());
-                                                }
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                        String ownerEmpIds = "";
-                                        if (employeeList != null) {
-                                            int count = employeeList.size() > 5 ? 5 : employeeList.size();
-                                            String remaining = employeeList.size() > 5 ? "and " + (employeeList.size() - 5) + " more" : "";
-                                            for (int j = 0; j < employeeList.size(); j++) {
-                                                ownerEmpIds += "\"" + employeeList.get(j).getEmployeeId() + "\",";
-                                                if (j < count) {
-                                    %>
-                                    <p><%= employeeList.get(j).getFirstName().substring(0, 1) + (employeeList.get(j).getLastName() != null ? employeeList.get(j).getLastName().substring(0, 1) : "")%></p>
-                                    <% }
-                                            }
-                                        }%>
-                                </div>
+                                <!-- TODO we question bubbles -->
+                                <!--                                <div class="no-key-selected">
+                                                                   
+                                                                </div>-->
 
                                 <div class="mobile-filter-row">
                                     <div>
@@ -310,7 +270,7 @@
                                                     continue;
                                                 }
                                                 //employee.g
-%>
+                                        %>
                                         <div class="individual-cell clearfix">
                                             <button class="get-person-info">
                                                 <span>i</span>
@@ -377,79 +337,75 @@
                 <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
 
-                <script>
-                                        $("#demo01").animatedModal();
-                </script> 
-
                 </body>
                 </html>
-
-                <script>
-                    var arr = [];
-                    $('.rating-star').on('click', function () {
-                        //var text = $(this).text();
-                        var selected = $('.individuals-grid').find('input:checked').length;
-
-                        function getInitials(obj) {
-                            var name = obj.parent().find('individual-cell-name').text().split(' ');
-                            var nameSize = name.length;
-                            var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
-                            return initials;
-                        }
-
-                        var personInitials = getInitials($(this));
-
-                        if ($(this).) {
-                            //  $(this).css({'background-color': '#4effb8', 'color': '#fff'}).text('?');
-                            //$(this).siblings('input').prop('checked', true);
-
-                            if (selected < 5) {
-                                $('.no-key-selected').append('<p>' + personInitials + '</p>');
-                            } else {
-                                var remaining = selected - 4;
-                                $('.no-key-selected').children('span').remove();
-                                $('.no-key-selected').append('<span>and ' + remaining + ' more</span');
-                            }
-                            arr.push($(this).siblings('input').attr('id'));
-                            var addId = $(this).siblings('input').val();
-                            arrEmpId.push(addId);
-                        } else {
-                            $(this).removeAttr('style').text('+');
-                            $(this).siblings('input').prop('checked', false);
-
-                            var tag;
-
-                            $('.no-key-selected p').each(function (i) {
-                                if ($(this).text() === personInitials) {
-                                    tag = true;
-                                    $(this).remove();
-
-                                    if (selected >= 6) {
-                                        var newInitials = getInitials($('#' + arr[5]));
-                                        $('.no-key-selected p:last-of-type').after('<p>' + newInitials + '</p>');
-                                    }
-                                    return false;
-                                }
-                            });
-
-                            if (selected === 6) {
-                                $('.no-key-selected').children('span').remove();
-                            } else if ((selected < 6) && !tag) {
-                                $('.no-key-selected').children('p:last-of-type').remove();
-                            } else if (selected > 6) {
-                                var remaining = selected - 6;
-                                $('.no-key-selected').children('span').remove();
-                                $('.no-key-selected').append('<span>and ' + remaining + ' more</span>');
-                            }
-
-                            var removeItem = $(this).siblings('input').attr('id');
-                            arr = jQuery.grep(arr, function (value) {
-                                return value !== removeItem;
-                            });
-                            var removeId = $(this).siblings('input').val();
-                            arrEmpId = jQuery.grep(arrEmpId, function (value) {
-                                return value !== removeId;
-                            });
-                        }
-                    });
-                </script>
+                <!--TODO we question bubbles -->
+                <!--                <script>
+                                    var arr = [];
+                                    $('.rating-star').on('click', function () {
+                                        //var text = $(this).text();
+                                        var selected = $('.individuals-grid').find('input:checked').length;
+                
+                                        function getInitials(obj) {
+                                            var name = obj.parent().find('individual-cell-name').text().split(' ');
+                                            var nameSize = name.length;
+                                            var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
+                                            return initials;
+                                        }
+                
+                                        var personInitials = getInitials($(this));
+                
+                                        if ($(this).) {
+                                            //  $(this).css({'background-color': '#4effb8', 'color': '#fff'}).text('?');
+                                            //$(this).siblings('input').prop('checked', true);
+                
+                                            if (selected < 5) {
+                                                $('.no-key-selected').append('<p>' + personInitials + '</p>');
+                                            } else {
+                                                var remaining = selected - 4;
+                                                $('.no-key-selected').children('span').remove();
+                                                $('.no-key-selected').append('<span>and ' + remaining + ' more</span');
+                                            }
+                                            arr.push($(this).siblings('input').attr('id'));
+                                            var addId = $(this).siblings('input').val();
+                                            arrEmpId.push(addId);
+                                        } else {
+                                            $(this).removeAttr('style').text('+');
+                                            $(this).siblings('input').prop('checked', false);
+                
+                                            var tag;
+                
+                                            $('.no-key-selected p').each(function (i) {
+                                                if ($(this).text() === personInitials) {
+                                                    tag = true;
+                                                    $(this).remove();
+                
+                                                    if (selected >= 6) {
+                                                        var newInitials = getInitials($('#' + arr[5]));
+                                                        $('.no-key-selected p:last-of-type').after('<p>' + newInitials + '</p>');
+                                                    }
+                                                    return false;
+                                                }
+                                            });
+                
+                                            if (selected === 6) {
+                                                $('.no-key-selected').children('span').remove();
+                                            } else if ((selected < 6) && !tag) {
+                                                $('.no-key-selected').children('p:last-of-type').remove();
+                                            } else if (selected > 6) {
+                                                var remaining = selected - 6;
+                                                $('.no-key-selected').children('span').remove();
+                                                $('.no-key-selected').append('<span>and ' + remaining + ' more</span>');
+                                            }
+                
+                                            var removeItem = $(this).siblings('input').attr('id');
+                                            arr = jQuery.grep(arr, function (value) {
+                                                return value !== removeItem;
+                                            });
+                                            var removeId = $(this).siblings('input').val();
+                                            arrEmpId = jQuery.grep(arrEmpId, function (value) {
+                                                return value !== removeId;
+                                            });
+                                        }
+                                    });
+                                </script>-->

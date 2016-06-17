@@ -269,7 +269,7 @@
                     </div>
                     <input type="hidden" id="selectedmetid">
                     <div class="people-list-box clearfix">
-                        <input class="search-colleague" type="search" placeholder="Find a colleague you would like to appreciate">
+                        <input class="search-colleague" type="search" placeholder="&#x1F50D; Search for a colleague you would like to appreciate">
                         <button>&#x1F50D;</button>
 
                         <button type="button" id="closeGroupAppreciate">x</button>

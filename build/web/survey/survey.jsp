@@ -85,14 +85,14 @@
                             <div class="collapse-view-question">
                                 <div class="view-question">
                                     <% if(currQObj.getQuestionText() != null) { %>
-                                        <span><%=currQObj.getQuestionText() %>?</span>
+                                        <span><%=currQObj.getQuestionText() %></span>
                                     <% } else { %>
                                         <span class="no-current-ques">You have no questions running at the moment.</span>
                                     <% } %>
                                 </div>
 
                                 <div class="collapse-question">
-                                    <span><%=currQObj.getQuestionText() %>?</span>
+                                    <span><%=currQObj.getQuestionText() %></span>
                                     <div id="chartdiv" style="width: 100%; height: 170px; background-color: #fff;" ></div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                             for(int i=0; i<qlist.size(); i++) { %>
                                <tr class="question-name-date">
                                 <td><%=(i+1)%></td>
-                                <td class="question-name"><%=qlist.get(i).getQuestionText()%>?</td>
+                                <td class="question-name"><%=qlist.get(i).getQuestionText()%></td>
                                 <td><%=Util.getDisplayDateFormat(qlist.get(i).getEndDate(), "dd MMM") %></td>
                                 <td><%=qlist.get(i).getResponsePercentage() %>%</td>
                                 <td>

@@ -59,13 +59,13 @@ header h1 {
   text-align: center;
   background-color: #03bb91;
 }
-.cd-section p {
+/*.cd-section p {
   margin: 2em 0;
   line-height: 1.6;
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} 
+} */
 @media only screen and (min-width: 768px) {
 /*   .cd-section {
     padding: 4em 10%;
@@ -95,7 +95,7 @@ header h1 {
   transition: visibility 0s 0.3s, opacity 0.3s 0s, z-index 0s 0.3s;
 }
 .cd-modal::after {
-  /* gradient overlay at bottom of modal window */
+   gradient overlay at bottom of modal window 
   content: '';
   position: absolute;
   left: 0;
@@ -104,8 +104,8 @@ header h1 {
   height: 60px;
   pointer-events: none;
   background: transparent;
-  background: -webkit-linear-gradient( bottom , #34383c, rgba(52, 56, 60, 0));
-  background: linear-gradient(to top, #34383c, rgba(52, 56, 60, 0));
+/*  background: -webkit-linear-gradient( bottom , #34383c, rgba(52, 56, 60, 0));
+  background: linear-gradient(to top, #34383c, rgba(52, 56, 60, 0));*/
 }
 .cd-modal .cd-modal-content {
   height: 100%;
@@ -116,13 +116,22 @@ header h1 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.cd-modal p {
-  color: #ffffff;
-  line-height: 1.6;
-  margin: 2em 0;
+.cd-modal .modal-content p {
+  color: #333;
+  /*line-height: 1.6;*/
+  margin: 1em 0;
+  font:14px 'Open Sans Light', 'Open Sans';
 }
+.cd-modal h2{
+    font:24px 'Open Sans Bold', 'Open Sans';
+    box-sizing: border-box;
+    padding: 2px 0 0 10px;
+    background-color: #d7d7d7;
+    color: #388e3c;
+}
+
 .modal-is-visible .cd-modal {
-  z-index: 1;
+  z-index: 100;
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
@@ -143,8 +152,6 @@ header h1 {
     /*padding: 6em 20%;*/
   }
   .cd-modal p {
-    font-size: 2rem;
-    line-height: 2;
   }
 }
 
@@ -155,6 +162,7 @@ header h1 {
   display: inline-block;
   height: 2em;
   background-color: #388e3c;
+  width: 1.8em;
 }
 .cd-modal-action .btn {
 /*  width: 1em;
@@ -171,7 +179,7 @@ header h1 {
   transition: color 0.2s 0.3s, width 0.3s 0s;
 }
 .cd-modal-action .btn.to-circle {
-  width: 4em;
+  width: 1.8em;
   color: transparent;
   -webkit-transition: color 0.2s 0s, width 0.3s 0.2s;
   -moz-transition: color 0.2s 0s, width 0.3s 0.2s;
@@ -183,7 +191,7 @@ header h1 {
   left: 50%;
   top: 0;
   width: 4em;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   opacity: 0;
   visibility: hidden;
   -webkit-transform: translateZ(0);
@@ -208,7 +216,7 @@ header h1 {
 .cd-modal-close {
   position: fixed;
   z-index: 1;
-  top: 20px;
+  top: 2px;
   right: 5%;
   height: 50px;
   width: 50px;
@@ -240,6 +248,7 @@ header h1 {
 .modal-is-visible .cd-modal-close {
   visibility: visible;
   opacity: 1;
+  z-index: 101;
   -webkit-transition: -webkit-transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
   -moz-transition: -moz-transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
   transition: transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
@@ -251,6 +260,24 @@ header h1 {
 }
 @media only screen and (min-width: 768px) {
   .cd-modal-close {
-    top: 70px;
+    top: 2px;
   }
+}
+
+@media screen and (max-width: 480px)
+header .wrapper {
+    width: 100%;
+}
+@media screen and (max-width: 767px) and (min-width: 481px)
+header .wrapper {
+    width: 100%;
+}
+
+.cd-modal .main-settings .li .a:hover{
+    color:#169bd5;
+}
+
+modal-content .ol{
+    padding-left: 1em;
+    font: 100 14px 'Open Sans Light', 'Open Sans';
 }

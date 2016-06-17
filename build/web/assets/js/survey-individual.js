@@ -132,7 +132,15 @@ $(document).ready(function() {
 		var i = $(this).index();
 		var lastStar = $(row).find('.filled:last').index();
 		var total = i+1;
-
+                //TODO we question bubbles
+//                function getInitials() {
+//                    //obj.parent;
+//                    var parent = row.parent().parent();
+//                    var name = $(parent).find('span.individual-cell-name').html().split(' ');
+//                    var nameSize = name.length;
+//                    var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
+//                    return initials;
+//                }
 		if(lastStar === i) {
 			$(row).children().removeClass('filled');
 			$(row).next().text('0').removeAttr('style');
@@ -142,7 +150,81 @@ $(document).ready(function() {
 				$(row).children('span:eq('+n+')').addClass('filled');
 			}
 			$(row).next().text(total).css('visibility', 'visible');
-		}
+                        //TODO we question bubbles
+//                        var personInitials = getInitials();
+//                        $('.no-key-selected').append('<p>' + personInitials + '</p>');
+                }
+                
+//                var arr = [];
+//                //var text = $(this).text();
+//                var selected = $('.individuals-grid').find('input:checked').length;
+//
+//                function getInitials(obj) {
+//                    var name = obj.parent().find('individual-cell-name').text().split(' ');
+//                    var nameSize = name.length;
+//                    var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
+//                    return initials;
+//                }
+//
+//                var personInitials = getInitials($(this));
+//
+//                if ($(this).) {
+//                    //  $(this).css({'background-color': '#4effb8', 'color': '#fff'}).text('?');
+//                    //$(this).siblings('input').prop('checked', true);
+//
+//                    if (selected < 5) {
+//                        $('.no-key-selected').append('<p>' + personInitials + '</p>');
+//                    } else {
+//                        var remaining = selected - 4;
+//                        $('.no-key-selected').children('span').remove();
+//                        $('.no-key-selected').append('<span>and ' + remaining + ' more</span');
+//                    }
+//                    arr.push($(this).siblings('input').attr('id'));
+//                    var addId = $(this).siblings('input').val();
+//                    arrEmpId.push(addId);
+//                } else {
+//                    $(this).removeAttr('style').text('+');
+//                    $(this).siblings('input').prop('checked', false);
+//
+//                    var tag;
+//
+//                    $('.no-key-selected p').each(function (i) {
+//                        if ($(this).text() === personInitials) {
+//                            tag = true;
+//                            $(this).remove();
+//
+//                            if (selected >= 6) {
+//                                var newInitials = getInitials($('#' + arr[5]));
+//                                $('.no-key-selected p:last-of-type').after('<p>' + newInitials + '</p>');
+//                            }
+//                            return false;
+//                        }
+//                    });
+//
+//                    if (selected === 6) {
+//                        $('.no-key-selected').children('span').remove();
+//                    } else if ((selected < 6) && !tag) {
+//                        $('.no-key-selected').children('p:last-of-type').remove();
+//                    } else if (selected > 6) {
+//                        var remaining = selected - 6;
+//                        $('.no-key-selected').children('span').remove();
+//                        $('.no-key-selected').append('<span>and ' + remaining + ' more</span>');
+//                    }
+//
+//                    var removeItem = $(this).siblings('input').attr('id');
+//                    arr = jQuery.grep(arr, function (value) {
+//                        return value !== removeItem;
+//                    });
+//                    var removeId = $(this).siblings('input').val();
+//                    arrEmpId = jQuery.grep(arrEmpId, function (value) {
+//                        return value !== removeId;
+//                    });
+//                }
+
+                
+                
+                
+                
 	});
 
 	$('.individuals-grid').css('top', '0px');
@@ -340,6 +422,17 @@ function saveRating() {
         if(rating !== '') {
             empRating[quesId+'_'+empId] = rating;
             empArr.push(empRating);
+            //TODO we question bubbles
+//            function getInitials() {
+//                var parent = $(this).parent().parent().parent();
+//                var name = $(parent).find('span.individual-cell-name').html();
+//                var nameSize = name.length;
+//                var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
+//                return initials;
+//            }
+//            var personInitials = getInitials();
+//            $('.no-key-selected').append('<p>' + personInitials + '</p>');
+                
         }
     });
     jQuery.data(document.body, "emp_rating", empArr);
@@ -497,6 +590,8 @@ function fetchSmartData(questionId) {
 function clearRatings() {
     jQuery.each($('.star-rating-total'), function(i,v) {
         $(v).text('');
+        //TODO we question bubbles
+        //$('.no-key-selected').children('span').remove();
     });
 }
 
