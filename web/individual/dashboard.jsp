@@ -269,6 +269,7 @@
                     </div>
                     <input type="hidden" id="selectedmetid">
                     <div class="people-list-box clearfix">
+                        <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation by the number of stars</p>
                         <input class="search-colleague" type="search" placeholder="&#x1F50D; Search for a colleague you would like to appreciate">
                         <button>&#x1F50D;</button>
 

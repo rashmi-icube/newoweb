@@ -26,10 +26,14 @@
             session.setAttribute( "esname", emp.getFirstName().substring(0, 1).toUpperCase()+(emp.getLastName() != null ? emp.getLastName().substring(0, 1).toUpperCase(): "") );
             session.setAttribute( "role", roleid );
             session.setAttribute( "firstTimeLogin", emp.isFirstTimeLogin());
-            System.out.println("**********************company name : " + emp.getCompanyName());
             session.setAttribute( "companyName", emp.getCompanyName());
             if(roleid == 1) {
-                response.sendRedirect(Constant.WEB_CONTEXT+"/individual/profile.jsp");
+                if(emp.isFirstTimeLogin()){
+                    response.sendRedirect(Constant.WEB_CONTEXT+"/individual/profile.jsp");
+                } else {
+                    response.sendRedirect(Constant.WEB_CONTEXT+"/individual/survey.jsp");
+                }
+                
             } else if(roleid == 2) {
                 response.sendRedirect(Constant.WEB_CONTEXT+"/dashboard/dashboard.jsp");
             } else {
