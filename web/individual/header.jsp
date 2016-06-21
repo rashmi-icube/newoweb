@@ -65,11 +65,11 @@
                         <span class="set-company"><%=session.getAttribute("companyName")%></span>
                     </div>
                     <div>
-                        <section class="cd-section">    
+<!--                        <section class="cd-section">    
                             <div class="cd-modal-action">
                                 <a href="#0" class="btn" data-type="modal-trigger"><img src="/assets/images/mobile-help-icon.png" alt="Help Popup"> Help</a>
                                 <span class="cd-modal-bg"></span>
-                            </div><!-- cd-modal-action -->
+                            </div> cd-modal-action 
                             <div class="cd-modal">
                                 <div class="cd-modal-content">
                                     <section class="modal-content">
@@ -120,9 +120,9 @@
                                             <p>If you still have questions, comments or conundrums, write to us at support@owenanalytics.com</p>
                                         </div>
                                     </section>
-                                </div> <!-- cd-modal-content -->
-                            </div> <!-- cd-modal -->
-                            <a href="#0" class="cd-modal-close">Close</a>
+                                </div>  cd-modal-content 
+                            </div>  cd-modal 
+                            <a href="#0" class="cd-modal-close">Close</a>-->
                             <a href="profile.jsp" id="setUserDetails"><img src="<%=Constant.WEB_ASSETS%>images/menu_icon_settings.png" alt="Settings" width="27" height="27" onClick=""> Settings</a>
                             <a href="../signout.jsp" id="signOutMobile"><img src="<%=Constant.WEB_ASSETS%>images/menu_icon_logout.png" alt="Sign out" width="27" height="27"> Sign out</a>
                     </div>
