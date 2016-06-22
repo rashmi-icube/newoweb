@@ -599,7 +599,7 @@ function submitWeData(obj) {
     var quesId = $(obj).val();
     var empArr = [];
     var empRating = {};
-    
+
     var empArr1 = jQuery.data(document.body, "emp_rating");
     if (empArr1 !== undefined) {
         jQuery.each(empArr1, function (i, o) {
@@ -611,14 +611,14 @@ function submitWeData(obj) {
         });
     }
 
-//    jQuery.each($('.star-rating-total'), function(i,v) {
-//        var empId = $(v).attr('emp_id');
-//        var rating = $(v).text();
-//        if(rating !== '') {
-//            empRating[empId] = rating;
-//            empArr.push(empRating);
-//        }
-//    });
+    jQuery.each($('.star-rating-total'), function (i, v) {
+        var empId = $(v).attr('emp_id');
+        var rating = $(v).text();
+        if (rating !== '') {
+            empRating[empId] = rating;
+            empArr.push(empRating);
+        }
+    });
 
     var postData = {'ques_id': quesId, 'emp_rating': JSON.stringify(empRating), 'rela_val': jQuery('#rela_val_' + quesId).val()};
     $.ajax({

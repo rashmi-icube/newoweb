@@ -212,7 +212,7 @@
                 </div>            
                 <div class="num-view-notif">
                     <% if (notCount > 0) {%>
-                    <span>You have <span class="num-notif"><%=notCount%></span> new notifications today.</span>
+                    <span>You have <span class="num-notif"><%=notCount%></span> new notification(s) today.</span>
                     <% } else { %>
                     <span>You have <span class="num-notif">no</span> new notifications today.</span>
                     <% }%>
