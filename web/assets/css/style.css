@@ -275,7 +275,7 @@ header h1 {
         /*width: 100%;*/
     }
     .cd-modal{
-        width: 90% !important;
+        width: 100% !important;
     }
     .cd-modal .cd-modal-content {
         height: 100%;
