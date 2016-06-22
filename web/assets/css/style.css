@@ -326,10 +326,16 @@ header h1 {
     }
     .cd-modal .cd-modal-content {
         /*padding:4em 5%*/
-        padding-top: 4em;
+        padding-top: 15%;
         position:fixed;
-        height: 90%;
+        height: 92%;
     }
+    .cd-modal-action .btn, .cd-modal-action .cd-modal-bg {
+    display: inline-block;
+    /* height: 2em; */
+    /* background-color: #388e3c; */
+    /*width: 1.8em;*/
+}
 
 }
 @media screen and (max-width: 767px) and (min-width: 481px){

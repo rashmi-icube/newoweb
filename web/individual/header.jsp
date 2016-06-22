@@ -65,70 +65,72 @@
                         <span class="set-company"><%=session.getAttribute("companyName")%></span>
                     </div>
                     <div>
-<!--                        <section class="cd-section">    
-                            <div class="cd-modal-action">
-                                <a href="#0" class="btn" data-type="modal-trigger"><img src="/assets/images/mobile-help-icon.png" alt="Help Popup"> Help</a>
-                                <span class="cd-modal-bg"></span>
-                            </div> cd-modal-action 
-                            <div class="cd-modal">
-                                <div class="cd-modal-content">
-                                    <section class="modal-content">
-                                        <div class="main" style="background: #ffffff; padding:2% 1.5rem;">
-                                            <h2>Welcome!</h2>
-                                            <p>OWEN helps you provide feedback about your experience at work as well as recognize your colleagues for their support. Please be assured that all your responses are <strong style="font: 500 14px 'Open Sans Bold', 'Open Sans';">strictly confidential</strong>, and that management will never see the names of the respondents.</p>
-                                            <p>Let's get started...</p>
-                                            <div class="main-survey" style="padding-top: 1em;">
-                                                <h2>Survey</h2>
-                                                <p>
-                                                    1. For questions with a numerical scale, select any one value that indicates your answer most correctly
-                                                </p>
-                                                <img src="/assets/images/survey_numeric_scale.gif" alt="Survey Numeric Scale" width = 70% height = auto>
-                                                <p>
-                                                    2. For questions that show a scale of stars, show your appreciation to fellow colleagues by showering them with the appropriate number of stars
-                                                </p>
-                                                <img src="/assets/images/survey_stars.gif" alt="Survey Star Scale" width = 90%>
-                                                <br>
-                                                <p><em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em></p>
-                                                <p>
-                                                    3. Once you've answered the questions, click on the submit button! That's it…
-                                                </p>
-                                                <img src="/assets/images/survey_submit_button.gif" alt="Survey Submit Button" width = 30%>
-                                                <br>
-                                            </div>
-                                            <div class="main-dashboard" style="padding-top: 1em;">
-                                                <h2>Dashboard</h2>
-                                                <p>
-                                                    1. The metrics and trendline show your scores for Expertise, Mentorship and Influence
-                                                </p>
-                                                <img src="/assets/images/dashboard_metrics.png" alt="Dashboard Metrics" width = 90%>
-                                                <br>
-                                                <p>
-                                                    <em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em>
-                                                </p>
-                                                <p>
-                                                    2. Use the thumbs up to appreciate your colleagues for their Expertise, Mentorship and Influence
-                                                </p>
-                                                <img src="/assets/images/dashboard_metric_appreciate.png" alt="Dashboard Appreciate Expertise" width = 30%>
-                                                <p>
-                                                    3. Search, monitor, track or comment initiatives that you are a part of
-                                                </p>
-                                                <p>
-                                                    4. Use the activity feed to stay on top of all your work
-                                                </p>                                            
-                                            </div>
-                                            <p>Hopefully this will give you enough so you can breeze through your surveys and make the most of your dashboard.</p>
-                                            <p>If you still have questions, comments or conundrums, write to us at support@owenanalytics.com</p>
-                                        </div>
-                                    </section>
-                                </div>  cd-modal-content 
-                            </div>  cd-modal 
-                            <a href="#0" class="cd-modal-close">Close</a>-->
                             <a href="profile.jsp" id="setUserDetails"><img src="<%=Constant.WEB_ASSETS%>images/menu_icon_settings.png" alt="Settings" width="27" height="27" onClick=""> Settings</a>
                             <a href="../signout.jsp" id="signOutMobile"><img src="<%=Constant.WEB_ASSETS%>images/menu_icon_logout.png" alt="Sign out" width="27" height="27"> Sign out</a>
                     </div>
                 </div>
             </li>
-
+            <li>
+                <section class="cd-section">    
+                    <div class="cd-modal-action">
+                        <a href="#0" class="btn" data-type="modal-trigger"><img src="/assets/images/mobile-help-icon.png" alt="Help Popup" style="margin-left: -10px;"></a>
+                        <span class="cd-modal-bg"></span>
+                    </div> <!-- cd-modal-action -->
+                    <div class="cd-modal">
+                        <div class="cd-modal-content">
+                            <section class="modal-content">
+                                <div class="main" style="background: #ffffff; padding:2% 1.5rem;">
+                                    <h2>Welcome!</h2>
+                                    <p>OWEN helps you provide feedback about your experience at work as well as recognize your colleagues for their support. Please be assured that all your responses are <strong style="font: 500 14px 'Open Sans Bold', 'Open Sans';">strictly confidential</strong>, and that management will never see the names of the respondents.</p>
+                                    <p>Let's get started...</p>
+                                    <div class="main-survey" style="padding-top: 1em;">
+                                        <h2>Survey</h2>
+                                        <p>
+                                            1. For questions with a numerical scale, select any one value that indicates your answer most correctly
+                                        </p>
+                                        <img src="/assets/images/survey_numeric_scale.gif" alt="Survey Numeric Scale" width = 70% height = auto>
+                                        <p>
+                                            2. For questions that show a scale of stars, show your appreciation to fellow colleagues by showering them with the appropriate number of stars
+                                        </p>
+                                        <img src="/assets/images/survey_stars.gif" alt="Survey Star Scale" width = 90%>
+                                        <br>
+                                        <p><em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em></p>
+                                        <p>
+                                            3. Once you have answered the questions, click on the submit button! That's it…
+                                        </p>
+                                        <img src="/assets/images/survey_submit_button.gif" alt="Survey Submit Button" width = 30%>
+                                        <br>
+                                    </div>
+                                    <div class="main-dashboard" style="padding-top: 1em;">
+                                        <h2>Dashboard</h2>
+                                        <p>
+                                            1. The metrics and trendline show your scores for Expertise, Mentorship and Influence
+                                        </p>
+                                        <img src="/assets/images/dashboard_metrics.png" alt="Dashboard Metrics" width = 90%>
+                                        <br>
+                                        <p>
+                                            <em>Quick Tip: Appreciating people makes them feel better and wanted in the team, so don't shy away from appreciating more people.</em>
+                                        </p>
+                                        <p>
+                                            2. Use the thumbs up to appreciate your colleagues for their Expertise, Mentorship and Influence
+                                        </p>
+                                        <img src="/assets/images/dashboard_metric_appreciate.png" alt="Dashboard Appreciate Expertise" width = 30%>
+                                        <p>
+                                            3. Search, monitor, track or comment initiatives that you are a part of
+                                        </p>
+                                        <p>
+                                            4. Use the activity feed to stay on top of all your work
+                                        </p>                                            
+                                    </div>
+                                    <p>Hopefully this will give you enough so you can breeze through your surveys and make the most of your dashboard.</p>
+                                    <p>If you still have questions, comments or conundrums, write to us at support@owenanalytics.com</p>
+                                </div>
+                            </section>
+                        </div>  <!-- cd-modal-content  -->
+                    </div>  <!-- cd-modal -->
+                    <a href="#0" class="cd-modal-close" style="padding-bottom: 0; top: 10%;">Close</a>
+                </section>
+            </li>
         </nav>
 
         <div class="notif-settings">
