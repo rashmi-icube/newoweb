@@ -123,7 +123,7 @@
                                         </p>                                            
                                     </div>
                                     <p>Hopefully this will give you enough so you can breeze through your surveys and make the most of your dashboard.</p>
-                                    <p>If you still have questions, comments or conundrums, write to us at support@owenanalytics.com</p>
+                                    <p>If you still have questions, comments or conundrums, write to us at <a style="display: inline; color: blue;" href="mailto:support@owenanalytics.com">support@owenanalytics.com</a></p>
                                 </div>
                             </section>
                         </div>  <!-- cd-modal-content  -->
