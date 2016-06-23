@@ -458,10 +458,10 @@
                         var currentQArray = getDataAarray(mat1,mat2,'<%=firstKey%>','<%=secondKey%>');
                         generateTimeGraph('trend-graph',currentQArray,'<%=firstKey%>','<%=secondKey%>');
                     } else {
-                        $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                        $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                     }
                 } else {
-                    $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                    $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                 }
             });
         </script>
@@ -568,10 +568,10 @@
                                     var currentQArray = getDataAarray(mat1, mat2, teamTypeJSON[selectedType[0]], teamTypeJSON[selectedType[1]]);
                                     generateTimeGraph('trend-graph', currentQArray, teamTypeJSON[selectedType[0]], teamTypeJSON[selectedType[1]]);
                             } else {
-                                $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                                $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                             }
                         } else {
-                            $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                            $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                         }                    
                     }
                 }); 
@@ -695,10 +695,10 @@
                             var currentQArray = getDataAarray(mat1, mat2, teamTypeJSON[selectedType[0]], teamTypeJSON[selectedType[1]]);
                             generateTimeGraph('trend-graph', currentQArray, teamTypeJSON[selectedType[0]], teamTypeJSON[selectedType[1]]);
                         } else {
-                            $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                            $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                         }
                     } else {
-                        $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                        $('#trend-graph').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                     }
                 });
             });

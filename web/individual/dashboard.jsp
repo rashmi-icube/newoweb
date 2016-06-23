@@ -591,10 +591,10 @@
                         var currentQArray = getDataAarrayIndividual(mat1, mat2, mat3, indTypeJSON[result[0]], indTypeJSON[result[1]], indTypeJSON[result[2]]);
                         generateTimeGraphIndividual('timeseriesChart', currentQArray, indTypeJSON[result[0]], indTypeJSON[result[1]], indTypeJSON[result[2]]);
                     } else {
-                        $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                        $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                     }
                 } else {
-                    $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>We will be showing scores as soon as there is sufficient data.</span></div>');
+                    $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                 }
             }
             
