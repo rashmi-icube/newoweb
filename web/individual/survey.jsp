@@ -43,6 +43,15 @@
         <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon/manifest.json">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon/ms-icon-144x144.png">
+        
+        <!-- Chrome, Firefox OS and Opera -->
+        <meta name="theme-color" content="#388E3C">
+        <!-- Windows Phone -->
+        <meta name="msapplication-navbutton-color" content="#388E3C">
+        <!-- iOS Safari -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="OWEN">
     </head>
 
     <body>
