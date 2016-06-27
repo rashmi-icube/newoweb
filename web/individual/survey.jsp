@@ -66,7 +66,7 @@
                     int len = qList.size();
                     //len = 0;
                     if (len == 0) { %>
-            <div class="no-survey">Nothing to do here, now. We'll be back with more questions for you soon.</div>
+            <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
             <div class="site-nav survey">
                 <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
             </div>
