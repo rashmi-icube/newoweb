@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/jquery.circliful.css">  
 <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/main.css">
+
 <meta http-equiv="Cache-Control" content="no-cache">
 
 <script src="<%=Constant.WEB_ASSETS%>js/common.js"></script>	
@@ -61,16 +62,16 @@
                 <li <%=moduleName.equals("survey") ? "class=\"current\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/survey/survey.jsp">Survey</a></li>
             </ul>
         </nav>
-    </div>
-    <div class="user-profile">
+ 
+<!--    <div class="user-profile">
         <div class="profimg" style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=comid%>&eid=<%=empid%>');"></div>
         <div class="user-name-company">
             <div class="user-profile-name">						
                 <p><a href="#" title="<%=session.getAttribute("ename")%>"><%=session.getAttribute("ename")%> &#9660;</a></p>
                 <ul>
-<!--                    <li>
+                    <li>
                         <a id="setUserDetails" href="<%=Constant.WEB_CONTEXT%>/individual/profile.jsp">Settings</a>
-                    </li>-->
+                    </li>
                     <li>
                         <a id="signOut" href="../signout.jsp">Sign out</a>
                     </li>
@@ -78,5 +79,31 @@
             </div>
             <p><%=session.getAttribute("esname")%></p>
         </div>
-    </div>        
+    </div>        -->
+        <div class="notif-settings">
+            <div class="user-small-pic">
+            <div class="profimg" style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=comid%>&eid=<%=empid%>');"></div>
+                <div class="settings-sign-popup clearfix">
+                    <div>
+                        <div class="profimg" style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=comid%>&eid=<%=empid%>');"></div>
+                    </div>
+                    <div>
+                        <span class="set-full-name"><%=session.getAttribute("ename")%></span>
+                        <span class="set-username"><%=session.getAttribute("esname")%></span>
+                    </div>
+                    <div>
+                        <!--<a href="<%=Constant.WEB_CONTEXT%>/individual/profile.jsp" id="setUserDetails">&#x1F527; Settings</a>-->
+                        <a href="../signout.jsp" id="signOut">Sign out</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-name-company">
+                <span><%=session.getAttribute("esname")%></span>
+                <span><%=session.getAttribute("companyName")%></span>
+            </div>
+        </div>
+    </div>
 </header>
+<script src="<%=Constant.WEB_ASSETS%>js/jquery-2.1.4.min.js"></script>
+<script src="<%=Constant.WEB_ASSETS%>js/individual.js"></script>

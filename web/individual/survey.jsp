@@ -66,18 +66,23 @@
                     int len = qList.size();
                     //len = 0;
                     if (len == 0) { %>
-            <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
-            <div class="site-nav survey">
-                <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
-            </div>
-            <% }
-                if (len > 1) { %>        
-            <div class="site-nav survey">
-                <a class="site-nav-prev" href="#" title="Prev">&#x276F;</a>
-                <a class="site-nav-next" href="#" title="Next">&#x276F;</a>
-                <a class="site-nav-dash" href="/individual/dashboard.jsp" title="Go to Dashboard" style="display:none;">&#x276F;</a>
-            </div>
-            <% }%>
+                        <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
+                        <div class="site-nav survey">
+                            <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
+                        </div>
+                    <% }
+                    else if (len == 1) { %>
+                        <div class="site-nav survey">
+                            <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
+                        </div>
+                    <% }
+                    else if (len > 1) { %>        
+                        <div class="site-nav survey">
+                            <a class="site-nav-prev" href="#" title="Prev">&#x276F;</a>
+                            <a class="site-nav-next" href="#" title="Next">&#x276F;</a>
+                            <a class="site-nav-dash" href="/individual/dashboard.jsp" title="Go to Dashboard" style="display:none;">&#x276F;</a>
+                        </div>
+                    <% }%>
 
             <div class="main">
                 <input type="hidden" id="total_ques" value="<%= len%>" />
