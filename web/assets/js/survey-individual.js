@@ -349,8 +349,9 @@ function searchIsotope() {
     $('.individuals-grid').css('top', '0px');
     $('#scroll-for-individuals-grid').slimScroll({
         height: '400px',
-        disableFadeOut: true,
-        color: '#388E3C'
+        color: '#388E3C',
+        railVisible: true,
+        alwaysVisible: true
     });
 //    if ($('.individuals-grid:visible').height() <= 400) {
 //        $('.individuals-box-scroll').css('visibility', 'hidden');
