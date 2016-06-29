@@ -92,7 +92,7 @@ $(document).ready(function () {
     });
 
     /****************************************** SURVEY-WE *******************************************/
-
+    
     if ($('.survey-we').is(':visible')) {
         searchIsotope();
     }
@@ -227,28 +227,28 @@ $(document).ready(function () {
 
     });
 
-    $('.individuals-grid').css('top', '0px');
+//    $('.individuals-grid').css('top', '0px');
 
-    $('.individuals-prev').on('click', function () {
-        event.preventDefault();
-        if ($('.individuals-grid')[0].style.top !== '0px') {
-            $('.individuals-grid').animate({'top': '+=200px'}, 0);
-        }
-    });
-
-    $('.individuals-next').on('click', function () {
-        event.preventDefault();
-        var height = $('.individuals-grid').height() - 400;
-        var limit;
-        if (height === 0) {
-            limit = height + 'px';
-        } else {
-            limit = '-' + height + 'px';
-        }
-        if ($('.individuals-grid')[0].style.top !== limit) {
-            $('.individuals-grid').animate({'top': '-=200px'}, 0);
-        }
-    });
+//    $('.individuals-prev').on('click', function () {
+//        event.preventDefault();
+//        if ($('.individuals-grid')[0].style.top !== '0px') {
+//            $('.individuals-grid').animate({'top': '+=200px'}, 0);
+//        }
+//    });
+//
+//    $('.individuals-next').on('click', function () {
+//        event.preventDefault();
+//        var height = $('.individuals-grid').height() - 400;
+//        var limit;
+//        if (height === 0) {
+//            limit = height + 'px';
+//        } else {
+//            limit = '-' + height + 'px';
+//        }
+//        if ($('.individuals-grid')[0].style.top !== limit) {
+//            $('.individuals-grid').animate({'top': '-=200px'}, 0);
+//        }
+//    });
 
     // To display filter in tablets
     if ('ontouchstart' in document.documentElement) {
@@ -347,11 +347,16 @@ function searchIsotope() {
         layoutMode: 'fitRows'
     });
     $('.individuals-grid').css('top', '0px');
-    if ($('.individuals-grid:visible').height() <= 400) {
-        $('.individuals-box-scroll').css('visibility', 'hidden');
-    } else {
-        $('.individuals-box-scroll').removeAttr('style');
-    }
+    $('#scroll-for-individuals-grid').slimScroll({
+        height: '400px',
+        disableFadeOut: true,
+        color: '#388E3C'
+    });
+//    if ($('.individuals-grid:visible').height() <= 400) {
+//        $('.individuals-box-scroll').css('visibility', 'hidden');
+//    } else {
+//        $('.individuals-box-scroll').removeAttr('style');
+//    }
 }
 
 // debounce so isotope filtering doesn't happen every millisecond

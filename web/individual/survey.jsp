@@ -52,6 +52,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="OWEN">
+        <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
+       
+        
     </head>
 
     <body>
@@ -271,10 +274,15 @@
                                         <span></span>
                                     </div>
                                 </div>
-                                <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
+                                    <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
                                     <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
 
-                                    <div class="individuals-grid">
+                                    <div class="individuals-grid" id="scroll-for-individuals-grid">
+<!--                                        <script type="text/javascript">
+                                        $(function(){
+                                            $('#scroll-for-individuals-grid').slimScroll();
+                                        });
+                                        </script>-->
                                         <%
                                             List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
                                             System.out.println("MAP LIST:" + mapSmartList);
@@ -317,12 +325,13 @@
                                             }
                                         %>
                                     </div>
-                                </div>
+                                    </div>
+                                                
 
-                                <div class="individuals-box-scroll">
+<!--                                <div class="individuals-box-scroll">
                                     <a href="#" title="Previous" class="individuals-prev"></a>
                                     <a href="#" title="Next" class="individuals-next"></a>
-                                </div>
+                                </div>-->
 
                                 <div class="submit-circle">
                                     <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
@@ -342,13 +351,17 @@
                         %>
                     </div>
                 </div>
-
-                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                
+                
+               
                 <script src="<%=Constant.WEB_ASSETS%>js/animatedModal.min.js"></script>            
-
+                
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
+                <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>
+                <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
 
                 </body>
