@@ -408,8 +408,10 @@ function showHideNavigation(obj) {
         var nextDiv = $(obj).nextAll("div.question_div").eq(0);
         if (nextDiv.length === 0) {
             $('.site-nav-next').hide();
+            $('.site-nav-dash').show();
         } else {
             $('.site-nav-next').show();
+            $('.site-nav-dash').hide();
         }
     }
 }
