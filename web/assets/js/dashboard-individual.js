@@ -438,12 +438,26 @@ function searchIndividual() {
       layoutMode: 'fitRows'
     }); 
     $('.individuals-grid').css('top', '0px');
-    $('.individuals-grid').slimScroll({
-        height: '400px',
-        color: '#388E3C',
-        railVisible: true,
-        alwaysVisible: true
-    });
+     if ($('.individuals-grid').height()>400){
+         if($('.individuals-grid').width()>290){ 
+        $('.individuals-grid').slimScroll({
+            height: '400px',
+            color: '#388E3C',
+            railVisible: true,
+            railColor: '#D7D7D7',
+            alwaysVisible: true,
+            touchScrollStep: 50
+        });
+        } else {
+            $('.individuals-grid').slimScroll({
+                destroy: true
+            });
+        }
+    } else{ 
+        $('.individuals-grid').slimScroll({
+                destroy: true
+            });
+    }
 //    if($('.individuals-grid').height() <= 400) {
 //        $('.individuals-box-scroll').css('visibility', 'hidden');
 //    } else {
