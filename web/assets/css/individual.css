@@ -1123,7 +1123,7 @@ nav li a {
 }
 
 .people-list-box {
-    padding: 10px 16px 14px 16px;
+    padding: 10px 10px 14px 16px;
     border: 1px solid #e4e4e4;
 }
 
@@ -1295,7 +1295,7 @@ nav li a {
 .individuals-box { 
     width: 1018px;
     max-height: 400px; 
-    margin-left: 2%;
+    margin-left: 1%;
     position: relative;
 }
 
@@ -2193,7 +2193,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
 .dashboard .individuals-box { width: 890px; }
 
-.dashboard .submit-circle { margin: -40px -1px 0 0; }
+.dashboard .submit-circle { 
+    top: -10px;
+    margin: -40px -1px 0 18px; 
+}
 
 /********************************************** MEDIA QUERIES ****************************************/
 

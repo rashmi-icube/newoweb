@@ -1,5 +1,6 @@
 $(document).ready(function() {
     if(document.documentElement.clientWidth > 480) { 
+       
         $('.appreciateMetric').on('click', function() {
             $('#selectedmetid').val($(this).attr('data-id'));
             clearRatings();
@@ -437,11 +438,17 @@ function searchIndividual() {
       layoutMode: 'fitRows'
     }); 
     $('.individuals-grid').css('top', '0px');
-    if($('.individuals-grid').height() <= 400) {
-        $('.individuals-box-scroll').css('visibility', 'hidden');
-    } else {
-        $('.individuals-box-scroll').removeAttr('style');
-    }
+    $('.individuals-grid').slimScroll({
+        height: '400px',
+        color: '#388E3C',
+        railVisible: true,
+        alwaysVisible: true
+    });
+//    if($('.individuals-grid').height() <= 400) {
+//        $('.individuals-box-scroll').css('visibility', 'hidden');
+//    } else {
+//        $('.individuals-box-scroll').removeAttr('style');
+//    }
 }
 // debounce so filtering doesn't happen every millisecond
 function debounce( fn, threshold ) {
