@@ -1295,7 +1295,7 @@ nav li a {
 .individuals-box { 
     width: 1018px;
     max-height: 400px; 
-    margin-left: 1%;
+    margin-left: 2%;
     position: relative;
 }
 
@@ -1511,7 +1511,7 @@ nav li a {
 
 .survey-we .submit-circle {
     top: 400px;
-    margin: -40px -10px 0 0; 
+    margin: -40px -6px 0 0; 
 }
 
 .no-survey {
@@ -2195,7 +2195,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
 .dashboard .submit-circle { 
     top: -10px;
-    margin: -40px -1px 0 18px; 
+    margin: -40px -4px 0 22px; 
 }
 
 /********************************************** MEDIA QUERIES ****************************************/
@@ -3211,6 +3211,8 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         top: 0;
         right: 0;
         background-color: #fff;
+        width: 95%;
+        margin-left: 5%;
     }
 
     .dashboard.metrics .page-title {
@@ -3252,6 +3254,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         position: fixed;
         right: 4px;
         bottom: 45px;
+        top: 400px;
     }
 
     .dashboard.initiatives .panels-timeseries { display: none; }
@@ -3364,6 +3367,9 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         height: auto;
         overflow: visible;
     }
+    .people-list-box p{
+        padding-right: 20px;
+    }    
 }
 
 @media screen and (max-width: 359px) {
