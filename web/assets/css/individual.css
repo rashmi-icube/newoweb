@@ -1083,6 +1083,7 @@ nav li a {
     color: #fff;
     text-align: center;
     transition: visibility 0.2s;
+    z-index: 100;
 }
 
 .submit-tooltip .submit-title { font: 600 10px 'Open Sans Semibold', 'Open Sans'; }
@@ -1122,7 +1123,7 @@ nav li a {
 }
 
 .people-list-box {
-    padding: 10px 16px 14px 16px;
+    padding: 10px 10px 14px 16px;
     border: 1px solid #e4e4e4;
 }
 
@@ -1294,7 +1295,7 @@ nav li a {
 .individuals-box { 
     width: 1018px;
     max-height: 400px; 
-    margin-left: 3%;
+    margin-left: 1%;
     position: relative;
 }
 
@@ -1508,7 +1509,10 @@ nav li a {
     background: url('../images/scroll_down_individual_hover.png') 0 0/contain no-repeat;
 }
 
-.survey-we .submit-circle { margin: -40px -10px 0 0; }
+.survey-we .submit-circle {
+    top: 400px;
+    margin: -40px -10px 0 0; 
+}
 
 .no-survey {
     margin-top: 10%;
@@ -2189,7 +2193,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
 .dashboard .individuals-box { width: 890px; }
 
-.dashboard .submit-circle { margin: -40px -1px 0 0; }
+.dashboard .submit-circle { 
+    top: -10px;
+    margin: -40px -1px 0 18px; 
+}
 
 /********************************************** MEDIA QUERIES ****************************************/
 

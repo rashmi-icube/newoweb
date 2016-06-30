@@ -51,9 +51,7 @@
         <!-- iOS Safari -->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-title" content="OWEN">
-        <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
-       
+        <meta name="apple-mobile-web-app-title" content="OWEN">       
         
     </head>
 
@@ -278,11 +276,6 @@
                                     <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
 
                                     <div class="individuals-grid" id="scroll-for-individuals-grid">
-<!--                                        <script type="text/javascript">
-                                        $(function(){
-                                            $('#scroll-for-individuals-grid').slimScroll();
-                                        });
-                                        </script>-->
                                         <%
                                             List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
                                             System.out.println("MAP LIST:" + mapSmartList);
@@ -360,7 +353,7 @@
 
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
-                <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>
+                <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>-->
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
 
