@@ -219,15 +219,15 @@ nav li a {
   font: 13px 'Open Sans Regular', 'Open Sans';
 }
 
-.user-profile {
+/*.user-profile {
   margin: -48px 2.4% 0 0;
   float: right;
 }
 
-/*.user-profile img { 
+.user-profile img { 
   margin-right: 13px;
   vertical-align: middle; 
-}*/
+}
 
 .user-profile .profimg {
   width: 32px;
@@ -284,8 +284,122 @@ nav li a {
   color: #a1a1a1;
 }
 
-.user-profile-name li:hover a { color: #4e95ff; }
+.user-profile-name li:hover a { color: #4e95ff; }*/
 
+.user-small-pic {
+    position: relative;
+}
+.user-small-pic>.profimg {
+    width: 44px;
+    height: 46px;
+    cursor: pointer;
+}
+.profimg {
+    background-size: cover;
+    border-radius: 50%;
+    background-position: center top;
+}
+.settings-sign-popup {
+    box-sizing: border-box;
+    width: 284px;
+    height: 133px;
+    padding: 17px 0 0 15px;
+    border: 1px solid #e4e4e4;
+    display: none;
+    position: absolute;
+    top: 105%;
+    right: -55px;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 2px 4px 16px -2px rgba(0, 0, 0, 0.6);
+}
+.settings-sign-popup::before {
+    content: '';
+    border: 8px solid #fff;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top: 0;
+    position: absolute;
+    top: -8px;
+    left: 70%;
+    z-index: 1;
+}
+.settings-sign-popup div:nth-child(-n+2) {
+    display: inline-block;
+    vertical-align: top;
+}
+.settings-sign-popup .profimg {
+    width: 88px;
+    height: 88px;
+    margin-right: 6px;
+}
+.settings-sign-popup div:nth-child(2) {
+    margin-top: 2px;
+}
+.settings-sign-popup span {
+    display: block;
+    color: #1e1e1e;
+}
+.set-full-name {
+    width: 165px;
+    font: 700 20px 'Open Sans Bold', 'Open Sans';
+}
+.set-username {
+    font: 16px 'Open Sans Regular', 'Open Sans';
+}
+.settings-sign-popup div:nth-child(3) {
+    margin: -12px 3px 0 0;
+    float: right;
+}
+.settings-sign-popup a {
+    box-sizing: border-box;
+    width: 86px;
+    height: 28px;
+    padding-top: 2px;
+    border-radius: 5px;
+    margin-right: 4px;
+    display: inline-block;
+    color: #169bd5;
+    font: 16px 'Open Sans Regular', 'Open Sans';
+    text-align: center;
+}
+.settings-sign-popup a:hover {
+    background-color: #ff9800;
+    color: #fff;
+}
+.settings-sign-popup::after {
+    content: '';
+    border: 10px solid #ddd;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top: 0;
+    position: absolute;
+    top: -10px;
+    left: 69.2%;
+}
+.user-name-company {
+    margin: -4px 0 0 6px;
+}
+.user-name-company span:first-child {
+    font: 700 14px 'Open Sans Bold', 'Open Sans';
+}
+.user-name-company span {
+    display: block;
+    color: #fff;
+}
+
+.user-name-company span:nth-child(2) {
+    font: 400 14px 'Open Sans Regular', 'Open Sans';
+}
+
+.notif-settings>div {
+    display: inline-block;
+    vertical-align: middle;
+}
+.notif-settings {
+    float: right;
+    margin-top: 0.3em;
+}
 .main {
     padding-bottom: 40px;
     border-top: 1px solid transparent; }

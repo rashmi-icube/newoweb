@@ -390,13 +390,13 @@
                         <div class="individuals-box">	
                             <div class="overlay_form"><img src="<%=Constant.WEB_ASSETS%>images/ajax-loader.gif"></div>	
                             
-                            <div class="individuals-grid">
+                            <div class="individuals-grid" id="scrolls-for-individuals-grid">
                             </div>
                         </div>
-                        <div class="individuals-box-scroll">
+<!--                        <div class="individuals-box-scroll">
                             <a href="#" title="Previous" class="individuals-prev"></a>
                             <a href="#" title="Next" class="individuals-next"></a>
-                        </div>
+                        </div>-->
 
                         <div class="submit-circle">
                             <button>&#x2714;</button>
@@ -412,14 +412,18 @@
         </div>
     </div>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
 	<script src="<%=Constant.WEB_ASSETS%>js/amcharts/amcharts.js"></script>
 	<script src="<%=Constant.WEB_ASSETS%>js/amcharts/serial.js"></script>	
 	<script src="<%=Constant.WEB_ASSETS%>js/amcharts/themes/light.js"></script>    
 	<script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
-    <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>	
+    <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>
+    
     <script src="<%=Constant.WEB_ASSETS%>js/slick.min.js"></script>
-	<script src="<%=Constant.WEB_ASSETS%>js/dashboard-individual.js"></script>
+    <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
+    <script src="<%=Constant.WEB_ASSETS%>js/dashboard-individual.js"></script>
+    
     <script type="text/javascript">    
         <% 
             Map<Integer, List<Map<java.util.Date,Integer>>> list1 =iDashboard.getIndividualMetricsTimeSeries(comid, empid);
@@ -481,7 +485,7 @@
                         "handDrawThickness": 0,
                         "theme": "default",
                         "categoryAxis": {
-                            "equalSpacing": true,
+//                            "equalSpacing": true,
                             "minPeriod": "DD",
                             "parseDates": true,
                             "axisColor": "#A1A1A1",

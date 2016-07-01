@@ -51,7 +51,8 @@
         <!-- iOS Safari -->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-title" content="OWEN">
+        <meta name="apple-mobile-web-app-title" content="OWEN">       
+        
     </head>
 
     <body>
@@ -66,18 +67,23 @@
                     int len = qList.size();
                     //len = 0;
                     if (len == 0) { %>
-            <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
-            <div class="site-nav survey">
-                <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
-            </div>
-            <% }
-                if (len > 1) { %>        
-            <div class="site-nav survey">
-                <a class="site-nav-prev" href="#" title="Prev">&#x276F;</a>
-                <a class="site-nav-next" href="#" title="Next">&#x276F;</a>
-                <a class="site-nav-dash" href="/individual/dashboard.jsp" title="Go to Dashboard" style="display:none;">&#x276F;</a>
-            </div>
-            <% }%>
+                        <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
+                        <div class="site-nav survey">
+                            <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
+                        </div>
+                    <% }
+                    else if (len == 1) { %>
+                        <div class="site-nav survey">
+                            <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
+                        </div>
+                    <% }
+                    else if (len > 1) { %>        
+                        <div class="site-nav survey">
+                            <a class="site-nav-prev" href="#" title="Prev">&#x276F;</a>
+                            <a class="site-nav-next" href="#" title="Next">&#x276F;</a>
+                            <a class="site-nav-dash" href="/individual/dashboard.jsp" title="Go to Dashboard" style="display:none;">&#x276F;</a>
+                        </div>
+                    <% }%>
 
             <div class="main">
                 <input type="hidden" id="total_ques" value="<%= len%>" />
@@ -266,10 +272,10 @@
                                         <span></span>
                                     </div>
                                 </div>
-                                <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
+                                    <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
                                     <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
 
-                                    <div class="individuals-grid">
+                                    <div class="individuals-grid" id="scroll-for-individuals-grid">
                                         <%
                                             List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
                                             System.out.println("MAP LIST:" + mapSmartList);
@@ -312,12 +318,13 @@
                                             }
                                         %>
                                     </div>
-                                </div>
+                                    </div>
+                                                
 
-                                <div class="individuals-box-scroll">
+<!--                                <div class="individuals-box-scroll">
                                     <a href="#" title="Previous" class="individuals-prev"></a>
                                     <a href="#" title="Next" class="individuals-next"></a>
-                                </div>
+                                </div>-->
 
                                 <div class="submit-circle">
                                     <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
@@ -337,13 +344,17 @@
                         %>
                     </div>
                 </div>
-
-                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                
+                
+               
                 <script src="<%=Constant.WEB_ASSETS%>js/animatedModal.min.js"></script>            
-
+                
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
+                <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>-->
+                <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
 
                 </body>

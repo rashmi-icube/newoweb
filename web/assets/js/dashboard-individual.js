@@ -1,5 +1,6 @@
 $(document).ready(function() {
     if(document.documentElement.clientWidth > 480) { 
+       
         $('.appreciateMetric').on('click', function() {
             $('#selectedmetid').val($(this).attr('data-id'));
             clearRatings();
@@ -437,11 +438,31 @@ function searchIndividual() {
       layoutMode: 'fitRows'
     }); 
     $('.individuals-grid').css('top', '0px');
-    if($('.individuals-grid').height() <= 400) {
-        $('.individuals-box-scroll').css('visibility', 'hidden');
-    } else {
-        $('.individuals-box-scroll').removeAttr('style');
+     if ($('.individuals-grid').height()>400){
+         if($('.individuals-grid').width()>290){ 
+        $('.individuals-grid').slimScroll({
+            height: '400px',
+            color: '#388E3C',
+            railVisible: true,
+            railColor: '#D7D7D7',
+            alwaysVisible: true,
+            touchScrollStep: 50
+        });
+        } else {
+            $('.individuals-grid').slimScroll({
+                destroy: true
+            });
+        }
+    } else{ 
+        $('.individuals-grid').slimScroll({
+                destroy: true
+            });
     }
+//    if($('.individuals-grid').height() <= 400) {
+//        $('.individuals-box-scroll').css('visibility', 'hidden');
+//    } else {
+//        $('.individuals-box-scroll').removeAttr('style');
+//    }
 }
 // debounce so filtering doesn't happen every millisecond
 function debounce( fn, threshold ) {
