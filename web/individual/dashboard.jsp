@@ -427,25 +427,25 @@
     <script type="text/javascript">    
         <% 
             Map<Integer, List<Map<java.util.Date,Integer>>> list1 =iDashboard.getIndividualMetricsTimeSeries(comid, empid);
-            Map<Integer, List<Map<String,Integer>>> newlist1 = new HashMap<Integer, List<Map<String,Integer>>>();
-            for (Map.Entry<Integer, List<Map<java.util.Date, Integer>>> entry : list1.entrySet()) {
-                Integer key = entry.getKey();
-                List<Map<java.util.Date, Integer>> mapLits = entry.getValue();
-                List<Map<String, Integer>> newmapLits = new ArrayList<Map<String, Integer>>();
-                for (int i = 0; i < mapLits.size(); i++) {
-                    Map<java.util.Date, Integer> datamap = mapLits.get(i);
-                    Map<String, Integer> newdatamap = new HashMap<String, Integer>();
-                    for (Map.Entry<java.util.Date, Integer> entry1 : datamap.entrySet()) {
-                        Date date1 = entry1.getKey();
-                        String date = Util.getDisplayDateFormat(date1, "YYYY-MM-dd");
-                        Integer data1  = entry1.getValue();
-                        newdatamap.put(date, data1);
-                    }
-                    newmapLits.add(newdatamap);
-                }
-                newlist1.put(key, newmapLits);
-            }
-            JSONObject obj=new JSONObject(newlist1);
+//            Map<Integer, List<Map<String,Integer>>> newlist1 = new HashMap<Integer, List<Map<String,Integer>>>();
+//            for (Map.Entry<Integer, List<Map<java.util.Date, Integer>>> entry : list1.entrySet()) {
+//                Integer key = entry.getKey();
+//                List<Map<java.util.Date, Integer>> mapLits = entry.getValue();
+//                List<Map<String, Integer>> newmapLits = new ArrayList<Map<String, Integer>>();
+//                for (int i = 0; i < mapLits.size(); i++) {
+//                    Map<java.util.Date, Integer> datamap = mapLits.get(i);
+//                    Map<String, Integer> newdatamap = new HashMap<String, Integer>();
+//                    for (Map.Entry<java.util.Date, Integer> entry1 : datamap.entrySet()) {
+//                        Date date1 = entry1.getKey();
+//                        String date = Util.getDisplayDateFormat(date1, "YYYY-MM-dd");
+//                        Integer data1  = entry1.getValue();
+//                        newdatamap.put(date, data1);
+//                    }
+//                    newmapLits.add(newdatamap);
+//                }
+//                newlist1.put(key, newmapLits);
+//            }
+            JSONObject obj=new JSONObject(list1);
             out.println("var timeArray = JSON.parse('"+obj+"');");
         %>
             
@@ -485,7 +485,7 @@
                         "handDrawThickness": 0,
                         "theme": "default",
                         "categoryAxis": {
-                            "equalSpacing": true,
+//                            "equalSpacing": true,
                             "minPeriod": "DD",
                             "parseDates": true,
                             "axisColor": "#A1A1A1",
