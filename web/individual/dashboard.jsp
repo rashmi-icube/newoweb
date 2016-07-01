@@ -485,7 +485,7 @@
                         "handDrawThickness": 0,
                         "theme": "default",
                         "categoryAxis": {
-//                            "equalSpacing": true,
+                            "equalSpacing": true,
                             "minPeriod": "DD",
                             "parseDates": true,
                             "axisColor": "#A1A1A1",
