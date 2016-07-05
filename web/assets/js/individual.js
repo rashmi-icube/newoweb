@@ -18,11 +18,9 @@ $(document).ready(function () {
     });
     $('.no-key-selected span').on('click', function (event) {
         event.stopPropagation();
-//        $('.list-of-selected-people-popup').hide();
-//        $(this).next().toggle();
         $('.list-of-selected-people-popup').toggle();
-            if($('.list-of-selected-people-popup').height()>210){
-        $('.list-of-selected-people-popup').slimScrollPopup({
+        if ($('.list-of-selected-people-popup').height() > 210) {
+            $('.list-of-selected-people-popup').slimScrollPopup({
                 width: '200px',
                 height: '210px',
                 color: '#388E3C',
@@ -31,15 +29,17 @@ $(document).ready(function () {
 //                alwaysVisible: true,
                 touchScrollStep: 50
             });
-    } else{ 
-        $('.list-of-selected-people-popup').slimScroll({
+        } else {
+            $('.list-of-selected-people-popup').slimScroll({
                 destroy: true
-        });
-    }
+            });
+        }
+        $('.slimScrollBarPopup').hide();
+        $('.slimScrollRailPopup').hide();
     });
-    
+
     $('.list-of-selected-people-popup').hide();
-    
+
     $(document).on('click', function () {
         $('.num-view-notif').hide();
         $('.settings-sign-popup').hide();

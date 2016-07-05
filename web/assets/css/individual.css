@@ -1127,7 +1127,7 @@ nav li a {
     border: 1px solid #e4e4e4;
 }
 
-.people-list-box >div>input {
+.people-list-box>input {
     width: 68%;
     height: 54px;
     padding: 1px 0 0 4px;
@@ -1191,6 +1191,7 @@ nav li a {
     z-index: 100;
     right: 0%;
     font: 14px 'Open Sans Regular', 'Open Sans';
+    display: none;
 }
 .list-of-selected-people-popup::before{
     content: '';

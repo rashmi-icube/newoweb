@@ -34,7 +34,7 @@
         start : 'top',
 
         // sets scrollbar opacity
-        opacity : .4,
+        opacity : 1,
 
         // enables always-on mode for the scrollbar
         alwaysVisible : false,
