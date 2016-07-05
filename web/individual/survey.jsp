@@ -137,7 +137,7 @@
                             </div>
 
                             <div class="submit-circle">
-                                <button value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
+                                <button onclick="this.disabled=true;this.form.submit();" value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
                                 <div class="submit-tooltip">
                                     <span class="submit-title"><span>SUBMIT</span> this response</span>
                                     <span class="submit-response">Please select a response</span>
@@ -163,13 +163,32 @@
                             <h3><%= ques.getQuestionText()%></h3>
                             <div class="people-list-box clearfix">
                                 <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation  by the number of stars</p>
-                                <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
-                                <button>&#x1F50D;</button>
-                                <!-- TODO we question bubbles -->
-                                <!--                                <div class="no-key-selected">
-                                                                   
-                                                                </div>-->
-
+                                <div>
+                                    <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
+                                    <button>&#x1F50D;</button>
+                                    <!-- TODO we question bubbles -->
+                                    <div class="no-key-selected">
+                                        <p>Siddharth Randeria</p>
+                                        <p>Amit Trivedi</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Pirate Gomes</p>
+                                        <span>and 2 more</span>
+                                    </div>
+                                    <div class="list-of-selected-people-popup clearfix">
+                                        <p>Person 1 Name</p><p>Person 2 Name</p>
+                                        <p>Person 3 Name</p><p>Person 4 Name</p>
+                                        <p>Person 5 Name</p><p>Person 6 Name</p>
+                                        <p>Person 7 Name</p><p>Person 8 Name</p>
+                                        <p>Person 9 Name</p><p>Person 10 Name</p>
+                                        <p>Person 11 Name</p><p>Person 12 Name</p>
+                                        <p>Person 13 Name</p><p>Person 14 Name</p>
+                                        <p>Person 15 Name</p><p>Person 16 Name</p>
+                                        <p>Person 17 Name</p><p>Person 18 Name</p>
+                                        <p>Person 13 Name</p><p>Person 14 Name</p>
+                                        <p>Person 15 Name</p><p>Person 16 Name</p>
+                                        <p>Person 17 Name</p><p>Person 18 Name</p>                                        
+                                    </div>
+                                </div>
                                 <div class="mobile-filter-row">
                                     <div>
                                         <div class="header">

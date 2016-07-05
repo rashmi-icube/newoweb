@@ -367,6 +367,22 @@ function searchIsotope() {
                 destroy: true
         });
     }
+//    $('.list-of-selected-people-popup').css('top', '0px');
+//    if($('.list-of-selected-people-popup').height()>370){
+        $('.list-of-selected-people-popup').slimScroll({
+                width: '200px',
+//                height: 'auto',
+                color: '#388E3C',
+                railVisible: true,
+                railColor: '#D7D7D7',
+//                alwaysVisible: true,
+                touchScrollStep: 50
+            });
+//    } else{ 
+//        $('.list-of-selected-people-popup').slimScroll({
+//                destroy: true
+//        });
+//    }
 //    if ($('.individuals-grid:visible').height() <= 400) {
 //        $('.individuals-box-scroll').css('visibility', 'hidden');
 //    } else {
