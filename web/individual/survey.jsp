@@ -373,6 +373,7 @@
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
                 <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>-->
+                <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
 
