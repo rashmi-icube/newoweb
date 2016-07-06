@@ -247,8 +247,33 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>                   
-
+                                </div>
+                                                    
+                                <div class="no-key-selected-mobile">
+                                    <p>View appreciated: </p>
+                                    <span>20</span>
+                                    <p style="margin-left: 20px;">&#x276F;</p>
+                                    <div style="display: none;">
+                                        <div class="header">
+                                            <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
+                                            <span>You have appreciated</span>
+                                        </div>
+                                        <div class="list-of-selected-people-popup-mobile clearfix">
+                                            <p>Person 1 Name</p><p>Person 2 Name</p>
+                                            <p>Person 3 Name</p><p>Person 4 Name</p>
+                                            <p>Person 5 Name</p><p>Person 6 Name</p>
+                                            <p>Person 7 Name</p><p>Person 8 Name</p>
+                                            <p>Person 9 Name</p><p>Person 10 Name</p>
+                                            <p>Person 11 Name</p><p>Person 12 Name</p>
+                                            <p>Person 13 Name</p><p>Person 14 Name</p>
+                                            <p>Person 15 Name</p><p>Person 16 Name</p>
+                                            <p>Person 17 Name</p><p>Person 18 Name</p>
+                                            <p>Person 13 Name</p><p>Person 14 Name</p>
+                                            <p>Person 15 Name</p><p>Person 16 Name</p>
+                                            <p>Person 17 Name</p><p>Person 18 Name</p>   
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="filter-row">
                                     <div class="get-filter-list">
                                         <button id="getFilteredList">Filter &#x25BE;</button>
