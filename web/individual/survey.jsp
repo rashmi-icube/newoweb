@@ -43,7 +43,7 @@
         <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon/manifest.json">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon/ms-icon-144x144.png">
-        
+
         <!-- Chrome, Firefox OS and Opera -->
         <meta name="theme-color" content="#388E3C">
         <!-- Windows Phone -->
@@ -52,7 +52,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="OWEN">       
-        
+
     </head>
 
     <body>
@@ -67,23 +67,21 @@
                     int len = qList.size();
                     //len = 0;
                     if (len == 0) { %>
-                        <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
-                        <div class="site-nav survey">
-                            <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
-                        </div>
-                    <% }
-                    else if (len == 1) { %>
-                        <div class="site-nav survey">
-                            <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
-                        </div>
-                    <% }
-                    else if (len > 1) { %>        
-                        <div class="site-nav survey">
-                            <a class="site-nav-prev" href="#" title="Prev">&#x276F;</a>
-                            <a class="site-nav-next" href="#" title="Next">&#x276F;</a>
-                            <a class="site-nav-dash" href="/individual/dashboard.jsp" title="Go to Dashboard" style="display:none;">&#x276F;</a>
-                        </div>
-                    <% }%>
+            <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
+            <div class="site-nav survey">
+                <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
+            </div>
+            <% } else if (len == 1) { %>
+            <div class="site-nav survey">
+                <a class="site-nav-dash1" href="/individual/dashboard.jsp" title="Go to Dashboard" >&#x276F;</a>
+            </div>
+            <% } else if (len > 1) { %>        
+            <div class="site-nav survey">
+                <a class="site-nav-prev" href="#" title="Prev">&#x276F;</a>
+                <a class="site-nav-next" href="#" title="Next">&#x276F;</a>
+                <a class="site-nav-dash" href="/individual/dashboard.jsp" title="Go to Dashboard" style="display:none;">&#x276F;</a>
+            </div>
+            <% }%>
 
             <div class="main">
                 <input type="hidden" id="total_ques" value="<%= len%>" />
@@ -137,7 +135,7 @@
                             </div>
 
                             <div class="submit-circle">
-                                <button value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
+                                <button onclick="this.disabled = true;this.form.submit();" value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
                                 <div class="submit-tooltip">
                                     <span class="submit-title"><span>SUBMIT</span> this response</span>
                                     <span class="submit-response">Please select a response</span>
@@ -163,12 +161,14 @@
                             <h3><%= ques.getQuestionText()%></h3>
                             <div class="people-list-box clearfix">
                                 <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation  by the number of stars</p>
+
                                 <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
                                 <button>&#x1F50D;</button>
-                                <!-- TODO we question bubbles -->
-                                <!--                                <div class="no-key-selected">
-                                                                   
-                                                                </div>-->
+
+                                <div class="no-key-selected" id="bubble-desktop-<%= ques.getQuestionId()%>">
+                                </div>
+                                <div class="list-of-selected-people-popup clearfix" id="desktop-list-<%= ques.getQuestionId()%>">                                  
+                                </div>
 
                                 <div class="mobile-filter-row">
                                     <div>
@@ -228,8 +228,21 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>                   
+                                </div>
 
+                                <div class="no-key-selected-mobile" id="bubble-desktop-<%= ques.getQuestionId()%>">
+                                    <p>View appreciated: </p>
+
+                                    <p style="margin-left: 20px;">&#x276F;</p>
+                                    <div style="display: none;">
+                                        <div class="header">
+                                            <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
+                                            <span>You have appreciated</span>
+                                        </div>
+                                        <div class="list-of-selected-people-popup-mobile clearfix">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="filter-row">
                                     <div class="get-filter-list">
                                         <button id="getFilteredList">Filter &#x25BE;</button>
@@ -272,7 +285,7 @@
                                         <span></span>
                                     </div>
                                 </div>
-                                    <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
+                                <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
                                     <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
 
                                     <div class="individuals-grid" id="scroll-for-individuals-grid">
@@ -305,6 +318,7 @@
                                             <span class="individual-cell-name"><%= employee.getFirstName() + " " + employee.getLastName()%></span>
                                             <div class="star-rating-row clearfix">
                                                 <div class="rating-stars">
+                                                    <input type="hidden" id="quesId" value="<%= ques.getQuestionId()%>" />
                                                     <span class="rating-star"></span>
                                                     <span class="rating-star"></span>
                                                     <span class="rating-star"></span>
@@ -318,13 +332,13 @@
                                             }
                                         %>
                                     </div>
-                                    </div>
-                                                
+                                </div>
 
-<!--                                <div class="individuals-box-scroll">
-                                    <a href="#" title="Previous" class="individuals-prev"></a>
-                                    <a href="#" title="Next" class="individuals-next"></a>
-                                </div>-->
+
+                                <!--                                <div class="individuals-box-scroll">
+                                                                    <a href="#" title="Previous" class="individuals-prev"></a>
+                                                                    <a href="#" title="Next" class="individuals-next"></a>
+                                                                </div>-->
 
                                 <div class="submit-circle">
                                     <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
@@ -344,88 +358,19 @@
                         %>
                     </div>
                 </div>
-                
-                
-               
+
+
+
                 <script src="<%=Constant.WEB_ASSETS%>js/animatedModal.min.js"></script>            
-                
+
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
                 <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>-->
+                <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
 
                 </body>
                 </html>
-                <!--TODO we question bubbles -->
-                <!--                <script>
-                                    var arr = [];
-                                    $('.rating-star').on('click', function () {
-                                        //var text = $(this).text();
-                                        var selected = $('.individuals-grid').find('input:checked').length;
-                
-                                        function getInitials(obj) {
-                                            var name = obj.parent().find('individual-cell-name').text().split(' ');
-                                            var nameSize = name.length;
-                                            var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
-                                            return initials;
-                                        }
-                
-                                        var personInitials = getInitials($(this));
-                
-                                        if ($(this).) {
-                                            //  $(this).css({'background-color': '#4effb8', 'color': '#fff'}).text('?');
-                                            //$(this).siblings('input').prop('checked', true);
-                
-                                            if (selected < 5) {
-                                                $('.no-key-selected').append('<p>' + personInitials + '</p>');
-                                            } else {
-                                                var remaining = selected - 4;
-                                                $('.no-key-selected').children('span').remove();
-                                                $('.no-key-selected').append('<span>and ' + remaining + ' more</span');
-                                            }
-                                            arr.push($(this).siblings('input').attr('id'));
-                                            var addId = $(this).siblings('input').val();
-                                            arrEmpId.push(addId);
-                                        } else {
-                                            $(this).removeAttr('style').text('+');
-                                            $(this).siblings('input').prop('checked', false);
-                
-                                            var tag;
-                
-                                            $('.no-key-selected p').each(function (i) {
-                                                if ($(this).text() === personInitials) {
-                                                    tag = true;
-                                                    $(this).remove();
-                
-                                                    if (selected >= 6) {
-                                                        var newInitials = getInitials($('#' + arr[5]));
-                                                        $('.no-key-selected p:last-of-type').after('<p>' + newInitials + '</p>');
-                                                    }
-                                                    return false;
-                                                }
-                                            });
-                
-                                            if (selected === 6) {
-                                                $('.no-key-selected').children('span').remove();
-                                            } else if ((selected < 6) && !tag) {
-                                                $('.no-key-selected').children('p:last-of-type').remove();
-                                            } else if (selected > 6) {
-                                                var remaining = selected - 6;
-                                                $('.no-key-selected').children('span').remove();
-                                                $('.no-key-selected').append('<span>and ' + remaining + ' more</span>');
-                                            }
-                
-                                            var removeItem = $(this).siblings('input').attr('id');
-                                            arr = jQuery.grep(arr, function (value) {
-                                                return value !== removeItem;
-                                            });
-                                            var removeId = $(this).siblings('input').val();
-                                            arrEmpId = jQuery.grep(arrEmpId, function (value) {
-                                                return value !== removeId;
-                                            });
-                                        }
-                                    });
-                                </script>-->
