@@ -96,6 +96,15 @@
                         <img src="<%=Constant.WEB_ASSETS%>images/individual_<%=Util.getInitiativeTypeImage(topMetList.get(i).getName(), Constant.INITIATIVES_CATEGORY_INDIVIDUAL)%>" alt="<%=topMetList.get(i).getName() %>" width="30" height="30">
                         <span class="panel-name"><%=topMetList.get(i).getName() %></span>
                         <span class="panel-score"><%=topMetList.get(i).getScore()%></span>
+                        <!--<span class="panel-average">Org. Average: 57</span>-->
+                        <!--Average on Individual Dashboard-->
+<!--                        <div class="panel-average clearfix">
+                            <p>
+                                <span>Org.</span>
+                                <span>Average</span>
+                            </p>
+                            <p>89</p>
+                        </div>-->
                         <button class="appreciateMetric" title="Appreciate for <%=topMetList.get(i).getName() %>" data-id="<%=topMetList.get(i).getId()%>"></button>
                     </div>
                 <% } %>        
@@ -466,7 +475,7 @@
                     }
                     return currentQArray;
                 } 
-
+debugger;
                 function generateTimeGraphIndividual(divid, dataArray, type1, type2, type3) {
                     var chartConfig = {
                         "type": "serial",
@@ -561,7 +570,10 @@
                         "dataProvider": []
                     };
                     chartConfig.dataProvider = dataArray;
-
+//                    chartConfig.addListener("rendered", function(event) {
+////                        event.chart.zoomToDates(new Date(2005, 0, 1), new Date(2015, 11, 31));
+//                    });
+//                    AmCharts.makeChart(divid, chartConfig).addListener("rendered", function(event) {event.chart.zoomToIndexes(dataArray.length-13,dataArray.length-1);});
                     AmCharts.makeChart(divid, chartConfig);
                 } 
                 

@@ -1106,6 +1106,7 @@ nav li a {
     width: 1110px;
     margin: 0 auto;
     display: none;
+    padding-bottom: 10px;
 }
 
 .survey-we h2 {
@@ -1125,10 +1126,11 @@ nav li a {
 .people-list-box {
     padding: 10px 10px 14px 16px;
     border: 1px solid #e4e4e4;
+    height: 520px;
 }
 
 .people-list-box>input {
-    width: 68%;
+    width: 99%;
     height: 54px;
     padding: 1px 0 0 4px;
     margin-bottom: 10px;
@@ -1143,16 +1145,19 @@ nav li a {
     display:inline-block;
     color: #6b6b6b;
     font: 12px 'Open Sans Regular', 'Open Sans';
-    width: 31%;
+    width: 25%;
     float: right;
     margin-top: -2px;
+    border: 1px solid #e4e4e4;
+    margin-right: 45px;
+    height: 400px;
 }
 
 .no-key-selected-mobile{
     display: none;
 }
 
-.people-list-box .no-key-selected p {
+/*.people-list-box .no-key-selected p:not(:first-child) {
     box-sizing: border-box;
     padding: 4px 10px;
     border-radius: 5px;
@@ -1162,10 +1167,32 @@ nav li a {
     vertical-align: middle;
     background-color: #E4E4E4;
     color: #000;
-    font: 14px 'Open Sans Regular', 'Open Sans';
+    font: 14px 'Open Sans Light', 'Open Sans';
     text-align: center;
+}*/
+
+.people-list-box .no-key-selected p:first-child{
+    display: inline-block;
+    font: 16px 'Open Sans Regular', 'Open Sans';
+    color: #4caf50;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
+.people-list-box .no-key-selected .list-of-people-selected p{
+    box-sizing: border-box;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-right: 6px;
+    margin-bottom: 5px;
+    /*display: inline-block;*/
+    vertical-align: middle;
+    /*background-color: #E4E4E4;*/
+    color: #000;
+    font: 14px 'Open Sans Light', 'Open Sans';
+    /*text-align: center;*/
+}
 .people-list-box .no-key-selected span {
     box-sizing: border-box;
     /*width: 22px;*/
@@ -1173,17 +1200,16 @@ nav li a {
     /*height: 38px;*/
     /*border-radius: 5px;*/
     /*margin-right: 6px;*/
-    display: inline-block;
+    /*display: inline-block;*/
     /*vertical-align: middle;*/
     /*background-color: #E4E4E4;*/
-    color: #000;
-    font: 14px 'Open Sans Regular', 'Open Sans';
+    color: #4caf50;
+    font: 16px 'Open Sans Bold', 'Open Sans';
     /*text-align: center;*/
-    cursor: pointer;
 }
-.people-list-box .no-key-selected span:hover{
+/*.people-list-box .no-key-selected span:hover{
     color:#169db5;
-}
+}*/
 
 .list-of-selected-people-popup-mobile{
     display: none;
@@ -1354,7 +1380,7 @@ nav li a {
 }
 
 .individuals-box { 
-    width: 1018px;
+    width: 732px;
     max-height: 400px; 
     margin-left: 2%;
     position: relative;
@@ -1571,7 +1597,7 @@ nav li a {
 }
 
 .survey-we .submit-circle {
-    top: 400px;
+    /*top: 400px;*/
     margin: -40px -6px 0 0; 
 }
 
@@ -1619,6 +1645,31 @@ nav li a {
 .panel .panel-score { 
     margin: -10px 0 -9px;
     font: 72px 'Open Sans Light', 'Open Sans'; 
+}
+
+.panel .panel-average {
+    font: 12px 'Open Sans Light', 'Open Sans';
+    width: 81px;
+    float: left;
+    padding-left: 30px;
+}
+
+.panel .panel-average p:first-child {
+    margin-left: 2px;
+    float: left;
+    font: 10px/11px 'Open Sans Regular', 'Open Sans';
+    margin-right: 5px;
+}
+
+.panel .panel-average p:last-child{
+    margin-right: 2px;
+    /*float: right;*/
+    font: 20px/22px 'Open Sans Regular', 'Open Sans';
+    color: #4caf50;
+}
+.panel .panel-average p span{
+    display: block;
+    text-align: left;
 }
 
 .panel button {
@@ -2267,8 +2318,25 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
 
     .individuals-box {
-        width: 870px;
+        width: 580px;
         margin-left: 4.5%;
+    }
+    
+    .no-key-selected{
+        margin-right: 46px;
+        width: 28%
+    }
+    
+    .slimScrollDivPopup{
+        right: 7% !important;
+    }
+    
+    .slimScrollBarPopup{
+        right: 46px !important;
+    }
+    
+    .slimScrollRailPopup{
+        right: 46px !important;
     }
 }
 
@@ -3307,7 +3375,14 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         transform: translateY(-50%);
         font-size: 84px;
     }
-
+    .dashboard.metrics .panel .panel-average{
+        position: absolute;
+        float: none;
+        bottom: 0;
+        right: 0;
+        padding-left: 0;    
+    }
+    
     .dashboard.metrics .panel button {
         position: absolute;
         top: 5px;

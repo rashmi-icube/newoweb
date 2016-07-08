@@ -165,10 +165,14 @@
                                 <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
                                 <button>&#x1F50D;</button>
 
-                                <div class="no-key-selected" id="bubble-desktop-<%= ques.getQuestionId()%>">
+<!--                                <div class="no-key-selected" id="bubble-desktop-<%= ques.getQuestionId()%>">
+                                    <p>Siddharth Randeria</p>
+                                    <p>Amit Trivedi</p>
+                                    <p>Raghubir Yadav</p>
+                                    <p>Pirate Gomes</p>
                                 </div>
                                 <div class="list-of-selected-people-popup clearfix" id="desktop-list-<%= ques.getQuestionId()%>">                                  
-                                </div>
+                                </div>-->
 
                                 <div class="mobile-filter-row">
                                     <div>
@@ -230,7 +234,7 @@
                                     </div>
                                 </div>
 
-                                <div class="no-key-selected-mobile" id="bubble-desktop-<%= ques.getQuestionId()%>">
+                                <div class="no-key-selected-mobile" id="count-mobile-<%= ques.getQuestionId()%>">
                                     <p>View appreciated: </p>
 
                                     <p style="margin-left: 20px;">&#x276F;</p>
@@ -239,7 +243,7 @@
                                             <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
                                             <span>You have appreciated</span>
                                         </div>
-                                        <div class="list-of-selected-people-popup-mobile clearfix">
+                                        <div class="list-of-selected-people-popup-mobile clearfix" id="list-mobile-<%= ques.getQuestionId()%>">
                                         </div>
                                     </div>
                                 </div>
@@ -333,7 +337,30 @@
                                         %>
                                     </div>
                                 </div>
-
+                                <div class="no-key-selected" id="list-desktop-<%= ques.getQuestionId()%>">
+                                    <p>Selected: </p>
+                                    <span>20</span>
+                                    <div class="list-of-people-selected">
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                        <p>Raghubir Yadav</p>
+                                    </div>
+                                </div>
+                                    <div style="clear: both;"></div>
 
                                 <!--                                <div class="individuals-box-scroll">
                                                                     <a href="#" title="Previous" class="individuals-prev"></a>

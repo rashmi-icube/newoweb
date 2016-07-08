@@ -16,36 +16,51 @@ $(document).ready(function () {
         $('.num-view-notif').hide();
         $(this).next().toggle();
     });
-    $('.no-key-selected span').on('click', function (event) {
-        event.stopPropagation();
-        $('.list-of-selected-people-popup').toggle();
-        if ($('.list-of-selected-people-popup').height() > 210) {
-            $('.list-of-selected-people-popup').slimScrollPopup({
-                width: '200px',
-                height: '210px',
-                color: '#388E3C',
-                railVisible: true,
-                railColor: '#D7D7D7',
-//                alwaysVisible: true,
-                touchScrollStep: 50
-            });
-        } else {
-            $('.list-of-selected-people-popup').slimScroll({
-                destroy: true
-            });
-        }
-        $('.slimScrollBarPopup').hide();
-        $('.slimScrollRailPopup').hide();
-    });
+    if ($('.list-of-people-selected').height() > 400) {
+        $('.no-key-selected').slimScrollPopup({
+            height: '400px',
+            width: '272px',
+            color: '#388E3C',
+            railVisible: true,
+            railColor: '#D7D7D7',
+            alwaysVisible: true,
+            touchScrollStep: 50
+        });
+    } else {
+        $('.no-key-selected').slimScrollPopup({
+            destroy: true
+        });
+    }
+//    $('.no-key-selected span').on('click', function (event) {
+//        event.stopPropagation();
+//        $('.list-of-selected-people-popup').toggle();
+//        if ($('.list-of-selected-people-popup').height() > 210) {
+//            $('.list-of-selected-people-popup').slimScrollPopup({
+//                width: '200px',
+//                height: '210px',
+//                color: '#388E3C',
+//                railVisible: true,
+//                railColor: '#D7D7D7',
+////                alwaysVisible: true,
+//                touchScrollStep: 50
+//            });
+//        } else {
+//            $('.list-of-selected-people-popup').slimScroll({
+//                destroy: true
+//            });
+//        }
+//        $('.slimScrollBarPopup').hide();
+//        $('.slimScrollRailPopup').hide();
+//    });
 
-    $('.list-of-selected-people-popup').hide();
+//    $('.list-of-selected-people-popup').hide();
 
     $(document).on('click', function () {
         $('.num-view-notif').hide();
         $('.settings-sign-popup').hide();
-        $('.list-of-selected-people-popup').hide();
-        $('.slimScrollBarPopup').hide();
-        $('.slimScrollRailPopup').hide();
+//        $('.list-of-selected-people-popup').hide();
+//        $('.slimScrollBarPopup').hide();
+//        $('.slimScrollRailPopup').hide();
     });
 
     $('#setUserDetails').on('click', function () {
