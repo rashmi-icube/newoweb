@@ -1128,8 +1128,7 @@ nav li a {
 }
 
 .people-list-box>input {
-    /* TODO: we question bubbles : MAKE SEARCH BAR WIDTH: 70% */
-    width: 100%;
+    width: 68%;
     height: 54px;
     padding: 1px 0 0 4px;
     margin-bottom: 10px;
@@ -1142,26 +1141,88 @@ nav li a {
 
 .no-key-selected {
     display:inline-block;
-    top: 12px;
     color: #6b6b6b;
     font: 12px 'Open Sans Regular', 'Open Sans';
+    width: 31%;
+    float: right;
+    margin-top: -2px;
+}
+
+.no-key-selected-mobile{
+    display: none;
 }
 
 .people-list-box .no-key-selected p {
     box-sizing: border-box;
-    width: 22px;
-    height: 22px;
-    padding-top: 4px;
+    padding: 4px 10px;
     border-radius: 5px;
     margin-right: 6px;
+    margin-bottom: 5px;
     display: inline-block;
     vertical-align: middle;
-    background-color: #4effb8;
-    color: #fff;
-    font: 10px 'Open Sans Regular', 'Open Sans';
+    background-color: #E4E4E4;
+    color: #000;
+    font: 14px 'Open Sans Regular', 'Open Sans';
     text-align: center;
 }
 
+.people-list-box .no-key-selected span {
+    box-sizing: border-box;
+    /*width: 22px;*/
+    /*padding: 1% 0em;*/
+    /*height: 38px;*/
+    /*border-radius: 5px;*/
+    /*margin-right: 6px;*/
+    display: inline-block;
+    /*vertical-align: middle;*/
+    /*background-color: #E4E4E4;*/
+    color: #000;
+    font: 14px 'Open Sans Regular', 'Open Sans';
+    /*text-align: center;*/
+    cursor: pointer;
+}
+.people-list-box .no-key-selected span:hover{
+    color:#169db5;
+}
+
+.list-of-selected-people-popup-mobile{
+    display: none;
+}
+
+.list-of-selected-people-popup {
+    box-sizing: border-box;
+    border: 1px solid #e4e4e4;
+    background-color: #fff;
+    box-shadow: 2px 4px 16px -2px rgba(0, 0, 0, 0.6);
+    padding: 1% 1em;
+    width: 15%;
+    position: absolute;
+    z-index: 100;
+    right: 0%;
+    font: 14px 'Open Sans Regular', 'Open Sans';
+    display: none;
+}
+.list-of-selected-people-popup::before{
+    content: '';
+    border: 8px solid #fff;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top: 0;
+    position: absolute;
+    top: -8px;
+    left: 86%;
+    z-index: 1;
+}
+.list-of-selected-people-popup::after {
+    content: '';
+    border: 10px solid #ddd;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top: 0;
+    position: absolute;
+    top: -10px;
+    left: 85%;
+}
 .people-list-box input::-webkit-input-placeholder { 
     font: 16px 'Oxygen Regular', Oxygen;
 }
@@ -3016,7 +3077,58 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         height: 27px;
         vertical-align: top;
     }
-
+    
+    .people-list-box .no-key-selected {
+        display: none !important;
+    }
+    
+    .people-list-box .no-key-selected-mobile{
+        display: flex !important;
+        padding-bottom: 10px;
+        float: left;
+        width: 200px;
+    }
+    
+    .people-list-box .no-key-selected-mobile p{
+        color: #4caf50;
+        font: 14px 'Open Sans Regular', 'Open Sans';
+    }
+    
+    .people-list-box .no-key-selected-mobile span{
+        color: #4caf50;
+        font: 14px 'Open Sans Bold', 'Open Sans';
+    }
+    
+    .people-list-box .no-key-selected-mobile .header{
+        width: 195px;
+        height: 27px;
+        background-color: #388e3c;
+    }
+    
+    .people-list-box .no-key-selected-mobile .header span{
+        color: #ffffff;
+        font: 14px 'Open Sans Regular', 'Open Sans';
+        vertical-align: super;
+    }
+    
+    .people-list-box .no-key-selected-mobile .list-of-selected-people-popup-mobile{
+        /*width: 195px;*/
+        height: 200px;
+        overflow-y: scroll;
+        padding: 1% 1.8em;
+        display: block;
+/*        top: 27px;
+        right: 0;
+        left: initial;*/
+        background: #fff;
+        box-shadow: -5px 5px 10px rgba(204, 204, 204, 0.35);    
+    }
+    
+    .people-list-box .no-key-selected-mobile .list-of-selected-people-popup-mobile p{
+        color: #797979;
+        font: 13px 'Open Sans Regular', 'Open Sans';
+    }
+    
     .people-list-box input::-webkit-input-placeholder { 
         font: 10px 'Oxygen Regular', Oxygen;
     }

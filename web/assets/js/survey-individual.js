@@ -92,7 +92,7 @@ $(document).ready(function () {
     });
 
     /****************************************** SURVEY-WE *******************************************/
-    
+
     if ($('.survey-we').is(':visible')) {
         searchIsotope();
     }
@@ -275,11 +275,22 @@ $(document).ready(function () {
     }
 
     if (document.documentElement.clientWidth <= 480) {
-        $('.search-colleague').attr('placeholder', 'Find a colleague to appreciate');
+        $('.search-colleague').attr('placeholder', 'Search for a colleague');
 
         $('.mobile-filter-row').on('click', function (event) {
             $(this).children('div').fadeToggle('200');
+            $('.no-key-selected-mobile > div').hide();
         });
+
+        $('.no-key-selected-mobile').on('click', function (event) {
+            $(this).children('div').fadeToggle('200');
+            $(this).children('div').css('position','absolute');
+            $(this).children('div').css('z-index','1');
+            $(this).children('div').css('margin-left','-200px');
+            $('.mobile-filter-row > div').hide();
+        });
+        
+//        $('.no-key-selected-mobile > div').hide();
 
         $('#closeFilter').on('click', function () {
             event.stopPropagation();
@@ -347,8 +358,8 @@ function searchIsotope() {
         layoutMode: 'fitRows'
     });
     $('.individuals-grid').css('top', '0px');
-    if ($('.individuals-grid').height()>400){
-        if($('.individuals-grid').width()>290){ 
+    if ($('.individuals-grid').height() > 400) {
+        if ($('.individuals-grid').width() > 290) {
             $('.individuals-grid').slimScroll({
                 height: '400px',
                 color: '#388E3C',
@@ -362,11 +373,13 @@ function searchIsotope() {
                 destroy: true
             });
         }
-    } else{ 
+    } else {
         $('.individuals-grid').slimScroll({
-                destroy: true
+            destroy: true
         });
     }
+//    $('.list-of-selected-people-popup').css('top', '0px');
+
 //    if ($('.individuals-grid:visible').height() <= 400) {
 //        $('.individuals-box-scroll').css('visibility', 'hidden');
 //    } else {
