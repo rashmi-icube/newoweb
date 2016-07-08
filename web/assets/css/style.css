@@ -131,7 +131,7 @@ header h1 {
 }
 
 .modal-is-visible .cd-modal {
-    z-index: 100;
+    z-index: 150;
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
