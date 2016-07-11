@@ -16,23 +16,24 @@ $(document).ready(function () {
         $('.num-view-notif').hide();
         $(this).next().toggle();
     });
-    $('.rating-star').on('click', function (event) {
-        if ($('.list-of-people-selected').height() > 400) {
-            $('.no-key-selected').slimScrollPopup({
-                height: '400px',
-                width: '272px',
-                color: '#388E3C',
-                railVisible: true,
-                railColor: '#D7D7D7',
-                alwaysVisible: true,
-                touchScrollStep: 50
-            });
-        } else {
-            $('.no-key-selected').slimScrollPopup({
-                destroy: true
-            });
-        }
-    });
+//    $('.rating-star').on('click', function (event) {
+//    $('.rating-star').mouseup(function (event) {
+//        if ($('.list-of-people-selected').height() >= 348) {
+//            $('.no-key-selected').slimScrollPopup({
+//                height: '400px',
+//                width: '272px',
+//                color: '#388E3C',
+//                railVisible: true,
+//                railColor: '#D7D7D7',
+//                alwaysVisible: true,
+//                touchScrollStep: 50
+//            });
+//        } else {
+//            $('.no-key-selected').slimScrollPopup({
+//                destroy: true
+//            });
+//        }
+//    });
 //    $('.no-key-selected span').on('click', function (event) {
 //        event.stopPropagation();
 //        $('.list-of-selected-people-popup').toggle();

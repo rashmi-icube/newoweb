@@ -1147,7 +1147,7 @@ nav li a {
     font: 12px 'Open Sans Regular', 'Open Sans';
     width: 25%;
     float: right;
-    margin-top: -2px;
+    /*margin-top: -2px;*/
     border: 1px solid #e4e4e4;
     margin-right: 45px;
     height: 400px;
