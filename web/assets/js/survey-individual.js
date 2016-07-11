@@ -168,7 +168,7 @@ $(document).ready(function () {
             $(this).children('div').fadeToggle('200');
             $(this).children('div').css('position', 'absolute');
             $(this).children('div').css('z-index', '1');
-//            $(this).children('div').css('margin-left', '-200px');
+            $(this).children('div').css('margin-left', '-200px');
             $('.mobile-filter-row > div').hide();
         });
 

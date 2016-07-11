@@ -3183,7 +3183,8 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         /*width: 195px;*/
         height: 200px;
         overflow-y: scroll;
-        padding: 1% 1.8em;
+        overflow-x: auto;
+        padding: 2%;
         display: block;
 /*        top: 27px;
         right: 0;
