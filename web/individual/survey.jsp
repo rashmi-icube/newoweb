@@ -327,22 +327,15 @@
                                         %>
                                     </div>
                                 </div>
-                                <div class="no-key-selected" id="list-desktop-<%= ques.getQuestionId()%>">
+                                <div class="no-key-selected" id="count-desktop-<%= ques.getQuestionId()%>">
                                     <p>Selected: </p>
                                     <span></span>
-                                    <div class="list-of-people-selected">
-
+                                    <div class="list-of-people-selected" id="list-desktop-<%= ques.getQuestionId()%>">
                                     </div>
                                 </div>
                                 <div style="clear: both;"></div>
-
-                                <!--                                <div class="individuals-box-scroll">
-                                                                    <a href="#" title="Previous" class="individuals-prev"></a>
-                                                                    <a href="#" title="Next" class="individuals-next"></a>
-                                                                </div>-->
-
                                 <div class="submit-circle">
-                                    <button onclick="this.disabled = true;this.form.submit();" value="<%= ques.getQuestionId()%>">&#x2714;</button>
+                                    <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
                                     <div class="submit-tooltip">
                                         <span class="submit-title"><span>SUBMIT</span> this response</span>
                                         <span class="submit-response">Please select a response</span>
