@@ -368,7 +368,7 @@
                                                                 </div>-->
 
                                 <div class="submit-circle">
-                                    <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
+                                    <button onclick="this.disabled = true;this.form.submit();" value="<%= ques.getQuestionId()%>">&#x2714;</button>
                                     <div class="submit-tooltip">
                                         <span class="submit-title"><span>SUBMIT</span> this response</span>
                                         <span class="submit-response">Please select a response</span>
