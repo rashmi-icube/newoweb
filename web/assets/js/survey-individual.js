@@ -128,127 +128,8 @@ $(document).ready(function () {
     });
 
     $('.rating-star').on('click', function () {
-        var row = $(this).parent();
-        var i = $(this).index();
-        var lastStar = $(row).find('.filled:last').index();
-        var total = i + 1;
-        //TODO we question bubbles
-//                function getInitials() {
-//                    //obj.parent;
-//                    var parent = row.parent().parent();
-//                    var name = $(parent).find('span.individual-cell-name').html().split(' ');
-//                    var nameSize = name.length;
-//                    var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
-//                    return initials;
-//                }
-        if (lastStar === i) {
-            $(row).children().removeClass('filled');
-            $(row).next().text('0').removeAttr('style');
-        } else {
-            $(this).nextAll().removeClass('filled');
-            for (var n = 0; n <= i; n++) {
-                $(row).children('span:eq(' + n + ')').addClass('filled');
-            }
-            $(row).next().text(total).css('visibility', 'visible');
-            //TODO we question bubbles
-//                        var personInitials = getInitials();
-//                        $('.no-key-selected').append('<p>' + personInitials + '</p>');
-        }
-
-//                var arr = [];
-//                //var text = $(this).text();
-//                var selected = $('.individuals-grid').find('input:checked').length;
-//
-//                function getInitials(obj) {
-//                    var name = obj.parent().find('individual-cell-name').text().split(' ');
-//                    var nameSize = name.length;
-//                    var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
-//                    return initials;
-//                }
-//
-//                var personInitials = getInitials($(this));
-//
-//                if ($(this).) {
-//                    //  $(this).css({'background-color': '#4effb8', 'color': '#fff'}).text('?');
-//                    //$(this).siblings('input').prop('checked', true);
-//
-//                    if (selected < 5) {
-//                        $('.no-key-selected').append('<p>' + personInitials + '</p>');
-//                    } else {
-//                        var remaining = selected - 4;
-//                        $('.no-key-selected').children('span').remove();
-//                        $('.no-key-selected').append('<span>and ' + remaining + ' more</span');
-//                    }
-//                    arr.push($(this).siblings('input').attr('id'));
-//                    var addId = $(this).siblings('input').val();
-//                    arrEmpId.push(addId);
-//                } else {
-//                    $(this).removeAttr('style').text('+');
-//                    $(this).siblings('input').prop('checked', false);
-//
-//                    var tag;
-//
-//                    $('.no-key-selected p').each(function (i) {
-//                        if ($(this).text() === personInitials) {
-//                            tag = true;
-//                            $(this).remove();
-//
-//                            if (selected >= 6) {
-//                                var newInitials = getInitials($('#' + arr[5]));
-//                                $('.no-key-selected p:last-of-type').after('<p>' + newInitials + '</p>');
-//                            }
-//                            return false;
-//                        }
-//                    });
-//
-//                    if (selected === 6) {
-//                        $('.no-key-selected').children('span').remove();
-//                    } else if ((selected < 6) && !tag) {
-//                        $('.no-key-selected').children('p:last-of-type').remove();
-//                    } else if (selected > 6) {
-//                        var remaining = selected - 6;
-//                        $('.no-key-selected').children('span').remove();
-//                        $('.no-key-selected').append('<span>and ' + remaining + ' more</span>');
-//                    }
-//
-//                    var removeItem = $(this).siblings('input').attr('id');
-//                    arr = jQuery.grep(arr, function (value) {
-//                        return value !== removeItem;
-//                    });
-//                    var removeId = $(this).siblings('input').val();
-//                    arrEmpId = jQuery.grep(arrEmpId, function (value) {
-//                        return value !== removeId;
-//                    });
-//                }
-
-
-
-
-
+        ratingStar(this);
     });
-
-//    $('.individuals-grid').css('top', '0px');
-
-//    $('.individuals-prev').on('click', function () {
-//        event.preventDefault();
-//        if ($('.individuals-grid')[0].style.top !== '0px') {
-//            $('.individuals-grid').animate({'top': '+=200px'}, 0);
-//        }
-//    });
-//
-//    $('.individuals-next').on('click', function () {
-//        event.preventDefault();
-//        var height = $('.individuals-grid').height() - 400;
-//        var limit;
-//        if (height === 0) {
-//            limit = height + 'px';
-//        } else {
-//            limit = '-' + height + 'px';
-//        }
-//        if ($('.individuals-grid')[0].style.top !== limit) {
-//            $('.individuals-grid').animate({'top': '-=200px'}, 0);
-//        }
-//    });
 
     // To display filter in tablets
     if ('ontouchstart' in document.documentElement) {
@@ -282,14 +163,15 @@ $(document).ready(function () {
             $('.no-key-selected-mobile > div').hide();
         });
 
-        $('.no-key-selected-mobile').on('click', function (event) {
+        $(document).on('click', '.no-key-selected-mobile', function (event) {
+//        $('.no-key-selected-mobile').on('click', function (event) {
             $(this).children('div').fadeToggle('200');
-            $(this).children('div').css('position','absolute');
-            $(this).children('div').css('z-index','1');
-            $(this).children('div').css('margin-left','-200px');
+            $(this).children('div').css('position', 'absolute');
+            $(this).children('div').css('z-index', '1');
+//            $(this).children('div').css('margin-left', '-200px');
             $('.mobile-filter-row > div').hide();
         });
-        
+
 //        $('.no-key-selected-mobile > div').hide();
 
         $('#closeFilter').on('click', function () {
@@ -349,6 +231,87 @@ $(document).ready(function () {
     showHideNavigation();
 });
 
+
+function ratingStar(obj) {
+    var row = $(obj).parent();
+    var i = $(obj).index();
+    var lastStar = $(row).find('.filled:last').index();
+    var parent = row.parent().parent();
+    var quesId = $(obj).parent().find('#quesId').val();
+    var name = $(parent).find('span.individual-cell-name').text().trim();
+    var count = $('#list-mobile-' + quesId + ' p').length;
+
+    // clear the ratings for the chosen employee
+    if (lastStar === i) {
+        // remove the filled class + style
+        $(row).children().removeClass('filled');
+        $(row).next().text('0').removeAttr('style');
+
+        // remove names from the list
+        $('#list-desktop-' + quesId + ' p').each(function (j) {
+            if ($(this).text() === name) {
+                $(this).remove();
+            }
+        });
+
+        $('#list-mobile-' + quesId + ' p').each(function (j) {
+            if ($(this).text() === name) {
+                $(this).remove();
+            }
+        });
+        // update the count of the names
+        --count;
+        $('#count-desktop-' + quesId + ' span').text('');
+        $('#count-desktop-' + quesId + ' span').text(count);
+
+        $('#count-mobile-' + quesId + ' span').text('');
+        $('#count-mobile-' + quesId + ' span').text(count);
+
+    } else {
+        // add or update the stars for the given employee
+        $(obj).nextAll().removeClass('filled');
+        for (var n = 0; n < i; n++) {
+            $(row).children('span:eq(' + n + ')').addClass('filled');
+        }
+        $(row).next().text(i).css('visibility', 'visible');
+
+        // flag to check whether the list already contains the name of the employee to update the count
+        var flag = false;
+
+        // for the first employee that is selected append the employee
+        if (($('#list-desktop-' + quesId + ' p').length === 0) && ($('#list-mobile-' + quesId + ' p').length === 0)) {
+            ++count;
+            $('#list-desktop-' + quesId).append('<p>' + name + '</p>');
+            $('#count-desktop-' + quesId + ' span').text(count);
+
+            $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
+            $('#count-mobile-' + quesId + ' span').text(count);
+        } else {
+            // check with the help of the flag and update the list & count accordingly
+            $('#list-desktop-' + quesId + ' p').each(function (j) {
+                if ($(this).text().trim() === name) {
+                    flag = true;
+                }
+            });
+
+            $('#list-mobile-' + quesId + ' p').each(function (j) {
+                if ($(this).text().trim() === name) {
+                    flag = true;
+                }
+            });
+            if (!flag) {
+                ++count;
+                $('#list-desktop-' + quesId).append('<p>' + name + '</p>');
+                $('#count-desktop-' + quesId + ' span').text('');
+                $('#count-desktop-' + quesId + ' span').text(count);
+
+                $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
+                $('#count-mobile-' + quesId + ' span').text('');
+                $('#count-mobile-' + quesId + ' span').text(count);
+            }
+        }
+    }
+}
 /** Search functionality using Isotope begins */
 function searchIsotope() {
     var qsRegex;
@@ -378,6 +341,8 @@ function searchIsotope() {
             destroy: true
         });
     }
+
+
 //    $('.list-of-selected-people-popup').css('top', '0px');
 
 //    if ($('.individuals-grid:visible').height() <= 400) {
@@ -457,17 +422,6 @@ function saveRating() {
         if (rating !== '') {
             empRating[quesId + '_' + empId] = rating;
             empArr.push(empRating);
-            //TODO we question bubbles
-//            function getInitials() {
-//                var parent = $(this).parent().parent().parent();
-//                var name = $(parent).find('span.individual-cell-name').html();
-//                var nameSize = name.length;
-//                var initials = name[0].charAt(0) + '' + name[nameSize - 1].charAt(0);
-//                return initials;
-//            }
-//            var personInitials = getInitials();
-//            $('.no-key-selected').append('<p>' + personInitials + '</p>');
-
         }
     });
     jQuery.data(document.body, "emp_rating", empArr);

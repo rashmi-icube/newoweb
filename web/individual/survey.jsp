@@ -164,16 +164,6 @@
 
                                 <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
                                 <button>&#x1F50D;</button>
-
-<!--                                <div class="no-key-selected" id="bubble-desktop-<%= ques.getQuestionId()%>">
-                                    <p>Siddharth Randeria</p>
-                                    <p>Amit Trivedi</p>
-                                    <p>Raghubir Yadav</p>
-                                    <p>Pirate Gomes</p>
-                                </div>
-                                <div class="list-of-selected-people-popup clearfix" id="desktop-list-<%= ques.getQuestionId()%>">                                  
-                                </div>-->
-
                                 <div class="mobile-filter-row">
                                     <div>
                                         <div class="header">
@@ -236,7 +226,7 @@
 
                                 <div class="no-key-selected-mobile" id="count-mobile-<%= ques.getQuestionId()%>">
                                     <p>View appreciated: </p>
-
+                                    <span></span>
                                     <p style="margin-left: 20px;">&#x276F;</p>
                                     <div style="display: none;">
                                         <div class="header">
@@ -339,28 +329,12 @@
                                 </div>
                                 <div class="no-key-selected" id="list-desktop-<%= ques.getQuestionId()%>">
                                     <p>Selected: </p>
-                                    <span>20</span>
+                                    <span></span>
                                     <div class="list-of-people-selected">
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
-                                        <p>Raghubir Yadav</p>
+
                                     </div>
                                 </div>
-                                    <div style="clear: both;"></div>
+                                <div style="clear: both;"></div>
 
                                 <!--                                <div class="individuals-box-scroll">
                                                                     <a href="#" title="Previous" class="individuals-prev"></a>
