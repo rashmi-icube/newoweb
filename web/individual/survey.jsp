@@ -273,7 +273,7 @@
                                     </div>
                                     <button id="getSmartList" onclick="fetchSmartData(<%= ques.getQuestionId()%>);">Smart</button>
                                     <input type="hidden" id="relation_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
-                                    <div class="three-filters-group">
+                                    <div class="three-filters-group" id="three-filters-group-<%= ques.getQuestionId()%>">
                                         <span></span>
                                         <span></span>
                                         <span></span>

@@ -114,7 +114,7 @@ $(document).ready(function () {
         var filterId = $(this).children('.filter-choice-name').attr('data_id');
         var filterType = $(this).children('.filter-choice-name').attr('filter_type');
         var filterTypeId = $(this).children('.filter-choice-name').attr('filter_type_id');
-        $('.three-filters-group span:eq(' + i + ')').text(filterName).css('visibility', 'visible').attr('data_id', filterId).attr('filter_type', filterType).attr('filter_type_id', filterTypeId);
+        $('#three-filters-group-' + questionId + ' span:eq(' + i + ')').text(filterName).css('visibility', 'visible').attr('data_id', filterId).attr('filter_type', filterType).attr('filter_type_id', filterTypeId);
         fetchFilteredData(questionId);
     });
 
@@ -313,20 +313,20 @@ function ratingStar(obj) {
     }
 //    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE
     if ($('.list-of-people-selected').height() >= 348) {
-            $('.no-key-selected').slimScrollPopup({
-                height: '400px',
-                width: '272px',
-                color: '#388E3C',
-                railVisible: true,
-                railColor: '#D7D7D7',
-                alwaysVisible: true,
-                touchScrollStep: 50
-            });
-        } else {
-            $('.no-key-selected').slimScrollPopup({
-                destroy: true
-            });
-        }
+        $('.no-key-selected').slimScrollPopup({
+            height: '400px',
+            width: '272px',
+            color: '#388E3C',
+            railVisible: true,
+            railColor: '#D7D7D7',
+            alwaysVisible: true,
+            touchScrollStep: 50
+        });
+    } else {
+        $('.no-key-selected').slimScrollPopup({
+            destroy: true
+        });
+    }
 }
 /** Search functionality using Isotope begins */
 function searchIsotope() {
@@ -490,7 +490,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             $(obj).siblings('.individuals-box').html(resp);
             fetchAndPopulateRating();
             searchIsotope();
-            $('.three-filters-group span').removeAttr('style').removeAttr('data_id').removeAttr('filter_type').removeAttr('filter_type_id');
+            $('#three-filters-group-' + q + ' span').removeAttr('style').removeAttr('data_id').removeAttr('filter_type').removeAttr('filter_type_id');
             $('.filter-row .filter-menu>ul>li>span').removeClass('highlight');
             $('.filter-row .filter-menu li li span').removeAttr('style');
             $('.mobile-filter-row').removeClass('chosen');
@@ -502,7 +502,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
 function fetchFilteredData(questionId) {
     saveRating();
     var filterData = {};
-    jQuery.each($('.three-filters-group span'), function (i, v) {
+    jQuery.each($('#three-filters-group-' + questionId + ' span'), function (i, v) {
         var filterId = $(v).attr('data_id');
         var filterType = $(v).attr('filter_type');
         var filterTypeId = $(v).attr('filter_type_id');
@@ -583,7 +583,7 @@ function fetchSmartData(questionId) {
                 $(v).children('span.filter-choice-name').css('visibility', 'visible');
             });
             $('.filter-row .filter-menu>ul>li>span').removeClass('highlight');
-            $('.three-filters-group span').removeAttr('style').removeAttr('data_id').removeAttr('filter_type').removeAttr('filter_type_id');
+            $('#three-filters-group-' + questionId + ' span').removeAttr('style').removeAttr('data_id').removeAttr('filter_type').removeAttr('filter_type_id');
             $('.mobile-filter-row').removeClass('chosen');
             $('.mobile-filter-row>div').hide('200');
             $('.mobile-filter-row .filter-menu input').prop('checked', false);
