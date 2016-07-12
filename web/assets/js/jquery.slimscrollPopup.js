@@ -28,7 +28,7 @@
         position : 'right',
 
         // distance in pixels between the side edge and the scrollbar
-        distance : '1px',
+        distance : '46px',
 
         // default scroll position on load - top / bottom / $('selector')
         start : 'top',
@@ -165,7 +165,8 @@
 //            overflow: 'hidden',
             width: o.width,
             height: o.height,
-            left: '75%'
+            display: 'inline-table',
+            right: '13%'
           });
 
         // update style for the div
