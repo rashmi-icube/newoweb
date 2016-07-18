@@ -99,6 +99,24 @@ $(document).ready(function() {
         $('.forgot-password-form .invalid-warning').hide();
 		$('.login-form').show();
 	});
+        
+        $('#username').on('click', function () {
+            setTimeout(function () {
+                $('.invalid-warning').fadeOut();
+            }, 'slow');
+        });
+        
+        $('#password').on('click', function () {
+            setTimeout(function () {
+                $('.invalid-warning').fadeOut();
+            }, 'slow');
+        });
+        
+        $('#email').on('click', function () {
+            setTimeout(function () {
+                $('.invalid-warning').fadeOut();
+            }, 'slow');
+        });
 
 	$('#email').on('click focus', function(event) {
 		event.stopPropagation();
@@ -128,7 +146,7 @@ $(document).ready(function() {
                 } else {
                     $('.forgot-password-form .invalid-warning').show();
                     setTimeout(function() {
-                        $('.forgot-password-form .invalid-warning').hide();
+                        $('.forgot-password-form .invalid-warning').fadeOut();
                     }, 8000);
                 }
             }

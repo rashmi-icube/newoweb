@@ -63,7 +63,6 @@
             BasicEmployeeDetails beDetails = eHelper.getBasicEmployeeDetails(comid, empid);
 
         %>
-
         <div class="main">
             <div class="wrapper profile-page">
                 <div class="mobile-page-title">
@@ -166,6 +165,10 @@
                                                 <button type="button" id="cancelPassword">Cancel</button>
                                                 <button type="submit" id="savePassword">Save</button>
                                             </div>
+                                            <div class="password-change-successful">
+                                                <span>&#x2714;</span>
+                                                <span class="success-text"><span class="bold">Success:</span> Password change successful</span>
+                                            </div>
                                         </form>
                                         <span class="invalid-current">Current password doesn't match!</span>
                                     </div>
@@ -239,6 +242,11 @@
                             <div class="clearfix">
                                 <button type="button" id="cancelPwd">Cancel</button>
                                 <button type="submit" id="savePwd">Save</button>
+                            </div>
+                            
+                            <div class="password-change-successful-mobile">
+                                <span>&#x2714;</span>
+                                <span class="success-text"><span class="bold">Success:</span> Password change successful</span>
                             </div>
                         </form>
                     </div>
@@ -573,11 +581,3 @@
 </script>
 
 <script src="<%=Constant.WEB_ASSETS%>js/profile.js"></script>
-
-
-<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/animatedModal.min.js"></script>   
-        <script>
-            $("#demo01").animatedModal();
-        </script> -->
-
