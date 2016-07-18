@@ -653,6 +653,8 @@ debugger;
                 $('#updateComments').click();
             }
         }
+        
 	</script>
+        <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
 </body>
 </html>
