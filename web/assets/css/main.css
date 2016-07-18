@@ -130,6 +130,13 @@ header { background-color: #ff9800; }
 header .wrapper {
   width: 980px;
   margin: 0 auto;
+  height: 50px;
+}
+
+#Header-Desktop-Logo img{
+    width:auto;
+    height:50px;
+    border:0;
 }
 
 h1 {
@@ -140,9 +147,11 @@ h1 {
 }
 
 nav {
-  margin-left: 135px;
+  margin-left: 100px;
   display: inline-block;
-  vertical-align: 7px;
+/*  vertical-align: 7px;*/
+  position: absolute;
+  padding-top: 12px;
 }
 
 nav ul { 
@@ -398,7 +407,6 @@ nav li a {
 }
 .notif-settings {
     float: right;
-    margin-top: 0.3em;
 }
 .main {
     padding-bottom: 40px;

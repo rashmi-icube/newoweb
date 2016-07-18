@@ -39,7 +39,13 @@
         <script src="<%=Constant.WEB_ASSETS%>js/modernizr.js"></script> <!-- Modernizr -->
     </head>
     <div class="wrapper clearfix">
-        <a href="<%=Constant.WEB_CONTEXT%>/individual/dashboard.jsp"> <h1><span>OWEN</span> <span>Individual</span></h1></a>
+        <a href="<%=Constant.WEB_CONTEXT%>/individual/dashboard.jsp" id="Header-Desktop-Logo">
+<!--            <h1><span>OWEN</span><span>Individual</span></h1>-->
+            <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
+        </a>
+        <a href="<%=Constant.WEB_CONTEXT%>/individual/dashboard.jsp" id="Header-Mobile-Logo">
+            <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Mobile.png" alt="OWEN Logo">
+        </a>
         <nav>
 
             <li <%=moduleName.equals("survey") ? "class=\"current\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/individual/survey.jsp">Survey</a></li>

@@ -155,6 +155,16 @@ header h1 {
     color: #fff; 
 }
 
+#Header-Desktop-Logo img{
+    width:auto;
+    height:50px;
+    border:0;
+}
+
+#Header-Mobile-Logo img{
+    display: none;
+}
+
 h1 span:first-child {
     margin-right: -8px;
     font: 700 32px 'Open Sans Bold', 'Open Sans';
@@ -163,8 +173,10 @@ h1 span:first-child {
 h1 span:nth-child(2) { font: 300 12px 'Open Sans Light', 'Open Sans'; }
 
 nav { 
-    margin-left: 30%;
-    display: inline-block; 
+    margin-left: 15%;
+    display: inline-block;
+    position: absolute;
+    padding-top: 14px; 
 }
 
 nav ul { list-style-type: none; }
@@ -1083,7 +1095,7 @@ nav li a {
     color: #fff;
     text-align: center;
     transition: visibility 0.2s;
-    z-index: 100;
+    z-index: 111;
 }
 
 .submit-tooltip .submit-title { font: 600 10px 'Open Sans Semibold', 'Open Sans'; }
@@ -2593,6 +2605,21 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     header .wrapper {
         width: 100%;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    #Header-Desktop-Logo img{
+        display: none;
+    }
+    
+    #Header-Mobile-Logo img{
+        display: block !important;
+        width:auto;
+        height:35px;
+        border:0;
+        padding-bottom: 5px;
     }
 
     h1 span:first-child {
@@ -2606,7 +2633,9 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     nav { 
         margin-top: -35px;
-        float: right; 
+        float: right;
+        padding: 0;
+        right: 5%
     }
 
     nav li {
