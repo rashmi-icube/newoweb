@@ -98,13 +98,13 @@
                         <span class="panel-score"><%=topMetList.get(i).getScore()%></span>
                         <!--<span class="panel-average">Org. Average: 57</span>-->
                         <!--Average on Individual Dashboard-->
-<!--                        <div class="panel-average clearfix">
+                        <div class="panel-average clearfix">
                             <p>
                                 <span>Org.</span>
                                 <span>Average</span>
                             </p>
-                            <p>89</p>
-                        </div>-->
+                            <p><%=topMetList.get(i).getAverage() %></p>
+                        </div>
                         <button class="appreciateMetric" title="Appreciate for <%=topMetList.get(i).getName() %>" data-id="<%=topMetList.get(i).getId()%>"></button>
                     </div>
                 <% } %>        
