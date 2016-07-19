@@ -543,6 +543,7 @@ function fetchFilteredDataMobile(questionId) {
             filterData[filterType] = filterId;
             filterData[filterType + "_id"] = filterTypeId;
             filterData[filterType + "_name"] = filterVal;
+            filterData["questionId"] = questionId;
         }
     });
     $('.overlay_form').show();
