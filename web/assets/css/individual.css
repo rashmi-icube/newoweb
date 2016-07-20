@@ -533,7 +533,7 @@ nav li a {
 
 .image-size-warning {
     box-sizing: border-box;
-    width: 290px;
+    width: 300px;
     height: 39px;
     padding: 4px 0 0 16px;
     border: 1px solid #ffc107;
@@ -541,7 +541,7 @@ nav li a {
     display: none;
     position: absolute;
     top: -10px;
-    left: 55%;
+    left: 50%;
 }
 
 .image-size-warning>span:first-child {
@@ -3493,7 +3493,8 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         float: none;
         bottom: 0;
         right: 0;
-        padding-left: 0;    
+        padding-left: 0;
+        padding-bottom: 5px;
     }
     
     .dashboard.metrics .panel button {

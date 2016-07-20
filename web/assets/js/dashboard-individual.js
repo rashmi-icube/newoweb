@@ -426,6 +426,15 @@ $(document).ready(function() {
               $('.initiative-details-popup').hide('slide', {direction: 'right'}, 400);
             });
         });
+        
+        if (document.documentElement.clientWidth <= 480) {
+            $('.initiative-row').on('click', function () {
+                $('.initiatives-list').hide();
+            });
+            $('.initiative-details-popup').on('click', '.goToInitiatives',function () {
+                $('.initiatives-list').show();
+            });
+        }
     }
 });
 
