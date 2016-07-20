@@ -475,7 +475,6 @@
                     }
                     return currentQArray;
                 } 
-debugger;
                 function generateTimeGraphIndividual(divid, dataArray, type1, type2, type3) {
                     var chartConfig = {
                         "type": "serial",

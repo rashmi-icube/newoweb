@@ -337,28 +337,65 @@ function searchIsotope() {
         layoutMode: 'fitRows'
     });
     $('.individuals-grid').css('top', '0px');
-    if ($('.individuals-grid').height() > 400) {
-        if ($('.individuals-grid').width() > 290) {
-            $('.individuals-grid').slimScroll({
-                height: '400px',
-                color: '#388E3C',
-                railVisible: true,
-                railColor: '#D7D7D7',
-                alwaysVisible: true,
-                touchScrollStep: 50
-            });
-        } else {
-            $('.individuals-grid').slimScroll({
-                destroy: true
-            });
-        }
+//    for (var i = 0; i < ($('.individuals-grid').length); i++) {
+//        if ($('.individuals-grid')[i].style.height.replace("px","") > 400) {
+//            if ($('.individuals-grid').width() > 290) {
+//                $('.individuals-grid')[i].slimScroll({
+//                    height: '400px',
+//                    color: '#388E3C',
+//                    railVisible: true,
+//                    railColor: '#D7D7D7',
+//                    alwaysVisible: true,
+//                    touchScrollStep: 50
+//                });
+//            } else {
+//                $('.individuals-grid')[i].slimScroll({
+//                    destroy: true
+//                });
+//            }
+//        } else {
+//            $('.individuals-grid')[i].slimScroll({
+//                destroy: true
+//            });
+//        }
+//    }
+//Check screen width - Only Desktop must show scroll, NOT Mobile
+    if (document.documentElement.clientWidth > 480) {
+        //Check for every occurrence of individuals-grid
+        $('.individuals-grid').each(function (i) {
+            //Check if height of grid>400 - indicates that there are more than 14 people as part of the list
+            if ($('.individuals-grid')[i].style.height.replace('px', '') > 400) {
+                //Check width of grid
+                if ($('.individuals-grid')[i].style.width === '' || $('.individuals-grid')[i].style.width === 'auto' || $('.individuals-grid')[i].style.width.replace('px', '') > 290) {
+                    //Attach Slimscroll
+                    $(this).slimScroll({
+                        height: '400px',
+                        color: '#388E3C',
+                        railVisible: true,
+                        railColor: '#D7D7D7',
+                        alwaysVisible: true,
+                        touchScrollStep: 50
+                    }).one('mousemove',function () {
+                        //Check EXACTLY once if the mouse moves on the individuals-grid div visible on screen, and accordingly reset the scrollbar to 0px
+                        $(this).next('.slimScrollBar').css('top','0');
+                    });
+                } else {
+                    $(this).slimScroll({
+                        destroy: true
+                    });
+                }
+            } else {
+                $(this).slimScroll({
+                    destroy: true
+                });
+            }
+        });
+        //Destroy slimscroll if the device is a mobile
     } else {
         $('.individuals-grid').slimScroll({
             destroy: true
         });
     }
-
-
 //    $('.list-of-selected-people-popup').css('top', '0px');
 
 //    if ($('.individuals-grid:visible').height() <= 400) {
