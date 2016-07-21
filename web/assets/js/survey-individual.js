@@ -12,6 +12,23 @@ $(document).ready(function () {
             showHideNavigation(this);
             $('body').removeAttr('style');
         });
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '272px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
+        });
 
     });
 
@@ -27,6 +44,23 @@ $(document).ready(function () {
             searchIsotope();
             showHideNavigation(this);
             $('body').removeAttr('style');
+        });
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '272px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
         });
     });
 
@@ -311,22 +345,23 @@ function ratingStar(obj) {
             }
         }
     }
-//    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE
-    if ($('.list-of-people-selected').height() >= 348) {
-        $('.no-key-selected').slimScrollPopup({
-            height: '400px',
-            width: '272px',
-            color: '#388E3C',
-            railVisible: true,
-            railColor: '#D7D7D7',
-            alwaysVisible: true,
-            touchScrollStep: 50
-        });
-    } else {
-        $('.no-key-selected').slimScrollPopup({
-            destroy: true
-        });
-    }
+    $('.list-of-people-selected').each(function (i) {
+        if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+            $(this).parent().slimScrollPopup({
+                height: '400px',
+                width: '272px',
+                color: '#388E3C',
+                railVisible: true,
+                railColor: '#D7D7D7',
+                alwaysVisible: true,
+                touchScrollStep: 50
+            });
+        } else {
+            $(this).parent().slimScrollPopup({
+                destroy: true
+            });
+        }
+    });
 }
 /** Search functionality using Isotope begins */
 function searchIsotope() {
