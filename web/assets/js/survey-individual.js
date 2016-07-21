@@ -132,6 +132,7 @@ $(document).ready(function () {
     }
 
     $('.search-colleague').on('input', function () {
+         $('.three-filters-group span').removeAttr('style');
         fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
     });
 
