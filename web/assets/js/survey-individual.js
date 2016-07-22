@@ -132,7 +132,6 @@ $(document).ready(function () {
     }
 
     $('.search-colleague').on('input', function () {
-         $('.three-filters-group span').removeAttr('style');
         fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
     });
 
@@ -411,9 +410,9 @@ function searchIsotope() {
                         railColor: '#D7D7D7',
                         alwaysVisible: true,
                         touchScrollStep: 50
-                    }).one('mousemove',function () {
+                    }).one('mousemove', function () {
                         //Check EXACTLY once if the mouse moves on the individuals-grid div visible on screen, and accordingly reset the scrollbar to 0px
-                        $(this).next('.slimScrollBar').css('top','0');
+                        $(this).next('.slimScrollBar').css('top', '0');
                     });
                 } else {
                     $(this).slimScroll({
@@ -563,7 +562,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             $(obj).siblings('.individuals-box').html(resp);
             fetchAndPopulateRating();
             searchIsotope();
-            $('#three-filters-group-' + q + ' span').removeAttr('style').removeAttr('data_id').removeAttr('filter_type').removeAttr('filter_type_id');
+            $('#three-filters-group-' + ques + ' span').removeAttr('style').removeAttr('data_id').removeAttr('filter_type').removeAttr('filter_type_id');
             $('.filter-row .filter-menu>ul>li>span').removeClass('highlight');
             $('.filter-row .filter-menu li li span').removeAttr('style');
             $('.mobile-filter-row').removeClass('chosen');
