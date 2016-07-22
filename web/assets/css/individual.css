@@ -2736,7 +2736,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     #mobileSettings .settings-sign-page { 
         box-sizing: border-box;
         width: 100%;
-        height: calc(100% - 50px);
+        height: calc(100% - 47px);
         padding-top: 25px;
         display: none;
         position: fixed;
