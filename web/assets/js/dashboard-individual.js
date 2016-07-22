@@ -426,6 +426,15 @@ $(document).ready(function() {
               $('.initiative-details-popup').hide('slide', {direction: 'right'}, 400);
             });
         });
+        
+        if (document.documentElement.clientWidth <= 480) {
+            $('.initiative-row').on('click', function () {
+                $('.initiatives-list').hide();
+            });
+            $('.initiative-details-popup').on('click', '.goToInitiatives',function () {
+                $('.initiatives-list').show();
+            });
+        }
     }
 });
 
@@ -487,9 +496,10 @@ function saveRating() {
     jQuery.each($('.star-rating-total'), function(i,v) {
         var empRating = {};
         var empId = $(v).attr('emp_id');
+        var quesId = $(v).attr('ques_id');
         var rating = $(v).text();
         if(rating !== '' && rating > 0) {
-            empRating[empId] = rating;
+            empRating[quesId + '_' + empId] = rating;
             empArr.push(empRating);
         }else {
             jQuery.each(empArr, function(n,o) {
@@ -510,6 +520,7 @@ function clearRatings() {
     jQuery.each($('.star-rating-total'), function(i,v) {
         $(v).text('');
     });
+    jQuery.data(document.body, "emp_rating", []);
 }
 
 function displayRatings(id, score) {

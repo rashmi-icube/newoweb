@@ -155,6 +155,16 @@ header h1 {
     color: #fff; 
 }
 
+#Header-Desktop-Logo img{
+    width:auto;
+    height:50px;
+    border:0;
+}
+
+#Header-Mobile-Logo img{
+    display: none;
+}
+
 h1 span:first-child {
     margin-right: -8px;
     font: 700 32px 'Open Sans Bold', 'Open Sans';
@@ -163,8 +173,10 @@ h1 span:first-child {
 h1 span:nth-child(2) { font: 300 12px 'Open Sans Light', 'Open Sans'; }
 
 nav { 
-    margin-left: 30%;
-    display: inline-block; 
+    margin-left: 15%;
+    display: inline-block;
+    position: absolute;
+    padding-top: 14px; 
 }
 
 nav ul { list-style-type: none; }
@@ -406,6 +418,43 @@ nav li a {
 .user-name-company span:nth-child(2) { font: 400 14px 'Open Sans Regular', 'Open Sans'; }
 
 /************************************************ PROFILE *******************************************/
+.password-change-successful{
+    box-sizing: border-box;
+    width: 285px;
+    height: 39px;
+    padding: 2px 0 0 10px;
+    border: 1px solid #4caf50;
+    border-radius: 106px;
+    display: none; /*CHANGE TO NONE BEFORE DEPLOYING*/
+    /*position: absolute;*/
+    margin: 6px auto;
+}
+
+.password-change-successful .show{
+    display: block;
+}
+
+.password-change-successful>span:first-child {
+    box-sizing: border-box;
+    width: 33px;
+    height: 33px;
+    padding-top: 8px;
+    margin-right: 4px;
+    display: inline-block;
+    vertical-align: -1px;
+    background: url(../images/success_icon.png);
+    color: #fff;
+    font: 700 12px 'Open Sans Bold', 'Open Sans';
+    text-align: center;
+}
+
+.password-change-successful .success-text{
+    color: #4caf50;
+    font: 12px 'Open Sans Regular', 'Open Sans';
+}
+.password-change-successful .success-text .bold{
+    font: 700 12px 'Open Sans Bold', 'Open Sans';
+}
 
 .wrapper.profile-page {
     width: 980px;
@@ -418,7 +467,7 @@ nav li a {
     padding: 14px 0 8px 35px;
     border: 1px solid #d7d7d7;
     border-radius: 5px;
-    margin: 36px 0 20px;
+    margin: 38px 0 20px;
 }
 
 .personal-details-user-image,
@@ -484,7 +533,7 @@ nav li a {
 
 .image-size-warning {
     box-sizing: border-box;
-    width: 290px;
+    width: 300px;
     height: 39px;
     padding: 4px 0 0 16px;
     border: 1px solid #ffc107;
@@ -492,7 +541,7 @@ nav li a {
     display: none;
     position: absolute;
     top: -10px;
-    left: 55%;
+    left: 50%;
 }
 
 .image-size-warning>span:first-child {
@@ -598,7 +647,7 @@ nav li a {
 
 .modal_box {
     width: 480px;
-    height: 220px;
+    height: 250px;
     border: 1px solid #f2f2f2;
     margin: 0 auto;
     position: absolute;
@@ -1083,7 +1132,7 @@ nav li a {
     color: #fff;
     text-align: center;
     transition: visibility 0.2s;
-    z-index: 100;
+    z-index: 111;
 }
 
 .submit-tooltip .submit-title { font: 600 10px 'Open Sans Semibold', 'Open Sans'; }
@@ -2593,6 +2642,21 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     header .wrapper {
         width: 100%;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    #Header-Desktop-Logo img{
+        display: none;
+    }
+    
+    #Header-Mobile-Logo img{
+        display: block !important;
+        width:auto;
+        height:35px;
+        border:0;
+        padding-bottom: 5px;
     }
 
     h1 span:first-child {
@@ -2606,7 +2670,9 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     nav { 
         margin-top: -35px;
-        float: right; 
+        float: right;
+        padding: 0;
+        right: 5%
     }
 
     nav li {
@@ -2901,7 +2967,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     #changePasswordMobile+form .clearfix {
         position: absolute;
         right: 25px;
-        bottom: 25px;
+        /*bottom: 140px;*/
         left: 25px;
     }
 
@@ -2915,12 +2981,58 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     #changePasswordMobile+form #cancelPwd {
         float: left;
+        /*position: fixed;*/
         background-color: rgba(255, 0, 0, 0.5);
     }
 
     #changePasswordMobile+form #savePwd {
         float: right;
+/*        position: fixed;
+        right:0;*/
         background-color: rgba(76, 175, 80, 0.5);
+    }
+    
+    #changePasswordMobile+form .password-change-successful-mobile{
+    box-sizing: border-box;
+    width: 285px;
+    height: 39px;
+    padding: 2px 0 0 10px;
+    border: 1px solid #4caf50;
+    border-radius: 106px;
+    display: none; /*CHANGE TO NONE BEFORE DEPLOYING*/
+    position: absolute;
+    top: 50%;
+    /*bottom: 50px;*/
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    #changePasswordMobile+form .password-change-successful-mobile .show{
+        display: block;
+    }
+
+    #changePasswordMobile+form .password-change-successful-mobile>span:first-child {
+        box-sizing: border-box;
+        width: 33px;
+        height: 33px;
+        padding-top: 8px;
+        margin-right: 4px;
+        display: inline-block;
+        vertical-align: -1px;
+        background: url(../images/success_icon.png);
+        color: #fff;
+        font: 700 12px 'Open Sans Bold', 'Open Sans';
+        text-align: center;
+    }
+
+    #changePasswordMobile+form .password-change-successful-mobile .success-text{
+        color: #4caf50;
+        font: 12px 'Open Sans Regular', 'Open Sans';
+    }
+    #changePasswordMobile+form .password-change-successful-mobile .success-text .bold{
+        font: 700 12px 'Open Sans Bold', 'Open Sans';
     }
 
     #changePasswordMobile+form input {
@@ -3381,7 +3493,8 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         float: none;
         bottom: 0;
         right: 0;
-        padding-left: 0;    
+        padding-left: 0;
+        padding-bottom: 5px;
     }
     
     .dashboard.metrics .panel button {

@@ -28,22 +28,22 @@
 
     <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">-->
 
-    <link rel="apple-touch-icon" sizes="57x57" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/android-icon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/android-icon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/manifest.json">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon_Individual/ms-icon-144x144.png">
     
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#388E3C">
@@ -63,7 +63,6 @@
             BasicEmployeeDetails beDetails = eHelper.getBasicEmployeeDetails(comid, empid);
 
         %>
-
         <div class="main">
             <div class="wrapper profile-page">
                 <div class="mobile-page-title">
@@ -166,6 +165,10 @@
                                                 <button type="button" id="cancelPassword">Cancel</button>
                                                 <button type="submit" id="savePassword">Save</button>
                                             </div>
+                                            <div class="password-change-successful">
+                                                <span>&#x2714;</span>
+                                                <span class="success-text"><span class="bold">Success:</span> Password change successful</span>
+                                            </div>
                                         </form>
                                         <span class="invalid-current">Current password doesn't match!</span>
                                     </div>
@@ -239,6 +242,11 @@
                             <div class="clearfix">
                                 <button type="button" id="cancelPwd">Cancel</button>
                                 <button type="submit" id="savePwd">Save</button>
+                            </div>
+                            
+                            <div class="password-change-successful-mobile">
+                                <span>&#x2714;</span>
+                                <span class="success-text"><span class="bold">Success:</span> Password change successful</span>
                             </div>
                         </form>
                     </div>
@@ -573,11 +581,3 @@
 </script>
 
 <script src="<%=Constant.WEB_ASSETS%>js/profile.js"></script>
-
-
-<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/animatedModal.min.js"></script>   
-        <script>
-            $("#demo01").animatedModal();
-        </script> -->
-

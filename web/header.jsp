@@ -41,9 +41,12 @@
     var webcontext = "<%=Constant.WEB_CONTEXT%>";
 </script>
 
-<header class="clearfix">
+<header class="clearfix" style="padding-top: 4px;">
     <div class="wrapper">				
-        <a href="<%=Constant.WEB_CONTEXT%>/dashboard/dashboard.jsp"><h1>OWEN</h1></a>
+        <a href="<%=Constant.WEB_CONTEXT%>/dashboard/dashboard.jsp" id="Header-Desktop-Logo">
+            <!--<h1>OWEN</h1>-->
+            <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
+        </a>
         <nav>
             <ul>
                 <li <%=moduleName.equals("dashboard") ? "class=\"current\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/dashboard/dashboard.jsp">Dashboard</a></li>

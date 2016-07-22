@@ -12,6 +12,23 @@ $(document).ready(function () {
             showHideNavigation(this);
             $('body').removeAttr('style');
         });
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '272px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
+        });
 
     });
 
@@ -27,6 +44,23 @@ $(document).ready(function () {
             searchIsotope();
             showHideNavigation(this);
             $('body').removeAttr('style');
+        });
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '272px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
         });
     });
 
@@ -98,6 +132,7 @@ $(document).ready(function () {
     }
 
     $('.search-colleague').on('input', function () {
+         $('.three-filters-group span').removeAttr('style');
         fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
     });
 
@@ -311,22 +346,23 @@ function ratingStar(obj) {
             }
         }
     }
-//    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE
-    if ($('.list-of-people-selected').height() >= 348) {
-        $('.no-key-selected').slimScrollPopup({
-            height: '400px',
-            width: '272px',
-            color: '#388E3C',
-            railVisible: true,
-            railColor: '#D7D7D7',
-            alwaysVisible: true,
-            touchScrollStep: 50
-        });
-    } else {
-        $('.no-key-selected').slimScrollPopup({
-            destroy: true
-        });
-    }
+    $('.list-of-people-selected').each(function (i) {
+        if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+            $(this).parent().slimScrollPopup({
+                height: '400px',
+                width: '272px',
+                color: '#388E3C',
+                railVisible: true,
+                railColor: '#D7D7D7',
+                alwaysVisible: true,
+                touchScrollStep: 50
+            });
+        } else {
+            $(this).parent().slimScrollPopup({
+                destroy: true
+            });
+        }
+    });
 }
 /** Search functionality using Isotope begins */
 function searchIsotope() {
@@ -337,28 +373,65 @@ function searchIsotope() {
         layoutMode: 'fitRows'
     });
     $('.individuals-grid').css('top', '0px');
-    if ($('.individuals-grid').height() > 400) {
-        if ($('.individuals-grid').width() > 290) {
-            $('.individuals-grid').slimScroll({
-                height: '400px',
-                color: '#388E3C',
-                railVisible: true,
-                railColor: '#D7D7D7',
-                alwaysVisible: true,
-                touchScrollStep: 50
-            });
-        } else {
-            $('.individuals-grid').slimScroll({
-                destroy: true
-            });
-        }
+//    for (var i = 0; i < ($('.individuals-grid').length); i++) {
+//        if ($('.individuals-grid')[i].style.height.replace("px","") > 400) {
+//            if ($('.individuals-grid').width() > 290) {
+//                $('.individuals-grid')[i].slimScroll({
+//                    height: '400px',
+//                    color: '#388E3C',
+//                    railVisible: true,
+//                    railColor: '#D7D7D7',
+//                    alwaysVisible: true,
+//                    touchScrollStep: 50
+//                });
+//            } else {
+//                $('.individuals-grid')[i].slimScroll({
+//                    destroy: true
+//                });
+//            }
+//        } else {
+//            $('.individuals-grid')[i].slimScroll({
+//                destroy: true
+//            });
+//        }
+//    }
+//Check screen width - Only Desktop must show scroll, NOT Mobile
+    if (document.documentElement.clientWidth > 480) {
+        //Check for every occurrence of individuals-grid
+        $('.individuals-grid').each(function (i) {
+            //Check if height of grid>400 - indicates that there are more than 14 people as part of the list
+            if ($('.individuals-grid')[i].style.height.replace('px', '') > 400) {
+                //Check width of grid
+                if ($('.individuals-grid')[i].style.width === '' || $('.individuals-grid')[i].style.width === 'auto' || $('.individuals-grid')[i].style.width.replace('px', '') > 290) {
+                    //Attach Slimscroll
+                    $(this).slimScroll({
+                        height: '400px',
+                        color: '#388E3C',
+                        railVisible: true,
+                        railColor: '#D7D7D7',
+                        alwaysVisible: true,
+                        touchScrollStep: 50
+                    }).one('mousemove',function () {
+                        //Check EXACTLY once if the mouse moves on the individuals-grid div visible on screen, and accordingly reset the scrollbar to 0px
+                        $(this).next('.slimScrollBar').css('top','0');
+                    });
+                } else {
+                    $(this).slimScroll({
+                        destroy: true
+                    });
+                }
+            } else {
+                $(this).slimScroll({
+                    destroy: true
+                });
+            }
+        });
+        //Destroy slimscroll if the device is a mobile
     } else {
         $('.individuals-grid').slimScroll({
             destroy: true
         });
     }
-
-
 //    $('.list-of-selected-people-popup').css('top', '0px');
 
 //    if ($('.individuals-grid:visible').height() <= 400) {
@@ -543,6 +616,7 @@ function fetchFilteredDataMobile(questionId) {
             filterData[filterType] = filterId;
             filterData[filterType + "_id"] = filterTypeId;
             filterData[filterType + "_name"] = filterVal;
+            filterData["questionId"] = questionId;
         }
     });
     $('.overlay_form').show();

@@ -31,22 +31,22 @@
 	<title>OWEN - Dashboard</title>
 	<link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/slick.css">
 	<link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/individual.css">
-    <link rel="apple-touch-icon" sizes="57x57" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="<%=Constant.WEB_ASSETS%>images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/android-icon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/android-icon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/manifest.json">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon_Individual/ms-icon-144x144.png">
 
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#388E3C">
@@ -98,13 +98,13 @@
                         <span class="panel-score"><%=topMetList.get(i).getScore()%></span>
                         <!--<span class="panel-average">Org. Average: 57</span>-->
                         <!--Average on Individual Dashboard-->
-<!--                        <div class="panel-average clearfix">
+                        <div class="panel-average clearfix">
                             <p>
                                 <span>Org.</span>
                                 <span>Average</span>
                             </p>
-                            <p>89</p>
-                        </div>-->
+                            <p><%=topMetList.get(i).getAverage() %></p>
+                        </div>
                         <button class="appreciateMetric" title="Appreciate for <%=topMetList.get(i).getName() %>" data-id="<%=topMetList.get(i).getId()%>"></button>
                     </div>
                 <% } %>        
@@ -408,7 +408,7 @@
                         </div>-->
 
                         <div class="submit-circle">
-                            <button onclick="this.disabled = true;this.form.submit();">&#x2714;</button>
+                            <button>&#x2714;</button>
                             <div class="submit-tooltip">
                                 <span class="submit-title"><span>SUBMIT</span> this response</span>
                                 <span class="submit-response">Please select a response</span>
@@ -475,7 +475,6 @@
                     }
                     return currentQArray;
                 } 
-debugger;
                 function generateTimeGraphIndividual(divid, dataArray, type1, type2, type3) {
                     var chartConfig = {
                         "type": "serial",
@@ -653,6 +652,8 @@ debugger;
                 $('#updateComments').click();
             }
         }
+        
 	</script>
+        <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
 </body>
 </html>

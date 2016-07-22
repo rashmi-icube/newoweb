@@ -110,6 +110,13 @@ header {
 header .wrapper {
 	width: 980px;
 	margin: 0 auto;
+        height: 50px;
+}
+
+#Login-Logo img {
+    width:auto;
+    height:50px;
+    border:0;
 }
 
 header h1 { 
@@ -571,8 +578,17 @@ h2::before {
 	header .wrapper {
 		box-sizing: border-box;
 		width: 100%; 
-		padding: 0 0 0 2%; 
+		padding: 0 0 0 2%;
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
 	}
+        #Login-Logo img {
+            width:auto;
+            height:40px;
+            border:0;
+            padding-left: 10px;
+        }
 
 	h1 span:first-child {
 		margin-right: 0;
@@ -592,6 +608,13 @@ h2::before {
     min-height: calc(100vh - 65px);
 		background-color: #fff; 
 	}
+        
+        #Login-Logo img {
+            width:auto;
+            height:40px;
+            border:0;
+            padding-left: 10px;
+        }
 
 	.login-box {
 		width: 100%; 

@@ -78,7 +78,7 @@
                 <span class="rating-star"></span>
             </div>
             <% if (ques == 0) {%>
-            <span class="star-rating-total" ques_id="<%= ques%>" id="rat_<%= employee.getEmployeeId()%>" emp_id="<%= employee.getEmployeeId()%>"></span>
+            <span class="star-rating-total" ques_id="<%= ques%>" id="rat_<%= ques%>_<%= employee.getEmployeeId()%>" emp_id="<%= employee.getEmployeeId()%>"></span>
             <% } else {%>
             <span class="star-rating-total" ques_id="<%= ques%>" id="rat_<%= ques%>_<%= employee.getEmployeeId()%>" emp_id="<%= employee.getEmployeeId()%>"></span>
             <% } %>

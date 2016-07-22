@@ -130,13 +130,17 @@ $(document).ready(function() {
                     'newConfirmpass': confirmPassword
                 };
                 $.ajax({
-                   type: "POST",
+                    type: "POST",
                     url: "/individual/updatedetails.jsp",
                     data: postData,
                     dataType: 'JSON',
-                    success: function(resp){
-                        if(resp.status == "1") {
-                            window.location.href = "../signout.jsp";
+                    success: function (resp) {
+                        if (resp.status == "1") {
+                            $('.password-change-successful').show();
+                            setTimeout(function () {
+                                window.location.href = "../signout.jsp";
+                            }, 3000);
+
                         } else {
                             $('.invalid-current').show().css('display', 'block');
                         }
@@ -279,6 +283,10 @@ $(document).ready(function() {
             $(this).next('form').find('input').val('');
             $(this).next('form').find('.meter').removeAttr('style');
         });
+        
+        $('input[type=password]').on('click', function(){
+            $('#changePasswordMobile').next('form').css('height','110vh');
+        });
 
         $('#newPwd').keyup(function(){
             var bar = $(this).next().find('.meter');
@@ -326,8 +334,11 @@ $(document).ready(function() {
                         data: postData,
                         dataType: 'JSON',
                         success: function(resp){
-                            if(resp.status === "1") {
-                                window.location.href = "../signout.jsp";
+                            if (resp.status === "1") {
+                                $('.password-change-successful-mobile').show();
+                                setTimeout(function () {
+                                    window.location.href = "../signout.jsp";
+                                }, 3000);
                             } else {
                                 $('.mobile-contact-info-box .invalid-current').show().css('display', 'block');
                             }
