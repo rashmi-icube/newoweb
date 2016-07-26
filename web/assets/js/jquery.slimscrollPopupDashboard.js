@@ -8,7 +8,7 @@
 (function($) {
 
   $.fn.extend({
-    slimScrollPopup: function(options) {
+    slimScrollPopupDashboard: function(options) {
 
       var defaults = {
 
@@ -28,7 +28,7 @@
         position : 'right',
 
         // distance in pixels between the side edge and the scrollbar
-        distance : '46px',
+        distance : '1px',
 
         // default scroll position on load - top / bottom / $('selector')
         start : 'top',
@@ -55,13 +55,13 @@
         railDraggable : true,
 
         // defautlt CSS class of the slimscroll rail
-        railClass : 'slimScrollRailPopup',
+        railClass : 'slimScrollRailPopupDashboard',
 
         // defautlt CSS class of the slimscroll bar
-        barClass : 'slimScrollBarPopup',
+        barClass : 'slimScrollBarPopupDashboard',
 
         // defautlt CSS class of the slimscroll wrapper
-        wrapperClass : 'slimScrollDivPopup',
+        wrapperClass : 'slimScrollDivPopupDashboard',
 
         // check if mousewheel should scroll the window if we reach top/bottom
         allowPageScroll : false,
@@ -162,11 +162,11 @@
           .addClass(o.wrapperClass)
           .css({
             position: 'absolute',
-			// overflow: 'hidden',
+            // overflow: 'hidden',
             width: o.width,
             height: o.height,
-            display: 'inline-table',
-            right: '13%'
+			display: 'inline-table',
+			right: '6%'
           });
 
         // update style for the div
@@ -228,18 +228,18 @@
             t = parseFloat(bar.css('top'));
             pageY = e.pageY;
 
-            $doc.bind("mousemove.slimscrollPopup", function(e){
+            $doc.bind("mousemove.slimscrollPopupDashboard", function(e){
               currTop = t + e.pageY - pageY;
               bar.css('top', currTop);
               scrollContent(0, bar.position().top, false);// scroll content
             });
 
-            $doc.bind("mouseup.slimscrollPopup", function(e) {
+            $doc.bind("mouseup.slimscrollPopupDashboard", function(e) {
               isDragg = false;hideBar();
-              $doc.unbind('.slimscrollPopup');
+              $doc.unbind('.slimscrollPopupDashboard');
             });
             return false;
-          }).bind("selectstart.slimscrollPopup", function(e){
+          }).bind("selectstart.slimscrollPopupDashboard", function(e){
             e.stopPropagation();
             e.preventDefault();
             return false;
@@ -470,7 +470,7 @@
   });
 
   $.fn.extend({
-    slimscrollPopup: $.fn.slimScrollPopup
+    slimscrollPopupDashboard: $.fn.slimScrollPopupDashboard
   });
 
 })(jQuery);
