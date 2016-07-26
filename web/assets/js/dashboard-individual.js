@@ -505,7 +505,7 @@ function saveRating() {
             jQuery.each(empArr, function(n,o) {
                 if(o != undefined) {
                     jQuery.each(o, function(k,v) {
-                        if(k == empId) {
+                        if(k.split("_")[1] == empId) {
                             empArr.splice(n,1);
                         }
                     });
@@ -671,7 +671,7 @@ function submitAppreciation() {
     jQuery.each(savedRating, function(i,o){
         jQuery.each(o, function(k, v){
             if(v > 0) {
-                empRating[k] = v;
+                empRating[k.split("_")[1]] = v;
                 empArr.push(empRating); 
             }
         });
