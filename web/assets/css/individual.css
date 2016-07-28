@@ -1115,6 +1115,8 @@ nav li a {
     font-family: 'Zapf Dingbats';
     transition: transform 0.2s;
     -webkit-appearance: none;
+    -moz-appearance:none;
+   appearance:none;
 }
 
 .submit-circle button:hover { transform: scale(1.1, 1.1); }
@@ -1186,7 +1188,7 @@ nav li a {
     border: 1px solid #388e3c;
     border-radius: 0;
     color: #388e3c;
-    font: 16px 'Oxygen Regular';
+    font: 16px 'Open Sans Regular', 'Open Sans';
     -webkit-appearance: none;
 }
 
@@ -1769,11 +1771,22 @@ nav li a {
 .dashboard .people-list-box {
     margin-bottom: 15px;
     display: none;
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
 }
-
+.dashboard .no-key-selected{
+    display: inline-block;
+    color: #6b6b6b;
+    font: 12px 'Open Sans Regular', 'Open Sans';
+    width: 30%;
+    /*position: absolute;*/
+    float: right;
+    /* margin-top: -2px; */
+    border: 1px solid #e4e4e4;
+    margin-right: 46px;
+    height: 400px;
+}
 .initiatives-feed { margin-bottom: 15px; }
 
 .my-initiatives {
@@ -2352,7 +2365,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     font: 600 9px 'Open Sans Semibold', 'Open Sans';
 }
 
-.dashboard .individuals-box { width: 890px; }
+.dashboard .individuals-box { width: 587px; }
 
 .dashboard .submit-circle { 
     top: -10px;
@@ -2807,7 +2820,12 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         position: absolute;
         top: 54px;
         color: #388E3C;
-    } 
+    }
+    
+    .panel button {
+    width: 32px;
+    height: 32px;
+    }
 
     /****************************** PROFILE MOBILE ******************************/
 
@@ -3311,13 +3329,13 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
     
     .people-list-box input::-webkit-input-placeholder { 
-        font: 10px 'Oxygen Regular', Oxygen;
+        font: 12px 'Open Sans Regular', 'Open Sans';
     }
     .people-list-box input::-moz-placeholder { 
-        font: 10px 'Oxygen Regular', Oxygen;
+        font: 12px 'Open Sans Regular', 'Open Sans';
     } 
     .people-list-box input:-ms-input-placeholder {
-        font: 10px 'Oxygen Regular', Oxygen;
+        font: 12px 'Open Sans Regular', 'Open Sans';
     }
 
     .people-list-box input + button {
@@ -3422,7 +3440,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         width: 290px;
         min-height: calc(100vh - 164px);
         max-height: 800px;
-        padding-left: 5px;  
+        /*padding-left: 5px;*/  
         margin: 0 auto;
         display: block;
     }
@@ -3445,6 +3463,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         position: fixed;
         right: 4px;
         bottom: 45px;
+        top: 90%;
     }
 
     /************************************* DASHBOARD MOBILE ******************************************/
@@ -3534,13 +3553,13 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
 
     .dashboard.metrics .search-colleague { 
-        width: calc(100% - 145px); 
-        margin-left: 5%;
+        width: calc(100% - 120px); 
+        /*margin-left: 5%;*/
     }
 
     .dashboard.metrics .mobile-filter-row { margin-right: 5%; }
 
-    .dashboard.metrics .individuals-box { width: 290px; }
+    .dashboard.metrics .individuals-box { width: 290px;}
 
     .dashboard.metrics .individual-cell-name { margin-top: 2px; }
 
@@ -3555,7 +3574,8 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         position: fixed;
         right: 4px;
         bottom: 45px;
-        top: 400px;
+        /*top: 400px;*/
+        top: 90%;
     }
 
     .dashboard.initiatives .panels-timeseries { display: none; }
