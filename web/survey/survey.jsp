@@ -167,9 +167,11 @@
                                     </script>
                                     <a title="View responses" onClick="generateGraph('chartTable<%=i%>', QRArray<%=i%>, this)">View responses</a>
                                 </td>
+                                <!--TODO: Download Response Button-->
+                                <!--<td title="Download responses"></td>-->
                                 </tr>
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="6">
                                         <div id="chartTable<%=i%>" style="width: 100%; height: 170px; background-color: #fff;" ></div>
                                     </td>
                                 </tr>

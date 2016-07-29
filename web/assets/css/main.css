@@ -3730,6 +3730,7 @@ ul:nth-of-type(2) li.animate-list {
 
 .question-date-response {
   position: absolute;
+  /*TODO: Download Response Button Set right as 55px*/
   right: 16px;
   bottom: 6px;
   color: #333;
@@ -3933,6 +3934,20 @@ ul:nth-of-type(2) li.animate-list {
     width: 107px;
 }
 
+.completed-table td:nth-child(6){
+    width: 45px;
+    background: url(../images/download-survey-response.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.completed-table td:nth-child(6):hover{
+    width: 45px;
+    background: url(../images/download-survey-response-hover.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .completed-table td a {
   width: 85px;
   padding: 0 3px;

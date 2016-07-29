@@ -366,10 +366,20 @@ $(document).ready(function() {
             $('.panels-timeseries').hide();
         });
         
-        $('.search-colleague').attr('placeholder', 'Find a colleague to appreciate');
+        $('.search-colleague').attr('placeholder', 'Search for a colleague');
 
         $('.mobile-filter-row').on('click', function(event) {
           $(this).children('div').fadeToggle('200');
+          $('.no-key-selected-mobile > div').hide();
+        });
+        
+        $(document).on('click', '.no-key-selected-mobile', function (event) {
+//        $('.no-key-selected-mobile').on('click', function (event) {
+            $(this).children('div').fadeToggle('200');
+            $(this).children('div').css('position', 'absolute');
+            $(this).children('div').css('z-index', '1');
+            $(this).children('div').css('margin-left', '-200px');
+            $('.mobile-filter-row > div').hide();
         });
         
         $('#closeFilter').on('click', function(){
@@ -447,7 +457,8 @@ function searchIndividual() {
       layoutMode: 'fitRows'
     }); 
     $('.individuals-grid').css('top', '0px');
-     if ($('.individuals-grid').height()>400){
+//    Slimscroll for individuals-grid
+    if ($('.individuals-grid').height()>400){
          if($('.individuals-grid').width()>290){ 
         $('.individuals-grid').slimScroll({
             height: '400px',
@@ -467,6 +478,24 @@ function searchIndividual() {
                 destroy: true
             });
     }
+//    Slimscroll for List of Individuals selected to be appreciated
+    if ($('.list-of-people-selected').height() > 400) {
+            $('.no-key-selected').slimScrollPopupDashboard({
+                height: '400px',
+                width: '286px',
+                color: '#388E3C',
+                railVisible: true,
+                railColor: '#D7D7D7',
+                alwaysVisible: true,
+                touchScrollStep: 50
+            });
+            $('.no-key-selected').css('position','absolute');
+    } else {
+        $('.list-of-people-selected').slimScrollPopupDashboard({
+            destroy: true
+        });
+    }
+    
 //    if($('.individuals-grid').height() <= 400) {
 //        $('.individuals-box-scroll').css('visibility', 'hidden');
 //    } else {
@@ -505,7 +534,7 @@ function saveRating() {
             jQuery.each(empArr, function(n,o) {
                 if(o != undefined) {
                     jQuery.each(o, function(k,v) {
-                        if(k == empId) {
+                        if(k.split("_")[1] == empId) {
                             empArr.splice(n,1);
                         }
                     });
@@ -671,7 +700,7 @@ function submitAppreciation() {
     jQuery.each(savedRating, function(i,o){
         jQuery.each(o, function(k, v){
             if(v > 0) {
-                empRating[k] = v;
+                empRating[k.split("_")[1]] = v;
                 empArr.push(empRating); 
             }
         });
