@@ -103,7 +103,8 @@
                                 </p>
                                 <p><%=topMetList.get(i).getAverage()%></p>
                             </div>
-                            <button class="appreciateMetric" title="Appreciate for <%=topMetList.get(i).getName()%>" data-id="<%=topMetList.get(i).getId()%>"></button>
+                            <button class="appreciateMetric" title="Appreciate for <%=topMetList.get(i).getName()%>" data-id="<%=topMetList.get(i).getId()%>" onclick="clearListOfPeople()"></button>
+                            <input type="hidden" id="metricId" value="<%= topMetList.get(i).getId()%>" />
                         </div>
                         <% } %>        
                         <div id="timeseriesChart">
@@ -310,7 +311,7 @@
                                                         FilterList fl = new FilterList();
                                                         Filter geoFilter = fl.getFilterValues(comid, Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
                                                         Map<Integer, String> geoitem = geoFilter.getFilterValues();
-                                                    for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
+                                                        for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
                                                     <li>
                                                         <input type="radio" id="filterGeography_<%=entry.getKey()%>" name="filter-geography" filter_type="Geography" data_id="<%=entry.getKey()%>" filter_type_id="<%=geoFilter.getFilterId()%>">
                                                         <label for="filterGeography_<%=entry.getKey()%>"><%=entry.getValue()%></label>
@@ -324,7 +325,7 @@
                                                     <%
                                                         Filter funFilter = fl.getFilterValues(comid, Constant.INITIATIVES_FUNCTION_FILTER_NAME);
                                                         Map<Integer, String> funitem = funFilter.getFilterValues();
-                                                    for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
+                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
                                                     <li>
                                                         <input type="radio" id="filterFunction_<%=entry.getKey()%>" name="filter-function" filter_type="Function" data_id="<%=entry.getKey()%>" filter_type_id="<%=funFilter.getFilterId()%>">
                                                         <label for="filterFunction_<%=entry.getKey()%>"><%=entry.getValue()%></label>
@@ -338,19 +339,19 @@
                                                     <%
                                                         Filter levelFilter = fl.getFilterValues(comid, Constant.INITIATIVES_LEVEL_FILTER_NAME);
                                                         Map<Integer, String> levelitem = levelFilter.getFilterValues();
-                                                     for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
+                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
                                                     <li>
                                                         <input type="radio" id="filterLevel_<%=entry.getKey()%>" name="filter-level" filter_type="Level" data_id="<%=entry.getKey()%>" filter_type_id="<%=levelFilter.getFilterId()%>">
                                                         <label for="filterLevel_<%=entry.getKey()%>"><%=entry.getValue()%></label>
                                                     </li>
-                                                    <% } %>
+                                                    <% }%>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>            
-                            <div class="no-key-selected-mobile">
+                            <div class="no-key-selected-mobile" id="count-mobile">
                                 <p>View appreciated: </p>
                                 <span></span>
                                 <p style="margin-left: 20px;">&#x276F;</p>
@@ -360,22 +361,22 @@
                                         <span>You have appreciated</span>
                                     </div>
                                     <div class="list-of-selected-people-popup-mobile clearfix">
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
-                                        <p>Mirian M Graddick-Weir</p>
+                                        <!--                                        <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                        
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>
+                                                                                <p>Mirian M Graddick-Weir</p>-->
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +388,7 @@
                                             <li>
                                                 <span>Geography <span>&#x203A;</span></span>
                                                 <ul><%
-                                                for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
+                                                    for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
                                                     <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>"><%=entry.getValue()%></span></li>
                                                         <% } %>
                                                 </ul>
@@ -396,7 +397,7 @@
                                                 <span>Function <span>&#x203A;</span></span>
                                                 <ul>
                                                     <%
-                                                    for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
+                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
                                                     <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
                                                         <% } %>
                                                 </ul>
@@ -405,7 +406,7 @@
                                                 <span>Level <span>&#x203A;</span></span>
                                                 <ul>
                                                     <%
-                                                    for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
+                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
                                                     <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
                                                         <% }%>
                                                 </ul>
@@ -428,26 +429,11 @@
                                 <div class="individuals-grid" id="scrolls-for-individuals-grid">
                                 </div>
                             </div>
-                            <div class="no-key-selected">
+                            <div class="no-key-selected" id="count-desktop">
                                 <p>Selected: </p>
                                 <span></span>
                                 <div class="list-of-people-selected">
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
-                                    <p>Mirian M Graddick-Weir</p>
+
                                 </div>
                             </div>
                             <!--                        <div class="individuals-box-scroll">
@@ -484,224 +470,216 @@
         <script type="text/javascript">
             <%
                 Map<Integer, List<Map<java.util.Date, Integer>>> list1 = iDashboard.getIndividualMetricsTimeSeries(comid, empid);
-    //            Map<Integer, List<Map<String,Integer>>> newlist1 = new HashMap<Integer, List<Map<String,Integer>>>();
-    //            for (Map.Entry<Integer, List<Map<java.util.Date, Integer>>> entry : list1.entrySet()) {
-    //                Integer key = entry.getKey();
-    //                List<Map<java.util.Date, Integer>> mapLits = entry.getValue();
-    //                List<Map<String, Integer>> newmapLits = new ArrayList<Map<String, Integer>>();
-    //                for (int i = 0; i < mapLits.size(); i++) {
-    //                    Map<java.util.Date, Integer> datamap = mapLits.get(i);
-    //                    Map<String, Integer> newdatamap = new HashMap<String, Integer>();
-    //                    for (Map.Entry<java.util.Date, Integer> entry1 : datamap.entrySet()) {
-    //                        Date date1 = entry1.getKey();
-    //                        String date = Util.getDisplayDateFormat(date1, "YYYY-MM-dd");
-    //                        Integer data1  = entry1.getValue();
-    //                        newdatamap.put(date, data1);
-    //                    }
-    //                    newmapLits.add(newdatamap);
-    //                }
-    //                newlist1.put(key, newmapLits);
-    //            }
                 JSONObject obj = new JSONObject(list1);
                 out.println("var timeArray = JSON.parse('" + obj + "');");
             %>
 
-                                var indTypeJSON = <%=indTypeJSON%>;
-                                $(document).ready(function () {
-                                    if (document.documentElement.clientWidth > 480) {
-                                        function getDataAarrayIndividual(mat1, mat2, mat3, mat1key, mat2kay, mat3kay) {
-                                            var currentQArray = new Array();
-                                            for (var j in mat1) {
-                                                for (var k in mat1[j]) {
-                                                    var a = {};
-                                                    a["date"] = k;
-                                                    a[mat1key] = mat1[j][k];
-                                                    a[mat2kay] = mat2[j][k];
-                                                    a[mat3kay] = mat3[j][k];
-                                                    currentQArray.push(a);
-                                                }
-                                            }
-                                            return currentQArray;
-                                        }
-                                        function generateTimeGraphIndividual(divid, dataArray, type1, type2, type3) {
-                                            var chartConfig = {
-                                                "type": "serial",
-                                                "categoryField": "date",
-                                                "dataDateFormat": "YYYY-MM-DD",
-                                                "mouseWheelScrollEnabled": true,
-                                                "mouseWheelZoomEnabled": true,
-                                                "marginTop": 0,
-                                                "plotAreaBorderColor": "#B6B6B6",
-                                                "startEffect": "easeOutSine",
-                                                "borderColor": "#B6B6B6",
-                                                "color": "#B6B6B6",
-                                                "fontFamily": "Open Sans",
-                                                "fontSize": 10,
-                                                "handDrawScatter": 0,
-                                                "handDrawThickness": 0,
-                                                "theme": "default",
-                                                "categoryAxis": {
+            var indTypeJSON = <%=indTypeJSON%>;
+            $(document).ready(function () {
+                if (document.documentElement.clientWidth > 480) {
+                    function getDataAarrayIndividual(mat1, mat2, mat3, mat1key, mat2kay, mat3kay) {
+                        var currentQArray = new Array();
+                        for (var j in mat1) {
+                            for (var k in mat1[j]) {
+                                var a = {};
+                                a["date"] = k;
+                                a[mat1key] = mat1[j][k];
+                                a[mat2kay] = mat2[j][k];
+                                a[mat3kay] = mat3[j][k];
+                                currentQArray.push(a);
+                            }
+                        }
+                        return currentQArray;
+                    }
+                    function generateTimeGraphIndividual(divid, dataArray, type1, type2, type3) {
+                        var chartConfig = {
+                            "type": "serial",
+                            "categoryField": "date",
+                            "dataDateFormat": "YYYY-MM-DD",
+                            "mouseWheelScrollEnabled": true,
+                            "mouseWheelZoomEnabled": true,
+                            "marginTop": 0,
+                            "plotAreaBorderColor": "#B6B6B6",
+                            "startEffect": "easeOutSine",
+                            "borderColor": "#B6B6B6",
+                            "color": "#B6B6B6",
+                            "fontFamily": "Open Sans",
+                            "fontSize": 10,
+                            "handDrawScatter": 0,
+                            "handDrawThickness": 0,
+                            "theme": "default",
+                            "categoryAxis": {
 //                            "equalSpacing": true,
-                                                    "minPeriod": "DD",
-                                                    "parseDates": true,
-                                                    "axisColor": "#A1A1A1",
-                                                    "axisThickness": 0,
-                                                    "gridColor": "#A1A1A1",
-                                                    "minHorizontalGap": 70,
-                                                    "tickLength": 3
-                                                },
-                                                "chartCursor": {
-                                                    "enabled": true,
-                                                    "categoryBalloonDateFormat": "MMM DD, YYYY",
-                                                    "valueLineEnabled": true,
-                                                    "valueZoomable": true
-                                                },
-                                                "chartScrollbar": {
-                                                    "enabled": true,
-                                                    "autoGridCount": true,
-                                                    "dragIconHeight": 20,
-                                                    "dragIconWidth": 20
-                                                },
-                                                "trendLines": [],
-                                                "graphs": [
-                                                    {
-                                                        "bullet": "square",
-                                                        "id": "AmGraph-1",
-                                                        "title": type1,
-                                                        "valueField": type1
-                                                    },
-                                                    {
-                                                        "bullet": "round",
-                                                        "id": "AmGraph-2",
-                                                        "title": type2,
-                                                        "valueField": type2
-                                                    },
-                                                    {
-                                                        "bullet": "triangleUp",
-                                                        "id": "AmGraph-3",
-                                                        "markerType": "triangleDown",
-                                                        "title": type3,
-                                                        "valueField": type3
-                                                    }
-                                                ],
-                                                "guides": [],
-                                                "valueAxes": [
-                                                    {
-                                                        "id": "ValueAxis-1",
-                                                        "title": ""
-                                                    }
-                                                ],
-                                                "allLabels": [],
-                                                "balloon": {
-                                                    "color": "#AAB3B3"
-                                                },
-                                                "legend": {
-                                                    "enabled": true,
-                                                    "align": "right",
-                                                    "borderColor": "#AAB3B3",
-                                                    "color": "#AAB3B3",
-                                                    "fontSize": 10,
-                                                    "markerLabelGap": 10,
-                                                    "position": "right",
-                                                    "useGraphSettings": true,
-                                                    "valueWidth": 20,
-                                                    "verticalGap": -2
-                                                },
-                                                "titles": [
-                                                    {
-                                                        "id": "Title-1",
-                                                        "size": 0,
-                                                        "text": "Chart Title"
-                                                    }
-                                                ],
-                                                "dataProvider": []
-                                            };
-                                            chartConfig.dataProvider = dataArray;
-////                    Render chart for fixed dates
-//                    chartConfig.addListener("rendered", function(event) {
-//                        event.chart.zoomToDates(new Date(2005, 0, 1), new Date(2015, 11, 31));
+                                "minPeriod": "DD",
+                                "parseDates": true,
+                                "axisColor": "#A1A1A1",
+                                "axisThickness": 0,
+                                "gridColor": "#A1A1A1",
+                                "minHorizontalGap": 70,
+                                "tickLength": 3
+                            },
+                            "chartCursor": {
+                                "enabled": true,
+                                "categoryBalloonDateFormat": "MMM DD, YYYY",
+                                "valueLineEnabled": true,
+                                "valueZoomable": true
+                            },
+                            "chartScrollbar": {
+                                "enabled": true,
+                                "autoGridCount": true,
+                                "dragIconHeight": 20,
+                                "dragIconWidth": 20
+                            },
+                            "trendLines": [],
+                            "graphs": [
+                                {
+                                    "bullet": "square",
+                                    "id": "AmGraph-1",
+                                    "title": type1,
+                                    "valueField": type1
+                                },
+                                {
+                                    "bullet": "round",
+                                    "id": "AmGraph-2",
+                                    "title": type2,
+                                    "valueField": type2
+                                },
+                                {
+                                    "bullet": "triangleUp",
+                                    "id": "AmGraph-3",
+                                    "markerType": "triangleDown",
+                                    "title": type3,
+                                    "valueField": type3
+                                }
+                            ],
+                            "guides": [],
+                            "valueAxes": [
+                                {
+                                    "id": "ValueAxis-1",
+                                    "title": ""
+                                }
+                            ],
+                            "allLabels": [],
+                            "balloon": {
+                                "color": "#AAB3B3"
+                            },
+                            "legend": {
+                                "enabled": true,
+                                "align": "right",
+                                "borderColor": "#AAB3B3",
+                                "color": "#AAB3B3",
+                                "fontSize": 10,
+                                "markerLabelGap": 10,
+                                "position": "right",
+                                "useGraphSettings": true,
+                                "valueWidth": 20,
+                                "verticalGap": -2
+                            },
+                            "titles": [
+                                {
+                                    "id": "Title-1",
+                                    "size": 0,
+                                    "text": "Chart Title"
+                                }
+                            ],
+                            "dataProvider": []
+                        }
+//                  Render chart for fixed dates
+//                  chartConfig.addListener("rendered", function(event) {
+//                  event.chart.zoomToDates(new Date(2005, 0, 1), new Date(2015, 11, 31));
 //                    });
-////                  Render chart as (today - 3) months on page load
-                    AmCharts.makeChart(divid, chartConfig).addListener("rendered", function(event) {event.chart.zoomToIndexes(dataArray.length-13,dataArray.length-1);});
-//                                            AmCharts.makeChart(divid, chartConfig);
-                                        }
+//                Render chart as (today - 3) months on page load
+                        AmCharts.makeChart(divid, chartConfig).addListener("rendered", function (event) {
+                            event.chart.zoomToIndexes(dataArray.length - 13, dataArray.length - 1);
+                        });
+//                  AmCharts.makeChart(divid, chartConfig);
 
-                                        if (!($.isEmptyObject(timeArray))) {
-                                            var mat1, mat2, mat3;
-                                            var result = Object.keys(timeArray);
-                                            mat1 = timeArray[result[0]];
-                                            mat2 = timeArray[result[1]];
-                                            mat3 = timeArray[result[2]];
-                                            var flag = false;
-                                            for (var j in mat1) {
-                                                for (var k in mat1[j]) {
-                                                    if (mat1[j][k] !== 0) {
-                                                        flag = true;
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                            if (!flag) {
-                                                for (var j in mat2) {
-                                                    for (var k in mat2[j]) {
-                                                        if (mat2[j][k] !== 0) {
-                                                            flag = true;
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            if (!flag) {
-                                                for (var j in mat3) {
-                                                    for (var k in mat3[j]) {
-                                                        if (mat3[j][k] !== 0) {
-                                                            flag = true;
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            if (flag) {
-                                                var currentQArray = getDataAarrayIndividual(mat1, mat2, mat3, indTypeJSON[result[0]], indTypeJSON[result[1]], indTypeJSON[result[2]]);
-                                                generateTimeGraphIndividual('timeseriesChart', currentQArray, indTypeJSON[result[0]], indTypeJSON[result[1]], indTypeJSON[result[2]]);
-                                            } else {
-                                                $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
-                                            }
-                                        } else {
-                                            $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
-                                        }
-                                    }
-
-
-                                });
-
-                                function updateComments(id, comments, obj) {
-                                    comments = encodeURIComponent(comments);
-                                    var postStr = 'iid=' + id + '&comments=' + comments;
-                                    $.ajax({
-                                        url: '<%=Constant.WEB_CONTEXT%>/individual/updatecomments.jsp',
-                                        type: 'POST',
-                                        data: postStr,
-                                        error: function () {
-                                            $('#info').html('<p>An error has occurred</p>');
-                                        },
-                                        dataType: 'json',
-                                        success: function (resp) {
-                                            if (resp.status === 0) {
-                                                $('#popup_' + id).find('.popup-chat-window').html(resp.comments);
-                                                $(obj).prev().val('');
-                                                $(obj).parent().prev('.popup-chat-window').html(resp.comments);
-                                            }
-                                        }
-                                    });
-                                }
-
-                                function enterComment(e, textarea) {
-                                    if (e.which === 13) {
-                                        e.preventDefault();
-                                        $('#updateComments').click();
+                        if (!($.isEmptyObject(timeArray))) {
+                            var mat1, mat2, mat3;
+                            var result = Object.keys(timeArray);
+                            mat1 = timeArray[result[0]];
+                            mat2 = timeArray[result[1]];
+                            mat3 = timeArray[result[2]];
+                            var flag = false;
+                            for (var j in mat1) {
+                                for (var k in mat1[j]) {
+                                    if (mat1[j][k] !== 0) {
+                                        flag = true;
+                                        break;
                                     }
                                 }
+                            }
+                            if (!flag) {
+                                for (var j in mat2) {
+                                    for (var k in mat2[j]) {
+                                        if (mat2[j][k] !== 0) {
+                                            flag = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            if (!flag) {
+                                for (var j in mat3) {
+                                    for (var k in mat3[j]) {
+                                        if (mat3[j][k] !== 0) {
+                                            flag = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            if (flag) {
+                                var currentQArray = getDataAarrayIndividual(mat1, mat2, mat3, indTypeJSON[result[0]], indTypeJSON[result[1]], indTypeJSON[result[2]]);
+                                generateTimeGraphIndividual('timeseriesChart', currentQArray, indTypeJSON[result[0]], indTypeJSON[result[1]], indTypeJSON[result[2]]);
+                            } else {
+                                $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
+                            }
+                        } else {
+                            $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
+                        }
+                    }
+
+
+                }
+            });
+            function updateComments(id, comments, obj) {
+                comments = encodeURIComponent(comments);
+                var postStr = 'iid=' + id + '&comments=' + comments;
+                $.ajax({
+                    url: '<%=Constant.WEB_CONTEXT%>/individual/updatecomments.jsp',
+                    type: 'POST',
+                    data: postStr,
+                    error: function () {
+                        $('#info').html('<p>An error has occurred</p>');
+                    },
+                    dataType: 'json',
+                    success: function (resp) {
+                        if (resp.status === 0) {
+                            $('#popup_' + id).find('.popup-chat-window').html(resp.comments);
+                            $(obj).prev().val('');
+                            $(obj).parent().prev('.popup-chat-window').html(resp.comments);
+                        }
+                    }
+                });
+            }
+
+            function enterComment(e, textarea) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    $('#updateComments').click();
+                }
+            }
+            function clearListOfPeople() {
+                $('.list-of-people-selected p').each(function (j) {
+                    $(this).remove();
+                });
+                $('.list-of-selected-people-popup-mobile p').each(function (j) {
+                    $(this).remove();
+                });
+                $('#count-desktop span').text('');
+                $('#count-mobile span').text('');
+            }
 
         </script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>

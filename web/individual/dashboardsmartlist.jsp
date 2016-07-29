@@ -34,6 +34,7 @@
         int funId = request.getParameter("Function_id") != null ? Util.getIntValue(request.getParameter("Function_id"), 0) : 0;
         int levelId = request.getParameter("Level_id") != null ? Util.getIntValue(request.getParameter("Level_id"), 0) : 0;
 
+        int metricId = Util.getIntValue(request.getParameter("mid"));
         List<Employee> mapSmartList = null;
         if ((filterIdGeo >= 0 && filterValGeo != null) || (filterIdFun >= 0 && filterValFun != null) || (filterIdLevel >= 0 && filterValLevel != null)) {
             EmployeeList employeeListObj = (EmployeeList) ObjectFactory.getInstance("org.icube.owen.employee.EmployeeList");
@@ -68,7 +69,7 @@
             }
             mapSmartList = employeeListObj.getEmployeeListByFilters(comid, listFilter);
         } else {
-            int metricId = Util.getIntValue(request.getParameter("mid"));
+            metricId = Util.getIntValue(request.getParameter("mid"));
             if (metricId > 0) {
                 IndividualDashboardHelper iDashboard = (IndividualDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.IndividualDashboardHelper");
                 mapSmartList = iDashboard.getSmartList(comid, empid, metricId);
@@ -125,16 +126,12 @@
     });
 
     $('.rating-star').on('click', function () {
-
-        console.log("calling dashboardsmartlist");
         var row = $(this).parent();
         var i = $(this).index();
         var lastStar = $(row).find('.filled:last').index();
         var parent = row.parent().parent();
-        var quesId = $(this).parent().find('#quesId').val();
-        console.log("quesId " + quesId);
         var name = $(parent).find('span.individual-cell-name').text().trim();
-        var count = $('#list-mobile-' + quesId + ' p').length;
+        var count = $('.list-of-selected-people-popup-mobile p').length;
 
         // clear the ratings for the chosen employee
         if (lastStar === i) {
@@ -143,24 +140,24 @@
             $(row).next().text('0').removeAttr('style');
 
             // remove names from the list
-            $('#list-desktop-' + quesId + ' p').each(function (j) {
+            $('.list-of-people-selected p').each(function (j) {
                 if ($(this).text() === name) {
                     $(this).remove();
                 }
             });
 
-            $('#list-mobile-' + quesId + ' p').each(function (j) {
+            $('.list-of-selected-people-popup-mobile p').each(function (j) {
                 if ($(this).text() === name) {
                     $(this).remove();
                 }
             });
             // update the count of the names
             --count;
-            $('#count-desktop-' + quesId + ' span').text('');
-            $('#count-desktop-' + quesId + ' span').text(count);
+            $('#count-desktop span').text('');
+            $('#count-desktop span').text(count);
 
-            $('#count-mobile-' + quesId + ' span').text('');
-            $('#count-mobile-' + quesId + ' span').text(count);
+            $('#count-mobile span').text('');
+            $('#count-mobile span').text(count);
 
         } else {
             // add or update the stars for the given employee
@@ -174,35 +171,35 @@
             var flag = false;
 
             // for the first employee that is selected append the employee
-            if (($('#list-desktop-' + quesId + ' p').length === 0) && ($('#list-mobile-' + quesId + ' p').length === 0)) {
+            if (($('.list-of-people-selected p').length === 0) && ($('.list-of-selected-people-popup-mobile p').length === 0)) {
                 ++count;
-                $('#list-desktop-' + quesId).append('<p>' + name + '</p>');
-                $('#count-desktop-' + quesId + ' span').text(count);
+                $('.list-of-people-selected').append('<p>' + name + '</p>');
+                $('#count-desktop span').text(count);
 
-                $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
-                $('#count-mobile-' + quesId + ' span').text(count);
+                $('.list-of-selected-people-popup-mobile').append('<p>' + name + '</p>');
+                $('#count-mobile span').text(count);
             } else {
                 // check with the help of the flag and update the list & count accordingly
-                $('#list-desktop-' + quesId + ' p').each(function (j) {
+                $('.list-of-people-selected p').each(function (j) {
                     if ($(this).text().trim() === name) {
                         flag = true;
                     }
                 });
 
-                $('#list-mobile-' + quesId + ' p').each(function (j) {
+                $('.list-of-people-selected p').each(function (j) {
                     if ($(this).text().trim() === name) {
                         flag = true;
                     }
                 });
                 if (!flag) {
                     ++count;
-                    $('#list-desktop-' + quesId).append('<p>' + name + '</p>');
-                    $('#count-desktop-' + quesId + ' span').text('');
-                    $('#count-desktop-' + quesId + ' span').text(count);
+                    $('.list-of-people-selected').append('<p>' + name + '</p>');
+                    $('#count-desktop span').text('');
+                    $('#count-desktop span').text(count);
 
-                    $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
-                    $('#count-mobile-' + quesId + ' span').text('');
-                    $('#count-mobile-' + quesId + ' span').text(count);
+                    $('.list-of-selected-people-popup-mobile').append('<p>' + name + '</p>');
+                    $('#count-mobile span').text('');
+                    $('#count-mobile span').text(count);
                 }
             }
         }
