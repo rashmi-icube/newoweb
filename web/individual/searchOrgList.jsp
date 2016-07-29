@@ -234,6 +234,29 @@
                 }
             }
         }
+        //For quesId = 0, append scroll to dashboard list; else append to survey page list        
+        if(quesId === '0'){
+            if ($('.list-of-people-selected').height() >= 348) {
+                $('.no-key-selected').slimScrollPopupDashboard({
+                    height: '400px',
+                    width: '287px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+                $('.no-key-selected').css('position','absolute');
+            } else {
+                $('.no-key-selected').slimScrollPopupDashboard({
+                    destroy: true
+                });
+                //Reset div css properties
+                $('.no-key-selected').css('position','');
+                $('.no-key-selected').css('width','');
+            }
+        //Apply Scroll to Survey Page List of People Selected
+        } else {
         //    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE, FOR EVERY WE QUESTION
         $('.list-of-people-selected').each(function (i) {
             if ($('.list-of-people-selected')[i].clientHeight >= 348) {
@@ -252,7 +275,7 @@
                 });
             }
         });
-
+        }
         saveRating();
     });
 </script>

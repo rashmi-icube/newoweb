@@ -205,19 +205,23 @@
         }
         //    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE
         if ($('.list-of-people-selected').height() >= 348) {
-            $('.no-key-selected').slimScrollPopup({
+            $('.no-key-selected').slimScrollPopupDashboard({
                 height: '400px',
-                width: '272px',
+                width: '287px',
                 color: '#388E3C',
                 railVisible: true,
                 railColor: '#D7D7D7',
                 alwaysVisible: true,
                 touchScrollStep: 50
             });
+            $('.no-key-selected').css('position','absolute');
         } else {
-            $('.no-key-selected').slimScrollPopup({
+            $('.no-key-selected').slimScrollPopupDashboard({
                 destroy: true
             });
+            //Update CSS properties of div whenever scroll is destroyed
+            $('.no-key-selected').css('position','');
+            $('.no-key-selected').css('width','');
         }
         saveRating();
     });

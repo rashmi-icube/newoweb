@@ -489,7 +489,7 @@ function searchIndividual() {
                 alwaysVisible: true,
                 touchScrollStep: 50
             });
-            $('.no-key-selected').css('margin-right','0');
+            $('.no-key-selected').css('position','absolute');
     } else {
         $('.list-of-people-selected').slimScrollPopupDashboard({
             destroy: true

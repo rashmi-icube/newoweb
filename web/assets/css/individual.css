@@ -1782,7 +1782,7 @@ nav li a {
     float: right;
     /* margin-top: -2px; */
     border: 1px solid #e4e4e4;
-    margin-right: 46px;
+    /*margin-right: 46px;*/
     height: 400px;
 }
 .initiatives-feed { margin-bottom: 15px; }
@@ -2366,7 +2366,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 .dashboard .individuals-box { width: 587px; }
 
 .dashboard .submit-circle { 
-    top: -10px;
+    /*top: -10px;*/
     margin: -40px -4px 0 22px; 
 }
 
@@ -2397,6 +2397,15 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     
     .slimScrollRailPopup{
         right: 46px !important;
+    }
+    .dashboard .no-key-selected{
+        width: 28%;
+    }
+    .slimScrollDivPopupDashboard{
+        width: 260px !important;
+    }
+    .slimScrollDivPopupDashboard .no-key-selected{
+        width: 260px !important;
     }
 }
 

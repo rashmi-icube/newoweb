@@ -165,8 +165,8 @@
             // overflow: 'hidden',
             width: o.width,
             height: o.height,
-			display: 'inline-table',
-			right: '6%'
+            display: 'inline-table',
+            right: '6%'
           });
 
         // update style for the div

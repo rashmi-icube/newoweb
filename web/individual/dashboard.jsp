@@ -94,7 +94,6 @@
                             <img src="<%=Constant.WEB_ASSETS%>images/individual_<%=Util.getInitiativeTypeImage(topMetList.get(i).getName(), Constant.INITIATIVES_CATEGORY_INDIVIDUAL)%>" alt="<%=topMetList.get(i).getName()%>" width="30" height="30">
                             <span class="panel-name"><%=topMetList.get(i).getName()%></span>
                             <span class="panel-score"><%=topMetList.get(i).getScore()%></span>
-                            <!--<span class="panel-average">Org. Average: 57</span>-->
                             <!--Average on Individual Dashboard-->
                             <div class="panel-average clearfix">
                                 <p>
@@ -361,22 +360,6 @@
                                         <span>You have appreciated</span>
                                     </div>
                                     <div class="list-of-selected-people-popup-mobile clearfix">
-                                        <!--                                        <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                        
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>
-                                                                                <p>Mirian M Graddick-Weir</p>-->
                                     </div>
                                 </div>
                             </div>
@@ -464,7 +447,7 @@
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>
 
         <script src="<%=Constant.WEB_ASSETS%>js/slick.min.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
+        <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>-->
         <script src="<%=Constant.WEB_ASSETS%>js/dashboard-individual.js"></script>
 
         <script type="text/javascript">
@@ -583,16 +566,16 @@
                                 }
                             ],
                             "dataProvider": []
-                        }
-//                  Render chart for fixed dates
-//                  chartConfig.addListener("rendered", function(event) {
-//                  event.chart.zoomToDates(new Date(2005, 0, 1), new Date(2015, 11, 31));
+                        };
+                    chartConfig.dataProvider = dataArray;
+////                    Render chart for fixed dates
+//                    chartConfig.addListener("rendered", function(event) {
+//                        event.chart.zoomToDates(new Date(2005, 0, 1), new Date(2015, 11, 31));
 //                    });
-//                Render chart as (today - 3) months on page load
-                        AmCharts.makeChart(divid, chartConfig).addListener("rendered", function (event) {
-                            event.chart.zoomToIndexes(dataArray.length - 13, dataArray.length - 1);
-                        });
-//                  AmCharts.makeChart(divid, chartConfig);
+////                  Render chart as (today - 3) months on page load
+                    AmCharts.makeChart(divid, chartConfig).addListener("rendered", function(event) {event.chart.zoomToIndexes(dataArray.length-13,dataArray.length-1);});
+//                                            AmCharts.makeChart(divid, chartConfig);
+                                        }
 
                         if (!($.isEmptyObject(timeArray))) {
                             var mat1, mat2, mat3;
@@ -639,9 +622,6 @@
                             $('#timeseriesChart').html('<div class="no-score"><span>Good things take time.</span><span>I will share scores as soon as there is sufficient data.</span></div>');
                         }
                     }
-
-
-                }
             });
             function updateComments(id, comments, obj) {
                 comments = encodeURIComponent(comments);
@@ -679,10 +659,15 @@
                 });
                 $('#count-desktop span').text('');
                 $('#count-mobile span').text('');
+                //Destroy Slimscroll and update css properties of div
+                $('.no-key-selected').slimScrollPopupDashboard({
+                    destroy: true
+                });
+                $('.no-key-selected').css('position','');
+                $('.no-key-selected').css('width','');
             }
 
         </script>
-        <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopupDashboard.js"></script>
     </body>
 </html>
