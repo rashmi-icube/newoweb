@@ -617,11 +617,13 @@
                                                 "dataProvider": []
                                             };
                                             chartConfig.dataProvider = dataArray;
+////                    Render chart for fixed dates
 //                    chartConfig.addListener("rendered", function(event) {
-////                        event.chart.zoomToDates(new Date(2005, 0, 1), new Date(2015, 11, 31));
+//                        event.chart.zoomToDates(new Date(2005, 0, 1), new Date(2015, 11, 31));
 //                    });
-//                    AmCharts.makeChart(divid, chartConfig).addListener("rendered", function(event) {event.chart.zoomToIndexes(dataArray.length-13,dataArray.length-1);});
-                                            AmCharts.makeChart(divid, chartConfig);
+////                  Render chart as (today - 3) months on page load
+                    AmCharts.makeChart(divid, chartConfig).addListener("rendered", function(event) {event.chart.zoomToIndexes(dataArray.length-13,dataArray.length-1);});
+//                                            AmCharts.makeChart(divid, chartConfig);
                                         }
 
                                         if (!($.isEmptyObject(timeArray))) {

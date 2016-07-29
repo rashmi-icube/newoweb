@@ -141,7 +141,7 @@ function generateTimeGraph(divid, dataArray, type1, type2) {
         "handDrawScatter": 0,
         "handDrawThickness": 0,
         "categoryAxis": {
-            "equalSpacing": true,
+//            "equalSpacing": true,
             "minPeriod": "DD",
             "parseDates": true,
             "axisColor": "#A1A1A1",
@@ -232,7 +232,9 @@ function generateTimeGraph(divid, dataArray, type1, type2) {
         "dataProvider": []
     };
     chartConfig.dataProvider = dataArray;
-    AmCharts.makeChart(divid, chartConfig);
+//    Render chart as (today - 3) months on page load
+    AmCharts.makeChart(divid, chartConfig).addListener("rendered", function(event) {event.chart.zoomToIndexes(dataArray.length-13,dataArray.length-1);});
+//    AmCharts.makeChart(divid, chartConfig);
 }
 
 function deleteAlert(id) {
