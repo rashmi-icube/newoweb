@@ -528,7 +528,18 @@ function saveRating() {
         var quesId = $(v).attr('ques_id');
         var rating = $(v).text();
         if(rating !== '' && rating > 0) {
+            jQuery.each(empArr, function(n,o) {
+                if(o != undefined) {
+                    jQuery.each(o, function(k,v) {
+                        if(k.split("_")[1] == empId) {
+                            empArr.splice(n,1);
+                        }
+                    });
+                }
+            });
+            
             empRating[quesId + '_' + empId] = rating;
+            empArr.
             empArr.push(empRating);
         }else {
             jQuery.each(empArr, function(n,o) {
