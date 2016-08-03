@@ -22,17 +22,17 @@
 </div>
 <div class="individuals-grid">
     <%
-        int questionId = Util.getIntValue(request.getParameter("questionId"));
-        int filterIdGeo = request.getParameter("Geography") != null ? Util.getIntValue(request.getParameter("Geography"), 0) : 0;
-        int filterIdFun = request.getParameter("Function") != null ? Util.getIntValue(request.getParameter("Function"), 0) : 0;
-        int filterIdLevel = request.getParameter("Level") != null ? Util.getIntValue(request.getParameter("Level"), 0) : 0;
+        int questionId = Util.getIntValue(request.getParameter("questionId"), 0);
+        int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), 0);
+        int filterIdFun = Util.getIntValue(request.getParameter("Function"), 0);
+        int filterIdLevel = Util.getIntValue(request.getParameter("Level"), 0);
         String filterValGeo = request.getParameter("Geography_name");
         String filterValFun = request.getParameter("Function_name");
         String filterValLevel = request.getParameter("Level_name");
 
-        int geoId = request.getParameter("Geography_id") != null ? Util.getIntValue(request.getParameter("Geography_id"), 0) : 0;
-        int funId = request.getParameter("Function_id") != null ? Util.getIntValue(request.getParameter("Function_id"), 0) : 0;
-        int levelId = request.getParameter("Level_id") != null ? Util.getIntValue(request.getParameter("Level_id"), 0) : 0;
+        int geoId = Util.getIntValue(request.getParameter("Geography_id"), 0);
+        int funId = Util.getIntValue(request.getParameter("Function_id"), 0);
+        int levelId = Util.getIntValue(request.getParameter("Level_id"), 0);
 
         int metricId = Util.getIntValue(request.getParameter("mid"));
         List<Employee> mapSmartList = null;
@@ -82,8 +82,7 @@
                 if (empid == employee.getEmployeeId()) {
                     continue;
                 }
-                //employee.g
-%>
+    %>
     <div class="individual-cell clearfix">
         <button class="get-person-info">
             <span>i</span>
@@ -214,14 +213,14 @@
                 alwaysVisible: true,
                 touchScrollStep: 50
             });
-            $('.no-key-selected').css('position','absolute');
+            $('.no-key-selected').css('position', 'absolute');
         } else {
             $('.no-key-selected').slimScrollPopupDashboard({
                 destroy: true
             });
             //Update CSS properties of div whenever scroll is destroyed
-            $('.no-key-selected').css('position','');
-            $('.no-key-selected').css('width','');
+            $('.no-key-selected').css('position', '');
+            $('.no-key-selected').css('width', '');
         }
         saveRating();
     });

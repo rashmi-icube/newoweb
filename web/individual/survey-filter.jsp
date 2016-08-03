@@ -26,21 +26,23 @@
     <img src="/assets/images/ajax-loader.gif">
 </div>
 <div class="individuals-grid">    
-    <%    int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), -1);
-        int filterIdFun = Util.getIntValue(request.getParameter("Function"), -1);
-        int filterIdLevel = Util.getIntValue(request.getParameter("Level"), -1);
-        //out.println(filterIdGeo+"::"+filterIdFun+":"+filterIdLevel);
+    <%    int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), 0);
+        int filterIdFun = Util.getIntValue(request.getParameter("Function"), 0);
+        int filterIdLevel = Util.getIntValue(request.getParameter("Level"), 0);
+        //out.println(filterIdGeo + "::" + filterIdFun + ":" + filterIdLevel);
         String filterValGeo = request.getParameter("Geography_name");
         String filterValFun = request.getParameter("Function_name");
         String filterValLevel = request.getParameter("Level_name");
-        int geoId = request.getParameter("Geography_id") != null ? Util.getIntValue(request.getParameter("Geography_id"), 0) : 0;
-        int funId = request.getParameter("Function_id") != null ? Util.getIntValue(request.getParameter("Function_id"), 0) : 0;
-        int levelId = request.getParameter("Level_id") != null ? Util.getIntValue(request.getParameter("Level_id"), 0) : 0;
-
+        int geoId = Util.getIntValue(request.getParameter("Geography_id"), 0);
+        int funId = Util.getIntValue(request.getParameter("Function_id"), 0);
+        int levelId = Util.getIntValue(request.getParameter("Level_id"), 0);
+        //out.println(geoId + "::" + funId + ":" + levelId);
         List<Employee> mapSmartList = null;
 
         int questionId = Util.getIntValue(request.getParameter("question_id"));
+        //out.println(questionId);
         int relationshipTypeId = Util.getIntValue(request.getParameter("rel_type"));
+        //out.println(relationshipTypeId);
         Question ques = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
         ques.setQuestionId(questionId);
         ques.setRelationshipTypeId(relationshipTypeId);
@@ -192,6 +194,7 @@
                 });
 
                 $('#list-mobile-' + quesId + ' p').each(function (j) {
+                    console.log("Do I get an error?????????????")
                     if ($(this).text().trim() === name) {
                         flag = true;
                     }
@@ -210,22 +213,22 @@
         }
         //    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE
         $('.list-of-people-selected').each(function (i) {
-                if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-                    $(this).parent().slimScrollPopup({
-                        height: '400px',
-                        width: '272px',
-                        color: '#388E3C',
-                        railVisible: true,
-                        railColor: '#D7D7D7',
-                        alwaysVisible: true,
-                        touchScrollStep: 50
-                    });
-                } else {
-                    $(this).parent().slimScrollPopup({
-                        destroy: true
-                    });
-                }
-            });
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '272px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
+        });
     });
 
 

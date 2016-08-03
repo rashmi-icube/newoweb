@@ -241,7 +241,8 @@ $(document).ready(function () {
     }
 
     $('.survey-we .submit-circle button').on('click', function (event) {
-        if ($('.rating-stars .filled').length === 0) {
+        var quesId = $(this).parent().parent().find('#quesId')[0].value;
+        if ($(this).parent().parent().find('#we_grid_' + quesId).find('.rating-stars .filled').length === 0) {
             $('.submit-tooltip').children('.submit-title').hide();
             $('.submit-tooltip').children('.submit-response').show();
             if (document.documentElement.clientWidth <= 480) {
@@ -690,9 +691,10 @@ function submitWeData(obj) {
     }
 
     jQuery.each($('.star-rating-total'), function (i, v) {
+        var qId = $(v).attr('ques_id');
         var empId = $(v).attr('emp_id');
         var rating = $(v).text();
-        if (rating !== '') {
+        if (rating !== '' && qId === quesId) {
             empRating[empId] = rating;
             empArr.push(empRating);
         }
