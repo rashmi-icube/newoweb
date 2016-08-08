@@ -64,7 +64,7 @@
                     <!--<div class="explore-box">-->
                     <div class="metrics-section" style="margin: 20px auto 20px;">
                         <div class="metrics-header">
-                            <h3>Compare</h3>
+                            <h3>Team Selection</h3>
                             <button type="button" style="float: none; font: 14px 'Open Sans Regular', 'Open Sans'; vertical-align: -2px; margin-left: 70px; color: white;"  onMouseOver="this.style.color='#169bd5'" onMouseOut="this.style.color='#FFFFFF'">Reset</button>
                             <button type="button" id="collapse-metrics" onMouseOver="this.style.color='#169bd5'" onMouseOut="this.style.color='#1e1e1e'">Expand</button>
                         </div>
@@ -84,12 +84,12 @@
                                             <label for="teamGeography">Select a geography</label>
                                             <select name="teamGeography" id="teamGeography" size="5" required="" oninvalid="setCustomValidity('Please select an item in the list.')" onchange="setCustomValidity('')">
                                                 <option value="0">All</option>
-                                                <option value="7">Corporate HR</option>
-                                                <option value="8">INTG1</option>
-                                                <option value="9">INTG2</option>
+                                                <option value="7">Domestic</option>
+                                                <option value="8">International</option>
+<!--                                                <option value="9">INTG2</option>
                                                 <option value="10">INTG3</option>
                                                 <option value="11">INTG4</option>
-                                                <option value="12">INTG5</option>
+                                                <option value="12">INTG5</option>-->
                                             </select>
                                             <div class="select-overlay" style="display: none;"></div>
                                         </div>
@@ -98,8 +98,9 @@
                                             <label for="teamFunction">Select a function</label>
                                             <select name="teamFunction" id="teamFunction" size="5" required="" oninvalid="setCustomValidity('Please select an item in the list.')" onchange="setCustomValidity('')">
                                                 <option value="0">All</option>
-                                                <option value="1">HR</option>
-                                                <option value="2">Business</option>
+                                                <option value="1">Operations</option>
+                                                <option value="2">Sales</option>
+                                                <option value="3">Finance</option>
                                             </select>
                                             <div class="select-overlay" style="display: none;"></div>
                                         </div>
@@ -108,10 +109,10 @@
                                             <label for="teamLevel">Select a level</label>
                                             <select name="teamLevel" id="teamLevel" size="5" required="" oninvalid="setCustomValidity('Please select an item in the list.')" onchange="setCustomValidity('')">
                                                 <option value="0">All</option>
-                                                <option value="3">Corporate</option>
-                                                <option value="4">Region</option>
-                                                <option value="5">State</option>
-                                                <option value="6">Zone</option>      
+                                                <option value="3">Manager</option>
+                                                <option value="4">Associates</option>
+<!--                                                <option value="5">State</option>
+                                                <option value="6">Zone</option>      -->
                                             </select>
                                             <div class="select-overlay" style="display: none;"></div>
                                         </div>
@@ -181,7 +182,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer</span>
+                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions on day-to-day work and related learning</span>
                                     </p>
                                     <button class="panel-select-metric selected" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -196,7 +197,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify;">centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was</span>
+                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions related to the informal , interest based activities in the organization</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -211,7 +212,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify;">took a galley of type and scrambled it to make a type specimen book. It has survived not only five</span>
+                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions related to coaching and mentoring, company policies and operating practices</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -226,7 +227,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions related to new ways of doing things</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -234,14 +235,14 @@
                             <li style="height: 193px">
                                 <span>Others</span>
                                 <div class="panel-pic" style="width: 78px; height: 78px;">
-                                    <!--<img src="/assets/images/panel_performance_pic.png" width="79" alt="Performance">-->
+                                    <img src="/assets/images/panel_others_pic.png" width="79" alt="Others">
                                 </div>
 <!--                            <div class="panel-help-text">
                                     HELP TEXT GOES HERE
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify;">popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</span>
+                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Other questions</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -262,13 +263,28 @@
                     <div class="explore-by-question">
                         <div class="explore-by-question-header">
                             <h3><span>Questions</span></h3>
+                            <div class="search-popup">
+                                <button>🔍</button>						
+                                <input type="search" placeholder="Search" class="search-question">
+                            </div>
+                            <div class="visual-actions" style='top: 0; right: 0;'>
+                                <div>
+                                    <button type="button" id="export-explore-by-questions" style='margin: 0;'><img src="/assets/images/export_icon.png" width="21" title="Export As"></button>
+                                    <div class="action-export-menu" style="display: none; height:52px;">
+                                        <span>Export as</span>
+                                        <ul>
+                                            <li><a href="#" download='Questions1_8.csv'>CSV</a></li>
+                                        </ul>
+                                    </div>	
+                                </div>
+                            </div>
                         </div>
                         <table class="explore-by-question-table">
                             <tbody>
                                 <tr class="question-name-date">
                                     <td>1</td>
                                     <td class="question-name">I have a clear understanding of my job and what is expected of me</td>
-                                    <td>9 June</td>
+                                    <td>28 July</td>
                                     <td>52%</td>
                                     <td>
                                         <div id="chartdiv1" style="width: 180px; height: 20px; background-color: #fff; display: block;">
@@ -297,7 +313,7 @@
                                 <tr class="question-name-date">
                                     <td>2</td>
                                     <td class="question-name">I feel sufficiently recognized for the work I do</td>
-                                    <td>16 June</td>
+                                    <td>21 July</td>
                                     <td>72%</td>
                                     <td>
                                         <div id="chartdiv3" style="width: 180px; height: 20px; background-color: #fff; display: block;">
@@ -326,7 +342,7 @@
                                 <tr class="question-name-date">
                                     <td>3</td>
                                     <td class="question-name">I have sufficient opportunities for training and development to upgrade my skills</td>
-                                    <td>23 June</td>
+                                    <td>14 July</td>
                                     <td>82%</td>
                                     <td>
                                         <div id="chartdiv5" style="width: 180px; height: 20px; background-color: #fff; display: block;">
@@ -355,7 +371,7 @@
                                 <tr class="question-name-date">
                                     <td>4</td>
                                     <td class="question-name">I have adequate opportunities for my own professional growth within the organization</td>
-                                    <td>30 June</td>
+                                    <td>7 July</td>
                                     <td>92%</td>
                                     <td>
                                         <div id="chartdiv7" style="width: 180px; height: 20px; background-color: #fff; display: block;">
@@ -384,7 +400,7 @@
                                 <tr class="question-name-date">
                                     <td>5</td>
                                     <td class="question-name">I see strong evidence of effective leadership and am confident about the company's future</td>
-                                    <td>7 July</td>
+                                    <td>30 June</td>
                                     <td>67%</td>
                                     <td>
                                         <div id="chartdiv9" style="width: 180px; height: 20px; background-color: #fff; display: block;">
@@ -413,7 +429,7 @@
                                 <tr class="question-name-date">
                                     <td>6</td>
                                     <td class="question-name">I receive regular and transparent communication on the company's plan, guidelines and policies</td>
-                                    <td>14 July</td>
+                                    <td>23 June</td>
                                     <td>59%</td>
                                     <td>
                                         <div id="chartdiv11" style="width: 180px; height: 20px; background-color: #fff; display: block;">
@@ -442,7 +458,7 @@
                                 <tr class="question-name-date">
                                     <td>7</td>
                                     <td class="question-name">Work culture at my plant is generally energizing and motivating</td>
-                                    <td>21 July</td>
+                                    <td>16 June</td>
                                     <td>87%</td>
                                     <td>
                                         <div id="chartdiv13" style="width: 180px; height: 20px; background-color: #fff; display: block;">
@@ -471,7 +487,7 @@
                                 <tr class="question-name-date">
                                     <td>8</td>
                                     <td class="question-name">I receive fair and unbiased treatment from my supervisor</td>
-                                    <td>28 July</td>
+                                    <td>9 June</td>
                                     <td>47%</td>
                                     <td>
                                         <div id="chartdiv15" style="width: 180px; height: 20px; background-color: #fff; display: block;">

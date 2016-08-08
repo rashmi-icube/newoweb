@@ -38,6 +38,12 @@ $(document).ready(function () {
         $('.user-profile-name ul').hide();
     });
 
+    if ($('.action-export-menu').is(':visible')) {
+        $(document).click(function () {
+            $('.action-export-menu').hide();
+        });
+    }
+
 
     var chartinline;
     function createAmChartinline(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree) {
@@ -71,21 +77,21 @@ $(document).ready(function () {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-1",
-                            "fillColors": "#d32f2f",
-                            "lineColor": "#d32f2f",
-                            "title": "Strongly Disagree",
+                            "fillColors": "#2E7D32",
+                            "lineColor": "#2E7D32",
+                            "title": "Strongly Agree",
                             "type": "column",
-                            "valueField": "Strongly Disagree"
+                            "valueField": "Strongly Agree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-2",
-                            "fillColors": "#FF9800",
-                            "lineColor": "#FF9800",
-                            "title": "Disagree",
+                            "fillColors": "#9CCC65",
+                            "lineColor": "#9CCC65",
+                            "title": "Agree",
                             "type": "column",
-                            "valueField": "Disagree"
+                            "valueField": "Agree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
@@ -101,21 +107,21 @@ $(document).ready(function () {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-4",
-                            "fillColors": "#29B6F6",
-                            "lineColor": "#29B6F6",
-                            "title": "Agree",
+                            "fillColors": "#FF9800",
+                            "lineColor": "#FF9800",
+                            "title": "Disagree",
                             "type": "column",
-                            "valueField": "Agree"
+                            "valueField": "Disagree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-5",
-                            "fillColors": "#5C6BC0",
-                            "lineColor": "#5C6BC0",
-                            "title": "Strongly Agree",
+                            "fillColors": "#d32f2f",
+                            "lineColor": "#d32f2f",
+                            "title": "Strongly Disagree",
                             "type": "column",
-                            "valueField": "Strongly Agree"
+                            "valueField": "Strongly Disagree"
                         }
                     ],
                     "guides": [],
@@ -207,21 +213,21 @@ $(document).ready(function () {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-1",
-                            "fillColors": "#d32f2f",
-                            "lineColor": "#d32f2f",
-                            "title": "Strongly Disagree",
+                            "fillColors": "#2E7D32",
+                            "lineColor": "#2E7D32",
+                            "title": "Strongly Agree",
                             "type": "column",
-                            "valueField": "Strongly Disagree"
+                            "valueField": "Strongly Agree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-2",
-                            "fillColors": "#FF9800",
-                            "lineColor": "#FF9800",
-                            "title": "Disagree",
+                            "fillColors": "#9CCC65",
+                            "lineColor": "#9CCC65",
+                            "title": "Agree",
                             "type": "column",
-                            "valueField": "Disagree"
+                            "valueField": "Agree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
@@ -237,21 +243,21 @@ $(document).ready(function () {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-4",
-                            "fillColors": "#29B6F6",
-                            "lineColor": "#29B6F6",
-                            "title": "Agree",
+                            "fillColors": "#FF9800",
+                            "lineColor": "#FF9800",
+                            "title": "Disagree",
                             "type": "column",
-                            "valueField": "Agree"
+                            "valueField": "Disagree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-5",
-                            "fillColors": "#5C6BC0",
-                            "lineColor": "#5C6BC0",
-                            "title": "Strongly Agree",
+                            "fillColors": "#d32f2f",
+                            "lineColor": "#d32f2f",
+                            "title": "Strongly Disagree",
                             "type": "column",
-                            "valueField": "Strongly Agree"
+                            "valueField": "Strongly Disagree"
                         }
                     ],
                     "guides": [],
@@ -329,21 +335,21 @@ $(document).ready(function () {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-1",
-                            "fillColors": "#d32f2f",
-                            "lineColor": "#d32f2f",
-                            "title": "Strongly Disagree",
+                            "fillColors": "#2E7D32",
+                            "lineColor": "#2E7D32",
+                            "title": "Strongly Agree",
                             "type": "column",
-                            "valueField": "Strongly Disagree"
+                            "valueField": "Strongly Agree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-2",
-                            "fillColors": "#FF9800",
-                            "lineColor": "#FF9800",
-                            "title": "Disagree",
+                            "fillColors": "#9CCC65",
+                            "lineColor": "#9CCC65",
+                            "title": "Agree",
                             "type": "column",
-                            "valueField": "Disagree"
+                            "valueField": "Agree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
@@ -359,21 +365,21 @@ $(document).ready(function () {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-4",
-                            "fillColors": "#29B6F6",
-                            "lineColor": "#29B6F6",
-                            "title": "Agree",
+                            "fillColors": "#FF9800",
+                            "lineColor": "#FF9800",
+                            "title": "Disagree",
                             "type": "column",
-                            "valueField": "Agree"
+                            "valueField": "Disagree"
                         },
                         {
                             "balloonText": "[[title]]: [[value]]",
                             "fillAlphas": 1,
                             "id": "AmGraph-5",
-                            "fillColors": "#5C6BC0",
-                            "lineColor": "#5C6BC0",
-                            "title": "Strongly Agree",
+                            "fillColors": "#d32f2f",
+                            "lineColor": "#d32f2f",
+                            "title": "Strongly Disagree",
                             "type": "column",
-                            "valueField": "Strongly Agree"
+                            "valueField": "Strongly Disagree"
                         }
                     ],
                     "guides": [],
@@ -429,23 +435,23 @@ $(document).ready(function () {
                             "Neutral": Math.floor(Math.random() * 20),
                             "Agree": Math.floor(Math.random() * 20),
                             "Strongly Agree": Math.floor(Math.random() * 20)
-                        },
-                        {
-                            "category": "Team 4",
-                            "Strongly Disagree": Math.floor(Math.random() * 20),
-                            "Disagree": Math.floor(Math.random() * 20),
-                            "Neutral": Math.floor(Math.random() * 20),
-                            "Agree": Math.floor(Math.random() * 20),
-                            "Strongly Agree": Math.floor(Math.random() * 20)
-                        },
-                        {
-                            "category": "Team 5",
-                            "Strongly Disagree": Math.floor(Math.random() * 20),
-                            "Disagree": Math.floor(Math.random() * 20),
-                            "Neutral": Math.floor(Math.random() * 20),
-                            "Agree": Math.floor(Math.random() * 20),
-                            "Strongly Agree": Math.floor(Math.random() * 20)
                         }
+//                        {
+//                            "category": "Team 4",
+//                            "Strongly Disagree": Math.floor(Math.random() * 20),
+//                            "Disagree": Math.floor(Math.random() * 20),
+//                            "Neutral": Math.floor(Math.random() * 20),
+//                            "Agree": Math.floor(Math.random() * 20),
+//                            "Strongly Agree": Math.floor(Math.random() * 20)
+//                        },
+//                        {
+//                            "category": "Team 5",
+//                            "Strongly Disagree": Math.floor(Math.random() * 20),
+//                            "Disagree": Math.floor(Math.random() * 20),
+//                            "Neutral": Math.floor(Math.random() * 20),
+//                            "Agree": Math.floor(Math.random() * 20),
+//                            "Strongly Agree": Math.floor(Math.random() * 20)
+//                        }
                     ]
                 }, 1000 //Delay for chart to appear on screen, after div expands
                 );
@@ -485,6 +491,21 @@ $(document).ready(function () {
         event.stopPropagation();
         event.preventDefault();
         $('.user-profile-name ul').fadeToggle();
+    });
+
+    $('.search-popup button').on('click', function () {
+        $(this).next().show('slide', {direction: 'left'}, 500);
+    });
+
+    $('.search-question').on('input', function () {
+        var $rows = $('.explore-by-question table:visible .question-name-date');
+        var val = '(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$',
+                reg = RegExp(val, 'i'),
+                text;
+        $rows.show().filter(function () {
+            text = $(this).find('.question-name').text().replace(/\s+/g, ' ');
+            return !reg.test(text);
+        }).hide();
     });
 
     $('#chooseIndividual').click(function () {
@@ -885,6 +906,10 @@ $(document).ready(function () {
             });
         }
     });
+});
+
+$('#export-explore-by-questions').on('click', function (event) {
+    $('.action-export-menu').toggle();
 });
 
 function downloadCanvasAsPng() {

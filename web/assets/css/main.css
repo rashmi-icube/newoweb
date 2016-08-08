@@ -2270,15 +2270,19 @@ nav li a {
 
 .search-popup button {
   vertical-align: middle;
-  color: #e4e4e4;
+  color: #ffffff;
   font: 18px 'Open Sans Regular', 'Open Sans';
+}
+
+.search-popup button:hover{
+    color:#169bd5;
 }
 
 .search-popup input { 
   box-sizing: border-box;
   width: 210px;
   height: 24px;
-  border: 1px solid #bcbcbc;
+  border: 1px solid #ffffff;
   border-radius: 9px;
   padding: 0 8px 0 24px;
   display: none;
@@ -2286,7 +2290,7 @@ nav li a {
   top: 0;
   left: 0;
   transition: transform 1s;
-  background: url(../images/search_toolbar.png) #f2f2f2 no-repeat 7px 4px;
+  background: url(../images/search_toolbar.png) #ffffff no-repeat 7px 4px;
   background-size: 13px 13px;
   color: #797979; 
   font: 12px 'Open Sans Regular', 'Open Sans';
@@ -4512,7 +4516,7 @@ ul:nth-of-type(2) li.animate-list {
   font-weight: bold;
 }
 
-#visual-export {
+#visual-export, #export-explore-by-questions {
   box-sizing: border-box;
   padding: 3px 0 0 3px;
   margin-top: 8px;    
