@@ -182,7 +182,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions on day-to-day work and related learning</span>
+                                        <span style="display: inline-block; padding-top: 4px;">Questions on day-to-day work and related learning</span>
                                     </p>
                                     <button class="panel-select-metric selected" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -197,7 +197,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions related to the informal , interest based activities in the organization</span>
+                                        <span style="display: inline-block; padding-top: 4px;">Questions related to the informal , interest based activities in the organization</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -212,7 +212,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions related to coaching and mentoring, company policies and operating practices</span>
+                                        <span style="display: inline-block; padding-top: 4px;">Questions related to coaching and mentoring, company policies and operating practices</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -227,7 +227,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Questions related to new ways of doing things</span>
+                                        <span style="display: inline-block; padding-top: 4px;">Questions related to new ways of doing things</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
@@ -242,7 +242,7 @@
                                 </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; text-align: justify; padding-top: 4px;">Other questions</span>
+                                        <span style="display: inline-block; padding-top: 4px;">Other questions</span>
                                     </p>
                                     <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
