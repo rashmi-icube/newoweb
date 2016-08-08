@@ -1,3 +1,9 @@
+<%-- 
+    Document   : indexcordova
+    Created on : 2 Aug, 2016, 11:29:47 AM
+    Author     : adoshi
+--%>
+
 <!DOCTYPE html>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="com.owen.web.Util"%>
@@ -64,6 +70,15 @@
                                 <input type="radio" name="roleid" value="1" <%= (roleid != 2 ? "checked" : "")%>>
                                 <span <%= (roleid == 2 ? "class=\"clicked hr\"" : "class=\"hr\"")%>>HR</span>
                                 <input type="radio" name="roleid" value="2" <%= (roleid == 2 ? "checked" : "")%>>
+                            </div>
+                            
+                            <div class="login-remember-me">
+                                <input type="checkbox" id="check-me">
+                                <label for="check-me">
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    Remember me
+                                </label>
                             </div>
 
                             <button type="submit">GO</button>

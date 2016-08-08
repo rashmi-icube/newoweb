@@ -19,7 +19,7 @@
 <%@page import="org.icube.owen.explore.ExploreHelper"%>
 <%
     String moduleName = "explore";
-    String subModuleName = "";
+    String subModuleName = "explore";
     int intEmpid = 0;
     String rEmpid = request.getParameter("eid");
     if(rEmpid != null) {
