@@ -23,7 +23,7 @@
 <div class="individuals-grid">
     <%
         int questionId = Util.getIntValue(request.getParameter("questionId"), 0);
-        out.println("questionId ::::::::::::: " + questionId);
+        //out.println("questionId ::::::::::::: " + questionId);
         int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), 0);
         int filterIdFun = Util.getIntValue(request.getParameter("Function"), 0);
         int filterIdLevel = Util.getIntValue(request.getParameter("Level"), 0);
@@ -74,7 +74,7 @@
             if (metricId > 0) {
                 IndividualDashboardHelper iDashboard = (IndividualDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.IndividualDashboardHelper");
                 mapSmartList = iDashboard.getSmartList(comid, empid, metricId);
-                out.println("mapSmartList ::::::::::::: " + mapSmartList.size());
+                //out.println("mapSmartList ::::::::::::: " + mapSmartList.size());
             }
         }
         if (mapSmartList != null) {
