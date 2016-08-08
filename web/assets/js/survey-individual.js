@@ -29,7 +29,7 @@ $(document).ready(function () {
                 });
             }
         });
-
+//        clearRatings();
     });
 
     $('.site-nav-next').on('click', function () {
@@ -62,6 +62,7 @@ $(document).ready(function () {
                 });
             }
         });
+//        clearRatings();
     });
 
 
@@ -242,7 +243,10 @@ $(document).ready(function () {
 
     $('.survey-we .submit-circle button').on('click', function (event) {
         var quesId = $(this).parent().parent().find('#quesId')[0].value;
-        if ($(this).parent().parent().find('#we_grid_' + quesId).find('.rating-stars .filled').length === 0) {
+        var count = $('#list-mobile-' + quesId + ' p').length;
+        if(count > 0){
+            submitWeData(this);
+        } else {
             $('.submit-tooltip').children('.submit-title').hide();
             $('.submit-tooltip').children('.submit-response').show();
             if (document.documentElement.clientWidth <= 480) {
@@ -251,9 +255,20 @@ $(document).ready(function () {
                     $('.submit-tooltip').css('visibility', 'hidden');
                 }, 400);
             }
-        } else {
-            submitWeData(this);
         }
+
+//        if ($(this).parent().parent().find('#we_grid_' + quesId).find('.rating-stars .filled').length === 0) {
+//            $('.submit-tooltip').children('.submit-title').hide();
+//            $('.submit-tooltip').children('.submit-response').show();
+//            if (document.documentElement.clientWidth <= 480) {
+//                $('.submit-tooltip').css('visibility', 'visible');
+//                setTimeout(function () {
+//                    $('.submit-tooltip').css('visibility', 'hidden');
+//                }, 400);
+//            }
+//        } else {
+//            submitWeData(this);
+//        }
 
         $(this).on('mouseout', function () {
             setTimeout(function () {
@@ -587,7 +602,7 @@ function fetchFilteredData(questionId) {
         }
     });
     var relId = jQuery('#relation_' + questionId).val();
-    filterData['question_id'] = questionId;
+    filterData['questionId'] = questionId;
     filterData['rel_type'] = relId;
     $('.overlay_form').show();
     jQuery.ajax({
@@ -622,7 +637,7 @@ function fetchFilteredDataMobile(questionId) {
     $('.overlay_form').show();
     jQuery.ajax({
         type: "POST",
-        url: "/individual/dashboardsmartlist.jsp",
+        url: "/individual/survey-filter.jsp",
         data: filterData,
         dataType: 'HTML',
         success: function (resp) {
@@ -640,7 +655,7 @@ function fetchSmartData(questionId) {
     $('.search-colleague').val('');
     saveRating();
     var relId = jQuery('#relation_' + questionId).val();
-    var smartData = {'question_id': questionId, 'rel_type': relId};
+    var smartData = {'questionId': questionId, 'rel_type': relId};
     $('.overlay_form').show();
     jQuery.ajax({
         type: "POST",
@@ -669,8 +684,6 @@ function fetchSmartData(questionId) {
 function clearRatings() {
     jQuery.each($('.star-rating-total'), function (i, v) {
         $(v).text('');
-        //TODO we question bubbles
-        //$('.no-key-selected').children('span').remove();
     });
 }
 
@@ -684,8 +697,10 @@ function submitWeData(obj) {
         jQuery.each(empArr1, function (i, o) {
             jQuery.each(o, function (k, v) {
                 var id = k.split("_");
-                empRating[id[1]] = v;
-                empArr.push(empRating);
+                if (id[0] === quesId) {
+                    empRating[id[1]] = v;
+                    empArr.push(empRating);
+                }
             });
         });
     }
@@ -723,11 +738,11 @@ function submitWeData(obj) {
                     showHideNavigation(this);
                     $('body').removeAttr('style');
                 });
-                jQuery.data(document.body, "emp_rating", []);
-                clearRatings();
+                //jQuery.data(document.body, "emp_rating", []);
+                //clearRatings();
             } else {
-                jQuery.data(document.body, "emp_rating", []);
-                clearRatings();
+                //jQuery.data(document.body, "emp_rating", []);
+                //clearRatings();
                 $currentDiv.remove();
                 window.location.href = 'dashboard.jsp';
             }

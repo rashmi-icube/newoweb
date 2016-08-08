@@ -17,13 +17,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../common.jsp" %>
 <div class="overlay"></div>
-<div class="overlay_form">a
+<div class="overlay_form">
     <img src="<%=Constant.WEB_ASSETS%>images/ajax-loader.gif">
 </div>
 <div class="individuals-grid">
     <%
         int questionId = Util.getIntValue(request.getParameter("questionId"), 0);
-        out.println("questionId ::::::::::::: " + questionId);
         int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), 0);
         int filterIdFun = Util.getIntValue(request.getParameter("Function"), 0);
         int filterIdLevel = Util.getIntValue(request.getParameter("Level"), 0);
@@ -74,7 +73,7 @@
             if (metricId > 0) {
                 IndividualDashboardHelper iDashboard = (IndividualDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.IndividualDashboardHelper");
                 mapSmartList = iDashboard.getSmartList(comid, empid, metricId);
-                out.println("mapSmartList ::::::::::::: " + mapSmartList.size());
+
             }
         }
         if (mapSmartList != null) {
@@ -225,5 +224,4 @@
         }
         saveRating();
     });
-    debugger;
 </script>
