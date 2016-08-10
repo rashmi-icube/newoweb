@@ -24,6 +24,9 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="org.icube.owen.survey.MeResponse"%>
+<%@page import="org.icube.owen.survey.Question"%>
+
 <%
     String moduleName = "explore";
     String subModuleName = "explorequestion";
@@ -65,42 +68,35 @@
                     <div class="metrics-section" style="margin: 20px auto 20px;">
                         <div class="metrics-header">
                             <h3>Team Selection</h3>
-                            <button type="button" style="float: none; font: 14px 'Open Sans Regular', 'Open Sans'; vertical-align: -2px; margin-left: 70px; color: white;"  onMouseOver="this.style.color='#169bd5'" onMouseOut="this.style.color='#FFFFFF'">Reset</button>
-                            <button type="button" id="collapse-metrics" onMouseOver="this.style.color='#169bd5'" onMouseOut="this.style.color='#1e1e1e'">Expand</button>
+                            <button type="button" style="float: none; font: 14px 'Open Sans Regular', 'Open Sans'; vertical-align: -2px; margin-left: 70px; color: white;"  onMouseOver="this.style.color = '#169bd5'" onMouseOut="this.style.color = '#FFFFFF'">Reset</button>
+                            <button type="button" id="collapse-metrics" onMouseOver="this.style.color = '#169bd5'" onMouseOut="this.style.color = '#1e1e1e'">Expand</button>
                         </div>
                         <div class="create-metrics-list" style="padding: 0;">
                             <div class="initiative-which-people" style="height: 180px;">
                                 <div class="initiative-which">
-                                    <!--                                        <div class="initiative-category">
-                                                                                <input type="radio" value="individual" id="chooseIndividual" previousvalue="false">
-                                                                                <label for="chooseIndividual" title="Select individual"><span>✔</span>Individual</label> 
-                                    
-                                                                                <input type="radio" value="team" id="chooseTeam" previousvalue="checked">
-                                                                                <label for="chooseTeam" title="Select team"><span>✔</span>Team</label>
-                                                                            </div>-->
+                                    <%  FilterList fl = new FilterList(); %>
                                     <div class="initiative-choice-team">
                                         <div class="initiative-choice-select">
                                             <span>1.</span>
                                             <label for="teamGeography">Select a geography</label>
                                             <select name="teamGeography" id="teamGeography" size="5" required="" oninvalid="setCustomValidity('Please select an item in the list.')" onchange="setCustomValidity('')">
-                                                <option value="0">All</option>
-                                                <option value="7">Domestic</option>
-                                                <option value="8">International</option>
-<!--                                                <option value="9">INTG2</option>
-                                                <option value="10">INTG3</option>
-                                                <option value="11">INTG4</option>
-                                                <option value="12">INTG5</option>-->
-                                            </select>
+                                                <% Filter filter = fl.getFilterValues(comid, Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
+                                                    Map<Integer, String> geoitem = filter.getFilterValues();
+                                                    for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
+                                                <option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
+                                                <% } %>
+                                                ]        </select>
                                             <div class="select-overlay" style="display: none;"></div>
                                         </div>
                                         <div class="initiative-choice-select">
                                             <span>2.</span>
                                             <label for="teamFunction">Select a function</label>
                                             <select name="teamFunction" id="teamFunction" size="5" required="" oninvalid="setCustomValidity('Please select an item in the list.')" onchange="setCustomValidity('')">
-                                                <option value="0">All</option>
-                                                <option value="1">Operations</option>
-                                                <option value="2">Sales</option>
-                                                <option value="3">Finance</option>
+                                                <%  filter = fl.getFilterValues(comid, Constant.INITIATIVES_FUNCTION_FILTER_NAME);
+                                                    Map<Integer, String> funitem = filter.getFilterValues();
+                                                    for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
+                                                <option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
+                                                <% } %>
                                             </select>
                                             <div class="select-overlay" style="display: none;"></div>
                                         </div>
@@ -108,11 +104,11 @@
                                             <span>3.</span>
                                             <label for="teamLevel">Select a level</label>
                                             <select name="teamLevel" id="teamLevel" size="5" required="" oninvalid="setCustomValidity('Please select an item in the list.')" onchange="setCustomValidity('')">
-                                                <option value="0">All</option>
-                                                <option value="3">Manager</option>
-                                                <option value="4">Associates</option>
-<!--                                                <option value="5">State</option>
-                                                <option value="6">Zone</option>      -->
+                                                <%  filter = fl.getFilterValues(comid, Constant.INITIATIVES_LEVEL_FILTER_NAME);
+                                                    Map<Integer, String> levelitem = filter.getFilterValues();
+                                                    for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
+                                                <option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
+                                                <% } %>
                                             </select>
                                             <div class="select-overlay" style="display: none;"></div>
                                         </div>
@@ -158,377 +154,319 @@
                         </div>
                     </div>
                     <div class="my-initatives">
-                        <%  Initiative initiative = (Initiative) ObjectFactory.getInstance("org.icube.owen.initiative.Initiative");
-                            Map<Integer, String> indivdualType = initiative.getInitiativeTypeMap(comid, "individual");
-                            Map<Integer, String> teamType = initiative.getInitiativeTypeMap(comid, "team");
-                            JSONObject indTypeJSON = new JSONObject(indivdualType);
-                            JSONObject teamTypeJSON = new JSONObject(teamType);
-                            InitiativeHelper iHelper = new InitiativeHelper();
-                            java.util.List<java.util.Map<java.lang.String, java.lang.Object>> iList = iHelper.getInitiativeCount(comid);
-                            HashMap<Integer, HashMap<String, Integer>> hasmap = Util.getTypeList(iList, "Team");
-                            int defaultMetricsId = 0;
-                        %>        
                         <div class="my-initatives-header clearfix">
                             <h2>Explore - Questions</h2>
                         </div>
-                        <ul class="switched">
+                        <%
+                            ExploreHelper eHelperObj = (ExploreHelper) ObjectFactory.getInstance("org.icube.owen.explore.ExploreHelper");
+                            Map<Integer, String> relMap = eHelperObj.getMeQuestionRelationshipTypeMap(comid);
+                            int defaultMetricsId = 5;
+                        %>
+
+                        <ul class="switched"> 
+                            <% for (Map.Entry<Integer, String> entry : relMap.entrySet()) {
+
+                            %>
                             <li style="height: 193px">
-                                <span>Learning</span>
-                                <div class="panel-pic" style="width: 78px; height: 78px;">
-                                    <img src="/assets/images/panel_performance_pic.png" width="79" alt="Performance">
+                                <span><%=Util.getQuestionTypeLabel(entry.getValue())%></span>
+                                <div class="panel-pic" style="width: 78px; height: 78px;">																
+                                    <img src="<%=Constant.WEB_ASSETS%>images/<%=Util.getQuestionTypeImage(entry.getValue())%>" width="79" alt="<%=Util.getQuestionTypeLabel(entry.getValue())%>">
                                 </div>
-<!--                            <div class="panel-help-text">
-                                    HELP TEXT GOES HERE
-                                </div>-->
                                 <div class="current-completed clearfix">
                                     <p style="width: 80%; ">
-                                        <span style="display: inline-block; padding-top: 4px;">Questions on day-to-day work and related learning</span>
+                                        <span style="display: inline-block; padding-top: 4px;"><%=Util.getQuestionTypeText(entry.getValue())%></span>
                                     </p>
-                                    <button class="panel-select-metric selected" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
+                                    <button data-id="<%=entry.getKey()%>" class="panel-select-metric <%= defaultMetricsId == 5 ? "selected" : ""%>" title="Select <%=Util.getQuestionTypeLabel(entry.getValue())%>" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
                                 </div>
                             </li>
-                            <li style="height: 193px">
-                                <span>Social Cohesion</span>
-                                <div class="panel-pic" style="width: 78px; height: 78px;">
-                                    <img src="/assets/images/panel_cohesion_pic.png" width="79" alt="Performance">
-                                </div>
-<!--                            <div class="panel-help-text">
-                                    HELP TEXT GOES HERE
-                                </div>-->
-                                <div class="current-completed clearfix">
-                                    <p style="width: 80%; ">
-                                        <span style="display: inline-block; padding-top: 4px;">Questions related to the informal , interest based activities in the organization</span>
-                                    </p>
-                                    <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
-                                </div>
-                            </li>
-                            <li style="height: 193px">
-                                <span>Mentorship</span>
-                                <div class="panel-pic" style="width: 78px; height: 78px;">
-                                    <img src="/assets/images/panel_mentorship_pic.png" width="79" alt="Performance">
-                                </div>
-<!--                            <div class="panel-help-text">
-                                    HELP TEXT GOES HERE
-                                </div>-->
-                                <div class="current-completed clearfix">
-                                    <p style="width: 80%; ">
-                                        <span style="display: inline-block; padding-top: 4px;">Questions related to coaching and mentoring, company policies and operating practices</span>
-                                    </p>
-                                    <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
-                                </div>
-                            </li>
-                            <li style="height: 193px">
-                                <span>Innovation</span>
-                                <div class="panel-pic" style="width: 78px; height: 78px;">
-                                    <img src="/assets/images/panel_innovation_pic.png" width="79" alt="Performance">
-                                </div>
-<!--                            <div class="panel-help-text">
-                                    HELP TEXT GOES HERE
-                                </div>-->
-                                <div class="current-completed clearfix">
-                                    <p style="width: 80%; ">
-                                        <span style="display: inline-block; padding-top: 4px;">Questions related to new ways of doing things</span>
-                                    </p>
-                                    <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
-                                </div>
-                            </li>
-                            <li style="height: 193px">
-                                <span>Others</span>
-                                <div class="panel-pic" style="width: 78px; height: 78px;">
-                                    <img src="/assets/images/panel_others_pic.png" width="79" alt="Others">
-                                </div>
-<!--                            <div class="panel-help-text">
-                                    HELP TEXT GOES HERE
-                                </div>-->
-                                <div class="current-completed clearfix">
-                                    <p style="width: 80%; ">
-                                        <span style="display: inline-block; padding-top: 4px;">Other questions</span>
-                                    </p>
-                                    <button class="panel-select-metric" title="Select" style="position: absolute; right: 5%; bottom: 5%;">&#x2714;</button>
-                                </div>
-                            </li>
-<!--                            <li>
-                                <span>Learning</span>
-                                <div class="panel-help-text">
-                                    HELP TEXT GOES HERE
-                                </div>
-                                <div class="current-completed clearfix">
-                                    <button class="panel-select-metric" title="Select">&#x2714;</button>
-                                </div>
-                            </li>-->
-                            
+                            <% if (defaultMetricsId == 5) {
+                                        defaultMetricsId = entry.getKey();
+                                    }
+                                }%> 
                         </ul>
                     </div>
+                    <!-- TODO export -->
+                    <!--                    <div class="explore-by-question">
+                                            <div class="explore-by-question-header">
+                                                <h3><span>Questions</span></h3>
+                                                <div class="search-popup">
+                                                    <button>🔍</button>						
+                                                    <input type="search" placeholder="Search" class="search-question">
+                                                </div>
+                                                <div class="visual-actions" style='top: 0; right: 0;'>
+                                                    <div>
+                                                        <button type="button" id="export-explore-by-questions" style='margin: 0;'><img src="/assets/images/export_icon.png" width="21" title="Export As"></button>
+                                                        <div class="action-export-menu" style="display: none; height:52px;">
+                                                            <span>Export as</span>
+                                                            <ul>
+                                                                <li><a href="#" download='Questions1_8.csv'>CSV</a></li>
+                                                            </ul>
+                                                        </div>	
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                    <table class="explore-by-question-table">
+                        <%
+                            Map<Integer, Map<Question, MeResponse>> qList = eHelperObj.getCompletedMeQuestionList(comid, defaultMetricsId);
+                        %>
+                        <tbody>
 
-                    <div class="explore-by-question">
-                        <div class="explore-by-question-header">
-                            <h3><span>Questions</span></h3>
-                            <div class="search-popup">
-                                <button>🔍</button>						
-                                <input type="search" placeholder="Search" class="search-question">
-                            </div>
-                            <div class="visual-actions" style='top: 0; right: 0;'>
-                                <div>
-                                    <button type="button" id="export-explore-by-questions" style='margin: 0;'><img src="/assets/images/export_icon.png" width="21" title="Export As"></button>
-                                    <div class="action-export-menu" style="display: none; height:52px;">
-                                        <span>Export as</span>
-                                        <ul>
-                                            <li><a href="#" download='Questions1_8.csv'>CSV</a></li>
-                                        </ul>
-                                    </div>	
-                                </div>
-                            </div>
-                        </div>
-                        <table class="explore-by-question-table">
-                            <tbody>
-                                <tr class="question-name-date">
-                                    <td>1</td>
-                                    <td class="question-name">I have a clear understanding of my job and what is expected of me</td>
-                                    <td>28 July</td>
-                                    <td>52%</td>
-                                    <td>
-                                        <div id="chartdiv1" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="36"/>
-                                            <input type="hidden" id="agree" value="14"/>
-                                            <input type="hidden" id="neutral" value="20"/>
-                                            <input type="hidden" id="disagree" value="10"/>
-                                            <input type="hidden" id="stronglydisagree" value="20"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv2" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="36"/>
-                                            <input type="hidden" id="agree" value="14"/>
-                                            <input type="hidden" id="neutral" value="20"/>
-                                            <input type="hidden" id="disagree" value="10"/>
-                                            <input type="hidden" id="stronglydisagree" value="20"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="question-name-date">
-                                    <td>2</td>
-                                    <td class="question-name">I feel sufficiently recognized for the work I do</td>
-                                    <td>21 July</td>
-                                    <td>72%</td>
-                                    <td>
-                                        <div id="chartdiv3" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="14"/>
-                                            <input type="hidden" id="agree" value="20"/>
-                                            <input type="hidden" id="neutral" value="36"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="10"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv4" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="14"/>
-                                            <input type="hidden" id="agree" value="20"/>
-                                            <input type="hidden" id="neutral" value="36"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="10"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="question-name-date">
-                                    <td>3</td>
-                                    <td class="question-name">I have sufficient opportunities for training and development to upgrade my skills</td>
-                                    <td>14 July</td>
-                                    <td>82%</td>
-                                    <td>
-                                        <div id="chartdiv5" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="20"/>
-                                            <input type="hidden" id="agree" value="20"/>
-                                            <input type="hidden" id="neutral" value="20"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="20"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv6" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="20"/>
-                                            <input type="hidden" id="agree" value="20"/>
-                                            <input type="hidden" id="neutral" value="20"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="20"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="question-name-date">
-                                    <td>4</td>
-                                    <td class="question-name">I have adequate opportunities for my own professional growth within the organization</td>
-                                    <td>7 July</td>
-                                    <td>92%</td>
-                                    <td>
-                                        <div id="chartdiv7" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="10"/>
-                                            <input type="hidden" id="agree" value="10"/>
-                                            <input type="hidden" id="neutral" value="10"/>
-                                            <input type="hidden" id="disagree" value="10"/>
-                                            <input type="hidden" id="stronglydisagree" value="60"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv8" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="10"/>
-                                            <input type="hidden" id="agree" value="10"/>
-                                            <input type="hidden" id="neutral" value="10"/>
-                                            <input type="hidden" id="disagree" value="10"/>
-                                            <input type="hidden" id="stronglydisagree" value="60"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="question-name-date">
-                                    <td>5</td>
-                                    <td class="question-name">I see strong evidence of effective leadership and am confident about the company's future</td>
-                                    <td>30 June</td>
-                                    <td>67%</td>
-                                    <td>
-                                        <div id="chartdiv9" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="20"/>
-                                            <input type="hidden" id="agree" value="20"/>
-                                            <input type="hidden" id="neutral" value="20"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="20"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv10" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="20"/>
-                                            <input type="hidden" id="agree" value="20"/>
-                                            <input type="hidden" id="neutral" value="20"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="20"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="question-name-date">
-                                    <td>6</td>
-                                    <td class="question-name">I receive regular and transparent communication on the company's plan, guidelines and policies</td>
-                                    <td>23 June</td>
-                                    <td>59%</td>
-                                    <td>
-                                        <div id="chartdiv11" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="5"/>
-                                            <input type="hidden" id="agree" value="7"/>
-                                            <input type="hidden" id="neutral" value="10"/>
-                                            <input type="hidden" id="disagree" value="53"/>
-                                            <input type="hidden" id="stronglydisagree" value="25"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv12" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="5"/>
-                                            <input type="hidden" id="agree" value="7"/>
-                                            <input type="hidden" id="neutral" value="10"/>
-                                            <input type="hidden" id="disagree" value="53"/>
-                                            <input type="hidden" id="stronglydisagree" value="25"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="question-name-date">
-                                    <td>7</td>
-                                    <td class="question-name">Work culture at my plant is generally energizing and motivating</td>
-                                    <td>16 June</td>
-                                    <td>87%</td>
-                                    <td>
-                                        <div id="chartdiv13" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="37"/>
-                                            <input type="hidden" id="agree" value="27"/>
-                                            <input type="hidden" id="neutral" value="26"/>
-                                            <input type="hidden" id="disagree" value="8"/>
-                                            <input type="hidden" id="stronglydisagree" value="2"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv14" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="37"/>
-                                            <input type="hidden" id="agree" value="27"/>
-                                            <input type="hidden" id="neutral" value="26"/>
-                                            <input type="hidden" id="disagree" value="8"/>
-                                            <input type="hidden" id="stronglydisagree" value="2"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="question-name-date">
-                                    <td>8</td>
-                                    <td class="question-name">I receive fair and unbiased treatment from my supervisor</td>
-                                    <td>9 June</td>
-                                    <td>47%</td>
-                                    <td>
-                                        <div id="chartdiv15" style="width: 180px; height: 20px; background-color: #fff; display: block;">
-                                            <input type="hidden" id="stronglyagree" value="17"/>
-                                            <input type="hidden" id="agree" value="25"/>
-                                            <input type="hidden" id="neutral" value="28"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="10"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a title="View details">View details</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="width: 100%; background: #ffffff;">
-                                        <div id="chartdiv16" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
-                                            <input type="hidden" id="stronglyagree" value="17"/>
-                                            <input type="hidden" id="agree" value="25"/>
-                                            <input type="hidden" id="neutral" value="28"/>
-                                            <input type="hidden" id="disagree" value="20"/>
-                                            <input type="hidden" id="stronglydisagree" value="10"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--                    </div>-->
+                            <% for (int quesId : qList.keySet()) {
+                                    Map<Question, MeResponse> result = qList.get(quesId);
+                                    for (Question q : result.keySet()) {
+                                        MeResponse mr = result.get(q);
+                            %>
+
+                            <tr class="question-name-date">
+                                <td><%=quesId%></td>
+                                <td class="question-name"><%=q.getQuestionText()%></td>
+                                <td><%=Util.getDisplayDateFormat(q.getEndDate(), "dd MMM")%></td>
+                                <td><%=q.getResponsePercentage()%></td>
+                                <td>
+                                    <div id="inline-chart-<%=quesId%>" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                        <input type="hidden" id="stronglyagree" value=<%=mr.getStronglyAgree()%>/>
+                                        <input type="hidden" id="agree" value=<%=mr.getAgree()%>/>
+                                        <input type="hidden" id="neutral" value=<%=mr.getNeutral()%>/>
+                                        <input type="hidden" id="disagree" value=<%=mr.getDisagree()%>/>
+                                        <input type="hidden" id="stronglydisagree" value=<%=mr.getStronglyDisagree()%>/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a title="View details">View details</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                    <div id="collapsible-chart-<%=quesId%>" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                        <input type="hidden" id="stronglyagree" value=<%=mr.getStronglyAgree()%>/>
+                                        <input type="hidden" id="agree" value=<%=mr.getAgree()%>/>
+                                        <input type="hidden" id="neutral" value=<%=mr.getNeutral()%>/>
+                                        <input type="hidden" id="disagree" value=<%=mr.getDisagree()%>/>
+                                        <input type="hidden" id="stronglydisagree" value=<%=mr.getStronglyDisagree()%>/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <%}
+                                    }%>
+                            <!--                                <tr class="question-name-date">
+                                                                <td>2</td>
+                                                                <td class="question-name">I feel sufficiently recognized for the work I do</td>
+                                                                <td>21 July</td>
+                                                                <td>72%</td>
+                                                                <td>
+                                                                    <div id="chartdiv3" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                                                        <input type="hidden" id="stronglyagree" value="14"/>
+                                                                        <input type="hidden" id="agree" value="20"/>
+                                                                        <input type="hidden" id="neutral" value="36"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="10"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a title="View details">View details</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                                                    <div id="chartdiv4" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                                                        <input type="hidden" id="stronglyagree" value="14"/>
+                                                                        <input type="hidden" id="agree" value="20"/>
+                                                                        <input type="hidden" id="neutral" value="36"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="10"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="question-name-date">
+                                                                <td>3</td>
+                                                                <td class="question-name">I have sufficient opportunities for training and development to upgrade my skills</td>
+                                                                <td>14 July</td>
+                                                                <td>82%</td>
+                                                                <td>
+                                                                    <div id="chartdiv5" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                                                        <input type="hidden" id="stronglyagree" value="20"/>
+                                                                        <input type="hidden" id="agree" value="20"/>
+                                                                        <input type="hidden" id="neutral" value="20"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="20"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a title="View details">View details</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                                                    <div id="chartdiv6" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                                                        <input type="hidden" id="stronglyagree" value="20"/>
+                                                                        <input type="hidden" id="agree" value="20"/>
+                                                                        <input type="hidden" id="neutral" value="20"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="20"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="question-name-date">
+                                                                <td>4</td>
+                                                                <td class="question-name">I have adequate opportunities for my own professional growth within the organization</td>
+                                                                <td>7 July</td>
+                                                                <td>92%</td>
+                                                                <td>
+                                                                    <div id="chartdiv7" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                                                        <input type="hidden" id="stronglyagree" value="10"/>
+                                                                        <input type="hidden" id="agree" value="10"/>
+                                                                        <input type="hidden" id="neutral" value="10"/>
+                                                                        <input type="hidden" id="disagree" value="10"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="60"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a title="View details">View details</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                                                    <div id="chartdiv8" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                                                        <input type="hidden" id="stronglyagree" value="10"/>
+                                                                        <input type="hidden" id="agree" value="10"/>
+                                                                        <input type="hidden" id="neutral" value="10"/>
+                                                                        <input type="hidden" id="disagree" value="10"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="60"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="question-name-date">
+                                                                <td>5</td>
+                                                                <td class="question-name">I see strong evidence of effective leadership and am confident about the company's future</td>
+                                                                <td>30 June</td>
+                                                                <td>67%</td>
+                                                                <td>
+                                                                    <div id="chartdiv9" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                                                        <input type="hidden" id="stronglyagree" value="20"/>
+                                                                        <input type="hidden" id="agree" value="20"/>
+                                                                        <input type="hidden" id="neutral" value="20"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="20"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a title="View details">View details</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                                                    <div id="chartdiv10" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                                                        <input type="hidden" id="stronglyagree" value="20"/>
+                                                                        <input type="hidden" id="agree" value="20"/>
+                                                                        <input type="hidden" id="neutral" value="20"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="20"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="question-name-date">
+                                                                <td>6</td>
+                                                                <td class="question-name">I receive regular and transparent communication on the company's plan, guidelines and policies</td>
+                                                                <td>23 June</td>
+                                                                <td>59%</td>
+                                                                <td>
+                                                                    <div id="chartdiv11" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                                                        <input type="hidden" id="stronglyagree" value="5"/>
+                                                                        <input type="hidden" id="agree" value="7"/>
+                                                                        <input type="hidden" id="neutral" value="10"/>
+                                                                        <input type="hidden" id="disagree" value="53"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="25"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a title="View details">View details</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                                                    <div id="chartdiv12" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                                                        <input type="hidden" id="stronglyagree" value="5"/>
+                                                                        <input type="hidden" id="agree" value="7"/>
+                                                                        <input type="hidden" id="neutral" value="10"/>
+                                                                        <input type="hidden" id="disagree" value="53"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="25"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="question-name-date">
+                                                                <td>7</td>
+                                                                <td class="question-name">Work culture at my plant is generally energizing and motivating</td>
+                                                                <td>16 June</td>
+                                                                <td>87%</td>
+                                                                <td>
+                                                                    <div id="chartdiv13" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                                                        <input type="hidden" id="stronglyagree" value="37"/>
+                                                                        <input type="hidden" id="agree" value="27"/>
+                                                                        <input type="hidden" id="neutral" value="26"/>
+                                                                        <input type="hidden" id="disagree" value="8"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="2"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a title="View details">View details</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                                                    <div id="chartdiv14" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                                                        <input type="hidden" id="stronglyagree" value="37"/>
+                                                                        <input type="hidden" id="agree" value="27"/>
+                                                                        <input type="hidden" id="neutral" value="26"/>
+                                                                        <input type="hidden" id="disagree" value="8"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="2"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="question-name-date">
+                                                                <td>8</td>
+                                                                <td class="question-name">I receive fair and unbiased treatment from my supervisor</td>
+                                                                <td>9 June</td>
+                                                                <td>47%</td>
+                                                                <td>
+                                                                    <div id="chartdiv15" style="width: 180px; height: 20px; background-color: #fff; display: block;">
+                                                                        <input type="hidden" id="stronglyagree" value="17"/>
+                                                                        <input type="hidden" id="agree" value="25"/>
+                                                                        <input type="hidden" id="neutral" value="28"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="10"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a title="View details">View details</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="6" style="width: 100%; background: #ffffff;">
+                                                                    <div id="chartdiv16" style="margin: 0 auto; max-width: 90%; height: 170px; background-color: #fff; ">
+                                                                        <input type="hidden" id="stronglyagree" value="17"/>
+                                                                        <input type="hidden" id="agree" value="25"/>
+                                                                        <input type="hidden" id="neutral" value="28"/>
+                                                                        <input type="hidden" id="disagree" value="20"/>
+                                                                        <input type="hidden" id="stronglydisagree" value="10"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>-->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <script src="<%=Constant.WEB_ASSETS%>js/jquery-2.1.4.min.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/amcharts/amcharts.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/amcharts/serial.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/amcharts/themes/light.js"></script>
-        <script src="<%=Constant.WEB_ASSETS%>js/explore.js"></script>	
-        <script type="text/javascript">
-            
-        </script>
-        
-    </body>
+    </div>
+    <script src="<%=Constant.WEB_ASSETS%>js/jquery-2.1.4.min.js"></script>
+    <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
+    <script src="<%=Constant.WEB_ASSETS%>js/amcharts/amcharts.js"></script>
+    <script src="<%=Constant.WEB_ASSETS%>js/amcharts/serial.js"></script>
+    <script src="<%=Constant.WEB_ASSETS%>js/amcharts/themes/light.js"></script>
+    <script src="<%=Constant.WEB_ASSETS%>js/explore.js"></script>	
+    <script type="text/javascript">
+
+    </script>
+
+</body>
 </html>

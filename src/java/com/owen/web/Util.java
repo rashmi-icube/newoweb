@@ -48,7 +48,46 @@ public class Util {
         }
         return imgName;
     }
+    
+    public static String getQuestionTypeLabel(String relType) {
+        String[][] maplist = Constant.QUESTION_TYPE_LABEL_MAPPING;
+        String label = "";
+        if (maplist != null) {
+            for (int j = 0; j < maplist[0].length; j++) {
+                if (maplist[0][j].equalsIgnoreCase(relType)) {
+                    label = maplist[1][j];
+                }
+            }
+        }
+        return label;
+    }
 
+    public static String getQuestionTypeImage(String relType) {
+        String[][] maplist = Constant.QUESTION_TYPE_IMAGE_MAPPING;
+        String imgName = "panel_expertise_pic.png";
+        if (maplist != null) {
+            for (int j = 0; j < maplist[0].length; j++) {
+                if (maplist[0][j].equalsIgnoreCase(relType)) {
+                    imgName = maplist[1][j];
+                }
+            }
+        }
+        return imgName;
+    }
+    
+    public static String getQuestionTypeText(String relType) {
+        String[][] maplist = Constant.QUESTION_TYPE_TEXT_MAPPING;
+        String text = "";
+        if (maplist != null) {
+            for (int j = 0; j < maplist[0].length; j++) {
+                if (maplist[0][j].equalsIgnoreCase(relType)) {
+                    text = maplist[1][j];
+                }
+            }
+        }
+        return text;
+    }
+    
     public static void printLog(Object logmessage) {
         if (Constant.LOG_LEVEL <= Constant.INFO) {
             System.out.println(logmessage);
