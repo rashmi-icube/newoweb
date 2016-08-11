@@ -43,6 +43,21 @@ $(document).ready(function () {
             $('.action-export-menu').hide();
         });
     }
+    
+    $('.filter-tool').on('click', function () {
+        $('.explore-list-of-metrics-category-selection span').toggleClass('clicked');
+        $('.explore-list-of-metrics-category-selection img').toggleClass('img-move');
+        $('.explore-list-of-metrics').toggleClass('animate-list');
+        $('.explore-list-of-metrics ul').toggleClass('switched');
+        $('.explore-list-of-metrics li').each(function (index, el) {
+            var listItem = $(this);
+            setTimeout(function () {
+                listItem.toggleClass('animate-list');
+            }, index * 25);
+        });
+//        getPeople(1);
+//        pageArrow = 1;
+    });
 
 
     var chartinline;
@@ -190,8 +205,8 @@ $(document).ready(function () {
                     "columnWidth": 1,
                     "rotate": true,
                     "autoDisplay": true,
-                    "autoMarginOffset": 0,
-                    "autoMargins": true,
+//                    "autoMarginOffset": 0,
+//                    "autoMargins": true,
 //                        "marginBottom": 0,
 //                        "marginLeft": 0,
 //                        "marginRight": 0,
@@ -266,20 +281,30 @@ $(document).ready(function () {
                             "id": "ValueAxis-1",
                             "stackType": "100%",
                             "axisThickness": 0,
-                            "title": ""
+                            "title": "Distribution",
+                            "titleBold": false
                         }
                     ],
                     "allLabels": [],
                     "balloon": {},
                     "legend": {
+                        "divId":"legend",
                         "enabled": true,
-                        "autoMargins": false,
-                        "forceWidth": false,
-                        "useGraphSettings": false,
-                        "combineLegend": true,
-                        "reversedOrder": false,
+                        "position": "left",
+//                        "autoMargins": true,
+                        "width":"100%",
+//                        "marginRight":"0",
+                        "top":'0 px',
+                        "left":'-0.5 px',
+//                        "equalWidths": true,
+//                         "maxColumns": 1,
+//                        "align": "left",
+//                        "forceWidth": true,
+//                        "useGraphSettings": true,
+//                        "combineLegend": true,
+//                        "reversedOrder": false,
                         "rollOverGraphAlpha": 0.65,
-                        "spacing": 0,
+//                        "spacing": 0,
                         "textClickEnabled": true
                     },
                     "titles": [
@@ -313,7 +338,7 @@ $(document).ready(function () {
                     "rotate": true,
                     "autoDisplay": true,
                     "autoMarginOffset": 0,
-                    "autoMargins": true,
+                    "autoMargins": false,
 //                        "marginBottom": 0,
 //                        "marginLeft": 0,
 //                        "marginRight": 0,
@@ -456,20 +481,101 @@ $(document).ready(function () {
                 }, 1000 //Delay for chart to appear on screen, after div expands
                 );
     }
-
+    
+    var chartcollapsibleAvg;
+    function createAmChartAvg(chartAvgId) {
+        chartcollapsibleAvg = AmCharts.makeChart("chartdivavg",
+                {
+                    "type": "serial",
+                    "categoryField": "category",
+                    "columnWidth": 1,
+                    "rotate": true,
+                    "plotAreaBorderColor": "#A1A1A1",
+                    "startDuration": 1,
+                    "startEffect": "easeOutSine",
+                    "borderColor": "#A1A1A1",
+                    "color": "#A1A1A1",
+                    "fontFamily": "Open Sans",
+                    "fontSize": 10,
+//                    "autoMarginOffset": 0,
+//                    "autoMargins": true,
+                    "categoryAxis": {
+                        "gridPosition": "start",
+                        "axisColor": "#A1A1A1",
+                        "axisThickness": 0,
+                        "fontSize": 0,
+                        "gridColor": "#A1A1A1",
+                        "labelsEnabled": false,
+                        "tickLength": 0
+                    },
+                    "trendLines": [],
+                    "graphs": [
+                        {
+                            "balloonText": "[[category]]: [[value]]",
+                            "fillAlphas": 1,
+                            "gapPeriod": 1,
+                            "id": "AmGraph-1",
+                            "title": "graph 1",
+                            "type": "column",
+                            "valueField": "column-1",
+                            "fillColors": "#ff9800",
+                            "lineColor": "#ff9800"
+                        }
+                    ],
+                    "guides": [],
+                    "valueAxes": [
+                        {
+                            "id": "ValueAxis-1",
+                            "includeAllValues": true,
+                            "maximum": 5,
+                            "minimum": 1,
+                            "autoGridCount": false,
+                            "autoRotateAngle": 0,
+                            "axisColor": "#A1A1A1",
+                            "title": "Average",
+                            "titleBold": false
+                        }
+                    ],
+                    "allLabels": [],
+                    "balloon": {
+                        "color": "#A1A1A1"
+                    },
+                    "legend": {
+                        "enabled": false,
+                        "equalWidths": false,
+                        "useGraphSettings": true
+                    },
+                    "titles": [
+                        {
+                            "bold": false,
+                            "id": "Title-1",
+                            "size": 10,
+                            "text": ""
+                        }
+                    ],
+                    "dataProvider": [
+                        {
+                            "category": "Average",
+                            "column-1": "1.7"
+                        }
+                    ]
+                }, 1000
+        );
+    }
+    
     var chartMap = new Object();
     $('.explore-by-question table a').on('click', function () {
-        $(this).parents('tr').next('tr').find('div').slideToggle('400');
-//       chart.handleResize();
+        $(this).parents('tr').next('tr').slideToggle('100');
         if ($(this).text() === 'View details') {
             $(this).text('Collapse').attr('title', 'Collapse');
-            var chartId = $(this).parents('tr').next('tr').find('div').attr('id');
+            var chartId = $(this).parents('tr').next('tr').find('div').eq(1).attr('id');
+            var chartAvgId = $(this).parents('tr').next('tr').find('div').eq(2).attr('id');
             var stronglyagree = $('#' + chartId).find('#stronglyagree').val();
             var agree = $('#' + chartId).find('#agree').val();
             var neutral = $('#' + chartId).find('#neutral').val();
             var disagree = $('#' + chartId).find('#disagree').val();
             var stronglydisagree = $('#' + chartId).find('#stronglydisagree').val();
-            if (chartMap[chartId] === undefined) {
+            if (chartMap[chartId] === undefined && chartMap[chartAvgId] === undefined) {
                 if (chartId.replace(/^\D+/g, '') > 8) {
                     createAmChartTeams(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
                     chartMap[chartId] = chartcollapsibleTeam;
@@ -478,8 +584,11 @@ $(document).ready(function () {
                     chartMap[chartId] = chartcollapsibleOrg;
 //                chartcollapsibleOrg.write(chartId);
                 }
+                createAmChartAvg(chartAvgId);
+                chartMap[chartAvgId] = chartcollapsibleAvg;
             } else {
                 chartMap[chartId].invalidateSize();
+//                chartMap[chartAvgId].invalidateSize();
             }
         } else {
             $(this).text('View details').attr('title', 'View details');
@@ -916,3 +1025,21 @@ function downloadCanvasAsPng() {
     ReImg.fromCanvas(document.querySelector('canvas')).downloadPng();
 }
 
+//Explore by Metrics (exploremetric.jsp)
+
+$('.tiSelectionHeader button').on('click', function () {
+    if ($(this).text() === 'Expand') {
+        $('.tiSelected').show('slow');
+        $('#tiSelectionExpandCollapseButton').text('Collapse');
+    } else if ($(this).text() === 'Collapse') {
+        $('.tiSelected').hide('slow');
+        $('#tiSelectionExpandCollapseButton').text('Expand');
+    }
+});
+
+
+
+$('.initiative-submit-button button').on('click', function () {
+    $('.tiSelected').hide('slow');
+    $('#tiSelectionExpandCollapseButton').text('Expand');
+});
