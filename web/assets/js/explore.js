@@ -43,7 +43,7 @@ $(document).ready(function () {
             $('.action-export-menu').hide();
         });
     }
-    
+
     $('.filter-tool').on('click', function () {
         $('.explore-list-of-metrics-category-selection span').toggleClass('clicked');
         $('.explore-list-of-metrics-category-selection img').toggleClass('img-move');
@@ -178,11 +178,23 @@ $(document).ready(function () {
                             "Strongly Agree": stronglyagree
                         }
                     ]
-                }
-        );
+                },
+                1000
+                );
+//        chartinline.addListener('dataUpdated', showInlineChart);
+        chartinline.write();
     }
-    //$(this).on("pagecontainerload", function () {
-    var inlineChartIdArray = ['chartdiv1', 'chartdiv3', 'chartdiv5', 'chartdiv7', 'chartdiv9', 'chartdiv11', 'chartdiv13', 'chartdiv15'];
+
+    function showInlineChart() {
+        chartinline.write(chartId);
+//        chartinline.handleResize();
+//        chartinline.invalidateSize();
+    }
+    var inlineChartIdArray = [];
+    $('.inline').each(function (i, e) {
+        inlineChartIdArray.push($(e).attr('id'));
+    });
+    // TODO export question :  inline chart not being shown
     jQuery.each(inlineChartIdArray, function (i, chartId) {
         //var chartId = $(this).parents('tr').next('tr').find('div').attr('id');
         var stronglyagree = $('#' + chartId).find('#stronglyagree').val();
@@ -191,8 +203,10 @@ $(document).ready(function () {
         var disagree = $('#' + chartId).find('#disagree').val();
         var stronglydisagree = $('#' + chartId).find('#stronglydisagree').val();
         createAmChartinline(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
-//        chartinline.write(chartId);
-//       chart.handleResize();
+        chartinline.write(chartId);
+//        chartinline.create();
+//        chartinline.handleResize();
+//        chartinline.invalidateSize();
     });
 
 
@@ -288,14 +302,14 @@ $(document).ready(function () {
                     "allLabels": [],
                     "balloon": {},
                     "legend": {
-                        "divId":"legend",
+                        "divId": "legend",
                         "enabled": true,
                         "position": "left",
 //                        "autoMargins": true,
-                        "width":"100%",
+                        "width": "100%",
 //                        "marginRight":"0",
-                        "top":'0 px',
-                        "left":'-0.5 px',
+                        "top": '0 px',
+                        "left": '-0.5 px',
 //                        "equalWidths": true,
 //                         "maxColumns": 1,
 //                        "align": "left",
@@ -316,7 +330,7 @@ $(document).ready(function () {
                     ],
                     "dataProvider": [
                         {
-                            "category": "I have a clear understanding of my job and what is expected of me",
+//                            "category": "I have a clear understanding of my job and what is expected of me",
                             "Strongly Disagree": stronglydisagree,
                             "Disagree": disagree,
                             "Neutral": neutral,
@@ -481,7 +495,7 @@ $(document).ready(function () {
                 }, 1000 //Delay for chart to appear on screen, after div expands
                 );
     }
-    
+
     var chartcollapsibleAvg;
     function createAmChartAvg(chartAvgId) {
         chartcollapsibleAvg = AmCharts.makeChart("chartdivavg",
@@ -560,9 +574,9 @@ $(document).ready(function () {
                         }
                     ]
                 }, 1000
-        );
+                );
     }
-    
+
     var chartMap = new Object();
     $('.explore-by-question table a').on('click', function () {
         $(this).parents('tr').next('tr').slideToggle('100');
@@ -576,14 +590,14 @@ $(document).ready(function () {
             var disagree = $('#' + chartId).find('#disagree').val();
             var stronglydisagree = $('#' + chartId).find('#stronglydisagree').val();
             if (chartMap[chartId] === undefined && chartMap[chartAvgId] === undefined) {
-                if (chartId.replace(/^\D+/g, '') > 8) {
-                    createAmChartTeams(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
-                    chartMap[chartId] = chartcollapsibleTeam;
-                } else {
-                    createAmChartOrg(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
-                    chartMap[chartId] = chartcollapsibleOrg;
+//                if (chartId.replace(/^\D+/g, '') > 8) {
+//                    createAmChartTeams(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
+//                    chartMap[chartId] = chartcollapsibleTeam;
+//                } else {
+                createAmChartOrg(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
+                chartMap[chartId] = chartcollapsibleOrg;
 //                chartcollapsibleOrg.write(chartId);
-                }
+//                }
                 createAmChartAvg(chartAvgId);
                 chartMap[chartAvgId] = chartcollapsibleAvg;
             } else {
