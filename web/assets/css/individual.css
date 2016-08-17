@@ -2525,6 +2525,34 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         width: 580px;
         margin-left: 6%;
     }
+    
+        /************************************* MOBILE APP THANK YOU ******************************************/
+    .thank-you-outline{
+/*        display:block;
+        margin:0 auto;*/
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+    
+    .thank-you-outline h2{
+        font: 24px 'Open Sans Semibold', 'Open Sans';
+        text-align: center;
+    }
+    
+    .thank-you-image img{
+        display:block;
+        margin:0 auto;
+        height: 50px;
+        width: 50px;
+    }
+    
+    .thank-you-text p{
+        font: 16px 'Open Sans Light', 'Open Sans';
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 767px) and (min-width: 481px) {
@@ -2649,6 +2677,34 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
 
     .dashboard .submit-circle { margin-top: 350px; }
+    
+        /************************************* MOBILE APP THANK YOU ******************************************/
+    .thank-you-outline{
+/*        display:block;
+        margin:0 auto;*/
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+    
+    .thank-you-outline h2{
+        font: 24px 'Open Sans Semibold', 'Open Sans';
+        text-align: center;
+    }
+    
+    .thank-you-image img{
+        display:block;
+        margin:0 auto;
+        height: 50px;
+        width: 50px;
+    }
+    
+    .thank-you-text p{
+        font: 16px 'Open Sans Light', 'Open Sans';
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -3262,7 +3318,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     /***************************** SURVEY_WE MOBILE ******************************/
 
     .survey-we.wrapper {
-        width: 90%;
+        width: 90% !important;
     }
 
     .survey-we h2 { font-size: 24px; }
@@ -3663,7 +3719,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     .dashboard.initiatives .popup-chat-box textarea::-webkit-input-placeholder {
         color: #c9c9c9;
-        font: italic 13px 'Open Sans Light', 'Open Sans';
+        font: italic 13pfontx 'Open Sans Light', 'Open Sans';
     }
 
 
@@ -3697,7 +3753,38 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
     .people-list-box p{
         padding-right: 20px;
-    }    
+    }
+    
+    /************************************* MOBILE APP THANK YOU ******************************************/
+    .thank-you-outline{
+/*        display:block;
+        margin:0 auto;*/
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+    
+    .thank-you-outline h2{
+        font: 24px 'Open Sans Semibold', 'Open Sans';
+        text-align: center;
+    }
+    
+    .thank-you-image img{
+        display:block;
+        margin:0 auto;
+        height: 50px;
+        width: 50px;
+    }
+    
+    .thank-you-text p{
+        font: 16px 'Open Sans Light', 'Open Sans';
+        text-align: center;
+    }
+    .swiper-container{
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 359px) {

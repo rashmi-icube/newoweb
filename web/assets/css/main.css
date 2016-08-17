@@ -5046,7 +5046,10 @@ ul:nth-of-type(2) li.animate-list {
   vertical-align: top;
 }
 
-.tiPeople { margin-left: 30px; }
+.tiPeople { 
+    margin-left: 30px;
+    position: absolute;
+}
 
 .tiPeopleAddMoreTeams { 
   padding-top: 46px;
@@ -5250,7 +5253,7 @@ ul:nth-of-type(2) li.animate-list {
 .explore-by-question-header .search-popup {
   position: absolute;
   top: 3px;
-  left: 46%;
+  left: 19.5%;
 }
 
 .explore-by-question table {
@@ -5271,7 +5274,7 @@ ul:nth-of-type(2) li.animate-list {
     }
 }
 
-.explore-by-question-table tr:nth-child(even) { border-top: 0; }
+.explore-by-question-table tr:nth-child(even) { border-top: 0; display: none; background: #ffffff;}
 
 .explore-by-question td {
   height: 44px;
@@ -5291,14 +5294,17 @@ ul:nth-of-type(2) li.animate-list {
 
 .explore-by-question td:nth-child(n+3) { font-family: 'Open Sans Light', 'Open Sans'; }
 
-/*.explore-by-question-table td > div > div { display: none; }*/
-.explore-by-question-table tr:nth-child(even) {display: none;}
-.explore-by-question-table tr:nth-child(odd) td:nth-child(odd) > div { display: block; }
+.explore-by-question-table td > div .inline {
+   width: 180px; 
+   height: 20px; 
+   background-color: #fff; 
+   display: block;
+}
 
 .explore-by-question-table td > div .distribution{
     margin: 0px auto;
-    width: 70%;
-    height: 170px;
+    width: 50%;
+    height: 100px;
     float: left;
     display: inline-block;
     overflow: hidden;
@@ -5309,8 +5315,9 @@ ul:nth-of-type(2) li.animate-list {
 
 .explore-by-question-table td > div .average{
     margin: 0px auto;
-    width: 28%;
-    height: 170px;
+    width: 42%;
+    height: 100px;
+    padding-left: 50px;
     display: inline-block;
     float: left;
     text-align: left;
@@ -5369,6 +5376,9 @@ ul:nth-of-type(2) li.animate-list {
   line-height: 11px;
   text-align: center;
 }
+
+/*.explore-by-question-table td > div > div { display: none; }*/
+.explore-by-question-table tr:nth-child(odd) td:nth-child(odd) > div { display: block; }
 
 @-moz-document url-prefix() { 
     .explore-by-question-table td a { width: 87px; }

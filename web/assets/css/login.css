@@ -302,7 +302,12 @@ h2::before {
 /* basic css styling ------------------------------- */
 .login-form .login-remember-me input[type=checkbox]   { display:none; }        /* hide the checkbox */
 .login-form .login-remember-me label, p               { padding-left:40px; } 
-.login-form .login-remember-me         { position:relative; height: 2em; margin-top: -1em; margin-left: 5.2em;}
+.login-form .login-remember-me         { 
+    position:relative; 
+    height: 2em; 
+/*    margin-top: -1em; 
+    margin-left: 5.2em;*/
+}
 
 /* checkbox css ------------------------------------ */
 

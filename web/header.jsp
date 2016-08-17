@@ -67,7 +67,9 @@
                     <div class="create-view-list2" style="left: 17%;">
                         <span>Explore</span>
                         <ul>
-                            <li <%=subModuleName != null && subModuleName.equals("explore") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explore.jsp">Explore by Metrics</a></li>
+                            <li <%=subModuleName != null && subModuleName.equals("explore") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explore.jsp">Explore</a></li>
+                            <li <%=subModuleName != null && subModuleName.equals("exploremetric") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/exploremetric.jsp">Explore by Metrics</a></li>
+                            <li <%=subModuleName != null && subModuleName.equals("explorenetwork") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explorenetwork.jsp">Explore by Networks</a></li>
                             <li <%=subModuleName != null && subModuleName.equals("explorequestion") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explorequestion.jsp">Explore by Questions</a></li>
                         </ul>								
                     </div>

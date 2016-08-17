@@ -1,3 +1,9 @@
+<%-- 
+    Document   : indexcordova
+    Created on : 2 Aug, 2016, 11:29:47 AM
+    Author     : adoshi
+--%>
+
 <!DOCTYPE html>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="com.owen.web.Util"%>
@@ -7,22 +13,22 @@
         <title>Login</title>
         <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/login.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="apple-touch-icon" sizes="57x57" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/android-icon-192x192.png" sizes="192x192">
-        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/favicon-96x96.png" sizes="96x96">
-        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/manifest.json">
+        <link rel="apple-touch-icon" sizes="57x57" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/android-icon-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/manifest.json">
         <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon_Login/ms-icon-144x144.png">
+        <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon_Individual/ms-icon-144x144.png">
         
         
         <!-- Chrome, Firefox OS and Opera -->
@@ -62,24 +68,33 @@
                         <form method="post" action="login-check.jsp">
                             <label for="username">Username</label>
                             <input type="email" name="username" id="username" required>
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" required>
+<!--                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required>-->
 
                             <div class="caps-warning"> 
                                 <span><span>!</span> Caps Lock is on.</span>
                             </div>
 
-                            <div class="login-role">
+<!--                        <div class="login-role">
                                 <span <%= (roleid == 2 ? "class=\"emp\"" : "class=\"clicked emp\"")%>>EMP</span>
                                 <input type="radio" name="roleid" value="1" <%= (roleid != 2 ? "checked" : "")%>>
                                 <span <%= (roleid == 2 ? "class=\"clicked hr\"" : "class=\"hr\"")%>>HR</span>
                                 <input type="radio" name="roleid" value="2" <%= (roleid == 2 ? "checked" : "")%>>
+                            </div>-->
+                            
+                            <div class="login-remember-me">
+                                <input type="checkbox" id="check-me">
+                                <label for="check-me">
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    Remember me
+                                </label>
                             </div>
 
                             <button type="submit">GO</button>
                         </form>
 
-                        <a href="#" title="Forgot password" class="forgot-pwd">Forgot your password?</a>                                       
+                        <!--<a href="#" title="Forgot password" class="forgot-pwd">Forgot your password?</a>-->                                       
                     </div>
 
                     <div class="forgot-password-form">

@@ -209,6 +209,17 @@ $(document).ready(function () {
 //        chartinline.invalidateSize();
     });
 
+//    AmCharts.addInitHandler(function (chartcollapsibleOrg) {
+//        // set base values
+//        var categoryWidth = 180;
+//
+//        // calculate bottom margin based on number of data points
+//        var chartHeight = categoryWidth * chartcollapsibleOrg.dataProvider.length;
+//
+//        // set the value
+//        chartcollapsibleOrg.div.style.height = chartHeight + 'px';
+//
+//    }, ['serial']);
 
     var chartcollapsibleOrg;
     function createAmChartOrg(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree) {
@@ -495,7 +506,15 @@ $(document).ready(function () {
                 }, 1000 //Delay for chart to appear on screen, after div expands
                 );
     }
+    function handleRender() {
+        var categoryWidth = 100;
 
+        // calculate bottom margin based on number of data points
+        var chartHeight = categoryWidth * chartcollapsibleOrg.dataProvider.length;
+
+        // set the value
+        chartcollapsibleOrg.div.style.height = chartHeight + 'px';
+    }
     var chartcollapsibleAvg;
     function createAmChartAvg(chartAvgId) {
         chartcollapsibleAvg = AmCharts.makeChart("chartdivavg",
@@ -575,6 +594,7 @@ $(document).ready(function () {
                     ]
                 }, 1000
                 );
+        chartcollapsibleAvg.addListener('dataUpdated', handleRender);
     }
 
     var chartMap = new Object();
@@ -1051,7 +1071,24 @@ $('.tiSelectionHeader button').on('click', function () {
     }
 });
 
+$('.tiSelectTeamsList select').on('change', function () {
+     var i = $(this).parent('div').index();
+       var val = $(this).children('option:selected').text();
+       var id = $(this).val();
+       $('.tiPeopleTeamItem:last').find('.tiPeopleTeamItemValues div:eq(' + i + ')').children('span').text(val);
+       $('.tiPeopleTeamItem:last').find('.tiPeopleTeamItemValues div:eq(' + i + ')').children('span').attr('data-id', id);
 
+       var enable = true;
+       $('.tiPeopleTeamItem:last .tiPeopleTeamItemValues div').each(function (index, el) {
+               if ($(el).children('span').text().length === 0) {
+                       enable = false;
+               }
+       });
+
+       if (enable && ($('.tiPeopleAddTeamsList').children().length < 5)) {
+               $('.tiPeopleAddMoreTeams button').removeAttr('disabled');
+       }
+});
 
 $('.initiative-submit-button button').on('click', function () {
     $('.tiSelected').hide('slow');
