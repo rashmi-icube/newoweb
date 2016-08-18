@@ -56,7 +56,7 @@
     </head>
 
     <body>
-        <div class="swiper-container">
+        <div class="container">
             <%@include file="header.jsp" %>
             <%                Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
                 try {
@@ -82,7 +82,7 @@
             </div>
             <% }%>
             <div class="swiper-pagination"></div>
-            <div class="wrapper swiper-wrapper">
+            <div class="wrapper">
                 <p id="progress-value">Question:
                     <span>
                         1/4
@@ -106,12 +106,12 @@
                 <%
                     if (len == 1 || i == 0) {
                 %>
-                <div class="swiper-slide" >
+                <!--<div class="swiper-slide">-->
                     <div class="wrapper survey-me question_div" style="display:block;">
                         <%
                         } else {
                         %>
-                        <div class="swiper-slide">
+                        <!--<div class="swiper-slide">-->
                             <div class="wrapper survey-me question_div">
                                 <%
                                     }
@@ -140,26 +140,26 @@
                                         </div>
                                     </div>
 
-<!--                                    <div class="submit-circle">
+                                    <div class="submit-circle">
                                         <button onclick="this.disabled = true;this.form.submit();" value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
                                         <div class="submit-tooltip">
                                             <span class="submit-title"><span>SUBMIT</span> this response</span>
                                             <span class="submit-response">Please select a response</span>
                                         </div>
-                                    </div>-->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <!--</div>-->
                         <%
                         } else {
                             if (len == 1 || i == 0) {
                         %>
-                        <div class="swiper-slide">
+                        <!--<div class="swiper-slide">-->
                             <div class="wrapper survey-we question_div" style="display:block;">
                                 <%
                                 } else {
                                 %>
-                                <div class="swiper-slide">
+                                <!--<div class="swiper-slide">-->
                                     <div class="wrapper survey-we question_div">
                                         <%
                                             }
@@ -343,16 +343,16 @@
                                                 </div>
                                             </div>
                                             <div style="clear: both;"></div>
-<!--                                            <div class="submit-circle">
+                                            <div class="submit-circle">
                                                 <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
                                                 <div class="submit-tooltip">
                                                     <span class="submit-title"><span>SUBMIT</span> this response</span>
                                                     <span class="submit-response">Please select a response</span>
                                                 </div>
-                                            </div>-->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                <!--</div>-->
                                 <%
                                             }
                                         }
@@ -361,9 +361,9 @@
                                     }
                                 %>
                             </div>
-                        </div>
+                        <!--</div>-->
                     </div>
-                </div>
+                <!--</div>-->
             </div>
         </div>
 
@@ -377,9 +377,7 @@
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.js"></script>-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.js"></script>-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>-->
     </body>
 </html>

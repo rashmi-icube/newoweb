@@ -35,8 +35,8 @@ $(document).ready(function () {
     $('.site-nav-next').on('click', function () {
         event.preventDefault();
         var $currentDiv = $('.question_div:visible');
-//        var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
-        var $nextDiv = $currentDiv.parent().next('.swiper-slide').find('div.question_div');
+        var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
+//        var $nextDiv = $currentDiv.parent().nextAll('.swiper-slide').find('div.question_div');
         $(this).addClass('active');
         $('body').css('overflow', 'hidden');
         $currentDiv.hide('slide', {direction: 'left'}, 200);
@@ -65,26 +65,27 @@ $(document).ready(function () {
         });
 //        clearRatings();
     });
-        $(function(){
-        var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-                paginationType: 'progress'
-//                onSlideChangeStart : function(swiper){
+//    $(function () {
+//        var swiper = new Swiper('.swiper-container', {
+//            pagination: '.swiper-pagination',
+//            mode: 'horizontal',
+//            paginationType: 'progress'
+//            onSlideNextStart: function () {
 //                event.preventDefault();
-//                        var $currentDiv = $('.question_div:visible');
-//                        var $nextDiv = $currentDiv.nextAll("div.div.question_div").eq(0);
-//                        $(this).addClass('active');
-//                        $('body').css('overflow', 'hidden');
-//                        $currentDiv.hide('slide', {direction: 'left'}, 200);
-//                        $nextDiv.show('slide', {direction: 'right'}, 500, function () {
-//                        $('.site-nav-next').removeClass('active');
-//                                searchIsotope();
-//                                showHideNavigation(this);
-//                                $('body').removeAttr('style');
-//                        });
-//                }
-        });
-    });
+//                var $currentDiv = $('.question_div:visible');
+//                var $nextDiv = $currentDiv.parent().next('.swiper-slide').find('div.question_div');
+//                $(this).addClass('active');
+//                $('body').css('overflow', 'hidden');
+//                $currentDiv.hide('slide', {direction: 'left'}, 200);
+//                $nextDiv.show('slide', {direction: 'right'}, 500, function () {
+//                    $('.site-nav-next').removeClass('active');
+//                    searchIsotope();
+//                    showHideNavigation(this);
+//                    $('body').removeAttr('style');
+//                });
+//            }
+//        });
+//    });
 
     /****************************************** SURVEY-ME ***********************************************/
 

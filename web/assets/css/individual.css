@@ -2892,6 +2892,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         top: 54px;
         color: #388E3C;
     }
+    /*IHCL*/
+    a.site-nav-prev{
+        padding-top: 16px;
+    }
     
     .panel button {
     width: 32px;
@@ -3315,7 +3319,9 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     /***************************** SURVEY_ME MOBILE ******************************/
 
-    .survey-me.wrapper { width: 90%; }
+    .survey-me.wrapper { 
+        width: 90%;
+    }
 
     .me-survey-box { padding-bottom: 15px; }
 
