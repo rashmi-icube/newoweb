@@ -181,15 +181,9 @@ $(document).ready(function () {
                 },
                 1000
                 );
-//        chartinline.addListener('dataUpdated', showInlineChart);
-        chartinline.write();
     }
 
-    function showInlineChart() {
-        chartinline.write(chartId);
-//        chartinline.handleResize();
-//        chartinline.invalidateSize();
-    }
+
     var inlineChartIdArray = [];
     $('.inline').each(function (i, e) {
         inlineChartIdArray.push($(e).attr('id'));
@@ -204,9 +198,6 @@ $(document).ready(function () {
         var stronglydisagree = $('#' + chartId).find('#stronglydisagree').val();
         createAmChartinline(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
         chartinline.write(chartId);
-//        chartinline.create();
-//        chartinline.handleResize();
-//        chartinline.invalidateSize();
     });
 
 //    AmCharts.addInitHandler(function (chartcollapsibleOrg) {
@@ -222,7 +213,7 @@ $(document).ready(function () {
 //    }, ['serial']);
 
     var chartcollapsibleOrg;
-    function createAmChartOrg(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree) {
+    function createAmChartOrg(chartId, legendId, stronglyagree, agree, neutral, disagree, stronglydisagree) {
         chartcollapsibleOrg = AmCharts.makeChart(chartId,
                 {
                     "type": "serial",
@@ -313,7 +304,7 @@ $(document).ready(function () {
                     "allLabels": [],
                     "balloon": {},
                     "legend": {
-                        "divId": "legend",
+                        "divId": legendId,
                         "enabled": true,
                         "position": "left",
 //                        "autoMargins": true,
@@ -516,8 +507,8 @@ $(document).ready(function () {
         chartcollapsibleOrg.div.style.height = chartHeight + 'px';
     }
     var chartcollapsibleAvg;
-    function createAmChartAvg(chartAvgId) {
-        chartcollapsibleAvg = AmCharts.makeChart("chartdivavg",
+    function createAmChartAvg(chartAvgId, average) {
+        chartcollapsibleAvg = AmCharts.makeChart(chartAvgId,
                 {
                     "type": "serial",
                     "categoryField": "category",
@@ -589,12 +580,14 @@ $(document).ready(function () {
                     "dataProvider": [
                         {
                             "category": "Average",
-                            "column-1": "1.7"
+                            "column-1": average
                         }
                     ]
                 }, 1000
                 );
+chartcollapsibleAvg.write();
         chartcollapsibleAvg.addListener('dataUpdated', handleRender);
+        
     }
 
     var chartMap = new Object();
@@ -604,25 +597,28 @@ $(document).ready(function () {
             $(this).text('Collapse').attr('title', 'Collapse');
             var chartId = $(this).parents('tr').next('tr').find('div').eq(1).attr('id');
             var chartAvgId = $(this).parents('tr').next('tr').find('div').eq(2).attr('id');
+            var legendId = $(this).parents('tr').next('tr').find('div').eq(3).attr('id');
+            var teamName = $('#' + chartId).find('#teamName').val();
             var stronglyagree = $('#' + chartId).find('#stronglyagree').val();
             var agree = $('#' + chartId).find('#agree').val();
             var neutral = $('#' + chartId).find('#neutral').val();
             var disagree = $('#' + chartId).find('#disagree').val();
             var stronglydisagree = $('#' + chartId).find('#stronglydisagree').val();
+            var average = $('#' + chartAvgId).find('#average').val();
             if (chartMap[chartId] === undefined && chartMap[chartAvgId] === undefined) {
-//                if (chartId.replace(/^\D+/g, '') > 8) {
-//                    createAmChartTeams(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
-//                    chartMap[chartId] = chartcollapsibleTeam;
-//                } else {
-                createAmChartOrg(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
-                chartMap[chartId] = chartcollapsibleOrg;
-//                chartcollapsibleOrg.write(chartId);
-//                }
-                createAmChartAvg(chartAvgId);
+                if (teamName !== 'org') {
+                    createAmChartTeams(chartId, stronglyagree, agree, neutral, disagree, stronglydisagree);
+                    chartMap[chartId] = chartcollapsibleTeam;
+                } else {
+                    createAmChartOrg(chartId, legendId, stronglyagree, agree, neutral, disagree, stronglydisagree);
+                    chartMap[chartId] = chartcollapsibleOrg;
+                    chartcollapsibleOrg.write(chartId);
+                }
+                createAmChartAvg(chartAvgId, average);
                 chartMap[chartAvgId] = chartcollapsibleAvg;
             } else {
                 chartMap[chartId].invalidateSize();
-//                chartMap[chartAvgId].invalidateSize();
+                chartMap[chartAvgId].invalidateSize();
             }
         } else {
             $(this).text('View details').attr('title', 'View details');
