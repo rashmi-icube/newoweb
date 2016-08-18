@@ -15,8 +15,7 @@
 <%@page import="com.owen.web.Util"%>
 <%
     String moduleName = "survey";
-    String subModuleName = "";
-
+    String subModuleName = "ihcl";
 %>
 <html lang="en">
     <head>
@@ -56,6 +55,9 @@
     </head>
 
     <body>
+        <input type="hidden" id="moduleName" value="<%= moduleName%>" />
+        <input type="hidden" id="subModuleName" value="<%= subModuleName%>" />
+
         <div class="container">
             <%@include file="header.jsp" %>
             <%                Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
@@ -76,16 +78,16 @@
             </div>
             <% } else if (len > 1) { %>        
             <div class="site-nav survey">
-                <a class="site-nav-prev" href="#" title="Prev">&#x276F;</a>
-                <a class="site-nav-next" href="#" title="Next">&#x276F;</a>
+                <a class="site-nav-prev" href="#" title="Prev" onclick="this.disabled = true;">&#x276F;</a>
+                <a class="site-nav-next" href="#" title="Next" onclick="this.disabled = true;">&#x276F;</a>
                 <a class="site-nav-dash" href="/ihcl/thankyou.jsp" title="Go to Thank You" style="display:none;">&#x276F;</a>
             </div>
             <% }%>
             <div class="swiper-pagination"></div>
             <div class="wrapper">
-                <p id="progress-value">Question:
+                <p id="progress-value">
                     <span>
-                        1/4
+                        <!--                        1/4-->
                     </span>
                 </p>
                 <input type="hidden" id="total_ques" value="<%= len%>" />
@@ -107,262 +109,262 @@
                     if (len == 1 || i == 0) {
                 %>
                 <!--<div class="swiper-slide">-->
-                    <div class="wrapper survey-me question_div" style="display:block;">
+                <div class="wrapper survey-me question_div" style="display:block;">
+                    <%
+                    } else {
+                    %>
+                    <!--<div class="swiper-slide">-->
+                    <div class="wrapper survey-me question_div">
+                        <%
+                            }
+                        %>
+                        <input type="hidden" class="question_no" value="<%= i%>" />
+                        <div class="me-survey-box clearfix">
+                            <!--<h2></h2>-->
+                            <span class="question-title"><% out.print(ques.getQuestionText()); %></span>
+
+                            <div class="answer-box">
+                                <div class="agree-limit clearfix">
+                                    <span>Strongly disagree</span>
+                                    <span>Strongly agree</span>
+                                </div>
+
+                                <div class="answer-range" ques_id="<% out.print(ques.getQuestionId()); %>">
+                                    <div><button value="1">1</button></div>
+                                    <div><button value="2">2</button></div>
+                                    <div><button value="3">3</button></div>
+                                    <div><button value="4">4</button></div>
+                                    <div><button value="5">5</button></div>
+                                </div>
+
+                                <div class="feedback-comment" style="display: none;">
+                                    <input type="text" id="feedback_<% out.print(ques.getQuestionId()); %>" name="feedback-comment" placeholder="Enter your feedback here">
+                                </div>
+                            </div>
+
+                            <div class="submit-circle">
+                                <button onclick="this.disabled = true;this.form.submit();" value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
+                                <div class="submit-tooltip">
+                                    <span class="submit-title"><span>SUBMIT</span> this response</span>
+                                    <span class="submit-response">Please select a response</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</div>-->
+                    <%
+                    } else {
+                        if (len == 1 || i == 0) {
+                    %>
+                    <!--<div class="swiper-slide">-->
+                    <div class="wrapper survey-we question_div" style="display:block;">
                         <%
                         } else {
                         %>
                         <!--<div class="swiper-slide">-->
-                            <div class="wrapper survey-me question_div">
-                                <%
-                                    }
-                                %>
-                                <input type="hidden" class="question_no" value="<%= i%>" />
-                                <div class="me-survey-box clearfix">
-                                    <!--<h2></h2>-->
-                                    <span class="question-title"><% out.print(ques.getQuestionText()); %></span>
+                        <div class="wrapper survey-we question_div">
+                            <%
+                                }
+                            %>
+                            <input type="hidden" class="question_no" value="<%= i%>" />
+                            <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
+                            <!--<h2></h2>-->
+                            <h3><%= ques.getQuestionText()%></h3>
+                            <div class="people-list-box clearfix">
+                                <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation  by the number of stars</p>
 
-                                    <div class="answer-box">
-                                        <div class="agree-limit clearfix">
-                                            <span>Strongly disagree</span>
-                                            <span>Strongly agree</span>
+                                <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
+                                <button>&#x1F50D;</button>
+                                <div class="mobile-filter-row">
+                                    <div>
+                                        <div class="header">
+                                            <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
+                                            <span>Filter</span>
+                                            <div>
+                                                <button id="getMobileSmartList" onclick="fetchSmartData(<%= ques.getQuestionId()%>);">Smart</button>
+                                                <button id="chooseMobileFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter__icon_tick.png" alt="Smart List"></button> 
+                                            </div>
                                         </div>
-
-                                        <div class="answer-range" ques_id="<% out.print(ques.getQuestionId()); %>">
-                                            <div><button value="1">1</button></div>
-                                            <div><button value="2">2</button></div>
-                                            <div><button value="3">3</button></div>
-                                            <div><button value="4">4</button></div>
-                                            <div><button value="5">5</button></div>
-                                        </div>
-
-                                        <div class="feedback-comment" style="display: none;">
-                                            <input type="text" id="feedback_<% out.print(ques.getQuestionId()); %>" name="feedback-comment" placeholder="Enter your feedback here">
-                                        </div>
-                                    </div>
-
-                                    <div class="submit-circle">
-                                        <button onclick="this.disabled = true;this.form.submit();" value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
-                                        <div class="submit-tooltip">
-                                            <span class="submit-title"><span>SUBMIT</span> this response</span>
-                                            <span class="submit-response">Please select a response</span>
+                                        <div class="filter-menu" ques_id="<%= ques.getQuestionId()%>">
+                                            <ul>
+                                                <li>
+                                                    <span>Geography</span>
+                                                    <ul>
+                                                        <%
+                                                            FilterList fl = new FilterList();
+                                                            Filter geoFilter = fl.getFilterValues(comid, Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
+                                                            Map<Integer, String> geoitem = geoFilter.getFilterValues();
+                                                            for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
+                                                        <li>
+                                                            <input type="radio" id="filterGeography_<%=entry.getKey()%>" name="filter-geography" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>">
+                                                            <label for="filterGeography_<%=entry.getKey()%>"><%=entry.getValue()%></label>
+                                                        </li>    
+                                                        <% } %>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <span>Function</span>
+                                                    <ul>
+                                                        <%
+                                                            Filter funFilter = fl.getFilterValues(comid, Constant.INITIATIVES_FUNCTION_FILTER_NAME);
+                                                            Map<Integer, String> funitem = funFilter.getFilterValues();
+                                                            for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
+                                                        <li>
+                                                            <input type="radio" id="filterFunction_<%=entry.getKey()%>" name="filter-function" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>">
+                                                            <label for="filterFunction_<%=entry.getKey()%>"><%=entry.getValue()%></label>
+                                                        </li>
+                                                        <% } %>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <span>Level</span>
+                                                    <ul>
+                                                        <%
+                                                            Filter levelFilter = fl.getFilterValues(comid, Constant.INITIATIVES_LEVEL_FILTER_NAME);
+                                                            Map<Integer, String> levelitem = levelFilter.getFilterValues();
+                                                            for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
+                                                        <li>
+                                                            <input type="radio" id="filterLevel_<%=entry.getKey()%>" name="filter-level" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>">
+                                                            <label for="filterLevel_<%=entry.getKey()%>"><%=entry.getValue()%></label>
+                                                        </li>
+                                                        <% }%>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <!--</div>-->
-                        <%
-                        } else {
-                            if (len == 1 || i == 0) {
-                        %>
-                        <!--<div class="swiper-slide">-->
-                            <div class="wrapper survey-we question_div" style="display:block;">
-                                <%
-                                } else {
-                                %>
-                                <!--<div class="swiper-slide">-->
-                                    <div class="wrapper survey-we question_div">
+
+                                <div class="no-key-selected-mobile" id="count-mobile-<%= ques.getQuestionId()%>">
+                                    <p>View appreciated: </p>
+                                    <span></span>
+                                    <p style="margin-left: 20px;">&#x276F;</p>
+                                    <div style="display: none;">
+                                        <div class="header">
+                                            <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
+                                            <span>You have appreciated</span>
+                                        </div>
+                                        <div class="list-of-selected-people-popup-mobile clearfix" id="list-mobile-<%= ques.getQuestionId()%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-row">
+                                    <div class="get-filter-list">
+                                        <button id="getFilteredList">Filter &#x25BE;</button>
+                                        <div class="filter-menu" ques_id="<%= ques.getQuestionId()%>">
+                                            <ul>
+                                                <li>
+                                                    <span>Geography <span>&#x203A;</span></span>
+                                                    <ul><%
+                                                                    for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
+                                                        <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>"><%=entry.getValue()%></span></li>
+                                                            <% } %>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <span>Function <span>&#x203A;</span></span>
+                                                    <ul>
+                                                        <%
+                                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
+                                                        <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
+                                                            <% } %>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <span>Level <span>&#x203A;</span></span>
+                                                    <ul>
+                                                        <%
+                                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
+                                                        <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
+                                                            <% }%>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button id="getSmartList" onclick="fetchSmartData(<%= ques.getQuestionId()%>);">Smart</button>
+                                    <input type="hidden" id="relation_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
+                                    <div class="three-filters-group" id="three-filters-group-<%= ques.getQuestionId()%>">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
+                                    <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
+
+                                    <div class="individuals-grid" id="scroll-for-individuals-grid">
+                                        <%
+                                            List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
+                                            System.out.println("MAP LIST:" + mapSmartList);
+                                            for (int incr = 0; incr < mapSmartList.size(); incr++) {
+                                                Employee employee = mapSmartList.get(incr);
+                                                if (empid == employee.getEmployeeId()) {
+                                                    continue;
+                                                }
+                                                //employee.g
+%>
+                                        <div class="individual-cell clearfix">
+                                            <button class="get-person-info">
+                                                <span>i</span>
+                                            </button>
+                                            <div class="individual-card">
+                                                <div class="front-card">
+                                                    <div style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=employee.getCompanyId()%>&eid=<%=employee.getEmployeeId()%>');" class="person-pic"></div>
+                                                </div>
+                                                <div class="back-card">
+                                                    <ul>
+                                                        <li><%=employee.getZone()%></li>
+                                                        <li><%=employee.getFunction()%></li>
+                                                        <li><%=employee.getPosition()%></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="individual-cell-name"><%= employee.getFirstName() + " " + employee.getLastName()%></span>
+                                            <div class="star-rating-row clearfix">
+                                                <div class="rating-stars">
+                                                    <input type="hidden" id="quesId" value="<%= ques.getQuestionId()%>" />
+                                                    <span class="rating-star"></span>
+                                                    <span class="rating-star"></span>
+                                                    <span class="rating-star"></span>
+                                                    <span class="rating-star"></span>
+                                                    <span class="rating-star"></span>
+                                                </div>
+                                                <span class="star-rating-total" emp_id="<%= employee.getEmployeeId()%>" ques_id="<%= ques.getQuestionId()%>" id="rat_<%= ques.getQuestionId() + "_" + employee.getEmployeeId()%>"></span>
+                                            </div>
+                                        </div>
                                         <%
                                             }
                                         %>
-                                        <input type="hidden" class="question_no" value="<%= i%>" />
-                                        <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
-                                        <!--<h2></h2>-->
-                                        <h3><%= ques.getQuestionText()%></h3>
-                                        <div class="people-list-box clearfix">
-                                            <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation  by the number of stars</p>
-
-                                            <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
-                                            <button>&#x1F50D;</button>
-                                            <div class="mobile-filter-row">
-                                                <div>
-                                                    <div class="header">
-                                                        <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
-                                                        <span>Filter</span>
-                                                        <div>
-                                                            <button id="getMobileSmartList" onclick="fetchSmartData(<%= ques.getQuestionId()%>);">Smart</button>
-                                                            <button id="chooseMobileFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter__icon_tick.png" alt="Smart List"></button> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="filter-menu" ques_id="<%= ques.getQuestionId()%>">
-                                                        <ul>
-                                                            <li>
-                                                                <span>Geography</span>
-                                                                <ul>
-                                                                    <%
-                                                                        FilterList fl = new FilterList();
-                                                                        Filter geoFilter = fl.getFilterValues(comid, Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
-                                                                        Map<Integer, String> geoitem = geoFilter.getFilterValues();
-                                                                        for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
-                                                                    <li>
-                                                                        <input type="radio" id="filterGeography_<%=entry.getKey()%>" name="filter-geography" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>">
-                                                                        <label for="filterGeography_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                                                    </li>    
-                                                                    <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Function</span>
-                                                                <ul>
-                                                                    <%
-                                                                        Filter funFilter = fl.getFilterValues(comid, Constant.INITIATIVES_FUNCTION_FILTER_NAME);
-                                                                        Map<Integer, String> funitem = funFilter.getFilterValues();
-                                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
-                                                                    <li>
-                                                                        <input type="radio" id="filterFunction_<%=entry.getKey()%>" name="filter-function" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>">
-                                                                        <label for="filterFunction_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                                                    </li>
-                                                                    <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Level</span>
-                                                                <ul>
-                                                                    <%
-                                                                        Filter levelFilter = fl.getFilterValues(comid, Constant.INITIATIVES_LEVEL_FILTER_NAME);
-                                                                        Map<Integer, String> levelitem = levelFilter.getFilterValues();
-                                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
-                                                                    <li>
-                                                                        <input type="radio" id="filterLevel_<%=entry.getKey()%>" name="filter-level" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>">
-                                                                        <label for="filterLevel_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                                                    </li>
-                                                                    <% }%>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="no-key-selected-mobile" id="count-mobile-<%= ques.getQuestionId()%>">
-                                                <p>View appreciated: </p>
-                                                <span></span>
-                                                <p style="margin-left: 20px;">&#x276F;</p>
-                                                <div style="display: none;">
-                                                    <div class="header">
-                                                        <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
-                                                        <span>You have appreciated</span>
-                                                    </div>
-                                                    <div class="list-of-selected-people-popup-mobile clearfix" id="list-mobile-<%= ques.getQuestionId()%>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="filter-row">
-                                                <div class="get-filter-list">
-                                                    <button id="getFilteredList">Filter &#x25BE;</button>
-                                                    <div class="filter-menu" ques_id="<%= ques.getQuestionId()%>">
-                                                        <ul>
-                                                            <li>
-                                                                <span>Geography <span>&#x203A;</span></span>
-                                                                <ul><%
-                                                                    for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
-                                                                    <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>"><%=entry.getValue()%></span></li>
-                                                                        <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Function <span>&#x203A;</span></span>
-                                                                <ul>
-                                                                    <%
-                                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
-                                                                    <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
-                                                                        <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Level <span>&#x203A;</span></span>
-                                                                <ul>
-                                                                    <%
-                                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
-                                                                    <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
-                                                                        <% }%>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <button id="getSmartList" onclick="fetchSmartData(<%= ques.getQuestionId()%>);">Smart</button>
-                                                <input type="hidden" id="relation_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
-                                                <div class="three-filters-group" id="three-filters-group-<%= ques.getQuestionId()%>">
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
-                                                </div>
-                                            </div>
-                                            <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
-                                                <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
-
-                                                <div class="individuals-grid" id="scroll-for-individuals-grid">
-                                                    <%
-                                                        List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
-                                                        System.out.println("MAP LIST:" + mapSmartList);
-                                                        for (int incr = 0; incr < mapSmartList.size(); incr++) {
-                                                            Employee employee = mapSmartList.get(incr);
-                                                            if (empid == employee.getEmployeeId()) {
-                                                                continue;
-                                                            }
-                                                            //employee.g
-                                                    %>
-                                                    <div class="individual-cell clearfix">
-                                                        <button class="get-person-info">
-                                                            <span>i</span>
-                                                        </button>
-                                                        <div class="individual-card">
-                                                            <div class="front-card">
-                                                                <div style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=employee.getCompanyId()%>&eid=<%=employee.getEmployeeId()%>');" class="person-pic"></div>
-                                                            </div>
-                                                            <div class="back-card">
-                                                                <ul>
-                                                                    <li><%=employee.getZone()%></li>
-                                                                    <li><%=employee.getFunction()%></li>
-                                                                    <li><%=employee.getPosition()%></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <span class="individual-cell-name"><%= employee.getFirstName() + " " + employee.getLastName()%></span>
-                                                        <div class="star-rating-row clearfix">
-                                                            <div class="rating-stars">
-                                                                <input type="hidden" id="quesId" value="<%= ques.getQuestionId()%>" />
-                                                                <span class="rating-star"></span>
-                                                                <span class="rating-star"></span>
-                                                                <span class="rating-star"></span>
-                                                                <span class="rating-star"></span>
-                                                                <span class="rating-star"></span>
-                                                            </div>
-                                                            <span class="star-rating-total" emp_id="<%= employee.getEmployeeId()%>" ques_id="<%= ques.getQuestionId()%>" id="rat_<%= ques.getQuestionId() + "_" + employee.getEmployeeId()%>"></span>
-                                                        </div>
-                                                    </div>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </div>
-                                            </div>
-                                            <div class="no-key-selected" id="count-desktop-<%= ques.getQuestionId()%>">
-                                                <p>Selected: </p>
-                                                <span></span>
-                                                <div class="list-of-people-selected" id="list-desktop-<%= ques.getQuestionId()%>">
-                                                </div>
-                                            </div>
-                                            <div style="clear: both;"></div>
-                                            <div class="submit-circle">
-                                                <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
-                                                <div class="submit-tooltip">
-                                                    <span class="submit-title"><span>SUBMIT</span> this response</span>
-                                                    <span class="submit-response">Please select a response</span>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                <!--</div>-->
-                                <%
-                                            }
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                %>
+                                </div>
+                                <div class="no-key-selected" id="count-desktop-<%= ques.getQuestionId()%>">
+                                    <p>Selected: </p>
+                                    <span></span>
+                                    <div class="list-of-people-selected" id="list-desktop-<%= ques.getQuestionId()%>">
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div class="submit-circle">
+                                    <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
+                                    <div class="submit-tooltip">
+                                        <span class="submit-title"><span>SUBMIT</span> this response</span>
+                                        <span class="submit-response">Please select a response</span>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
                         <!--</div>-->
+                        <%
+                                    }
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        %>
                     </div>
+                    <!--</div>-->
+                </div>
                 <!--</div>-->
             </div>
         </div>
@@ -377,7 +379,7 @@
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>-->
+        <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>-->
     </body>
 </html>

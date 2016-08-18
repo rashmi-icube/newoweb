@@ -1,4 +1,6 @@
+var count = 0;
 $(document).ready(function () {
+    showProgressValue(true);
     $('.site-nav-prev').on('click', function () {
         event.preventDefault();
         var $currentDiv = $('.question_div:visible');
@@ -29,9 +31,8 @@ $(document).ready(function () {
                 });
             }
         });
-//        clearRatings();
+        showProgressValue(false);
     });
-
     $('.site-nav-next').on('click', function () {
         event.preventDefault();
         var $currentDiv = $('.question_div:visible');
@@ -64,6 +65,7 @@ $(document).ready(function () {
             }
         });
 //        clearRatings();
+        showProgressValue(true);
     });
 //    $(function () {
 //        var swiper = new Swiper('.swiper-container', {
@@ -212,6 +214,8 @@ $(document).ready(function () {
     }
 
     if (document.documentElement.clientWidth <= 480) {
+
+
         $('.search-colleague').attr('placeholder', 'Search for a colleague');
 
         $('.mobile-filter-row').on('click', function (event) {
@@ -265,7 +269,7 @@ $(document).ready(function () {
     $('.survey-we .submit-circle button').on('click', function (event) {
         var quesId = $(this).parent().parent().find('#quesId')[0].value;
         var count = $('#list-mobile-' + quesId + ' p').length;
-        if(count > 0){
+        if (count > 0) {
             submitWeData(this);
         } else {
             $('.submit-tooltip').children('.submit-title').hide();
@@ -769,4 +773,17 @@ function submitWeData(obj) {
             }
         }
     });
+}
+
+function showProgressValue(isPrev) {
+    if ($('#subModuleName').val() === "ihcl") {
+        var totalQuestions = $('#total_ques').val();
+        $('#progress-value span').text('');
+        if (isPrev) {
+            ++count;
+        } else {
+            --count;
+        }
+        $('#progress-value span').text('Question: ' + count + '/' + totalQuestions);
+    }
 }
