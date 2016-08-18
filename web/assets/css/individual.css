@@ -3877,7 +3877,54 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         -o-transform-origin: left top;
         transform-origin: left top;
     }
+
+    .submit-popup{
+        display: none;
+        position: fixed;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        background: #ffffff;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        text-align: left;
+    }
     
+    .submit-popup h2{
+        font: 16px 'Open Sans Semibold', 'Open Sans';
+        text-align: left;
+        padding: 24px;
+        padding-bottom: 20px;
+        margin: 0;
+    }
+    
+    .submit-popup-warning-text p{
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 20px;
+        font: 14px 'Open Sans Light', 'Open Sans';
+        /*text-align: center;*/
+    }
+    
+    .submit-popup-warning-text p span{
+        font: 14px 'Open Sans Regular', 'Open Sans';
+        text-align: center;
+        color: #4caf50;
+    }
+    
+    .submit-popup-buttons{
+        height: 52px;
+        padding: 0 8px;
+    }
+    
+    .submit-popup-buttons button{
+        color: #4caf50;
+        margin: 0 2px;
+        padding: 8px;
+        float: right;
+        font: 16px 'Open Sans SemiBold', 'Open Sans';
+    }
 }
 
 @media screen and (max-width: 359px) {

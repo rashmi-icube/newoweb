@@ -149,6 +149,20 @@
                                     <span class="submit-response">Please select a response</span>
                                 </div>
                             </div>
+                                
+                            <div class="submit-popup">
+                                   <h2>Submit your responses ?</h2>
+                                   <div class="submit-popup-warning-text">
+                                       <p>You have unanswered questions
+                                           <!--<span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>-->
+                                       </p>
+                                       <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
+                                   </div>
+                                   <div class="submit-popup-buttons">
+                                       <button>YES</button>
+                                       <button>NO</button>
+                                   </div>
+                               </div>
                         </div>
                     </div>
                     <!--</div>-->
@@ -352,6 +366,20 @@
                                         <span class="submit-response">Please select a response</span>
                                     </div>
                                 </div>
+                                    
+                                <div class="submit-popup">
+                                   <h2>Submit your responses ?</h2>
+                                   <div class="submit-popup-warning-text">
+                                       <p>You have unanswered questions
+                                           <!--<span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>-->
+                                       </p>
+                                       <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
+                                   </div>
+                                   <div class="submit-popup-buttons">
+                                       <button>YES</button>
+                                       <button>NO</button>
+                                   </div>
+                               </div>
                             </div>
                         </div>
                         <!--</div>-->
