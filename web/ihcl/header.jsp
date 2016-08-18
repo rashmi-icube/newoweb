@@ -23,14 +23,10 @@
         firstTimeLogin = (Boolean) session.getAttribute("firstTimeLogin");
     }
     if (empid == 0 || comid == 0) {
-        response.sendRedirect("../login.jsp");
+        response.sendRedirect("index.jsp");
         return;
     }
-    IndividualDashboardHelper iDashboardHeader = (IndividualDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.IndividualDashboardHelper");
-    if (moduleName.equals("dashboard")) {
-        iDashboardHeader.updateNotificationTimestamp(comid, empid);
-    }
-    int notCount = iDashboardHeader.getNotificationsCount(comid, empid);
+    
 %>
 
 <header>
