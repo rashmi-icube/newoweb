@@ -18,6 +18,7 @@
             session.setAttribute("ename", emp.getFirstName() + " " + (emp.getLastName() != null ? emp.getLastName() : ""));
             session.setAttribute("esname", emp.getFirstName().substring(0, 1).toUpperCase() + (emp.getLastName() != null ? emp.getLastName().substring(0, 1).toUpperCase() : ""));
             session.setAttribute( "firstTimeLogin", emp.isFirstTimeLogin());
+            session.setAttribute( "role", roleid );
             response.sendRedirect("survey.jsp");
         } catch (Exception ex) {
             ex.printStackTrace();

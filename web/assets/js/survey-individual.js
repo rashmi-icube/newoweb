@@ -256,7 +256,7 @@ $(document).ready(function () {
                 $('.individuals-box').css('max-height', '+=400px');
             }
         });
-        
+
 //        $('.swiper-button-prev').on('click', function () {
 //            showProgressValue(false);
 //        });
@@ -599,6 +599,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             }
         },
         success: function (resp) {
+            console.log("inside the ajax");
             $('.overlay_form').hide();
             $(obj).siblings('.individuals-box').html(resp);
             fetchAndPopulateRating();
@@ -608,6 +609,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             $('.filter-row .filter-menu li li span').removeAttr('style');
             $('.mobile-filter-row').removeClass('chosen');
             $('.mobile-filter-row .filter-menu input').prop('checked', false);
+            console.log("after the success of ajax");
         }
     });
 }
@@ -636,6 +638,7 @@ function fetchFilteredData(questionId) {
         data: filterData,
         dataType: 'HTML',
         success: function (resp) {
+            console.log("")
             $('.overlay_form').hide();
             jQuery('#we_grid_' + questionId).html(resp);
             fetchAndPopulateRating();
@@ -666,12 +669,14 @@ function fetchFilteredDataMobile(questionId) {
         data: filterData,
         dataType: 'HTML',
         success: function (resp) {
+            console.log("inside ajax");
             $('.overlay_form').hide();
             $('#we_grid_' + questionId).html(resp);
             fetchAndPopulateRating();
             searchIsotope();
             $('.mobile-filter-row>div').hide('200');
             $('.mobile-filter-row').addClass('chosen');
+            console.log("after ajax");
         }
     });
 }
@@ -769,7 +774,11 @@ function submitWeData(obj) {
                 //jQuery.data(document.body, "emp_rating", []);
                 //clearRatings();
                 $currentDiv.remove();
-                window.location.href = 'dashboard.jsp';
+                if ($('#subModuleName').val() === "ihcl") {
+                    window.location.href = 'thankyou.jsp';
+                } else {
+                    window.location.href = 'dashboard.jsp';
+                }
             }
         }
     });
