@@ -1,4 +1,4 @@
-var count = 0;
+var countProgress = 0;
 $(document).ready(function () {
     showProgressValue(true);
     $('.site-nav-prev').on('click', function () {
@@ -31,7 +31,6 @@ $(document).ready(function () {
                 });
             }
         });
-        showProgressValue(false);
     });
     $('.site-nav-next').on('click', function () {
         event.preventDefault();
@@ -65,29 +64,22 @@ $(document).ready(function () {
             }
         });
 //        clearRatings();
-        showProgressValue(true);
     });
-//    $(function () {
-//        var swiper = new Swiper('.swiper-container', {
-//            pagination: '.swiper-pagination',
-//            mode: 'horizontal',
-//            paginationType: 'progress'
-//            onSlideNextStart: function () {
-//                event.preventDefault();
-//                var $currentDiv = $('.question_div:visible');
-//                var $nextDiv = $currentDiv.parent().next('.swiper-slide').find('div.question_div');
-//                $(this).addClass('active');
-//                $('body').css('overflow', 'hidden');
-//                $currentDiv.hide('slide', {direction: 'left'}, 200);
-//                $nextDiv.show('slide', {direction: 'right'}, 500, function () {
-//                    $('.site-nav-next').removeClass('active');
-//                    searchIsotope();
-//                    showHideNavigation(this);
-//                    $('body').removeAttr('style');
-//                });
-//            }
-//        });
-//    });
+    $(function () {
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationType: 'progress',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+//            autoHeight: 'true',
+            onSlideNextStart: function () {
+                showProgressValue(true);
+            },
+            onSlidePrevStart: function () {
+                showProgressValue(false);
+            }
+        });
+    });
 
     /****************************************** SURVEY-ME ***********************************************/
 
@@ -264,6 +256,14 @@ $(document).ready(function () {
                 $('.individuals-box').css('max-height', '+=400px');
             }
         });
+        
+//        $('.swiper-button-prev').on('click', function () {
+//            showProgressValue(false);
+//        });
+//        
+//        $('.swiper-button-next').on('click', function () {
+//            showProgressValue(true);
+//        });
     }
 
     $('.survey-we .submit-circle button').on('click', function (event) {
@@ -780,10 +780,10 @@ function showProgressValue(isPrev) {
         var totalQuestions = $('#total_ques').val();
         $('#progress-value span').text('');
         if (isPrev) {
-            ++count;
+            ++countProgress;
         } else {
-            --count;
+            --countProgress;
         }
-        $('#progress-value span').text('Question: ' + count + '/' + totalQuestions);
+        $('#progress-value span').text('Question: ' + countProgress + '/' + totalQuestions);
     }
 }

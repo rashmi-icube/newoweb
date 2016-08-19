@@ -58,7 +58,7 @@
         <input type="hidden" id="moduleName" value="<%= moduleName%>" />
         <input type="hidden" id="subModuleName" value="<%= subModuleName%>" />
 
-        <div class="container">
+        <div class="swiper-container">
             <%@include file="header.jsp" %>
             <%                Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
                 try {
@@ -69,27 +69,30 @@
                     //len = 0;
                     if (len == 0) { %>
             <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
-            <div class="site-nav survey">
+<!--            <div class="site-nav survey">
                 <a class="site-nav-dash1" href="/ihcl/thankyou.jsp" title="Go to Thank You" >&#x276F;</a>
-            </div>
+            </div>-->
             <% } else if (len == 1) { %>
-            <div class="site-nav survey">
+<!--            <div class="site-nav survey">
                 <a class="site-nav-dash1" href="/ihcl/thankyou.jsp" title="Go to Thank You" >&#x276F;</a>
-            </div>
+            </div>-->
             <% } else if (len > 1) { %>        
-            <div class="site-nav survey">
+<!--            <div class="site-nav survey">
                 <a class="site-nav-prev" href="#" title="Prev" onclick="this.disabled = true;">&#x276F;</a>
                 <a class="site-nav-next" href="#" title="Next" onclick="this.disabled = true;">&#x276F;</a>
                 <a class="site-nav-dash" href="/ihcl/thankyou.jsp" title="Go to Thank You" style="display:none;">&#x276F;</a>
-            </div>
+            </div>-->
             <% }%>
             <div class="swiper-pagination"></div>
-            <div class="wrapper">
+            <div class="swiper-button-next">&#x276F;</div>
+            <div class="swiper-button-prev">&#x276F;</div>
+            <div class="progress-fraction">
                 <p id="progress-value">
                     <span>
-                        <!--                        1/4-->
                     </span>
                 </p>
+            </div>
+            <div class="wrapper swiper-wrapper">
                 <input type="hidden" id="total_ques" value="<%= len%>" />
                 <input type="hidden" id="remaining_ques" value="<%= len%>" />
                 <%
@@ -108,12 +111,12 @@
                 <%
                     if (len == 1 || i == 0) {
                 %>
-                <!--<div class="swiper-slide">-->
+                <div class="swiper-slide">
                 <div class="wrapper survey-me question_div" style="display:block;">
                     <%
                     } else {
                     %>
-                    <!--<div class="swiper-slide">-->
+                    <div class="swiper-slide">
                     <div class="wrapper survey-me question_div">
                         <%
                             }
@@ -165,17 +168,17 @@
                                </div>
                         </div>
                     </div>
-                    <!--</div>-->
+                    </div>
                     <%
                     } else {
                         if (len == 1 || i == 0) {
                     %>
-                    <!--<div class="swiper-slide">-->
+                    <div class="swiper-slide">
                     <div class="wrapper survey-we question_div" style="display:block;">
                         <%
                         } else {
                         %>
-                        <!--<div class="swiper-slide">-->
+                        <div class="swiper-slide">
                         <div class="wrapper survey-we question_div">
                             <%
                                 }
@@ -382,7 +385,7 @@
                                </div>
                             </div>
                         </div>
-                        <!--</div>-->
+                        </div>
                         <%
                                     }
                                 }
@@ -391,9 +394,9 @@
                             }
                         %>
                     </div>
-                    <!--</div>-->
+                    </div>
                 </div>
-                <!--</div>-->
+                </div>
             </div>
         </div>
 
@@ -407,7 +410,7 @@
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
-        <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     </body>
 </html>
