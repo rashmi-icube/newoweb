@@ -3353,6 +3353,9 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     .survey-me.wrapper { 
         width: 90%;
+    }
+    .survey-me.wrapper.app{ 
+        width: 90%;
         display: block;
     }
 
@@ -3365,6 +3368,9 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     /***************************** SURVEY_WE MOBILE ******************************/
 
     .survey-we.wrapper {
+        width: 90% !important;
+    }
+    .survey-we.wrapper.app{
         width: 90% !important;
         display: block;
     }
@@ -4004,6 +4010,15 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         padding: 8px;
         float: right;
         font: 16px 'Open Sans SemiBold', 'Open Sans';
+    }
+    
+    .submit-circle.app{
+        float: right;
+        position: fixed;
+        text-decoration: none;
+        right: 0.5em;
+        top: 90%;
+        z-index: 10;
     }
 }
 
