@@ -257,7 +257,25 @@ $(document).ready(function () {
                 $('.individuals-box').css('max-height', '+=400px');
             }
         });
-
+        
+        if ($('#subModuleName').val() === "ihcl") {
+            
+            $('.submit-circle.app button').on('click', function () {
+                $('.black_overlay').show();
+                $('.submit-popup').show();
+            });
+            
+            //NO BUTTON    
+            $('.submit-popup-buttons button:nth-child(even)').on('click', function () {
+                $('.black_overlay').hide();
+                $('.submit-popup').hide();
+            });
+            
+            //YES BUTTON
+            $('.submit-popup-buttons button:nth-child(odd)').on('click', function () {
+                //SUBMIT ALL RESPONSES HERE
+            });
+        }
 //        $('.swiper-button-prev').on('click', function () {
 //            showProgressValue(false);
 //        });

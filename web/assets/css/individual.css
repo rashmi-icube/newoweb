@@ -3964,10 +3964,24 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         pointer-events: none;
     }
     
+    .black_overlay{
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index:21;
+        -moz-opacity: 0.5;
+        opacity:.50;
+        filter: alpha(opacity=50);
+    }
+    
     .submit-popup{
         display: none;
         position: fixed;
-        z-index: 20;
+        z-index: 100 !important;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -4012,11 +4026,15 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         font: 16px 'Open Sans SemiBold', 'Open Sans';
     }
     
+    .submit-popup-buttons button:nth-child(even){
+        color: #ff0000;
+    }
+    
     .submit-circle.app{
         float: right;
         position: fixed;
         text-decoration: none;
-        right: 0.5em;
+        right: 1em;
         top: 90%;
         z-index: 10;
     }
