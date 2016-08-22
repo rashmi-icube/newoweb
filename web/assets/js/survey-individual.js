@@ -1,6 +1,7 @@
 var countProgress = 0;
 $(document).ready(function () {
     showProgressValue(true);
+    showSubmitButton();
     $('.site-nav-prev').on('click', function () {
         event.preventDefault();
         var $currentDiv = $('.question_div:visible');
@@ -75,9 +76,11 @@ $(document).ready(function () {
 //            autoHeight: 'true',
             onSlideNextStart: function () {
                 showProgressValue(true);
+                showSubmitButton();
             },
             onSlidePrevStart: function () {
                 showProgressValue(false);
+                showSubmitButton();
             }
         });
     });
@@ -257,20 +260,20 @@ $(document).ready(function () {
                 $('.individuals-box').css('max-height', '+=400px');
             }
         });
-        
+
         if ($('#subModuleName').val() === "ihcl") {
-            
+
             $('.submit-circle.app button').on('click', function () {
                 $('.black_overlay').show();
                 $('.submit-popup').show();
             });
-            
+
             //NO BUTTON    
             $('.submit-popup-buttons button:nth-child(even)').on('click', function () {
                 $('.black_overlay').hide();
                 $('.submit-popup').hide();
             });
-            
+
             //YES BUTTON
             $('.submit-popup-buttons button:nth-child(odd)').on('click', function () {
                 //SUBMIT ALL RESPONSES HERE
@@ -813,5 +816,18 @@ function showProgressValue(isPrev) {
             --countProgress;
         }
         $('#progress-value span').text('Question: ' + countProgress + '/' + totalQuestions);
+    }
+}
+
+function showSubmitButton() {
+    if ($('#subModuleName').val() === "ihcl") {
+        var visibleQues = $('.swiper-slide-active:visible').find('.question_no').val();
+        var totalQuestions = $('#total_ques').val();
+        visibleQues = parseInt(visibleQues);
+        if (totalQuestions - 1 === visibleQues) {
+            $('.submit-circle.app').show();
+        } else {
+            $('.submit-circle.app').hide();
+        }
     }
 }
