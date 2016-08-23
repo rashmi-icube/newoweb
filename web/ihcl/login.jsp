@@ -1,6 +1,6 @@
 <%-- 
-    Document   : indexcordova
-    Created on : 2 Aug, 2016, 11:29:47 AM
+    Document   : login
+    Created on : 23 Aug, 2016, 11:16:47 AM
     Author     : adoshi
 --%>
 
@@ -39,90 +39,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="OWEN">
-        
-        <script language="JAVASCRIPT">
-<!--//
-var expdate = new Date ();
-expdate.setTime (expdate.getTime() + (24 * 60 * 60 * 1000*365)); // 1 yr from now 
-
-/* ####################### start set cookie  ####################### */
-
-function setCookie(name, value, expires, path, domain, secure) {  var thisCookie = name + "=" + escape(value) +
-      ((expires) ? "; expires=" + expires.toGMTString() : "") +
-      ((path) ? "; path=" + path : "") +
-      ((domain) ? "; domain=" + domain : "") +
-      ((secure) ? "; secure" : "");
-  document.cookie = thisCookie;
-}
-/* ####################### start show cookie ####################### */
-
-function showCookie(){
-
-alert(unescape(document.cookie));
-}
-/* ####################### start get cookie value ####################### */
-
-function getCookieVal (offset) {
-  var endstr = document.cookie.indexOf (";", offset);
-  if (endstr == -1)
-    endstr = document.cookie.length;
-  return unescape(document.cookie.substring(offset, endstr));
-/* ####################### end get cookie value ####################### */
-
-}
-/* ####################### start get cookie (name) ####################### */
-
-function GetCookie (name) {
-  var arg = name + "=";
-  var alen = arg.length;
-  var clen = document.cookie.length;
-  var i = 0;
-  while (i < clen) {
-    var j = i + alen;
-    if (document.cookie.substring(i, j) == arg)
-      return getCookieVal (j);
-    i = document.cookie.indexOf(" ", i) + 1;
-    if (i == 0) break; 
-  }
-  return null;
-}
-/* ####################### end get cookie (name) ####################### */
-
-/* ####################### start delete cookie ####################### */
-function DeleteCookie (name,path,domain) {
-  if (GetCookie(name)) {
-    document.cookie = name + "=" +
-      ((path) ? "; path=" + path : "") +
-      ((domain) ? "; domain=" + domain : "") +
-      "; expires=Thu, 01-Jan-70 00:00:01 GMT";
-  }
-}
-/* ####################### end of delete cookie ####################### */
-
-//-->
-</script>
-        
-        <script language="javascript">
-            function MyNamer(){
-                var now = new Date();
-                now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
-                var username = GetCookie("employeeID");
-                if ((!username)||(username==='null')){
-                    //username = prompt("Please enter your name:", "");
-                    window.location.replace("login.jsp");
-                }
-                setCookie("username", username, now);
-                if (username) {
-                    //document.write(username); 
-                    setCookie("username", username, now);
-                    window.location.replace("survey.jsp");
-                } 
-                else {
-                    window.location.replace("login.jsp");
-                }
-                //document.write("You didn\'t enter your name.");
-            }
-        </script>
     </head>
     <body>
         <div class="container">
@@ -130,9 +46,6 @@ function DeleteCookie (name,path,domain) {
                 <div class="wrapper">
                     <a id="Login-Logo">
                         <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
-                        <script language="javascript">
-                            MyNamer();
-                        </script>
                     </a>
                 </div>
             </header>

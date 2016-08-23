@@ -5,7 +5,16 @@
 <%@page import="org.icube.owen.employee.Employee"%>
 <%@page import="com.owen.web.Util"%>
 <%
-    String username = request.getParameter("username") + "@i-cube.in";
+    // Create cookie for Employee ID.      
+    Cookie firstName = new Cookie("employeeID",request.getParameter("username"));
+
+    // Set expiry date after 24 Hrs for the cookie.
+    firstName.setMaxAge(60 * 60 * 24);
+
+    // Add the cookie in the response header.
+    response.addCookie(firstName);
+
+    String username = request.getParameter("username") + "@icici.com";
     String password = request.getParameter("password");
     int roleid = request.getParameter("roleid") != null ? Util.getIntValue(request.getParameter("roleid")) : 0;
     if (username != null && !username.equals("") && password != null && !password.equals("")) {

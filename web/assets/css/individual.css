@@ -2374,6 +2374,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     display: none;
 }
 
+.progress-fraction{
+    display: none;
+}
+
 .swiper-button-prev, .swiper-button-next{
         display: none;
     }
@@ -2421,6 +2425,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
     
     .swiper-button-prev, .swiper-button-next{
+        display: none;
+    }
+    
+    .progress-fraction{
         display: none;
     }
 }
@@ -2579,6 +2587,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
     
     .swiper-button-prev, .swiper-button-next{
+        display: none;
+    }
+    
+    .progress-fraction{
         display: none;
     }
 }
@@ -2743,6 +2755,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
     
     .swiper-button-prev, .swiper-button-next{
+        display: none;
+    }
+    
+    .progress-fraction{
         display: none;
     }
 }
@@ -4037,6 +4053,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         right: 1em;
         top: 90%;
         z-index: 10;
+    }
+    
+    .progress-fraction{
+        display: block;
     }
 }
 
