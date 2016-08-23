@@ -11,8 +11,10 @@
 <%@page import="org.icube.owen.survey.QuestionType"%>
 <%@page import="java.util.List"%>
 <%@page import="org.json.JSONObject"%>
+<%@page import="org.json.JSONArray"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.owen.web.Util"%>
+
 <%
     String moduleName = "survey";
     String subModuleName = "ihcl";
@@ -65,9 +67,13 @@
                     List<Question> qList = question.getEmployeeQuestionList(comid, empid);
                     //List<Question> qList = new ArrayList<Question>();
                     System.out.println("LIST: " + qList);
+                    JSONArray questionList = new JSONArray(qList);
+                    System.out.println("JSONObject " + questionList);
+                    String jArray = questionList.toString();
                     int len = qList.size();
                     //len = 0;
                     if (len == 0) { %>
+
             <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
             <!--            <div class="site-nav survey">
                             <a class="site-nav-dash1" href="/ihcl/thankyou.jsp" title="Go to Thank You" >&#x276F;</a>
@@ -94,6 +100,7 @@
                 </p>
             </div>
             <div class="wrapper swiper-wrapper">
+                <input type="hidden" id="ques_list" value='<%= jArray%>'/>
                 <input type="hidden" id="total_ques" value="<%= len%>" />
                 <input type="hidden" id="remaining_ques" value="<%= len%>" />
                 <%
@@ -154,19 +161,19 @@
                                             </div>
                                         </div>-->
 
-<!--                                    <div class="submit-popup">
-                                        <h2>Submit your responses ?</h2>
-                                        <div class="submit-popup-warning-text">
-                                            <p>You have unanswered questions
-                                                <span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>
-                                            </p>
-                                            <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
-                                        </div>
-                                        <div class="submit-popup-buttons">
-                                            <button>YES</button>
-                                            <button>NO</button>
-                                        </div>
-                                    </div>-->
+                                    <!--                                    <div class="submit-popup">
+                                                                            <h2>Submit your responses ?</h2>
+                                                                            <div class="submit-popup-warning-text">
+                                                                                <p>You have unanswered questions
+                                                                                    <span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>
+                                                                                </p>
+                                                                                <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
+                                                                            </div>
+                                                                            <div class="submit-popup-buttons">
+                                                                                <button>YES</button>
+                                                                                <button>NO</button>
+                                                                            </div>
+                                                                        </div>-->
                                 </div>
                             </div>
                         </div>
@@ -274,7 +281,7 @@
                                                             <li>
                                                                 <span>Geography <span>&#x203A;</span></span>
                                                                 <ul><%
-                                                        for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
+                                                                    for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
                                                                     <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>"><%=entry.getValue()%></span></li>
                                                                         <% } %>
                                                                 </ul>
@@ -283,7 +290,7 @@
                                                                 <span>Function <span>&#x203A;</span></span>
                                                                 <ul>
                                                                     <%
-                                                            for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
+                                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
                                                                     <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
                                                                         <% } %>
                                                                 </ul>
@@ -292,7 +299,7 @@
                                                                 <span>Level <span>&#x203A;</span></span>
                                                                 <ul>
                                                                     <%
-                                                            for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
+                                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
                                                                     <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
                                                                         <% }%>
                                                                 </ul>
@@ -321,7 +328,7 @@
                                                                 continue;
                                                             }
                                                             //employee.g
-                                                    %>
+%>
                                                     <div class="individual-cell clearfix">
                                                         <button class="get-person-info">
                                                             <span>i</span>
@@ -370,19 +377,19 @@
                                                     </div>
                                                 </div>-->
 
-<!--                                            <div class="submit-popup">
-                                                <h2>Submit your responses ?</h2>
-                                                <div class="submit-popup-warning-text">
-                                                    <p>You have unanswered questions
-                                                        <span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>
-                                                    </p>
-                                                    <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
-                                                </div>
-                                                <div class="submit-popup-buttons">
-                                                    <button>YES</button>
-                                                    <button>NO</button>
-                                                </div>
-                                            </div>-->
+                                            <!--                                            <div class="submit-popup">
+                                                                                            <h2>Submit your responses ?</h2>
+                                                                                            <div class="submit-popup-warning-text">
+                                                                                                <p>You have unanswered questions
+                                                                                                    <span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>
+                                                                                                </p>
+                                                                                                <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
+                                                                                            </div>
+                                                                                            <div class="submit-popup-buttons">
+                                                                                                <button>YES</button>
+                                                                                                <button>NO</button>
+                                                                                            </div>
+                                                                                        </div>-->
                                         </div>
                                     </div>
                                 </div>
