@@ -92,6 +92,9 @@ $(document).ready(function () {
         var quesId = $(this).parent().parent().attr('ques_id');
         $('#resp_val_' + quesId).val($(this).val());
         $(this).parent('div').siblings().removeClass('clicked').children().removeClass('clicked');
+        if ($(this).parent().find('.clicked').length === 0) {
+            $('#resp_val_' + quesId).val('');
+        }
     });
 
     $('.survey-me .submit-circle button').on('click', function (event) {
@@ -237,7 +240,6 @@ $(document).ready(function () {
 
                 // check for how many questions have been answered
                 var questionsAnswered = [];
-                var questionsNotAnswered = [];
                 var qList = [];
                 var empArr = [];
                 var empRating = {};
@@ -905,7 +907,7 @@ function showSubmitButton() {
         var visibleQues = $('.swiper-slide-active:visible').find('.question_no').val();
         var totalQuestions = $('#total_ques').val();
         visibleQues = parseInt(visibleQues);
-        if (totalQuestions - 1 === visibleQues) {
+        if (totalQuestions === "1" || totalQuestions - 1 === visibleQues) {
             $('.submit-circle.app').show();
         } else {
             $('.submit-circle.app').hide();
