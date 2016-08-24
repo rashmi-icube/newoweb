@@ -16,17 +16,16 @@
     int comid = 0;
     String email = "";
     boolean firstTimeLogin = false;
-    if (session.getAttribute("empid") != null && session.getAttribute("comid") != null) {
+    if (session.getAttribute("empid") != null) {
         empid = (Integer) session.getAttribute("empid");
         comid = (Integer) session.getAttribute("comid");
         email = (String) session.getAttribute("email");
         firstTimeLogin = (Boolean) session.getAttribute("firstTimeLogin");
     }
-    if (empid == 0 || comid == 0) {
+    if (empid == 0) {
         response.sendRedirect("index.jsp");
         return;
     }
-    
 %>
 
 <header>
@@ -35,13 +34,13 @@
         <script src="<%=Constant.WEB_ASSETS%>js/modernizr.js"></script> <!-- Modernizr -->
     </head>
     <div class="wrapper clearfix">
-        <a href="<%=Constant.WEB_CONTEXT%>/individual/dashboard.jsp" id="Header-Desktop-Logo">
-<!--            <h1><span>OWEN</span><span>Individual</span></h1>-->
-            <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
-        </a>
+
         <a href="<%=Constant.WEB_CONTEXT%>/individual/dashboard.jsp" id="Header-Mobile-Logo">
             <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
         </a>
+        <div class="usernameapp">
+            <p><%=session.getAttribute("ename")%></p>
+        </div>
     </div>
 </header>
 

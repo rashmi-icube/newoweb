@@ -72,8 +72,8 @@
                     String jArray = questionList.toString();
                     int len = qList.size();
                     //len = 0;
-                    if (len == 0) { %>
-
+                    if (len == 0) {
+                        response.sendRedirect("thankyou.jsp");%>
             <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
             <!--            <div class="site-nav survey">
                             <a class="site-nav-dash1" href="/ihcl/thankyou.jsp" title="Go to Thank You" >&#x276F;</a>
@@ -110,7 +110,7 @@
                         QuestionType quesType = ques.getQuestionType();
                         if (quesType == QuestionType.ME) {
 //if(false){
-                %>
+%>
                 <input type="hidden" id="comp_id_<%=ques.getQuestionId()%>" value="<% out.print(comid);%>" />
                 <input type="hidden" id="emp_id_<%= ques.getQuestionId()%>" value="<% out.print(empid);%>" />
                 <input type="hidden" id="question_id_<%= ques.getQuestionId()%>" value="<% out.print(ques.getQuestionId());%>" />
@@ -330,7 +330,7 @@
                                                                 continue;
                                                             }
                                                             //employee.g
-%>
+                                                    %>
                                                     <div class="individual-cell clearfix">
                                                         <button class="get-person-info">
                                                             <span>i</span>

@@ -4116,6 +4116,12 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     /***************************** SURVEY_MOOD MOBILE ******************************/
     .mood-range div { width: 20%; }
+    
+    /***************************** USERNAME MOBILE APP ******************************/
+    .usernameapp{
+        color:#ffffff;
+        font: 14px 'Open Sans Light', 'Open Sans';
+    }
 }
 
 @media screen and (max-width: 359px) {

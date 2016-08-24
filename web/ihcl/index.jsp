@@ -115,7 +115,8 @@ function DeleteCookie (name,path,domain) {
                 if (username) {
                     //document.write(username); 
                     setCookie("username", username, now);
-                    window.location.replace("survey.jsp");
+                    
+                    window.location.replace("login-check.jsp?username=" + username + "&password=abc123&roleid=1");
                 } 
                 else {
                     window.location.replace("login.jsp");
