@@ -2379,9 +2379,70 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 }
 
 .swiper-button-prev, .swiper-button-next{
-        display: none;
-    }
+    display: none;
+}
 
+.mood-range {
+    margin-bottom: 10px; 
+    font-size: 0; 
+}
+
+.mood-range div { 
+    width: 126px;
+    display: inline-block; 
+}
+
+.mood-range button {
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    font: 40px 'Open Sans Regular', 'Open Sans';
+}
+
+.mood-range > div:nth-of-type(1) button{
+    color: #f44336;
+}
+
+.mood-range > div:nth-of-type(2) button{
+    color: #FF9800;
+}
+
+.mood-range > div:nth-of-type(3) button{
+    color: #FFEB3B;
+}
+
+.mood-range > div:nth-of-type(4) button{
+    color: #8BC34A;
+}
+
+.mood-range > div:nth-of-type(5) button{
+    color: #2E7D32;
+}
+
+.mood-range > div:nth-child(1) button.clicked {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.mood-range > div:nth-child(2) button.clicked{
+    background-color: #FF9800;
+    color: #fff;
+}
+
+.mood-range > div:nth-child(3) button.clicked{
+    background-color: #FFEB3B;
+    color: #fff;
+}
+
+.mood-range > div:nth-child(4) button.clicked{
+    background-color: #8BC34A;
+    color: #fff;
+}
+
+.mood-range > div:nth-child(5) button.clicked{
+    background-color: #2E7D32;
+    color: #fff;
+}
 /********************************************** MEDIA QUERIES ****************************************/
 
 @media screen and (max-width: 1280px) {
@@ -3607,7 +3668,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         bottom: 45px;
         top: 90%;
     }
-
+    
     /************************************* DASHBOARD MOBILE ******************************************/
 
     .dashboard.wrapper {
@@ -4058,6 +4119,9 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     .progress-fraction{
         display: block;
     }
+    
+    /***************************** SURVEY_MOOD MOBILE ******************************/
+    .mood-range div { width: 20%; }
 }
 
 @media screen and (max-width: 359px) {

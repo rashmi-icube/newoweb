@@ -109,6 +109,7 @@
                         Question ques = qList.get(i);
                         QuestionType quesType = ques.getQuestionType();
                         if (quesType == QuestionType.ME) {
+//if(false){
                 %>
                 <input type="hidden" id="comp_id_<%=ques.getQuestionId()%>" value="<% out.print(comid);%>" />
                 <input type="hidden" id="emp_id_<%= ques.getQuestionId()%>" value="<% out.print(empid);%>" />
@@ -178,7 +179,8 @@
                             </div>
                         </div>
                         <%
-                        } else {
+                        } else if (quesType == QuestionType.WE) {
+//} else if (false) {
                             if (len == 1 || i == 0) {
                         %>
                         <div class="swiper-slide">
@@ -393,13 +395,47 @@
                                         </div>
                                     </div>
                                 </div>
-                                <%
-                                            }
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                %>
+<%
+                        } else{
+                            if (len == 1 || i == 0){
+%>
+                                <div class="swiper-slide">
+                                    <div class="wrapper survey-me question_div app" style="display:block;">
+                                        <%} else {%>
+                                        <div class="swiper-slide">
+                                            <div class="wrapper survey-me question_div app">
+                                                <%}%>
+                                                <input type="hidden" class="question_no" value="<%= i%>" />
+                                                <div class="me-survey-box clearfix">
+                                                    <!--<h2></h2>-->
+                                                    <span class="question-title"><% out.print(ques.getQuestionText()); %></span>
+                                                    <div class="answer-box">
+                                                    <!--<div class="agree-limit clearfix">
+                                                            <span>Strongly disagree</span>
+                                                            <span>Strongly agree</span>
+                                                        </div>-->
+
+                                                        <div class="mood-range" ques_id="<% out.print(ques.getQuestionId()); %>">
+                                                            <div><button value="1">&#128546</button></div>
+                                                            <div><button value="2">&#128543</button></div>
+                                                            <div><button value="3">&#128528</button></div>
+                                                            <div><button value="4">&#128522</button></div>
+                                                            <div><button value="5">&#128515</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+<%                                      
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+%>
+                                    </div>
+                                </div>                          
                             </div>
                         </div>
                     </div>
