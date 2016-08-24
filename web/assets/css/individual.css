@@ -2454,20 +2454,20 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         width: 580px;
         margin-left: 4.5%;
     }
-    
+
     .no-key-selected{
         margin-right: 46px;
         width: 28%
     }
-    
+
     .slimScrollDivPopup{
         right: 7% !important;
     }
-    
+
     .slimScrollBarPopup{
         right: 46px !important;
     }
-    
+
     .slimScrollRailPopup{
         right: 46px !important;
     }
@@ -2480,15 +2480,15 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     .slimScrollDivPopupDashboard .no-key-selected{
         width: 260px !important;
     }
-    
+
     .submit-popup{
         display: none;
     }
-    
+
     .swiper-button-prev, .swiper-button-next{
         display: none;
     }
-    
+
     .progress-fraction{
         display: none;
     }
@@ -2610,35 +2610,35 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         width: 580px;
         margin-left: 6%;
     }
-    
-        /************************************* MOBILE APP THANK YOU ******************************************/
+
+    /************************************* MOBILE APP THANK YOU ******************************************/
     .thank-you-outline{
-/*        display:block;
-        margin:0 auto;*/
+        /*        display:block;
+                margin:0 auto;*/
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
     }
-    
+
     .thank-you-outline h2{
         font: 24px 'Open Sans Semibold', 'Open Sans';
         text-align: center;
     }
-    
+
     .thank-you-image img{
         display:block;
         margin:0 auto;
         height: 50px;
         width: 50px;
     }
-    
+
     .thank-you-text p{
         font: 16px 'Open Sans Light', 'Open Sans';
         text-align: center;
     }
-    
+
     .swiper-container{
         width: 100%;
     }
@@ -2646,11 +2646,11 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     .submit-popup{
         display: none;
     }
-    
+
     .swiper-button-prev, .swiper-button-next{
         display: none;
     }
-    
+
     .progress-fraction{
         display: none;
     }
@@ -2778,47 +2778,47 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
 
     .dashboard .submit-circle { margin-top: 350px; }
-    
-        /************************************* MOBILE APP THANK YOU ******************************************/
+
+    /************************************* MOBILE APP THANK YOU ******************************************/
     .thank-you-outline{
-/*        display:block;
-        margin:0 auto;*/
+        /*        display:block;
+                margin:0 auto;*/
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
     }
-    
+
     .thank-you-outline h2{
         font: 24px 'Open Sans Semibold', 'Open Sans';
         text-align: center;
     }
-    
+
     .thank-you-image img{
         display:block;
         margin:0 auto;
         height: 50px;
         width: 50px;
     }
-    
+
     .thank-you-text p{
         font: 16px 'Open Sans Light', 'Open Sans';
         text-align: center;
     }
-    
+
     .swiper-container{
         width: 100%;
     }
-    
+
     .submit-popup{
         display: none;
     }
-    
+
     .swiper-button-prev, .swiper-button-next{
         display: none;
     }
-    
+
     .progress-fraction{
         display: none;
     }
@@ -2839,11 +2839,11 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         text-align: center;
         vertical-align: middle;
     }
-    
+
     #Header-Desktop-Logo img{
         display: none;
     }
-    
+
     #Header-Mobile-Logo img{
         display: block !important;
         width:auto;
@@ -3005,10 +3005,10 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     a.site-nav-prev{
         padding-top: 16px;
     }
-    
+
     .panel button {
-    width: 32px;
-    height: 32px;
+        width: 32px;
+        height: 32px;
     }
 
     /****************************** PROFILE MOBILE ******************************/
@@ -3189,27 +3189,27 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     #changePasswordMobile+form #savePwd {
         float: right;
-/*        position: fixed;
-        right:0;*/
+        /*        position: fixed;
+                right:0;*/
         background-color: rgba(76, 175, 80, 0.5);
     }
-    
+
     #changePasswordMobile+form .password-change-successful-mobile{
-    box-sizing: border-box;
-    width: 285px;
-    height: 39px;
-    padding: 2px 0 0 10px;
-    border: 1px solid #4caf50;
-    border-radius: 106px;
-    display: none; /*CHANGE TO NONE BEFORE DEPLOYING*/
-    position: absolute;
-    top: 50%;
-    /*bottom: 50px;*/
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
+        box-sizing: border-box;
+        width: 285px;
+        height: 39px;
+        padding: 2px 0 0 10px;
+        border: 1px solid #4caf50;
+        border-radius: 106px;
+        display: none; /*CHANGE TO NONE BEFORE DEPLOYING*/
+        position: absolute;
+        top: 50%;
+        /*bottom: 50px;*/
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     #changePasswordMobile+form .password-change-successful-mobile .show{
         display: block;
@@ -3478,40 +3478,40 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         height: 27px;
         vertical-align: top;
     }
-    
+
     .people-list-box .no-key-selected {
         display: none !important;
     }
-    
+
     .people-list-box .no-key-selected-mobile{
         display: flex !important;
         padding-bottom: 10px;
         float: left;
         width: 200px;
     }
-    
+
     .people-list-box .no-key-selected-mobile p{
         color: #4caf50;
         font: 14px 'Open Sans Regular', 'Open Sans';
     }
-    
+
     .people-list-box .no-key-selected-mobile span{
         color: #4caf50;
         font: 14px 'Open Sans Bold', 'Open Sans';
     }
-    
+
     .people-list-box .no-key-selected-mobile .header{
         width: 195px;
         height: 27px;
         background-color: #388e3c;
     }
-    
+
     .people-list-box .no-key-selected-mobile .header span{
         color: #ffffff;
         font: 14px 'Open Sans Regular', 'Open Sans';
         vertical-align: super;
     }
-    
+
     .people-list-box .no-key-selected-mobile .list-of-selected-people-popup-mobile{
         /*width: 195px;*/
         height: 200px;
@@ -3519,18 +3519,18 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         overflow-x: auto;
         padding: 2%;
         display: block;
-/*        top: 27px;
-        right: 0;
-        left: initial;*/
+        /*        top: 27px;
+                right: 0;
+                left: initial;*/
         background: #fff;
         box-shadow: -5px 5px 10px rgba(204, 204, 204, 0.35);    
     }
-    
+
     .people-list-box .no-key-selected-mobile .list-of-selected-people-popup-mobile p{
         color: #797979;
         font: 13px 'Open Sans Regular', 'Open Sans';
     }
-    
+
     .people-list-box input::-webkit-input-placeholder { 
         font: 12px 'Open Sans Regular', 'Open Sans';
     }
@@ -3668,7 +3668,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         bottom: 45px;
         top: 90%;
     }
-    
+
     /************************************* DASHBOARD MOBILE ******************************************/
 
     .dashboard.wrapper {
@@ -3718,7 +3718,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         padding-left: 0;
         padding-bottom: 5px;
     }
-    
+
     .dashboard.metrics .panel button {
         position: absolute;
         top: 5px;
@@ -3894,30 +3894,30 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     .people-list-box p{
         padding-right: 20px;
     }
-    
+
     /************************************* MOBILE APP THANK YOU ******************************************/
     .thank-you-outline{
-/*        display:block;
-        margin:0 auto;*/
+        /*        display:block;
+                margin:0 auto;*/
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
     }
-    
+
     .thank-you-outline h2{
         font: 24px 'Open Sans Semibold', 'Open Sans';
         text-align: center;
     }
-    
+
     .thank-you-image img{
         display:block;
         margin:0 auto;
         height: 50px;
         width: 50px;
     }
-    
+
     .thank-you-text p{
         font: 16px 'Open Sans Light', 'Open Sans';
         text-align: center;
@@ -3929,7 +3929,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         overflow: hidden;
         z-index: 1;
     }
-    
+
     .swiper-container-android .swiper-slide, .swiper-wrapper {
         -webkit-transform: translate3d(0,0,0);
         -moz-transform: translate3d(0,0,0);
@@ -3946,8 +3946,8 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
-/*        display: -webkit-flex;
-        display: flex;*/
+        /*        display: -webkit-flex;
+                display: flex;*/
         -webkit-transition-property: -webkit-transform;
         -moz-transition-property: -moz-transform;
         -o-transition-property: -o-transform;
@@ -3958,14 +3958,14 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         box-sizing: content-box;
     }
     .swiper-slide{
-/*        -webkit-flex-shrink: 0;
-        -ms-flex: 0 0 auto;
-        flex-shrink: 0;
-        width: 100%;
+        /*        -webkit-flex-shrink: 0;
+                -ms-flex: 0 0 auto;
+                flex-shrink: 0;
+                width: 100%;
+                height: 100%;
+                position: relative;*/
         height: 100%;
-        position: relative;*/
-    height: 100%;
-    overflow-y: auto;
+        overflow-y: auto;
 
     }
     .swiper-container-horizontal>.swiper-pagination-progress {
@@ -4008,7 +4008,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         -o-transform-origin: left top;
         transform-origin: left top;
     }
-    
+
     .swiper-button-prev, .swiper-button-next{
         width: 40px;
         font: 24px 'Open Sans Light', 'Open Sans';
@@ -4034,13 +4034,13 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         float: right;
         padding-top: 12px;
     }
-    
+
     .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
         color: rgba(158,158,158,0.7);
         cursor: auto;
         pointer-events: none;
     }
-    
+
     .black_overlay{
         display: none;
         position: absolute;
@@ -4054,7 +4054,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         opacity:.50;
         filter: alpha(opacity=50);
     }
-    
+
     .submit-popup{
         display: none;
         position: fixed;
@@ -4067,7 +4067,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
         text-align: left;
     }
-    
+
     .submit-popup h2{
         font: 16px 'Open Sans Semibold', 'Open Sans';
         text-align: left;
@@ -4075,26 +4075,20 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         padding-bottom: 20px;
         margin: 0;
     }
-    
+
     .submit-popup-warning-text p{
         padding-left: 24px;
         padding-right: 24px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
         font: 14px 'Open Sans Light', 'Open Sans';
         /*text-align: center;*/
     }
-    
-    .submit-popup-warning-text p span{
-        font: 14px 'Open Sans Regular', 'Open Sans';
-        text-align: center;
-        color: #4caf50;
-    }
-    
+
     .submit-popup-buttons{
         height: 52px;
         padding: 0 8px;
     }
-    
+
     .submit-popup-buttons button{
         color: #4caf50;
         margin: 0 2px;
@@ -4102,11 +4096,11 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         float: right;
         font: 16px 'Open Sans SemiBold', 'Open Sans';
     }
-    
+
     .submit-popup-buttons button:nth-child(even){
         color: #ff0000;
     }
-    
+
     .submit-circle.app{
         float: right;
         position: fixed;
@@ -4115,11 +4109,11 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         top: 90%;
         z-index: 10;
     }
-    
+
     .progress-fraction{
         display: block;
     }
-    
+
     /***************************** SURVEY_MOOD MOBILE ******************************/
     .mood-range div { width: 20%; }
 }

@@ -395,10 +395,10 @@
                                         </div>
                                     </div>
                                 </div>
-<%
-                        } else{
-                            if (len == 1 || i == 0){
-%>
+                                <%
+                                } else {
+                                    if (len == 1 || i == 0) {
+                                %>
                                 <div class="swiper-slide">
                                     <div class="wrapper survey-me question_div app" style="display:block;">
                                         <%} else {%>
@@ -410,10 +410,10 @@
                                                     <!--<h2></h2>-->
                                                     <span class="question-title"><% out.print(ques.getQuestionText()); %></span>
                                                     <div class="answer-box">
-                                                    <!--<div class="agree-limit clearfix">
-                                                            <span>Strongly disagree</span>
-                                                            <span>Strongly agree</span>
-                                                        </div>-->
+                                                        <!--<div class="agree-limit clearfix">
+                                                                <span>Strongly disagree</span>
+                                                                <span>Strongly agree</span>
+                                                            </div>-->
 
                                                         <div class="mood-range" ques_id="<% out.print(ques.getQuestionId()); %>">
                                                             <div><button value="1">&#128546</button></div>
@@ -427,13 +427,13 @@
                                             </div>
                                         </div>
 
-<%                                      
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-%>
+                                        <%
+                                                    }
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        %>
                                     </div>
                                 </div>                          
                             </div>
@@ -449,12 +449,7 @@
                 </div>
                 <div class="submit-popup">
                     <h2>Submit your responses ?</h2>
-                    <div class="submit-popup-warning-text">
-                        <p>You have unanswered questions
-                            <!--<span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>-->
-                        </p>
-                        <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
-                    </div>
+                    <div class="submit-popup-warning-text"></div>
                     <div class="submit-popup-buttons">
                         <button>YES</button>
                         <button>NO</button>

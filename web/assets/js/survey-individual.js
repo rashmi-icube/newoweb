@@ -96,46 +96,7 @@ $(document).ready(function () {
 
     $('.survey-me .submit-circle button').on('click', function (event) {
         var quesId = $(this).val();
-        if ($('.answer-range .clicked').length === 0) {
-            $('.submit-tooltip').children('.submit-title').hide();
-            $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
-            if (document.documentElement.clientWidth <= 480) {
-                $('.submit-tooltip').css('visibility', 'visible');
-                setTimeout(function () {
-                    $('.submit-tooltip').css('visibility', 'hidden');
-                }, 400);
-            }
-        } else {
-            var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
-            jQuery.ajax({
-                type: "POST",
-                url: "/individual/survey-me-submit.jsp",
-                data: dataSub,
-                dataType: 'JSON',
-                success: function (resp) {
-                    var totalQues = parseInt($('#remaining_ques').val());
-                    totalQues = totalQues - 1;
-                    $('#remaining_ques').val(totalQues + "");
-                    var $currentDiv = $('.question_div:visible');
-                    var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
-                    if ($nextDiv.length) {
-                        $('.site-nav a').addClass('active');
-                        $('body').css('overflow', 'hidden');
-                        $currentDiv.hide('slide', {direction: 'left'}, 200);
-                        $nextDiv.show('slide', {direction: 'right'}, 400, function () {
-                            $('.site-nav a').removeClass('active');
-                            searchIsotope();
-                            $currentDiv.remove();
-                            showHideNavigation(this);
-                            $('body').removeAttr('style');
-                        });
-                    } else {
-                        $currentDiv.remove();
-                        window.location.href = 'dashboard.jsp';
-                    }
-                }
-            });
-        }
+        submitMeData(quesId);
 
         $(this).on('mouseout', function () {
             setTimeout(function () {
@@ -208,6 +169,13 @@ $(document).ready(function () {
             });
         }
     }
+    $('.mood-range button').on('click', function (event) {
+        $(this).toggleClass('clicked').parent().toggleClass('clicked');
+        var quesId = $(this).parent().parent().attr('ques_id');
+        $('#resp_val_' + quesId).val($(this).val());
+        $(this).parent('div').siblings().removeClass('clicked').children().removeClass('clicked');
+    });
+
 
     if (document.documentElement.clientWidth <= 480) {
 
@@ -264,6 +232,53 @@ $(document).ready(function () {
         if ($('#subModuleName').val() === "ihcl") {
 
             $('.submit-circle.app button').on('click', function () {
+                var jArray = $('#ques_list').val();
+                var jsonObj = $.parseJSON(jArray);
+
+                // check for how many questions have been answered
+                var questionsAnswered = [];
+                var questionsNotAnswered = [];
+                var qList = [];
+                var empArr = [];
+                var empRating = {};
+                jQuery.each(jsonObj, function (index, value) {
+                    var quesId = value.questionId;
+                    qList.push(quesId);
+                    jQuery.each($('.star-rating-total'), function (i, v) {
+                        var qId = $(v).attr('ques_id');
+                        var empId = $(v).attr('emp_id');
+                        var rating = $(v).text();
+                        if (rating !== '' && qId === quesId.toString()) {
+                            empRating[empId] = rating;
+                            empArr.push(empRating);
+                            questionsAnswered.push(quesId);
+                        }
+                    });
+                    var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
+                    if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
+                        questionsAnswered.push(quesId);
+                    }
+                });
+
+                for (var n = 0; n <= qList.length; n++) {
+                    for (var m = 0; m <= questionsAnswered.length; m++) {
+                        if (qList[n] === questionsAnswered[m]) {
+                            qList.splice(n, 1);
+                        }
+                    }
+                }
+
+                $('.submit-popup-warning-text p').each(function (j) {
+                    $(this).remove();
+                });
+
+                if (qList.length > 0) {
+                    $('.submit-popup-warning-text').append('<p> You have ' + qList.length + ' unanswered questions </p>');
+                } else {
+                    $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
+                }
+                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
+
                 $('.black_overlay').show();
                 $('.submit-popup').show();
             });
@@ -277,22 +292,37 @@ $(document).ready(function () {
             //YES BUTTON
             $('.submit-popup-buttons button:nth-child(odd)').on('click', function () {
                 //SUBMIT ALL RESPONSES HERE
+                var jArray = $('#ques_list').val();
+                var jsonObj = $.parseJSON(jArray);
+
+
+
+                // store the responses for all answered questions
+                jQuery.each(jsonObj, function (index, value) {
+                    var questionId = value.questionId;
+                    var questionType = value.questionType.value;
+                    if (questionType === 1) {
+                        //submit WE answer
+                        var count = $('#list-mobile-' + questionId + ' p').length;
+                        if (count > 0) {
+                            submitWeData(questionId);
+                        }
+                    } else {
+                        // submit ME answer
+                        submitMeData(questionId);
+                    }
+                });
+
             });
         }
-//        $('.swiper-button-prev').on('click', function () {
-//            showProgressValue(false);
-//        });
-//        
-//        $('.swiper-button-next').on('click', function () {
-//            showProgressValue(true);
-//        });
     }
 
     $('.survey-we .submit-circle button').on('click', function (event) {
         var quesId = $(this).parent().parent().find('#quesId')[0].value;
         var count = $('#list-mobile-' + quesId + ' p').length;
         if (count > 0) {
-            submitWeData(this);
+//            submitWeData(this);
+            submitWeData(quesId);
         } else {
             $('.submit-tooltip').children('.submit-title').hide();
             $('.submit-tooltip').children('.submit-response').show();
@@ -738,9 +768,56 @@ function clearRatings() {
         $(v).text('');
     });
 }
-
-function submitWeData(obj) {
-    var quesId = $(obj).val();
+function submitMeData(quesId) {
+    if ($('.answer-range .clicked').length === 0) {
+        $('.submit-tooltip').children('.submit-title').hide();
+        $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
+        if (document.documentElement.clientWidth <= 480) {
+            $('.submit-tooltip').css('visibility', 'visible');
+            setTimeout(function () {
+                $('.submit-tooltip').css('visibility', 'hidden');
+            }, 400);
+        }
+    } else {
+        var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
+        if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
+            jQuery.ajax({
+                type: "POST",
+                url: "/individual/survey-me-submit.jsp",
+                data: dataSub,
+                dataType: 'JSON',
+                success: function (resp) {
+                    var totalQues = parseInt($('#remaining_ques').val());
+                    totalQues = totalQues - 1;
+                    $('#remaining_ques').val(totalQues + "");
+                    var $currentDiv = $('.question_div:visible');
+                    var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
+                    if ($nextDiv.length) {
+                        $('.site-nav a').addClass('active');
+                        $('body').css('overflow', 'hidden');
+                        $currentDiv.hide('slide', {direction: 'left'}, 200);
+                        $nextDiv.show('slide', {direction: 'right'}, 400, function () {
+                            $('.site-nav a').removeClass('active');
+                            searchIsotope();
+                            $currentDiv.remove();
+                            showHideNavigation(this);
+                            $('body').removeAttr('style');
+                        });
+                    } else {
+                        $currentDiv.remove();
+                        if ($('#subModuleName').val() === "ihcl") {
+                            window.location.href = 'thankyou.jsp';
+                        } else {
+                            window.location.href = 'dashboard.jsp';
+                        }
+                    }
+                }
+            });
+        }
+    }
+}
+function submitWeData(quesId) {
+//    var quesId = $(obj).val();
     var empArr = [];
     var empRating = {};
 
@@ -761,7 +838,7 @@ function submitWeData(obj) {
         var qId = $(v).attr('ques_id');
         var empId = $(v).attr('emp_id');
         var rating = $(v).text();
-        if (rating !== '' && qId === quesId) {
+        if (rating !== '' && qId === quesId.toString()) {
             empRating[empId] = rating;
             empArr.push(empRating);
         }
@@ -799,7 +876,11 @@ function submitWeData(obj) {
                 if ($('#subModuleName').val() === "ihcl") {
                     window.location.href = 'thankyou.jsp';
                 } else {
-                    window.location.href = 'dashboard.jsp';
+                    if ($('#subModuleName').val() === "ihcl") {
+                        window.location.href = 'thankyou.jsp';
+                    } else {
+                        window.location.href = 'dashboard.jsp';
+                    }
                 }
             }
         }
@@ -830,4 +911,8 @@ function showSubmitButton() {
             $('.submit-circle.app').hide();
         }
     }
+}
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
 }
