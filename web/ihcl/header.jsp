@@ -39,7 +39,8 @@
             <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
         </a>
         <div class="usernameapp">
-            <p><%=session.getAttribute("ename")%></p>
+            <p>EMP ID: </p>
+            <span><%=session.getAttribute("emp_comp_id")%></span>
         </div>
     </div>
 </header>

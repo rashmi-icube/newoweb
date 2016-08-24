@@ -4119,8 +4119,25 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     
     /***************************** USERNAME MOBILE APP ******************************/
     .usernameapp{
+        top: 0;
+        right: 0;
+        padding: 1.1em;
+        margin-top: 0.2em;
+        position: absolute;
+        text-align: right;
+        width: 50%;
+    }
+    
+    .usernameapp p{
         color:#ffffff;
         font: 14px 'Open Sans Light', 'Open Sans';
+        display: inline-block;
+    }
+    
+    .usernameapp span{
+        color:#ffffff;
+        font: 14px 'Open Sans SemiBold', 'Open Sans';
+        display: inline-block;
     }
 }
 

@@ -12,6 +12,7 @@
         Login login = (Login) ObjectFactory.getInstance("org.icube.owen.individual.Login");
         try {
             Employee emp = login.login(username, password, request.getRemoteAddr(), roleid);
+            session.setAttribute("emp_comp_id", emp.getCompanyEmployeeId());
             session.setAttribute("empid", emp.getEmployeeId());
             session.setAttribute("comid", emp.getCompanyId());
             session.setAttribute("email", username);
