@@ -5,7 +5,7 @@
 <%@page import="org.icube.owen.employee.Employee"%>
 <%@page import="com.owen.web.Util"%>
 <%
-    String username = request.getParameter("username") + "@icici.com";
+    String username = request.getParameter("username") + "@ihcl.com";
     String password = request.getParameter("password");
     int roleid = request.getParameter("roleid") != null ? Util.getIntValue(request.getParameter("roleid")) : 1;
     if (username != null && !username.equals("") && password != null && !password.equals("")) {
