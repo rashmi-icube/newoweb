@@ -109,8 +109,7 @@
                         Question ques = qList.get(i);
                         QuestionType quesType = ques.getQuestionType();
                         if (quesType == QuestionType.ME) {
-//if(false){
-%>
+                %>
                 <input type="hidden" id="comp_id_<%=ques.getQuestionId()%>" value="<% out.print(comid);%>" />
                 <input type="hidden" id="emp_id_<%= ques.getQuestionId()%>" value="<% out.print(empid);%>" />
                 <input type="hidden" id="question_id_<%= ques.getQuestionId()%>" value="<% out.print(ques.getQuestionId());%>" />
@@ -396,9 +395,16 @@
                                     </div>
                                 </div>
                                 <%
-                                } else {
-                                    if (len == 1 || i == 0) {
+                                } else { %>
+                                <input type="hidden" id="comp_id_<%=ques.getQuestionId()%>" value="<% out.print(comid);%>" />
+                                <input type="hidden" id="emp_id_<%= ques.getQuestionId()%>" value="<% out.print(empid);%>" />
+                                <input type="hidden" id="question_id_<%= ques.getQuestionId()%>" value="<% out.print(ques.getQuestionId());%>" />
+                                <input type="hidden" id="resp_val_<%= ques.getQuestionId()%>" value="" />
+                                <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
+
+                                <% if (len == 1 || i == 0) {
                                 %>
+
                                 <div class="swiper-slide">
                                     <div class="wrapper survey-me question_div app" style="display:block;">
                                         <%} else {%>

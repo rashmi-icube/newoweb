@@ -35,7 +35,8 @@
     </head>
     <div class="wrapper clearfix">
 
-        <a href="<%=Constant.WEB_CONTEXT%>/individual/dashboard.jsp" id="Header-Mobile-Logo">
+        <!-- TODO : Aditya -->
+         <a href="" id="Header-Mobile-Logo">
             <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
         </a>
         <div class="usernameapp">

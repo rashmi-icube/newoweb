@@ -279,7 +279,7 @@ $(document).ready(function () {
                 } else {
                     $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
                 }
-                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
+//                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
 
                 $('.black_overlay').show();
                 $('.submit-popup').show();
@@ -296,8 +296,6 @@ $(document).ready(function () {
                 //SUBMIT ALL RESPONSES HERE
                 var jArray = $('#ques_list').val();
                 var jsonObj = $.parseJSON(jArray);
-
-
 
                 // store the responses for all answered questions
                 jQuery.each(jsonObj, function (index, value) {
@@ -771,7 +769,7 @@ function clearRatings() {
     });
 }
 function submitMeData(quesId) {
-    if ($('.answer-range .clicked').length === 0) {
+    if ($('#subModuleName').val() !== "ihcl" && $('.answer-range .clicked').length === 0) {
         $('.submit-tooltip').children('.submit-title').hide();
         $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
         if (document.documentElement.clientWidth <= 480) {
