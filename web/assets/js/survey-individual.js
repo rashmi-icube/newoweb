@@ -177,6 +177,9 @@ $(document).ready(function () {
         var quesId = $(this).parent().parent().attr('ques_id');
         $('#resp_val_' + quesId).val($(this).val());
         $(this).parent('div').siblings().removeClass('clicked').children().removeClass('clicked');
+        if ($(this).parent().find('.clicked').length === 0) {
+            $('#resp_val_' + quesId).val('');
+        }
     });
 
 
@@ -372,7 +375,7 @@ function ratingStar(obj) {
     if (lastStar === i) {
         // remove the filled class + style
         $(row).children().removeClass('filled');
-        $(row).next().text('0').removeAttr('style');
+        $(row).next().text('').removeAttr('style');
 
         // remove names from the list
         $('#list-desktop-' + quesId + ' p').each(function (j) {
