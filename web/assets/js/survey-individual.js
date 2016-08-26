@@ -262,6 +262,7 @@ $(document).ready(function () {
                     }
                 });
 
+                var totalQuestionLength = qList.length;
                 for (var n = 0; n <= qList.length; n++) {
                     for (var m = 0; m <= questionsAnswered.length; m++) {
                         if (qList[n] === questionsAnswered[m]) {
@@ -273,10 +274,19 @@ $(document).ready(function () {
                 $('.submit-popup-warning-text p').each(function (j) {
                     $(this).remove();
                 });
-
-                if (qList.length > 0) {
+                
+                if (qList.length === totalQuestionLength) {
+                    $('#yesButton').attr('disabled', true);
+                    $('#yesButton').css('color', '#9e9e9e');
+                    $('.submit-popup-warning-text').append('<p> You have not answered any questions. Please select a response to submit </p>');
+                }
+                else if (qList.length > 0) {
+                    $('#yesButton').prop('disabled', false);
+                    $('#yesButton').css('color', '#4caf50');
                     $('.submit-popup-warning-text').append('<p> You have ' + qList.length + ' unanswered questions </p>');
                 } else {
+                    $('#yesButton').prop('disabled', false);
+                    $('#yesButton').css('color', '#4caf50');
                     $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
                 }
 //                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');

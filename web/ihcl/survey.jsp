@@ -457,7 +457,7 @@
                     <h2>Submit your responses ?</h2>
                     <div class="submit-popup-warning-text"></div>
                     <div class="submit-popup-buttons">
-                        <button>YES</button>
+                        <button id="yesButton">YES</button>
                         <button>NO</button>
                     </div>
                 </div>

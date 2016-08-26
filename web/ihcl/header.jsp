@@ -34,9 +34,7 @@
         <script src="<%=Constant.WEB_ASSETS%>js/modernizr.js"></script> <!-- Modernizr -->
     </head>
     <div class="wrapper clearfix">
-
-        <!-- TODO : Aditya -->
-         <a href="" id="Header-Mobile-Logo">
+         <a id="Header-Mobile-Logo">
             <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
         </a>
         <div class="usernameapp">

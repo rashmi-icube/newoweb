@@ -4096,12 +4096,17 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         float: right;
         font: 16px 'Open Sans SemiBold', 'Open Sans';
     }
+    
+    .submit-popup-buttons button:nth-child(odd){
+        color: #9e9e9e;
+    }
 
     .submit-popup-buttons button:nth-child(even){
         color: #ff0000;
     }
 
     .submit-circle.app{
+        display: none;
         float: right;
         position: fixed;
         text-decoration: none;
