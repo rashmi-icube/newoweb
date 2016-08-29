@@ -246,20 +246,45 @@ $(document).ready(function () {
                 var qList = [];
                 var empArr = [];
                 var empRating = {};
+
+                // rashmi
+
+                var empArr = [];
+                var empRating = {};
+
+
+
+
                 jQuery.each(jsonObj, function (index, value) {
                     var quesId = value.questionId;
                     qList.push(quesId);
+                    
+                    var empArr1 = jQuery.data(document.body, "emp_rating");
+                    if (empArr1 !== undefined) {
+                        jQuery.each(empArr1, function (i, o) {
+                            jQuery.each(o, function (k, v) {
+                                var id = k.split("_");
+                                if (id[0] === quesId) {
+//                                empRating[id[1]] = v;
+//                                empArr.push(empRating);
+                                    questionsAnswered.push(quesId);
+                                }
+                            });
+                        });
+                    }
+                    
                     jQuery.each($('.star-rating-total'), function (i, v) {
                         var qId = $(v).attr('ques_id');
                         var empId = $(v).attr('emp_id');
                         var rating = $(v).text();
                         if (rating !== '' && qId === quesId.toString()) {
-                            empRating[empId] = rating;
-                            empArr.push(empRating);
+//                            empRating[empId] = rating;
+//                            empArr.push(empRating);
                             questionsAnswered.push(quesId);
                         }
                     });
-                    var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
+//                    var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
+                    var dataSub = {'resp_val': jQuery('#resp_val_' + quesId).val()};
                     if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
                         questionsAnswered.push(quesId);
                     }
@@ -277,13 +302,12 @@ $(document).ready(function () {
                 $('.submit-popup-warning-text p').each(function (j) {
                     $(this).remove();
                 });
-                
+
                 if (qList.length === totalQuestionLength) {
                     $('#yesButton').attr('disabled', true);
                     $('#yesButton').css('color', '#9e9e9e');
                     $('.submit-popup-warning-text').append('<p> You have not answered any questions. Please select a response to submit </p>');
-                }
-                else if (qList.length > 0) {
+                } else if (qList.length > 0) {
                     $('#yesButton').prop('disabled', false);
                     $('#yesButton').css('color', '#4caf50');
                     $('.submit-popup-warning-text').append('<p> You have ' + qList.length + ' unanswered questions </p>');
