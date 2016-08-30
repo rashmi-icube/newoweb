@@ -25,7 +25,7 @@
             Cookie firstName = new Cookie("employeeID",request.getParameter("username"));
 
             // Set expiry date after 1 year for the cookie.
-            firstName.setMaxAge(365 * 24 * 60 * 60 * 1000);
+            firstName.setMaxAge(365*24*60*60);
 
             // Add the cookie in the response header.
             response.addCookie(firstName);
