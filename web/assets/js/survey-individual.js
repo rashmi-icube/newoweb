@@ -67,22 +67,24 @@ $(document).ready(function () {
 //        clearRatings();
     });
     $(function () {
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            paginationType: 'progress',
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            iOSEdgeSwipeDetection: true,
+        if ($('#subModuleName').val() === "ihcl") {
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationType: 'progress',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                iOSEdgeSwipeDetection: true,
 //            autoHeight: 'true',
-            onSlideNextStart: function () {
-                showProgressValue(true);
-                showSubmitButton();
-            },
-            onSlidePrevStart: function () {
-                showProgressValue(false);
-                showSubmitButton();
-            }
-        });
+                onSlideNextStart: function () {
+                    showProgressValue(true);
+                    showSubmitButton();
+                },
+                onSlidePrevStart: function () {
+                    showProgressValue(false);
+                    showSubmitButton();
+                }
+            });
+        }
     });
 
     /****************************************** SURVEY-ME ***********************************************/
@@ -244,46 +246,30 @@ $(document).ready(function () {
                 // check for how many questions have been answered
                 var questionsAnswered = [];
                 var qList = [];
-                var empArr = [];
-                var empRating = {};
-
-                // rashmi
-
-                var empArr = [];
-                var empRating = {};
-
-
-
 
                 jQuery.each(jsonObj, function (index, value) {
                     var quesId = value.questionId;
                     qList.push(quesId);
-                    
+
                     var empArr1 = jQuery.data(document.body, "emp_rating");
                     if (empArr1 !== undefined) {
                         jQuery.each(empArr1, function (i, o) {
                             jQuery.each(o, function (k, v) {
                                 var id = k.split("_");
-                                if (id[0] === quesId) {
-//                                empRating[id[1]] = v;
-//                                empArr.push(empRating);
+                                if (id[0] === quesId.toString()) {
                                     questionsAnswered.push(quesId);
                                 }
                             });
                         });
                     }
-                    
+
                     jQuery.each($('.star-rating-total'), function (i, v) {
                         var qId = $(v).attr('ques_id');
-                        var empId = $(v).attr('emp_id');
                         var rating = $(v).text();
-                        if (rating !== '' && qId === quesId.toString()) {
-//                            empRating[empId] = rating;
-//                            empArr.push(empRating);
+                        if (rating !== '' && rating !== '0' && qId === quesId.toString()) {
                             questionsAnswered.push(quesId);
                         }
                     });
-//                    var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
                     var dataSub = {'resp_val': jQuery('#resp_val_' + quesId).val()};
                     if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
                         questionsAnswered.push(quesId);
@@ -492,6 +478,7 @@ function ratingStar(obj) {
             });
         }
     });
+//    saveRating();
 }
 /** Search functionality using Isotope begins */
 function searchIsotope() {
@@ -637,9 +624,19 @@ function saveRating() {
         var empId = $(v).attr('emp_id');
         var quesId = $(v).attr('ques_id');
         var rating = $(v).text();
-        if (rating !== '') {
+        if (rating !== '' && rating !== '0') {
             empRating[quesId + '_' + empId] = rating;
             empArr.push(empRating);
+        } else if (empArr !== undefined && empArr.length > 0) {
+
+            jQuery.each(empArr, function (i, o) {
+                jQuery.each(o, function (k, v) {
+                    var id = k.split("_");
+                    if (id[0] === quesId.toString() && rating === '0') {
+                        empArr.splice(o, 1);
+                    }
+                });
+            });
         }
     });
     jQuery.data(document.body, "emp_rating", empArr);
@@ -688,7 +685,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             }
         },
         success: function (resp) {
-            console.log("inside the ajax");
+//            console.log("inside the ajax");
             $('.overlay_form').hide();
             $(obj).siblings('.individuals-box').html(resp);
             fetchAndPopulateRating();
@@ -698,7 +695,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             $('.filter-row .filter-menu li li span').removeAttr('style');
             $('.mobile-filter-row').removeClass('chosen');
             $('.mobile-filter-row .filter-menu input').prop('checked', false);
-            console.log("after the success of ajax");
+//            console.log("after the success of ajax");
         }
     });
 }
@@ -863,7 +860,7 @@ function submitWeData(quesId) {
         jQuery.each(empArr1, function (i, o) {
             jQuery.each(o, function (k, v) {
                 var id = k.split("_");
-                if (id[0] === quesId) {
+                if (id[0] === quesId.toString()) {
                     empRating[id[1]] = v;
                     empArr.push(empRating);
                 }
@@ -875,7 +872,7 @@ function submitWeData(quesId) {
         var qId = $(v).attr('ques_id');
         var empId = $(v).attr('emp_id');
         var rating = $(v).text();
-        if (rating !== '' && qId === quesId.toString()) {
+        if (rating !== '' && rating !== '0' && qId === quesId.toString()) {
             empRating[empId] = rating;
             empArr.push(empRating);
         }
