@@ -103,25 +103,15 @@ function DeleteCookie (name,path,domain) {
 </script>
         
         <script language="javascript">
-            function MyNamer(){
-                var now = new Date();
-                now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+            function CookieCheck(){
                 var username = GetCookie("employeeID");
                 if ((!username)||(username==='null')){
-                    //username = prompt("Please enter your name:", "");
                     window.location.replace("login.jsp");
                 }
-                setCookie("username", username, now);
-                if (username) {
-                    //document.write(username); 
-                    setCookie("username", username, now);
-                    
+                else
+                {
                     window.location.replace("login-check.jsp?username=" + username + "&password=abc123&roleid=1");
                 } 
-                else {
-                    window.location.replace("login.jsp");
-                }
-                //document.write("You didn\'t enter your name.");
             }
         </script>
     </head>
@@ -132,7 +122,7 @@ function DeleteCookie (name,path,domain) {
                     <a id="Login-Logo">
                         <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
                         <script language="javascript">
-                            MyNamer();
+                            CookieCheck();
                         </script>
                     </a>
                 </div>
