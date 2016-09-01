@@ -1,10 +1,11 @@
+<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>--%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="org.icube.owen.filter.FilterList"%>
 <%@page import="org.icube.owen.filter.Filter"%>
 <%@page import="org.icube.owen.employee.Employee"%>
 <%@page import="java.util.Map"%>
-<!DOCTYPE html>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="org.icube.owen.survey.Question"%>
 <%@page import="org.icube.owen.ObjectFactory"%>
@@ -55,70 +56,72 @@
         <meta name="apple-mobile-web-app-title" content="OWEN">       
         <script language="JAVASCRIPT">
 <!--//
-var expdate = new Date ();
-expdate.setTime (expdate.getTime() + (24 * 60 * 60 * 1000*365)); // 1 yr from now 
+            var expdate = new Date();
+            expdate.setTime(expdate.getTime() + (24 * 60 * 60 * 1000 * 365)); // 1 yr from now 
 
-/* ####################### start set cookie  ####################### */
+            /* ####################### start set cookie  ####################### */
 
-function setCookie(name, value, expires, path, domain, secure) {  var thisCookie = name + "=" + escape(value) +
-((expires) ? "; expires=" + expires.toGMTString() : "") +
-((path) ? "; path=" + path : "") +
-((domain) ? "; domain=" + domain : "") +
-((secure) ? "; secure" : "");
-document.cookie = thisCookie;
-}
-/* ####################### start show cookie ####################### */
+            function setCookie(name, value, expires, path, domain, secure) {
+                var thisCookie = name + "=" + escape(value) +
+                        ((expires) ? "; expires=" + expires.toGMTString() : "") +
+                        ((path) ? "; path=" + path : "") +
+                        ((domain) ? "; domain=" + domain : "") +
+                        ((secure) ? "; secure" : "");
+                document.cookie = thisCookie;
+            }
+            /* ####################### start show cookie ####################### */
 
-function showCookie(){
+            function showCookie() {
 
-alert(unescape(document.cookie));
-}
-/* ####################### start get cookie value ####################### */
+                alert(unescape(document.cookie));
+            }
+            /* ####################### start get cookie value ####################### */
 
-function getCookieVal (offset) {
-var endstr = document.cookie.indexOf (";", offset);
-if (endstr == -1)
-endstr = document.cookie.length;
-return unescape(document.cookie.substring(offset, endstr));
-/* ####################### end get cookie value ####################### */
+            function getCookieVal(offset) {
+                var endstr = document.cookie.indexOf(";", offset);
+                if (endstr == -1)
+                    endstr = document.cookie.length;
+                return unescape(document.cookie.substring(offset, endstr));
+                /* ####################### end get cookie value ####################### */
 
-}
-/* ####################### start get cookie (name) ####################### */
+            }
+            /* ####################### start get cookie (name) ####################### */
 
-function GetCookie (name) {
-var arg = name + "=";
-var alen = arg.length;
-var clen = document.cookie.length;
-var i = 0;
-while (i < clen) {
-var j = i + alen;
-if (document.cookie.substring(i, j) == arg)
-return getCookieVal (j);
-i = document.cookie.indexOf(" ", i) + 1;
-if (i == 0) break; 
-}
-return null;
-}
-/* ####################### end get cookie (name) ####################### */
+            function GetCookie(name) {
+                var arg = name + "=";
+                var alen = arg.length;
+                var clen = document.cookie.length;
+                var i = 0;
+                while (i < clen) {
+                    var j = i + alen;
+                    if (document.cookie.substring(i, j) == arg)
+                        return getCookieVal(j);
+                    i = document.cookie.indexOf(" ", i) + 1;
+                    if (i == 0)
+                        break;
+                }
+                return null;
+            }
+            /* ####################### end get cookie (name) ####################### */
 
-/* ####################### start delete cookie ####################### */
-function DeleteCookie (name,path,domain) {
-if (GetCookie(name)) {
-document.cookie = name + "=" +
-((path) ? "; path=" + path : "") +
-((domain) ? "; domain=" + domain : "") +
-"; expires=Thu, 01-Jan-70 00:00:01 GMT";
-}
-}
-/* ####################### end of delete cookie ####################### */
+            /* ####################### start delete cookie ####################### */
+            function DeleteCookie(name, path, domain) {
+                if (GetCookie(name)) {
+                    document.cookie = name + "=" +
+                            ((path) ? "; path=" + path : "") +
+                            ((domain) ? "; domain=" + domain : "") +
+                            "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+                }
+            }
+            /* ####################### end of delete cookie ####################### */
 
 //-->
         </script>
-        
+
         <script language="javascript">
-            function CookieCheck(){
+            function CookieCheck() {
                 var username = GetCookie("employeeID");
-                if ((!username)||(username==='null')){
+                if ((!username) || (username === 'null')) {
                     window.location.replace("login.jsp");
                 }
             }
@@ -131,7 +134,7 @@ document.cookie = name + "=" +
 
         <div class="swiper-container">
             <script language="javascript">
-                CookieCheck();
+//                CookieCheck();
             </script>
             <%@include file="header.jsp" %>
             <%                Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
@@ -201,10 +204,11 @@ document.cookie = name + "=" +
                                 <%
                                     }
                                 %>
+                                <input type="hidden" class="questionId" value="<%= ques.getQuestionId()%>" />
                                 <input type="hidden" class="question_no" value="<%= i%>" />
                                 <div class="me-survey-box clearfix">
                                     <!--<h2></h2>-->
-                                    <span class="question-title"><% out.print(ques.getQuestionText()); %></span>
+                                    <span class="question-title" id="ihcl-question-title"><% out.print(ques.getQuestionText()); %></span>
 
                                     <div class="answer-box">
                                         <div class="agree-limit clearfix">
@@ -264,6 +268,7 @@ document.cookie = name + "=" +
                                         <%
                                             }
                                         %>
+                                        <input type="hidden" class="questionId" value="<%= ques.getQuestionId()%>" />
                                         <input type="hidden" class="question_no" value="<%= i%>" />
                                         <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
                                         <!--<h2></h2>-->
@@ -271,9 +276,9 @@ document.cookie = name + "=" +
                                         <div class="people-list-box clearfix">
                                             <p style = "font: 14px Open Sans Regular, Open Sans; color: #333; padding-bottom: 10px;"><b>Tip: </b> Indicate frequency of collaboration/level of appreciation  by the number of stars</p>
 
-                                            <input class="search-colleague" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
-                                            <button>&#x1F50D;</button>
-                                            <div class="mobile-filter-row">
+                                            <input class="search-colleague" id="ihcl-search" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
+                                            <button id="ihcl-search-button">&#x1F50D;</button>
+                                            <!--<div class="mobile-filter-row">
                                                 <div>
                                                     <div class="header">
                                                         <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
@@ -288,50 +293,50 @@ document.cookie = name + "=" +
                                                             <li>
                                                                 <span>Geography</span>
                                                                 <ul>
-                                                                    <%
-                                                                        FilterList fl = new FilterList();
-                                                                        Filter geoFilter = fl.getFilterValues(comid, Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
-                                                                        Map<Integer, String> geoitem = geoFilter.getFilterValues();
-                                                                        for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
-                                                                    <li>
-                                                                        <input type="radio" id="filterGeography_<%=entry.getKey()%>" name="filter-geography" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>">
-                                                                        <label for="filterGeography_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                                                    </li>    
-                                                                    <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Function</span>
-                                                                <ul>
-                                                                    <%
-                                                                        Filter funFilter = fl.getFilterValues(comid, Constant.INITIATIVES_FUNCTION_FILTER_NAME);
-                                                                        Map<Integer, String> funitem = funFilter.getFilterValues();
-                                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
-                                                                    <li>
-                                                                        <input type="radio" id="filterFunction_<%=entry.getKey()%>" name="filter-function" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>">
-                                                                        <label for="filterFunction_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                                                    </li>
-                                                                    <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Level</span>
-                                                                <ul>
-                                                                    <%
-                                                                        Filter levelFilter = fl.getFilterValues(comid, Constant.INITIATIVES_LEVEL_FILTER_NAME);
-                                                                        Map<Integer, String> levelitem = levelFilter.getFilterValues();
-                                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
-                                                                    <li>
-                                                                        <input type="radio" id="filterLevel_<%=entry.getKey()%>" name="filter-level" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>">
-                                                                        <label for="filterLevel_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                                                    </li>
-                                                                    <% }%>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <%
+                                                FilterList fl = new FilterList();
+                                                Filter geoFilter = fl.getFilterValues(comid, Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
+                                                Map<Integer, String> geoitem = geoFilter.getFilterValues();
+                                                for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
+                                            <li>
+                                                <input type="radio" id="filterGeography_<%=entry.getKey()%>" name="filter-geography" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>">
+                                                <label for="filterGeography_<%=entry.getKey()%>"><%=entry.getValue()%></label>
+                                            </li>    
+                                            <% } %>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Function</span>
+                                        <ul>
+                                            <%
+                                                Filter funFilter = fl.getFilterValues(comid, Constant.INITIATIVES_FUNCTION_FILTER_NAME);
+                                                Map<Integer, String> funitem = funFilter.getFilterValues();
+                                                for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
+                                            <li>
+                                                <input type="radio" id="filterFunction_<%=entry.getKey()%>" name="filter-function" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>">
+                                                <label for="filterFunction_<%=entry.getKey()%>"><%=entry.getValue()%></label>
+                                            </li>
+                                            <% } %>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Level</span>
+                                        <ul>
+                                            <%
+                                                Filter levelFilter = fl.getFilterValues(comid, Constant.INITIATIVES_LEVEL_FILTER_NAME);
+                                                Map<Integer, String> levelitem = levelFilter.getFilterValues();
+                                                for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
+                                            <li>
+                                                <input type="radio" id="filterLevel_<%=entry.getKey()%>" name="filter-level" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>">
+                                                <label for="filterLevel_<%=entry.getKey()%>"><%=entry.getValue()%></label>
+                                            </li>
+                                            <% }%>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>-->
 
                                             <div class="no-key-selected-mobile" id="count-mobile-<%= ques.getQuestionId()%>">
                                                 <p>View appreciated: </p>
@@ -346,7 +351,7 @@ document.cookie = name + "=" +
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="filter-row">
+<!--                                            <div class="filter-row">
                                                 <div class="get-filter-list">
                                                     <button id="getFilteredList">Filter &#x25BE;</button>
                                                     <div class="filter-menu" ques_id="<%= ques.getQuestionId()%>">
@@ -387,7 +392,7 @@ document.cookie = name + "=" +
                                                     <span></span>
                                                     <span></span>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
                                                 <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
 
@@ -467,7 +472,7 @@ document.cookie = name + "=" +
                                     </div>
                                 </div>
                                 <%
-                                } else { %>
+                                } else {%>
                                 <input type="hidden" id="comp_id_<%=ques.getQuestionId()%>" value="<% out.print(comid);%>" />
                                 <input type="hidden" id="emp_id_<%= ques.getQuestionId()%>" value="<% out.print(empid);%>" />
                                 <input type="hidden" id="question_id_<%= ques.getQuestionId()%>" value="<% out.print(ques.getQuestionId());%>" />
@@ -483,10 +488,11 @@ document.cookie = name + "=" +
                                         <div class="swiper-slide">
                                             <div class="wrapper survey-me question_div app">
                                                 <%}%>
+                                                <input type="hidden" class="questionId" value="<%= ques.getQuestionId()%>" />
                                                 <input type="hidden" class="question_no" value="<%= i%>" />
                                                 <div class="me-survey-box clearfix">
                                                     <!--<h2></h2>-->
-                                                    <span class="question-title"><% out.print(ques.getQuestionText()); %></span>
+                                                    <span class="question-title" id="ihcl-question-title"><% out.print(ques.getQuestionText()); %></span>
                                                     <div class="answer-box">
                                                         <!--<div class="agree-limit clearfix">
                                                                 <span>Strongly disagree</span>

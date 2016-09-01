@@ -1,4 +1,5 @@
 var countProgress = 0;
+var uniqueEmpArr = [];
 $(document).ready(function () {
     showProgressValue(true);
     showSubmitButton();
@@ -78,10 +79,12 @@ $(document).ready(function () {
                 onSlideNextStart: function () {
                     showProgressValue(true);
                     showSubmitButton();
+                    fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
                 },
                 onSlidePrevStart: function () {
                     showProgressValue(false);
                     showSubmitButton();
+                    fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
                 }
             });
         }
@@ -190,6 +193,8 @@ $(document).ready(function () {
 
         $('.search-colleague').attr('placeholder', 'Search for a colleague');
 
+        $('#chooseMobileFilter').attr('disabled', true);
+
         $('.mobile-filter-row').on('click', function (event) {
             $(this).children('div').fadeToggle('200');
             $('.no-key-selected-mobile > div').hide();
@@ -229,6 +234,10 @@ $(document).ready(function () {
 
         $('.mobile-filter-row .filter-menu li li').on('click', function () {
             event.stopPropagation();
+            if ($('input[type=radio]:checked').size() > 0) {
+                $('#chooseMobileFilter').attr('disabled', false);
+            }
+
         });
 
         $(window).scroll(function () {
@@ -624,21 +633,49 @@ function saveRating() {
         var empId = $(v).attr('emp_id');
         var quesId = $(v).attr('ques_id');
         var rating = $(v).text();
-        if (rating !== '' && rating !== '0') {
+        if (rating !== '') {
             empRating[quesId + '_' + empId] = rating;
             empArr.push(empRating);
-        } else if (empArr !== undefined && empArr.length > 0) {
-
-            jQuery.each(empArr, function (i, o) {
-                jQuery.each(o, function (k, v) {
-                    var id = k.split("_");
-                    if (id[0] === quesId.toString() && rating === '0') {
-                        empArr.splice(o, 1);
-                    }
-                });
-            });
         }
     });
+
+    if (empArr !== undefined && empArr.length > 0) {
+        jQuery.each(empArr, function (i1, obj1) {
+            jQuery.each(obj1, function (ques_emp1, rating1) {
+                var updated = false;
+                var deleted = false;
+                if (uniqueEmpArr.length === 0) {
+                    uniqueEmpArr.push(obj1);
+                    updated = true;
+                } else {
+                    jQuery.each(uniqueEmpArr, function (i2, obj2) {
+                        jQuery.each(obj2, function (ques_emp2, rating2) {
+                            if (ques_emp1 === ques_emp2) {
+                                if (rating1 === "0") {
+                                    uniqueEmpArr.splice(i2, 1);
+                                    updated = true;
+                                    deleted = true;
+                                    return false;
+                                } else {
+                                    uniqueEmpArr.splice(i2, 1);
+                                    uniqueEmpArr.push(obj1);
+                                    updated = true;
+                                }
+                            }
+
+                        });
+                        if (deleted) {
+                            return false;
+                        }
+                    });
+                }
+                if (!updated && rating1 !== "0") {
+                    uniqueEmpArr.push(obj1);
+                }
+            });
+        });
+    }
+    empArr = $.merge([], uniqueEmpArr);
     jQuery.data(document.body, "emp_rating", empArr);
 }
 
@@ -674,9 +711,13 @@ function fetchOrgnizationSearch(q, ques, obj) {
     var query = "q=" + q + "&ques=" + ques;
     $('.overlay_form').show();
     var currentRequest = null;
+    var url = "/individual/searchOrgList.jsp";
+    if ($('#subModuleName').val() === "ihcl") {
+        url = "/ihcl/searchOrgList.jsp";
+    }
     currentRequest = jQuery.ajax({
         type: "POST",
-        url: "/individual/searchOrgList.jsp",
+        url: url,
         data: query,
         dataType: 'HTML',
         beforeSend: function () {
@@ -724,7 +765,6 @@ function fetchFilteredData(questionId) {
         data: filterData,
         dataType: 'HTML',
         success: function (resp) {
-            console.log("")
             $('.overlay_form').hide();
             jQuery('#we_grid_' + questionId).html(resp);
             fetchAndPopulateRating();
