@@ -17,7 +17,6 @@
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.owen.web.Util"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String moduleName = "thankyou";
     String subModuleName = "";
