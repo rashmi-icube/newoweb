@@ -134,35 +134,20 @@
 
         <div class="swiper-container">
             <script language="javascript">
-//                CookieCheck();
             </script>
             <%@include file="header.jsp" %>
             <%                Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
                 try {
                     List<Question> qList = question.getEmployeeQuestionList(comid, empid);
-                    //List<Question> qList = new ArrayList<Question>();
+
                     System.out.println("LIST: " + qList);
                     JSONArray questionList = new JSONArray(qList);
                     System.out.println("JSONObject " + questionList);
                     String jArray = questionList.toString();
                     int len = qList.size();
-                    //len = 0;
+
                     if (len == 0) {
                         response.sendRedirect("thankyou.jsp");%>
-            <div class="no-survey">Nothing to do here, now. I will be back with more questions for you soon.</div>
-            <!--            <div class="site-nav survey">
-                            <a class="site-nav-dash1" href="/ihcl/thankyou.jsp" title="Go to Thank You" >&#x276F;</a>
-                        </div>-->
-            <% } else if (len == 1) { %>
-            <!--            <div class="site-nav survey">
-                            <a class="site-nav-dash1" href="/ihcl/thankyou.jsp" title="Go to Thank You" >&#x276F;</a>
-                        </div>-->
-            <% } else if (len > 1) { %>        
-            <!--            <div class="site-nav survey">
-                            <a class="site-nav-prev" href="#" title="Prev" onclick="this.disabled = true;">&#x276F;</a>
-                            <a class="site-nav-next" href="#" title="Next" onclick="this.disabled = true;">&#x276F;</a>
-                            <a class="site-nav-dash" href="/ihcl/thankyou.jsp" title="Go to Thank You" style="display:none;">&#x276F;</a>
-                        </div>-->
             <% }%>
             <div class="black_overlay"></div>
             <div class="swiper-pagination"></div>
@@ -229,33 +214,12 @@
                                         </div>
                                     </div>
                                     <div style="clear: both;"></div>
-                                    <!--<div class="submit-circle clearfix">
-                                            <button onclick="this.disabled = true;this.form.submit();" value="<% out.print(ques.getQuestionId()); %>">&#x2714;</button>
-                                            <div class="submit-tooltip">
-                                                <span class="submit-title"><span>SUBMIT</span> this response</span>
-                                                <span class="submit-response">Please select a response</span>
-                                            </div>
-                                        </div>-->
-
-                                    <!--                                    <div class="submit-popup">
-                                                                            <h2>Submit your responses ?</h2>
-                                                                            <div class="submit-popup-warning-text">
-                                                                                <p>You have unanswered questions
-                                                                                    <span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>
-                                                                                </p>
-                                                                                <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
-                                                                            </div>
-                                                                            <div class="submit-popup-buttons">
-                                                                                <button>YES</button>
-                                                                                <button>NO</button>
-                                                                            </div>
-                                                                        </div>-->
                                 </div>
                             </div>
                         </div>
                         <%
                         } else if (quesType == QuestionType.WE) {
-//} else if (false) {
+
                             if (len == 1 || i == 0) {
                         %>
                         <div class="swiper-slide">
@@ -278,65 +242,6 @@
 
                                             <input class="search-colleague" id="ihcl-search" type="search" placeholder=" &#x1F50D; Search for a colleague you would like to appreciate" ques_id="<%= ques.getQuestionId()%>">
                                             <button id="ihcl-search-button">&#x1F50D;</button>
-                                            <!--<div class="mobile-filter-row">
-                                                <div>
-                                                    <div class="header">
-                                                        <button id="closeFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter_back.png" alt="Back button"></button>
-                                                        <span>Filter</span>
-                                                        <div>
-                                                            <button id="getMobileSmartList" onclick="fetchSmartData(<%= ques.getQuestionId()%>);">Smart</button>
-                                                            <button id="chooseMobileFilter"><img src="<%=Constant.WEB_ASSETS%>images/button_filter__icon_tick.png" alt="Smart List"></button> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="filter-menu" ques_id="<%= ques.getQuestionId()%>">
-                                                        <ul>
-                                                            <li>
-                                                                <span>Geography</span>
-                                                                <ul>
-                                            <%
-                                                FilterList fl = new FilterList();
-                                                Filter geoFilter = fl.getFilterValues(comid, Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
-                                                Map<Integer, String> geoitem = geoFilter.getFilterValues();
-                                                for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
-                                            <li>
-                                                <input type="radio" id="filterGeography_<%=entry.getKey()%>" name="filter-geography" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>">
-                                                <label for="filterGeography_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                            </li>    
-                                            <% } %>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Function</span>
-                                        <ul>
-                                            <%
-                                                Filter funFilter = fl.getFilterValues(comid, Constant.INITIATIVES_FUNCTION_FILTER_NAME);
-                                                Map<Integer, String> funitem = funFilter.getFilterValues();
-                                                for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
-                                            <li>
-                                                <input type="radio" id="filterFunction_<%=entry.getKey()%>" name="filter-function" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>">
-                                                <label for="filterFunction_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                            </li>
-                                            <% } %>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span>Level</span>
-                                        <ul>
-                                            <%
-                                                Filter levelFilter = fl.getFilterValues(comid, Constant.INITIATIVES_LEVEL_FILTER_NAME);
-                                                Map<Integer, String> levelitem = levelFilter.getFilterValues();
-                                                for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
-                                            <li>
-                                                <input type="radio" id="filterLevel_<%=entry.getKey()%>" name="filter-level" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>">
-                                                <label for="filterLevel_<%=entry.getKey()%>"><%=entry.getValue()%></label>
-                                            </li>
-                                            <% }%>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>-->
 
                                             <div class="no-key-selected-mobile" id="count-mobile-<%= ques.getQuestionId()%>">
                                                 <p>View appreciated: </p>
@@ -350,49 +255,10 @@
                                                     <div class="list-of-selected-people-popup-mobile clearfix" id="list-mobile-<%= ques.getQuestionId()%>">
                                                     </div>
                                                 </div>
-                                            </div>
-<!--                                            <div class="filter-row">
-                                                <div class="get-filter-list">
-                                                    <button id="getFilteredList">Filter &#x25BE;</button>
-                                                    <div class="filter-menu" ques_id="<%= ques.getQuestionId()%>">
-                                                        <ul>
-                                                            <li>
-                                                                <span>Geography <span>&#x203A;</span></span>
-                                                                <ul><%
-                                                                    for (Map.Entry<Integer, String> entry : geoitem.entrySet()) {%>
-                                                                    <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Geography" data_id="<%=entry.getKey()%>"  filter_type_id="<%=geoFilter.getFilterId()%>"><%=entry.getValue()%></span></li>
-                                                                        <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Function <span>&#x203A;</span></span>
-                                                                <ul>
-                                                                    <%
-                                                                        for (Map.Entry<Integer, String> entry : funitem.entrySet()) {%>
-                                                                    <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Function" data_id="<%=entry.getKey()%>"  filter_type_id="<%=funFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
-                                                                        <% } %>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <span>Level <span>&#x203A;</span></span>
-                                                                <ul>
-                                                                    <%
-                                                                        for (Map.Entry<Integer, String> entry : levelitem.entrySet()) {%>
-                                                                    <li><span>&#x2714;</span> <span class="filter-choice-name" filter_type="Level" data_id="<%=entry.getKey()%>"  filter_type_id="<%=levelFilter.getFilterId()%>"><%=entry.getValue()%></span></li>   
-                                                                        <% }%>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <button id="getSmartList" onclick="fetchSmartData(<%= ques.getQuestionId()%>);">Smart</button>
-                                                <input type="hidden" id="relation_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
-                                                <div class="three-filters-group" id="three-filters-group-<%= ques.getQuestionId()%>">
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
-                                                </div>
-                                            </div>-->
+                                            </div>                                            
+                                            </ul>
+                                            </li>
+
                                             <div id="we_grid_<%= ques.getQuestionId()%>" class="individuals-box">     
                                                 <div class="overlay_form"><img src="/assets/images/ajax-loader.gif"></div>
 
@@ -447,27 +313,6 @@
                                                 <div class="list-of-people-selected" id="list-desktop-<%= ques.getQuestionId()%>">
                                                 </div>
                                             </div>
-                                            <!--<div class="submit-circle clearfix">
-                                                    <button value="<%= ques.getQuestionId()%>">&#x2714;</button>
-                                                    <div class="submit-tooltip">
-                                                        <span class="submit-title"><span>SUBMIT</span> this response</span>
-                                                        <span class="submit-response">Please select a response</span>
-                                                    </div>
-                                                </div>-->
-
-                                            <!--                                            <div class="submit-popup">
-                                                                                            <h2>Submit your responses ?</h2>
-                                                                                            <div class="submit-popup-warning-text">
-                                                                                                <p>You have unanswered questions
-                                                                                                    <span>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8</span>
-                                                                                                </p>
-                                                                                                <p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>
-                                                                                            </div>
-                                                                                            <div class="submit-popup-buttons">
-                                                                                                <button>YES</button>
-                                                                                                <button>NO</button>
-                                                                                            </div>
-                                                                                        </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -494,11 +339,6 @@
                                                     <!--<h2></h2>-->
                                                     <span class="question-title" id="ihcl-question-title"><% out.print(ques.getQuestionText()); %></span>
                                                     <div class="answer-box">
-                                                        <!--<div class="agree-limit clearfix">
-                                                                <span>Strongly disagree</span>
-                                                                <span>Strongly agree</span>
-                                                            </div>-->
-
                                                         <div class="mood-range" ques_id="<% out.print(ques.getQuestionId()); %>">
                                                             <div><button value="1">&#128546</button></div>
                                                             <div><button value="2">&#128543</button></div>
@@ -548,7 +388,6 @@
 
         <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
-        <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>-->
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
