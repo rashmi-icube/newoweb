@@ -201,19 +201,21 @@ $(document).ready(function () {
         });
 
         $(document).on('click', '.no-key-selected-mobile', function (event) {
-//        $('.no-key-selected-mobile').on('click', function (event) {
             $(this).children('div').fadeToggle('200');
             $(this).children('div').css('position', 'absolute');
             $(this).children('div').css('z-index', '1');
-            $(this).children('div').css('margin-left', '-200px');
+//            $(this).children('div').css('margin-left', '-200px');
             $('.mobile-filter-row > div').hide();
         });
-
+       
 //        $('.no-key-selected-mobile > div').hide();
 
         $('#closeFilter').on('click', function () {
             event.stopPropagation();
             $('.mobile-filter-row>div').fadeOut('200');
+            if ($('#subModuleName').val() === "ihcl") {
+                $('.no-key-selected-mobile').children('div').hide('200');
+            }
         });
 
         $('#getMobileSmartList').on('click', function () {
@@ -237,7 +239,6 @@ $(document).ready(function () {
             if ($('input[type=radio]:checked').size() > 0) {
                 $('#chooseMobileFilter').attr('disabled', false);
             }
-
         });
 
         $(window).scroll(function () {

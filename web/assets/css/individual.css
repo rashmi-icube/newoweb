@@ -1544,7 +1544,7 @@ nav li a {
 .individual-cell .back-card li {
     margin-bottom: 3px;
     color: #333;
-    font: 12px 'Open Sans Light', 'Open Sans';
+    font: 11px 'Open Sans Light', 'Open Sans';
 }
 
 .individual-cell .back-card li:last-child { margin-bottom: 0; }
@@ -3484,7 +3484,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     }
 
     #ihcl-search{
-        width: calc(100% - 48px);
+        width: calc(100% - 80px);
         height: 36px;
         border: 2px solid #388e3c;
     }
@@ -3500,7 +3500,8 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     .people-list-box .no-key-selected-mobile{
         display: flex !important;
         padding-bottom: 10px;
-        float: left;
+        /*For OWEN (not IHCL), float: left;*/
+        float: none;
         width: 200px;
     }
 
