@@ -645,7 +645,7 @@ function saveRating() {
             jQuery.each(obj1, function (ques_emp1, rating1) {
                 var updated = false;
                 var deleted = false;
-                if (uniqueEmpArr.length === 0) {
+                if (uniqueEmpArr.length === 0 && rating1 !== "0") {
                     uniqueEmpArr.push(obj1);
                     updated = true;
                 } else {
