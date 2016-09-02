@@ -15,8 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
@@ -36,20 +34,60 @@ public class Util {
     public static String getInitiativeTypeImage(String initType, String category) {
         String[][] maplist = null;
         String imgName = "panel_expertise_pic.png";
-        if(category.equals(Constant.INITIATIVES_CATEGORY_INDIVIDUAL)) {
+        if (category.equals(Constant.INITIATIVES_CATEGORY_INDIVIDUAL)) {
             maplist = Constant.INIT_TYPE_IMAGE_MAPPING[0];
         } else {
             maplist = Constant.INIT_TYPE_IMAGE_MAPPING[1];
         }
-        if(maplist != null) {
-            for(int j=0; j <maplist[0].length; j++) {
-                if(maplist[0][j].equalsIgnoreCase(initType)) {
-                     imgName = maplist[1][j];
+        if (maplist != null) {
+            for (int j = 0; j < maplist[0].length; j++) {
+                if (maplist[0][j].equalsIgnoreCase(initType)) {
+                    imgName = maplist[1][j];
                 }
             }
         }
         return imgName;
     }
+    
+    public static String getQuestionTypeLabel(String relType) {
+        String[][] maplist = Constant.QUESTION_TYPE_LABEL_MAPPING;
+        String label = "";
+        if (maplist != null) {
+            for (int j = 0; j < maplist[0].length; j++) {
+                if (maplist[0][j].equalsIgnoreCase(relType)) {
+                    label = maplist[1][j];
+                }
+            }
+        }
+        return label;
+    }
+
+    public static String getQuestionTypeImage(String relType) {
+        String[][] maplist = Constant.QUESTION_TYPE_IMAGE_MAPPING;
+        String imgName = "panel_expertise_pic.png";
+        if (maplist != null) {
+            for (int j = 0; j < maplist[0].length; j++) {
+                if (maplist[0][j].equalsIgnoreCase(relType)) {
+                    imgName = maplist[1][j];
+                }
+            }
+        }
+        return imgName;
+    }
+    
+    public static String getQuestionTypeText(String relType) {
+        String[][] maplist = Constant.QUESTION_TYPE_TEXT_MAPPING;
+        String text = "";
+        if (maplist != null) {
+            for (int j = 0; j < maplist[0].length; j++) {
+                if (maplist[0][j].equalsIgnoreCase(relType)) {
+                    text = maplist[1][j];
+                }
+            }
+        }
+        return text;
+    }
+    
     public static void printLog(Object logmessage) {
         if (Constant.LOG_LEVEL <= Constant.INFO) {
             System.out.println(logmessage);
@@ -60,16 +98,17 @@ public class Util {
         ex.printStackTrace();
 
     }
-    
+
     public static String getDisplayDateFormat(Date date, String format) {
         //System.out.println(date);
         try {
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        return sdf.format(date);
-        }catch(Exception ex) {
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            return sdf.format(date);
+        } catch (Exception ex) {
             return "";
         }
     }
+
     public static java.util.Date getStringToDate(String dateStr, String format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         Date date = null;
@@ -90,27 +129,31 @@ public class Util {
         }
         return validate;
     }
-    
+
     public static int getIntValue(String val) {
         int iVal = 0;
         try {
-            iVal = Integer.parseInt(val);
-        }catch(NumberFormatException nfe) {
+            if (val != null) {
+                iVal = Integer.parseInt(val);
+            }
+        } catch (NumberFormatException nfe) {
             Util.printException(nfe);
         }
         return iVal;
     }
-    
+
     public static int getIntValue(String val, int defaultVal) {
         int iVal = defaultVal;
         try {
-            iVal = Integer.parseInt(val);
-        }catch(NumberFormatException nfe) {
+            if (val != null) {
+                iVal = Integer.parseInt(val);
+            }
+        } catch (NumberFormatException nfe) {
             Util.printException(nfe);
         }
         return iVal;
     }
-    
+
     public static boolean validateSpecialChar(String text) {
         boolean validate = false;
         if (text != null) {
@@ -119,13 +162,15 @@ public class Util {
         }
         return validate;
     }
+
     public static boolean isEmpty(String addvalue) {
-    	boolean result = false;
-    	if(addvalue == null || addvalue.equals("")) {
-    		result =  true;
-    	}
-    	return result;
+        boolean result = false;
+        if (addvalue == null || addvalue.equals("")) {
+            result = true;
+        }
+        return result;
     }
+
     public static boolean checkForFutureDate(String dateStr, String dateFormat) {
         boolean isDateValid = true;
         try {
@@ -239,13 +284,14 @@ public class Util {
         return validate;
     }
 
-     public static boolean checkDateBefore(java.util.Date fromDate, java.util.Date toDate) {
+    public static boolean checkDateBefore(java.util.Date fromDate, java.util.Date toDate) {
         boolean validate = true;
         if (fromDate.before(toDate)) {
             validate = false;
         }
         return validate;
     }
+
     public static String removeSpaces(String s) {
         StringTokenizer st = new StringTokenizer(s, " ", false);
         String t = "";
@@ -310,7 +356,7 @@ public class Util {
         }
         return val;
     }
-    
+
     public static String replaceWord(String original, String find,
             String replacement) {
         int i = original.indexOf(find);
@@ -324,60 +370,60 @@ public class Util {
         return partBefore + replacement + partAfter;
     }
 
-    public static HashMap<Integer,HashMap<String, Integer>> getTypeList(java.util.List<java.util.Map<java.lang.String,java.lang.Object>> iList, String category) {
-        HashMap<Integer,HashMap<String, Integer>> hasmap =  new  HashMap<Integer,HashMap<String, Integer>>();
-       
-       
-        for(int i=0; i < iList.size(); i++) {
-            if(iList.get(i).get("category").equals(category)) {
+    public static HashMap<Integer, HashMap<String, Integer>> getTypeList(java.util.List<java.util.Map<java.lang.String, java.lang.Object>> iList, String category) {
+        HashMap<Integer, HashMap<String, Integer>> hasmap = new HashMap<Integer, HashMap<String, Integer>>();
+
+        for (int i = 0; i < iList.size(); i++) {
+            if (iList.get(i).get("category").equals(category)) {
                 HashMap<String, Integer> hmap = new HashMap<String, Integer>();
-                
-                Integer initiativeType = (Integer)iList.get(i).get("initiativeType");
-                if(initiativeType != null ) {
-                    if(hasmap.containsKey(initiativeType)) {
+
+                Integer initiativeType = (Integer) iList.get(i).get("initiativeType");
+                if (initiativeType != null) {
+                    if (hasmap.containsKey(initiativeType)) {
                         hmap = hasmap.get(initiativeType);
                     }
-                    hmap.put((String)iList.get(i).get("status"), (Integer)iList.get(i).get("totalInitiatives"));
-                    hasmap.put(initiativeType,hmap);
+                    hmap.put((String) iList.get(i).get("status"), (Integer) iList.get(i).get("totalInitiatives"));
+                    hasmap.put(initiativeType, hmap);
                 }
             }
         }
-        
+
         return hasmap;
     }
-    
+
     public static boolean isValidGender(String gender) {
         if (gender != null && !(gender.equalsIgnoreCase("M") || gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("F") || gender.equalsIgnoreCase("Female"))) {
             return false;
         }
         return true;
     }
+
     public static File saveFile(String storePath, String destinationFile,
-			InputStream is, int allowedFileSize, boolean overwrite) throws IOException {
-		String returnFileName = "";
-		File dir = new File(storePath);
-		if(!dir.exists()) {
-			dir.mkdirs();
-		}
-		File f = new File(storePath + destinationFile);
-		if(f.exists() && overwrite == false) {
-			destinationFile = destinationFile.substring(0, destinationFile.lastIndexOf("."))+"_"+System.currentTimeMillis()+destinationFile.substring(destinationFile.lastIndexOf("."));
-		}
-		OutputStream os = new FileOutputStream(storePath + destinationFile);
-		byte[] b = new byte[2048];
-		int length;
-		while ((length = is.read(b)) != -1) {
-			os.write(b, 0, length);
-		}
-		is.close();
-		os.close();
-		f = new File(storePath + destinationFile);
-		long fileSize = f.length()/1024;
-		if(fileSize <= allowedFileSize) {
-			returnFileName = destinationFile;
-		}  else {
-			f.delete();		
-		}
-		return f ;
-	}
+            InputStream is, int allowedFileSize, boolean overwrite) throws IOException {
+        String returnFileName = "";
+        File dir = new File(storePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File f = new File(storePath + destinationFile);
+        if (f.exists() && overwrite == false) {
+            destinationFile = destinationFile.substring(0, destinationFile.lastIndexOf(".")) + "_" + System.currentTimeMillis() + destinationFile.substring(destinationFile.lastIndexOf("."));
+        }
+        OutputStream os = new FileOutputStream(storePath + destinationFile);
+        byte[] b = new byte[2048];
+        int length;
+        while ((length = is.read(b)) != -1) {
+            os.write(b, 0, length);
+        }
+        is.close();
+        os.close();
+        f = new File(storePath + destinationFile);
+        long fileSize = f.length() / 1024;
+        if (fileSize <= allowedFileSize) {
+            returnFileName = destinationFile;
+        } else {
+            f.delete();
+        }
+        return f;
+    }
 }

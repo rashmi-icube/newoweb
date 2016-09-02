@@ -17,13 +17,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../common.jsp" %>
 <div class="overlay"></div>
-<div class="overlay_form">a
+<div class="overlay_form">
     <img src="<%=Constant.WEB_ASSETS%>images/ajax-loader.gif">
 </div>
 <div class="individuals-grid">
     <%
         int questionId = Util.getIntValue(request.getParameter("questionId"), 0);
-        //out.println("questionId ::::::::::::: " + questionId);
         int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), 0);
         int filterIdFun = Util.getIntValue(request.getParameter("Function"), 0);
         int filterIdLevel = Util.getIntValue(request.getParameter("Level"), 0);
@@ -74,7 +73,8 @@
             if (metricId > 0) {
                 IndividualDashboardHelper iDashboard = (IndividualDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.IndividualDashboardHelper");
                 mapSmartList = iDashboard.getSmartList(comid, empid, metricId);
-                //out.println("mapSmartList ::::::::::::: " + mapSmartList.size());
+                out.println("mapSmartList ::::::::::::: " + mapSmartList.size());
+
             }
         }
         if (mapSmartList != null) {
@@ -130,8 +130,9 @@
         var i = $(this).index();
         var lastStar = $(row).find('.filled:last').index();
         var parent = row.parent().parent();
+        var quesId = $(obj).parent().find('#quesId').val();
         var name = $(parent).find('span.individual-cell-name').text().trim();
-        var count = $('.list-of-selected-people-popup-mobile p').length;
+        var count = $('#list-mobile-' + quesId + ' p').length;
 
         // clear the ratings for the chosen employee
         if (lastStar === i) {
@@ -140,28 +141,28 @@
             $(row).next().text('0').removeAttr('style');
 
             // remove names from the list
-            $('.list-of-people-selected p').each(function (j) {
+            $('#list-desktop-' + quesId + ' p').each(function (j) {
                 if ($(this).text() === name) {
                     $(this).remove();
                 }
             });
 
-            $('.list-of-selected-people-popup-mobile p').each(function (j) {
+            $('#list-mobile-' + quesId + ' p').each(function (j) {
                 if ($(this).text() === name) {
                     $(this).remove();
                 }
             });
             // update the count of the names
             --count;
-            $('#count-desktop span').text('');
-            $('#count-desktop span').text(count);
+            $('#count-desktop-' + quesId + ' span').text('');
+            $('#count-desktop-' + quesId + ' span').text(count);
 
-            $('#count-mobile span').text('');
-            $('#count-mobile span').text(count);
+            $('#count-mobile-' + quesId + ' span').text('');
+            $('#count-mobile-' + quesId + ' span').text(count);
 
         } else {
             // add or update the stars for the given employee
-            $(this).nextAll().removeClass('filled');
+            $(obj).nextAll().removeClass('filled');
             for (var n = 0; n < i; n++) {
                 $(row).children('span:eq(' + n + ')').addClass('filled');
             }
@@ -171,35 +172,35 @@
             var flag = false;
 
             // for the first employee that is selected append the employee
-            if (($('.list-of-people-selected p').length === 0) && ($('.list-of-selected-people-popup-mobile p').length === 0)) {
+            if (($('#list-desktop-' + quesId + ' p').length === 0) && ($('#list-mobile-' + quesId + ' p').length === 0)) {
                 ++count;
-                $('.list-of-people-selected').append('<p>' + name + '</p>');
-                $('#count-desktop span').text(count);
+                $('#list-desktop-' + quesId).append('<p>' + name + '</p>');
+                $('#count-desktop-' + quesId + ' span').text(count);
 
-                $('.list-of-selected-people-popup-mobile').append('<p>' + name + '</p>');
-                $('#count-mobile span').text(count);
+                $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
+                $('#count-mobile-' + quesId + ' span').text(count);
             } else {
                 // check with the help of the flag and update the list & count accordingly
-                $('.list-of-people-selected p').each(function (j) {
+                $('#list-desktop-' + quesId + ' p').each(function (j) {
                     if ($(this).text().trim() === name) {
                         flag = true;
                     }
                 });
 
-                $('.list-of-people-selected p').each(function (j) {
+                $('#list-mobile-' + quesId + ' p').each(function (j) {
                     if ($(this).text().trim() === name) {
                         flag = true;
                     }
                 });
                 if (!flag) {
                     ++count;
-                    $('.list-of-people-selected').append('<p>' + name + '</p>');
-                    $('#count-desktop span').text('');
-                    $('#count-desktop span').text(count);
+                    $('#list-desktop-' + quesId).append('<p>' + name + '</p>');
+                    $('#count-desktop-' + quesId + ' span').text('');
+                    $('#count-desktop-' + quesId + ' span').text(count);
 
-                    $('.list-of-selected-people-popup-mobile').append('<p>' + name + '</p>');
-                    $('#count-mobile span').text('');
-                    $('#count-mobile span').text(count);
+                    $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
+                    $('#count-mobile-' + quesId + ' span').text('');
+                    $('#count-mobile-' + quesId + ' span').text(count);
                 }
             }
         }

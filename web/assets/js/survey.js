@@ -1,47 +1,60 @@
-jQuery(document).ready(function($) {
-    $('nav>ul>li').on('click', function() {
+jQuery(document).ready(function ($) {
+    $('nav>ul>li').on('click', function () {
         $(this).addClass('current');
         $(this).siblings('li').removeClass('current');
     });
 
-    $('nav>ul>li:eq(2)').on('click', function(event) {
-        event.stopPropagation(); 
+    $('nav>ul>li:eq(2)').on('click', function (event) {
         event.preventDefault();
-        $('.create-view-list').slideDown('250');
-    });
-    
-    $('nav>ul>li li').on('click', function(event) { 
-        event.stopPropagation(); 
+        event.stopPropagation();
+        $('.create-view-list1').slideDown('250');
+        $('.create-view-list2').slideUp('250');
     });
 
-    $('.create-view-list').children('span').on('click', function(event) {
+    $('nav>ul>li:eq(3)').on('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        $('.create-view-list2').slideDown('250');
+        $('.create-view-list1').slideUp('250');
+    });
+
+    $('nav>ul>li li').on('click', function (event) {
+        event.stopPropagation();
+    });
+
+    $('.create-view-list1').children('span').on('click', function (event) {
         event.stopPropagation();
         $(this).parent('div').slideUp('250').find('li ul').hide();
     });
 
-    $(document).click(function(){
-        $('.create-view-list').slideUp('250');
+    $('.create-view-list2').children('span').on('click', function (event) {
+        event.stopPropagation();
+        $(this).parent('div').slideUp('250').find('li ul').hide();
+    });
+
+    $(document).click(function () {
+        $('.create-view-list1').slideUp('250');
+        $('.create-view-list2').slideUp('250');
         $('.user-profile-name ul').hide();
     });
 
-    $('.user-profile-name p a').on('click', function(event) {
+    $('.user-profile-name p a').on('click', function (event) {
         event.stopPropagation();
         event.preventDefault();
         $('.user-profile-name ul').fadeToggle();
     });
-    
-    if($('.no-current-ques').length > 0) {
+
+    if ($('.no-current-ques').length > 0) {
         $('.question-date-response a').css('visibility', 'hidden');
     }
-    
-    $('.question-date-response a').on('click', function() {
-        if($(this).text() === 'View responses') {
+
+    $('.question-date-response a').on('click', function () {
+        if ($(this).text() === 'View responses') {
             $('.collapse-question').removeClass('show-view').addClass('show-collapse');
             $('.view-question').css('visibility', 'hidden');
             $('.view-question span').removeAttr('style');
             $(this).text('Collapse').attr('title', 'Collapse');
-        }
-        else {
+        } else {
             $('.collapse-question').removeClass('show-collapse').addClass('show-view');
             $('#chartdiv').html('');
             $('.view-question').css('visibility', 'visible');
@@ -54,26 +67,26 @@ jQuery(document).ready(function($) {
             $(this).text('View responses').attr('title', 'View responses');
         }
     });
-    
-    $('#questionFrequency option').each(function() {
+
+    $('#questionFrequency option').each(function () {
         var str = $(this).text();
         var formatText = str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
         $(this).text(formatText);
     });
 
-    $('.completed-questions-header h3').on('click', function(event) {
+    $('.completed-questions-header h3').on('click', function (event) {
         event.stopPropagation();
         $(this).next('div').slideDown('250');
     });
 
-    $('.completed-questions-menu h3').on('click', function() {
+    $('.completed-questions-menu h3').on('click', function () {
         $(this).parent('div').slideUp('250');
     });
-    $(document).on('click', function() {
+    $(document).on('click', function () {
         $('.completed-questions-menu').slideUp('250');
     });
-    
-    $('.completed-questions-menu li').on('click', function() {
+
+    $('.completed-questions-menu li').on('click', function () {
         $(this).addClass('selected').siblings().removeClass('selected');
         var name = $(this).clone().children().remove().end().text();
         $('.completed-questions-header h3 span').text(name);
@@ -81,26 +94,26 @@ jQuery(document).ready(function($) {
         $('.search-question').val('');
     });
 
-    $('.search-popup button').on('click', function() {
-        $(this).next().show('slide', { direction: 'left' }, 500);
+    $('.search-popup button').on('click', function () {
+        $(this).next().show('slide', {direction: 'left'}, 500);
     });
-    
-    $('.search-question').on('input', function() {
+
+    $('.search-question').on('input', function () {
         var $rows = $('.completed-questions table:visible .question-name-date');
         var val = '(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$',
-            reg = RegExp(val, 'i'),
-            text;
-        $rows.show().filter(function() {
-          text = $(this).find('.question-name').text().replace(/\s+/g, ' ');
-          return !reg.test(text);
+                reg = RegExp(val, 'i'),
+                text;
+        $rows.show().filter(function () {
+            text = $(this).find('.question-name').text().replace(/\s+/g, ' ');
+            return !reg.test(text);
         }).hide();
     });
-    
-    $('.completed-questions table a').on('click', function() {
-        $(this).parents('tr').next('tr').find('div').slideToggle('400');
-        var chartId= $(this).parents('tr').next('tr').find('div').attr('id');
 
-        if($(this).text() === 'View responses') {
+    $('.completed-questions table a').on('click', function () {
+        $(this).parents('tr').next('tr').find('div').slideToggle('400');
+        var chartId = $(this).parents('tr').next('tr').find('div').attr('id');
+
+        if ($(this).text() === 'View responses') {
             $(this).text('Collapse').attr('title', 'Collapse');
         } else {
             $('#' + chartId).html('');
@@ -110,7 +123,7 @@ jQuery(document).ready(function($) {
 });
 
 function generateGraph(divid, dataArray, obj) {
-    if($(obj).text() === 'View responses') {
+    if ($(obj).text() === 'View responses') {
         var chartConfig = {
             "type": "serial",
             "categoryField": "category",

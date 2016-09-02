@@ -140,7 +140,7 @@
         </nav>
 
         <div class="notif-settings">
-            <div class="intro-modal-popup"
+            <div class="intro-modal-popup">
                  <!--Call your modal-->
 
                  <section class="cd-section">    
@@ -156,11 +156,9 @@
                             <section class="modal-header">
                                 <header>
                                     <div class="wrapper clearfix">
-                                        <a href="/individual/dashboard.jsp" style="display: inline">
-                                            <h1>
-                                                <span>OWEN  </span>
-                                                <span>Individual</span>
-                                            </h1>
+                                        <a  id="Header-Desktop-Logo">
+                                            <!--            <h1><span>OWEN</span><span>Individual</span></h1>-->
+                                            <img src="<%=Constant.WEB_ASSETS%>images/OWEN_Logo_Desktop.png" alt="OWEN Logo">
                                         </a>
                                     </div>
                                 </header>
@@ -205,9 +203,7 @@
                     </div> <!-- cd-modal -->
 
                     <a href="#0" class="cd-modal-close">Close</a>
-                </section>                    
-
-
+                </section>
             </div>
             <div class="notif-area">
                 <div class="notif-box">

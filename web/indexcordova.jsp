@@ -1,3 +1,9 @@
+<%-- 
+    Document   : indexcordova
+    Created on : 2 Aug, 2016, 11:29:47 AM
+    Author     : adoshi
+--%>
+
 <!DOCTYPE html>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="com.owen.web.Util"%>
@@ -23,16 +29,6 @@
         <link rel="manifest" href="<%=Constant.WEB_ASSETS%>images/favicon_Login/manifest.json">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-TileImage" content="<%=Constant.WEB_ASSETS%>images/favicon_Login/ms-icon-144x144.png">
-        
-        
-        <!-- Chrome, Firefox OS and Opera -->
-        <meta name="theme-color" content="#388E3C">
-        <!-- Windows Phone -->
-        <meta name="msapplication-navbutton-color" content="#388E3C">
-        <!-- iOS Safari -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-title" content="OWEN">
     </head>
     <%
         int roleid = request.getParameter("roleid") != null ? Util.getIntValue(request.getParameter("roleid")) : 1;
@@ -74,6 +70,15 @@
                                 <input type="radio" name="roleid" value="1" <%= (roleid != 2 ? "checked" : "")%>>
                                 <span <%= (roleid == 2 ? "class=\"clicked hr\"" : "class=\"hr\"")%>>HR</span>
                                 <input type="radio" name="roleid" value="2" <%= (roleid == 2 ? "checked" : "")%>>
+                            </div>
+                            
+                            <div class="login-remember-me">
+                                <input type="checkbox" id="check-me">
+                                <label for="check-me">
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    Remember me
+                                </label>
                             </div>
 
                             <button type="submit">GO</button>

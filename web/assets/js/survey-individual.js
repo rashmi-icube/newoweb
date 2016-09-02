@@ -1,4 +1,8 @@
+var countProgress = 0;
+var uniqueEmpArr = [];
 $(document).ready(function () {
+    showProgressValue(true);
+    showSubmitButton();
     $('.site-nav-prev').on('click', function () {
         event.preventDefault();
         var $currentDiv = $('.question_div:visible');
@@ -29,13 +33,12 @@ $(document).ready(function () {
                 });
             }
         });
-
     });
-
     $('.site-nav-next').on('click', function () {
         event.preventDefault();
         var $currentDiv = $('.question_div:visible');
         var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
+//        var $nextDiv = $currentDiv.parent().nextAll('.swiper-slide').find('div.question_div');
         $(this).addClass('active');
         $('body').css('overflow', 'hidden');
         $currentDiv.hide('slide', {direction: 'left'}, 200);
@@ -62,8 +65,30 @@ $(document).ready(function () {
                 });
             }
         });
+//        clearRatings();
     });
-
+    $(function () {
+        if ($('#subModuleName').val() === "ihcl") {
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationType: 'progress',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                iOSEdgeSwipeDetection: true,
+//            autoHeight: 'true',
+                onSlideNextStart: function () {
+                    showProgressValue(true);
+                    showSubmitButton();
+                    fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
+                },
+                onSlidePrevStart: function () {
+                    showProgressValue(false);
+                    showSubmitButton();
+                    fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
+                }
+            });
+        }
+    });
 
     /****************************************** SURVEY-ME ***********************************************/
 
@@ -72,50 +97,14 @@ $(document).ready(function () {
         var quesId = $(this).parent().parent().attr('ques_id');
         $('#resp_val_' + quesId).val($(this).val());
         $(this).parent('div').siblings().removeClass('clicked').children().removeClass('clicked');
+        if ($(this).parent().find('.clicked').length === 0) {
+            $('#resp_val_' + quesId).val('');
+        }
     });
 
     $('.survey-me .submit-circle button').on('click', function (event) {
         var quesId = $(this).val();
-        if ($('.answer-range .clicked').length === 0) {
-            $('.submit-tooltip').children('.submit-title').hide();
-            $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
-            if (document.documentElement.clientWidth <= 480) {
-                $('.submit-tooltip').css('visibility', 'visible');
-                setTimeout(function () {
-                    $('.submit-tooltip').css('visibility', 'hidden');
-                }, 400);
-            }
-        } else {
-            var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
-            jQuery.ajax({
-                type: "POST",
-                url: "/individual/survey-me-submit.jsp",
-                data: dataSub,
-                dataType: 'JSON',
-                success: function (resp) {
-                    var totalQues = parseInt($('#remaining_ques').val());
-                    totalQues = totalQues - 1;
-                    $('#remaining_ques').val(totalQues + "");
-                    var $currentDiv = $('.question_div:visible');
-                    var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
-                    if ($nextDiv.length) {
-                        $('.site-nav a').addClass('active');
-                        $('body').css('overflow', 'hidden');
-                        $currentDiv.hide('slide', {direction: 'left'}, 200);
-                        $nextDiv.show('slide', {direction: 'right'}, 400, function () {
-                            $('.site-nav a').removeClass('active');
-                            searchIsotope();
-                            $currentDiv.remove();
-                            showHideNavigation(this);
-                            $('body').removeAttr('style');
-                        });
-                    } else {
-                        $currentDiv.remove();
-                        window.location.href = 'dashboard.jsp';
-                    }
-                }
-            });
-        }
+        submitMeData(quesId);
 
         $(this).on('mouseout', function () {
             setTimeout(function () {
@@ -188,9 +177,23 @@ $(document).ready(function () {
             });
         }
     }
+    $('.mood-range button').on('click', function (event) {
+        $(this).toggleClass('clicked').parent().toggleClass('clicked');
+        var quesId = $(this).parent().parent().attr('ques_id');
+        $('#resp_val_' + quesId).val($(this).val());
+        $(this).parent('div').siblings().removeClass('clicked').children().removeClass('clicked');
+        if ($(this).parent().find('.clicked').length === 0) {
+            $('#resp_val_' + quesId).val('');
+        }
+    });
+
 
     if (document.documentElement.clientWidth <= 480) {
+
+
         $('.search-colleague').attr('placeholder', 'Search for a colleague');
+
+        $('#chooseMobileFilter').attr('disabled', true);
 
         $('.mobile-filter-row').on('click', function (event) {
             $(this).children('div').fadeToggle('200');
@@ -198,19 +201,21 @@ $(document).ready(function () {
         });
 
         $(document).on('click', '.no-key-selected-mobile', function (event) {
-//        $('.no-key-selected-mobile').on('click', function (event) {
             $(this).children('div').fadeToggle('200');
             $(this).children('div').css('position', 'absolute');
             $(this).children('div').css('z-index', '1');
-            $(this).children('div').css('margin-left', '-200px');
+//            $(this).children('div').css('margin-left', '-200px');
             $('.mobile-filter-row > div').hide();
         });
-
+       
 //        $('.no-key-selected-mobile > div').hide();
 
         $('#closeFilter').on('click', function () {
             event.stopPropagation();
             $('.mobile-filter-row>div').fadeOut('200');
+            if ($('#subModuleName').val() === "ihcl") {
+                $('.no-key-selected-mobile').children('div').hide('200');
+            }
         });
 
         $('#getMobileSmartList').on('click', function () {
@@ -231,6 +236,9 @@ $(document).ready(function () {
 
         $('.mobile-filter-row .filter-menu li li').on('click', function () {
             event.stopPropagation();
+            if ($('input[type=radio]:checked').size() > 0) {
+                $('#chooseMobileFilter').attr('disabled', false);
+            }
         });
 
         $(window).scroll(function () {
@@ -238,10 +246,117 @@ $(document).ready(function () {
                 $('.individuals-box').css('max-height', '+=400px');
             }
         });
+
+        if ($('#subModuleName').val() === "ihcl") {
+
+            $('.submit-circle.app button').on('click', function () {
+                var jArray = $('#ques_list').val();
+                var jsonObj = $.parseJSON(jArray);
+
+                // check for how many questions have been answered
+                var questionsAnswered = [];
+                var qList = [];
+
+                jQuery.each(jsonObj, function (index, value) {
+                    var quesId = value.questionId;
+                    qList.push(quesId);
+
+                    var empArr1 = jQuery.data(document.body, "emp_rating");
+                    if (empArr1 !== undefined) {
+                        jQuery.each(empArr1, function (i, o) {
+                            jQuery.each(o, function (k, v) {
+                                var id = k.split("_");
+                                if (id[0] === quesId.toString()) {
+                                    questionsAnswered.push(quesId);
+                                }
+                            });
+                        });
+                    }
+
+                    jQuery.each($('.star-rating-total'), function (i, v) {
+                        var qId = $(v).attr('ques_id');
+                        var rating = $(v).text();
+                        if (rating !== '' && rating !== '0' && qId === quesId.toString()) {
+                            questionsAnswered.push(quesId);
+                        }
+                    });
+                    var dataSub = {'resp_val': jQuery('#resp_val_' + quesId).val()};
+                    if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
+                        questionsAnswered.push(quesId);
+                    }
+                });
+
+                var totalQuestionLength = qList.length;
+                for (var n = 0; n <= qList.length; n++) {
+                    for (var m = 0; m <= questionsAnswered.length; m++) {
+                        if (qList[n] === questionsAnswered[m]) {
+                            qList.splice(n, 1);
+                        }
+                    }
+                }
+
+                $('.submit-popup-warning-text p').each(function (j) {
+                    $(this).remove();
+                });
+
+                if (qList.length === totalQuestionLength) {
+                    $('#yesButton').attr('disabled', true);
+                    $('#yesButton').css('color', '#9e9e9e');
+                    $('.submit-popup-warning-text').append('<p> You have not answered any questions. Please select a response to submit </p>');
+                } else if (qList.length > 0) {
+                    $('#yesButton').prop('disabled', false);
+                    $('#yesButton').css('color', '#4caf50');
+                    $('.submit-popup-warning-text').append('<p> You have ' + qList.length + ' unanswered questions </p>');
+                } else {
+                    $('#yesButton').prop('disabled', false);
+                    $('#yesButton').css('color', '#4caf50');
+                    $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
+                }
+//                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
+
+                $('.black_overlay').show();
+                $('.submit-popup').show();
+            });
+
+            //NO BUTTON    
+            $('.submit-popup-buttons button:nth-child(even)').on('click', function () {
+                $('.black_overlay').hide();
+                $('.submit-popup').hide();
+            });
+
+            //YES BUTTON
+            $('.submit-popup-buttons button:nth-child(odd)').on('click', function () {
+                //SUBMIT ALL RESPONSES HERE
+                var jArray = $('#ques_list').val();
+                var jsonObj = $.parseJSON(jArray);
+
+                // store the responses for all answered questions
+                jQuery.each(jsonObj, function (index, value) {
+                    var questionId = value.questionId;
+                    var questionType = value.questionType.value;
+                    if (questionType === 1) {
+                        //submit WE answer
+                        var count = $('#list-mobile-' + questionId + ' p').length;
+                        if (count > 0) {
+                            submitWeData(questionId);
+                        }
+                    } else {
+                        // submit ME answer
+                        submitMeData(questionId);
+                    }
+                });
+
+            });
+        }
     }
 
     $('.survey-we .submit-circle button').on('click', function (event) {
-        if ($('.rating-stars .filled').length === 0) {
+        var quesId = $(this).parent().parent().find('#quesId')[0].value;
+        var count = $('#list-mobile-' + quesId + ' p').length;
+        if (count > 0) {
+//            submitWeData(this);
+            submitWeData(quesId);
+        } else {
             $('.submit-tooltip').children('.submit-title').hide();
             $('.submit-tooltip').children('.submit-response').show();
             if (document.documentElement.clientWidth <= 480) {
@@ -250,9 +365,20 @@ $(document).ready(function () {
                     $('.submit-tooltip').css('visibility', 'hidden');
                 }, 400);
             }
-        } else {
-            submitWeData(this);
         }
+
+//        if ($(this).parent().parent().find('#we_grid_' + quesId).find('.rating-stars .filled').length === 0) {
+//            $('.submit-tooltip').children('.submit-title').hide();
+//            $('.submit-tooltip').children('.submit-response').show();
+//            if (document.documentElement.clientWidth <= 480) {
+//                $('.submit-tooltip').css('visibility', 'visible');
+//                setTimeout(function () {
+//                    $('.submit-tooltip').css('visibility', 'hidden');
+//                }, 400);
+//            }
+//        } else {
+//            submitWeData(this);
+//        }
 
         $(this).on('mouseout', function () {
             setTimeout(function () {
@@ -279,7 +405,7 @@ function ratingStar(obj) {
     if (lastStar === i) {
         // remove the filled class + style
         $(row).children().removeClass('filled');
-        $(row).next().text('0').removeAttr('style');
+        $(row).next().text('').removeAttr('style');
 
         // remove names from the list
         $('#list-desktop-' + quesId + ' p').each(function (j) {
@@ -362,6 +488,7 @@ function ratingStar(obj) {
             });
         }
     });
+//    saveRating();
 }
 /** Search functionality using Isotope begins */
 function searchIsotope() {
@@ -512,6 +639,44 @@ function saveRating() {
             empArr.push(empRating);
         }
     });
+
+    if (empArr !== undefined && empArr.length > 0) {
+        jQuery.each(empArr, function (i1, obj1) {
+            jQuery.each(obj1, function (ques_emp1, rating1) {
+                var updated = false;
+                var deleted = false;
+                if (uniqueEmpArr.length === 0 && rating1 !== "0") {
+                    uniqueEmpArr.push(obj1);
+                    updated = true;
+                } else {
+                    jQuery.each(uniqueEmpArr, function (i2, obj2) {
+                        jQuery.each(obj2, function (ques_emp2, rating2) {
+                            if (ques_emp1 === ques_emp2) {
+                                if (rating1 === "0") {
+                                    uniqueEmpArr.splice(i2, 1);
+                                    updated = true;
+                                    deleted = true;
+                                    return false;
+                                } else {
+                                    uniqueEmpArr.splice(i2, 1);
+                                    uniqueEmpArr.push(obj1);
+                                    updated = true;
+                                }
+                            }
+
+                        });
+                        if (deleted) {
+                            return false;
+                        }
+                    });
+                }
+                if (!updated && rating1 !== "0") {
+                    uniqueEmpArr.push(obj1);
+                }
+            });
+        });
+    }
+    empArr = $.merge([], uniqueEmpArr);
     jQuery.data(document.body, "emp_rating", empArr);
 }
 
@@ -547,9 +712,13 @@ function fetchOrgnizationSearch(q, ques, obj) {
     var query = "q=" + q + "&ques=" + ques;
     $('.overlay_form').show();
     var currentRequest = null;
+    var url = "/individual/searchOrgList.jsp";
+    if ($('#subModuleName').val() === "ihcl") {
+        url = "/ihcl/searchOrgList.jsp";
+    }
     currentRequest = jQuery.ajax({
         type: "POST",
-        url: "/individual/searchOrgList.jsp",
+        url: url,
         data: query,
         dataType: 'HTML',
         beforeSend: function () {
@@ -558,6 +727,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             }
         },
         success: function (resp) {
+//            console.log("inside the ajax");
             $('.overlay_form').hide();
             $(obj).siblings('.individuals-box').html(resp);
             fetchAndPopulateRating();
@@ -567,6 +737,7 @@ function fetchOrgnizationSearch(q, ques, obj) {
             $('.filter-row .filter-menu li li span').removeAttr('style');
             $('.mobile-filter-row').removeClass('chosen');
             $('.mobile-filter-row .filter-menu input').prop('checked', false);
+//            console.log("after the success of ajax");
         }
     });
 }
@@ -586,7 +757,7 @@ function fetchFilteredData(questionId) {
         }
     });
     var relId = jQuery('#relation_' + questionId).val();
-    filterData['question_id'] = questionId;
+    filterData['questionId'] = questionId;
     filterData['rel_type'] = relId;
     $('.overlay_form').show();
     jQuery.ajax({
@@ -621,16 +792,18 @@ function fetchFilteredDataMobile(questionId) {
     $('.overlay_form').show();
     jQuery.ajax({
         type: "POST",
-        url: "/individual/dashboardsmartlist.jsp",
+        url: "/individual/survey-filter.jsp",
         data: filterData,
         dataType: 'HTML',
         success: function (resp) {
+            console.log("inside ajax");
             $('.overlay_form').hide();
             $('#we_grid_' + questionId).html(resp);
             fetchAndPopulateRating();
             searchIsotope();
             $('.mobile-filter-row>div').hide('200');
             $('.mobile-filter-row').addClass('chosen');
+            console.log("after ajax");
         }
     });
 }
@@ -639,7 +812,7 @@ function fetchSmartData(questionId) {
     $('.search-colleague').val('');
     saveRating();
     var relId = jQuery('#relation_' + questionId).val();
-    var smartData = {'question_id': questionId, 'rel_type': relId};
+    var smartData = {'questionId': questionId, 'rel_type': relId};
     $('.overlay_form').show();
     jQuery.ajax({
         type: "POST",
@@ -668,13 +841,58 @@ function fetchSmartData(questionId) {
 function clearRatings() {
     jQuery.each($('.star-rating-total'), function (i, v) {
         $(v).text('');
-        //TODO we question bubbles
-        //$('.no-key-selected').children('span').remove();
     });
 }
-
-function submitWeData(obj) {
-    var quesId = $(obj).val();
+function submitMeData(quesId) {
+    if ($('#subModuleName').val() !== "ihcl" && $('.answer-range .clicked').length === 0) {
+        $('.submit-tooltip').children('.submit-title').hide();
+        $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
+        if (document.documentElement.clientWidth <= 480) {
+            $('.submit-tooltip').css('visibility', 'visible');
+            setTimeout(function () {
+                $('.submit-tooltip').css('visibility', 'hidden');
+            }, 400);
+        }
+    } else {
+        var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
+        if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
+            jQuery.ajax({
+                type: "POST",
+                url: "/individual/survey-me-submit.jsp",
+                data: dataSub,
+                dataType: 'JSON',
+                success: function (resp) {
+                    var totalQues = parseInt($('#remaining_ques').val());
+                    totalQues = totalQues - 1;
+                    $('#remaining_ques').val(totalQues + "");
+                    var $currentDiv = $('.question_div:visible');
+                    var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
+                    if ($nextDiv.length) {
+                        $('.site-nav a').addClass('active');
+                        $('body').css('overflow', 'hidden');
+                        $currentDiv.hide('slide', {direction: 'left'}, 200);
+                        $nextDiv.show('slide', {direction: 'right'}, 400, function () {
+                            $('.site-nav a').removeClass('active');
+                            searchIsotope();
+                            $currentDiv.remove();
+                            showHideNavigation(this);
+                            $('body').removeAttr('style');
+                        });
+                    } else {
+                        $currentDiv.remove();
+                        if ($('#subModuleName').val() === "ihcl") {
+                            window.location.href = 'thankyou.jsp';
+                        } else {
+                            window.location.href = 'dashboard.jsp';
+                        }
+                    }
+                }
+            });
+        }
+    }
+}
+function submitWeData(quesId) {
+//    var quesId = $(obj).val();
     var empArr = [];
     var empRating = {};
 
@@ -683,16 +901,19 @@ function submitWeData(obj) {
         jQuery.each(empArr1, function (i, o) {
             jQuery.each(o, function (k, v) {
                 var id = k.split("_");
-                empRating[id[1]] = v;
-                empArr.push(empRating);
+                if (id[0] === quesId.toString()) {
+                    empRating[id[1]] = v;
+                    empArr.push(empRating);
+                }
             });
         });
     }
 
     jQuery.each($('.star-rating-total'), function (i, v) {
+        var qId = $(v).attr('ques_id');
         var empId = $(v).attr('emp_id');
         var rating = $(v).text();
-        if (rating !== '') {
+        if (rating !== '' && rating !== '0' && qId === quesId.toString()) {
             empRating[empId] = rating;
             empArr.push(empRating);
         }
@@ -721,14 +942,52 @@ function submitWeData(obj) {
                     showHideNavigation(this);
                     $('body').removeAttr('style');
                 });
-                jQuery.data(document.body, "emp_rating", []);
-                clearRatings();
+                //jQuery.data(document.body, "emp_rating", []);
+                //clearRatings();
             } else {
-                jQuery.data(document.body, "emp_rating", []);
-                clearRatings();
+                //jQuery.data(document.body, "emp_rating", []);
+                //clearRatings();
                 $currentDiv.remove();
-                window.location.href = 'dashboard.jsp';
+                if ($('#subModuleName').val() === "ihcl") {
+                    window.location.href = 'thankyou.jsp';
+                } else {
+                    if ($('#subModuleName').val() === "ihcl") {
+                        window.location.href = 'thankyou.jsp';
+                    } else {
+                        window.location.href = 'dashboard.jsp';
+                    }
+                }
             }
         }
     });
+}
+
+function showProgressValue(isPrev) {
+    if ($('#subModuleName').val() === "ihcl") {
+        var totalQuestions = $('#total_ques').val();
+        $('#progress-value span').text('');
+        if (isPrev) {
+            ++countProgress;
+        } else {
+            --countProgress;
+        }
+        $('#progress-value span').text('Question: ' + countProgress + '/' + totalQuestions);
+    }
+}
+
+function showSubmitButton() {
+    if ($('#subModuleName').val() === "ihcl") {
+        var visibleQues = $('.swiper-slide-active:visible').find('.question_no').val();
+        var totalQuestions = $('#total_ques').val();
+        visibleQues = parseInt(visibleQues);
+        if (totalQuestions === "1" || totalQuestions - 1 === visibleQues) {
+            $('.submit-circle.app').show();
+        } else {
+            $('.submit-circle.app').hide();
+        }
+    }
+}
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
 }

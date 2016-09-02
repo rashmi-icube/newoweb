@@ -16,10 +16,10 @@
         email = (String) session.getAttribute("email");
     }
     String url = request.getRequestURL().toString();
-    System.out.println(url+" "+roleid);
+    System.out.println("******common.jsp: " + url+" "+roleid + " " + comid + " " + empid);
             
     if(roleid != 2) {
-        if(!url.contains("login.jsp") && !url.contains("singout.jsp") && !url.contains("individual")) {
+        if(!url.contains("login.jsp") && !url.contains("signout.jsp") && !url.contains("individual") && !url.contains("ihcl")) {
             response.sendRedirect(Constant.WEB_CONTEXT+"/login.jsp");
         }
     }

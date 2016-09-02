@@ -53,7 +53,7 @@
                 <li <%=moduleName.equals("wall") ? "class=\"current\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/wall/wall.jsp">The Wall</a></li>
                 <li <%=moduleName.equals("initiative") ? "class=\"current\"" : ""%>>
                     <a href="#">My Initiatives</a>
-                    <div class="create-view-list">
+                    <div class="create-view-list1">
                         <span>My Initiatives</span>
                         <ul>
                             <li <%=subModuleName!= null && subModuleName.equals("list") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/initiative/list.jsp">View all initiatives</a></li>
@@ -61,7 +61,19 @@
                         </ul>								
                     </div>
                 </li>
-                <li <%=moduleName.equals("explore") ? "class=\"current\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explore.jsp">Explore</a></li>
+                
+                <li <%=moduleName.equals("explore") ? "class=\"current\"" : ""%>>
+                    <a href="#">Explore</a>
+                    <div class="create-view-list2" style="left: 17%;">
+                        <span>Explore</span>
+                        <ul>
+                            <li <%=subModuleName != null && subModuleName.equals("explore") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explore.jsp">Explore</a></li>
+                            <li <%=subModuleName != null && subModuleName.equals("exploremetric") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/exploremetric.jsp">Explore by Metrics</a></li>
+                            <li <%=subModuleName != null && subModuleName.equals("explorenetwork") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explorenetwork.jsp">Explore by Networks</a></li>
+                            <li <%=subModuleName != null && subModuleName.equals("explorequestion") ? "class=\"current-tab\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/explore/explorequestion.jsp">Explore by Questions</a></li>
+                        </ul>								
+                    </div>
+                </li>
                 <li <%=moduleName.equals("survey") ? "class=\"current\"" : ""%>><a href="<%=Constant.WEB_CONTEXT%>/survey/survey.jsp">Survey</a></li>
             </ul>
         </nav>

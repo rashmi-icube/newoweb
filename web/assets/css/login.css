@@ -283,7 +283,7 @@ h2::before {
 .hrdb .login-form .done+input { border-bottom: 2px solid #ff9800; }
 
 .login-form .login-role {
-	margin-top: 35px;
+	margin-top: 20px;
 	position: relative;
 	text-align: center;
 }
@@ -298,7 +298,75 @@ h2::before {
 	font: 600 20px 'Open Sans Semibold', 'Open Sans';
 	transition: background 0.5s;
 }
+/*TRIAL*/
+/* basic css styling ------------------------------- */
+.login-form .login-remember-me input[type=checkbox]   { display:none; }        /* hide the checkbox */
+.login-form .login-remember-me label, p               { padding-left:40px; } 
+.login-form .login-remember-me         { 
+    position:relative; 
+    height: 2em; 
+/*    margin-top: -1em; 
+    margin-left: 5.2em;*/
+}
 
+/* checkbox css ------------------------------------ */
+
+/* show a cursor when we hover */
+.login-form .login-remember-me label                  { cursor:pointer; }
+
+/* style all of our span tags with position absolute and over to the left */
+.login-form .login-remember-me label span             { display:block; position:absolute; left:0; 
+  transition-duration:0.3s;
+}
+
+/* style our circle and position it */
+.login-form .login-remember-me label .circle          {
+  background:#FFF;
+  left:-30px;
+  top:-30px;
+  height:80px;
+  width:80px;
+  z-index:-1;
+  border-radius:50%;
+}
+
+/* style our box */
+.login-form .login-remember-me label .box     {
+  border:2px solid #a1a1a1;
+  height:15px; 
+  width:15px;
+  z-index:888;
+  transition-delay:0.2s;
+}
+
+/* style the check. give it a border on the bottom and right only and then rotate */
+.login-form .login-remember-me label .check         {
+  top: 0;
+  left: 6px;
+  width: 7px;
+  height: 15px;
+  border:2px solid #0f9d58;  
+  border-top: none;
+  border-left: none;
+  opacity:0; 
+  z-index:888;
+  transform:rotate(180deg);
+  transition-delay:0.3s;
+}
+
+input[type=checkbox]:checked ~ label .box {  
+  opacity:0;
+  transform:scale(0) rotate(-180deg);
+  transition-delay:0.2s;
+}
+
+/* rotate and show our check */
+input[type=checkbox]:checked ~ label .check {
+  opacity:1; 
+  transform:scale(1) rotate(45deg);
+  transition-delay:0.2s;
+}
+/*TRIAL*/
 .login-form div span.clicked {
 	color: #fff;
 	cursor: default;
