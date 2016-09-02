@@ -26,20 +26,8 @@
     <img src="/assets/images/ajax-loader.gif">
 </div>
 <div class="individuals-grid">    
-    <%  System.out.println("calling survey-filter.jsp");  
-        int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), 0);
-        int filterIdFun = Util.getIntValue(request.getParameter("Function"), 0);
-        int filterIdLevel = Util.getIntValue(request.getParameter("Level"), 0);
-        //out.println(filterIdGeo + "::" + filterIdFun + ":" + filterIdLevel);
-        String filterValGeo = request.getParameter("Geography_name");
-        String filterValFun = request.getParameter("Function_name");
-        String filterValLevel = request.getParameter("Level_name");
-        int geoId = Util.getIntValue(request.getParameter("Geography_id"), 0);
-        int funId = Util.getIntValue(request.getParameter("Function_id"), 0);
-        int levelId = Util.getIntValue(request.getParameter("Level_id"), 0);
-        //out.println(geoId + "::" + funId + ":" + levelId);
+    <%  System.out.println("calling survey-filter.jsp");
         List<Employee> mapSmartList = null;
-
         int questionId = Util.getIntValue(request.getParameter("questionId"));
         //out.println("questionId ::::::::: " + questionId);
         int relationshipTypeId = Util.getIntValue(request.getParameter("rel_type"));
@@ -47,46 +35,10 @@
         Question ques = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
         ques.setQuestionId(questionId);
         ques.setRelationshipTypeId(relationshipTypeId);
-        if ((filterIdGeo > -1 && filterValGeo != null) || (filterIdFun > -1 && filterValFun != null) || (filterIdLevel > -1 && filterValLevel != null)) {
-            EmployeeList employeeListObj = (EmployeeList) ObjectFactory.getInstance("org.icube.owen.employee.EmployeeList");
-            List<Filter> listFilter = new ArrayList<Filter>();
-            if (filterIdGeo > -1 && filterValGeo != null) {
-                Filter filter = (Filter) ObjectFactory.getInstance("org.icube.owen.filter.Filter");
-                filter.setFilterId(geoId);
-                filter.setFilterName(Constant.INITIATIVES_GEOGRAPHY_FILTER_NAME);
-                //out.println(filter.getFilterName());
-                Map<Integer, String> filterValuesMap = new HashMap<Integer, String>();
-                filterValuesMap.put(filterIdGeo, filterValGeo);
-                //out.println(filterValuesMap);
-                filter.setFilterValues(filterValuesMap);
-                listFilter.add(filter);
-            }
-            if (filterIdFun > -1 && filterValFun != null) {
-                Filter filter = (Filter) ObjectFactory.getInstance("org.icube.owen.filter.Filter");
-                filter.setFilterId(funId);
-                filter.setFilterName(Constant.INITIATIVES_FUNCTION_FILTER_NAME);
-                //out.println(filter.getFilterName());
-                Map<Integer, String> filterValuesMap = new HashMap<Integer, String>();
-                filterValuesMap.put(filterIdFun, filterValFun);
-                filter.setFilterValues(filterValuesMap);
-                listFilter.add(filter);
-            }
-            if (filterIdLevel > -1 && filterValLevel != null) {
-                Filter filter = (Filter) ObjectFactory.getInstance("org.icube.owen.filter.Filter");
-                filter.setFilterId(levelId);
-                filter.setFilterName(Constant.INITIATIVES_LEVEL_FILTER_NAME);
-                //out.println(filter.getFilterName());
-                Map<Integer, String> filterValuesMap = new HashMap<Integer, String>();
-                filterValuesMap.put(filterIdLevel, filterValLevel);
-                filter.setFilterValues(filterValuesMap);
-                listFilter.add(filter);
-            }
-            //        out.println(listFilter);
-            mapSmartList = employeeListObj.getEmployeeListByFilters(comid, listFilter);
-        } else {
-            mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
-        }
-        //out.println("HERE---------------"+mapSmartList);    
+        System.out.println("**********************comid : " + comid);
+        System.out.println("**********************empid : " + empid);
+        System.out.println("**********************ques : " + ques);
+        mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
         for (int incr = 0; incr < mapSmartList.size(); incr++) {
             Employee employee = mapSmartList.get(incr);
             if (empid == employee.getEmployeeId()) {

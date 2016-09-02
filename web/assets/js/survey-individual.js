@@ -814,9 +814,13 @@ function fetchSmartData(questionId) {
     var relId = jQuery('#relation_' + questionId).val();
     var smartData = {'questionId': questionId, 'rel_type': relId};
     $('.overlay_form').show();
+    var url = "/individual/survey-filter.jsp";
+    if($('#subModuleName').val() === "ihcl"){
+        url = "/ihcl/survey-filter.jsp";
+    }
     jQuery.ajax({
         type: "POST",
-        url: "/individual/survey-filter.jsp",
+        url: url,
         data: smartData,
         dataType: 'HTML',
         success: function (resp) {

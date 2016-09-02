@@ -4138,25 +4138,28 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
     .mood-range div { width: 20%; }
     
     /***************************** USERNAME MOBILE APP ******************************/
+    /*For iPhones only; override the telephone blue color with white*/
+    a[href^=tel] { color: inherit; text-decoration: none; }
+    
     .usernameapp{
         top: 0;
         right: 0;
         padding: 1.1em;
-        margin-top: 0.2em;
+        /*margin-top: 0.2em;*/
         position: absolute;
         text-align: right;
         width: 50%;
     }
     
     .usernameapp p{
-        color:#ffffff;
+        color:#ffffff !important;
         font: 14px 'Open Sans Light', 'Open Sans';
         display: inline-block;
     }
     
     .usernameapp span{
         color:#ffffff;
-        font: 14px 'Open Sans SemiBold', 'Open Sans';
+        font: 14px 'Open Sans Light', 'Open Sans';
         display: inline-block;
     }
 }
