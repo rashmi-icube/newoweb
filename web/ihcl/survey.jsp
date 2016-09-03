@@ -391,7 +391,7 @@
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+        <script src="<%=Constant.WEB_ASSETS%>js/swiper.min.js"></script>
+        <script src="<%=Constant.WEB_ASSETS%>js/swiper.jquery.min.js"></script>
     </body>
 </html>
