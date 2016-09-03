@@ -1605,6 +1605,15 @@ nav li a {
     -webkit-transform: scale3d(1.2, 1.2, 1);
     transform: scale3d(1.8, 1.8, 1);
 }
+
+/*FOR TEJ
+.rating-stars span:hover, .rating-stars span:hover ~ span{
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.8, 1.8, 1);
+    background: url(../images/appreciate-rating-star-fill.png); 
+}*/
+
+
 .rating-stars span:first-child { margin-left: 0; }
 
 .rating-stars span.filled { background: url(../images/appreciate-rating-star-fill.png); }

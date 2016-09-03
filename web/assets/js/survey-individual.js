@@ -318,12 +318,18 @@ $(document).ready(function () {
 
                 $('.black_overlay').show();
                 $('.submit-popup').show();
+                
+            //TO DISABLE PAGE SCROLL IF SUBMIT POPUP VISIBLE
+                $('*').not('.submit-popup').bind('touchmove', false);
             });
 
             //NO BUTTON    
-            $('.submit-popup-buttons button:nth-child(even)').on('click', function () {
+            $('.submit-popup-buttons button:nth-child(even)').on('click', function (event) {
+                event.stopPropagation();
                 $('.black_overlay').hide();
                 $('.submit-popup').hide();
+            //TO ENABLE PAGE SCROLL AS SUBMIT BUTTON IS DISMISSED
+                $('*').unbind('touchmove', false);
             });
 
             //YES BUTTON
