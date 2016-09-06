@@ -281,7 +281,10 @@
                                                         </button>
                                                         <div class="individual-card">
                                                             <div class="front-card">
-                                                                <div style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=employee.getCompanyId()%>&eid=<%=employee.getEmployeeId()%>');" class="person-pic"></div>
+                                                                <div style="background-image: url('<%=Constant.WEB_ASSETS%>images/user_image.png');" class="person-pic"></div>
+<!--                                                                <div class="person-pic">
+                                                                    <img src="<%=Constant.WEB_ASSETS%>images/user_image.png">
+                                                                </div>-->
                                                             </div>
                                                             <div class="back-card">
                                                                 <ul>

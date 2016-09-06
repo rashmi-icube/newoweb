@@ -57,7 +57,8 @@
         </button>
         <div class="individual-card">
             <div class="front-card">
-                <div style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=employee.getCompanyId()%>&eid=<%=employee.getEmployeeId()%>');" class="person-pic"></div>
+                <!--<div style="background-image: url('<%=Constant.WEB_CONTEXT%>/getImage?cid=<%=employee.getCompanyId()%>&eid=<%=employee.getEmployeeId()%>');" class="person-pic"></div>-->
+                <div style="background-image: url('<%=Constant.WEB_ASSETS%>images/user_image.png');" class="person-pic"></div>
             </div>
             <div class="back-card">
                 <ul>
@@ -77,7 +78,7 @@
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
             </div>
-             <% if (ques == 0) {%>
+            <% if (ques == 0) {%>
             <span class="star-rating-total" ques_id="<%= ques%>" id="rat_<%= ques%>_<%= employee.getEmployeeId()%>" emp_id="<%= employee.getEmployeeId()%>"></span>
             <% } else {%>
             <span class="star-rating-total" ques_id="<%= ques%>" id="rat_<%= ques%>_<%= employee.getEmployeeId()%>" emp_id="<%= employee.getEmployeeId()%>"></span>
@@ -235,7 +236,7 @@
             }
         }
         //For quesId = 0, append scroll to dashboard list; else append to survey page list        
-        if(quesId === '0'){
+        if (quesId === '0') {
             if ($('.list-of-people-selected').height() >= 348) {
                 $('.no-key-selected').slimScrollPopupDashboard({
                     height: '400px',
@@ -246,35 +247,35 @@
                     alwaysVisible: true,
                     touchScrollStep: 50
                 });
-                $('.no-key-selected').css('position','absolute');
+                $('.no-key-selected').css('position', 'absolute');
             } else {
                 $('.no-key-selected').slimScrollPopupDashboard({
                     destroy: true
                 });
                 //Reset div css properties
-                $('.no-key-selected').css('position','');
-                $('.no-key-selected').css('width','');
+                $('.no-key-selected').css('position', '');
+                $('.no-key-selected').css('width', '');
             }
-        //Apply Scroll to Survey Page List of People Selected
+            //Apply Scroll to Survey Page List of People Selected
         } else {
-        //    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE, FOR EVERY WE QUESTION
-        $('.list-of-people-selected').each(function (i) {
-            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-                $(this).parent().slimScrollPopup({
-                    height: '400px',
-                    width: '272px',
-                    color: '#388E3C',
-                    railVisible: true,
-                    railColor: '#D7D7D7',
-                    alwaysVisible: true,
-                    touchScrollStep: 50
-                });
-            } else {
-                $(this).parent().slimScrollPopup({
-                    destroy: true
-                });
-            }
-        });
+            //    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE, FOR EVERY WE QUESTION
+            $('.list-of-people-selected').each(function (i) {
+                if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                    $(this).parent().slimScrollPopup({
+                        height: '400px',
+                        width: '272px',
+                        color: '#388E3C',
+                        railVisible: true,
+                        railColor: '#D7D7D7',
+                        alwaysVisible: true,
+                        touchScrollStep: 50
+                    });
+                } else {
+                    $(this).parent().slimScrollPopup({
+                        destroy: true
+                    });
+                }
+            });
         }
         saveRating();
     });

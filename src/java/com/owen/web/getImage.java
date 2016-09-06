@@ -41,16 +41,9 @@ public class getImage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("image/jpeg");
         OutputStream out = response.getOutputStream();
-        String cid = request.getParameter("cid");
-        Image image;
-        if (!cid.equals("4")) {
-            Employee emp = (Employee) ObjectFactory.getInstance("org.icube.owen.employee.Employee");
-            image = emp.getImage(Util.getIntValue(request.getParameter("cid")), Util.getIntValue(request.getParameter("eid")));
-            if (image == null) {
-                java.net.URL resFileURL = getImage.class.getResource("/resources/user_image.png");
-                image = ImageIO.read(resFileURL);
-            }
-        } else {
+        Employee emp = (Employee) ObjectFactory.getInstance("org.icube.owen.employee.Employee");
+        Image image = emp.getImage(Util.getIntValue(request.getParameter("cid")), Util.getIntValue(request.getParameter("eid")));
+        if (image == null) {
             java.net.URL resFileURL = getImage.class.getResource("/resources/user_image.png");
             image = ImageIO.read(resFileURL);
         }
