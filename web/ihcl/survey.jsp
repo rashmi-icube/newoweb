@@ -189,6 +189,7 @@
                                 <%
                                     }
                                 %>
+                                <input type="hidden" class="questionType" value="<%= ques.getQuestionType()%>" />
                                 <input type="hidden" class="questionId" value="<%= ques.getQuestionId()%>" />
                                 <input type="hidden" class="question_no" value="<%= i%>" />
                                 <div class="me-survey-box clearfix">
@@ -232,6 +233,7 @@
                                         <%
                                             }
                                         %>
+                                        <input type="hidden" class="questionType" value="<%= ques.getQuestionType()%>" />
                                         <input type="hidden" class="questionId" value="<%= ques.getQuestionId()%>" />
                                         <input type="hidden" class="question_no" value="<%= i%>" />
                                         <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />

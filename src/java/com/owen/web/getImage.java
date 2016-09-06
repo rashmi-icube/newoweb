@@ -5,7 +5,6 @@ package com.owen.web;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -42,14 +41,22 @@ public class getImage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("image/jpeg");
         OutputStream out = response.getOutputStream();
-        Employee emp = (Employee) ObjectFactory.getInstance("org.icube.owen.employee.Employee");
-        Image image = emp.getImage(Util.getIntValue(request.getParameter("cid")), Util.getIntValue(request.getParameter("eid")));
-        if(image == null) {
+        String cid = request.getParameter("cid");
+        Image image;
+        if (!cid.equals("4")) {
+            Employee emp = (Employee) ObjectFactory.getInstance("org.icube.owen.employee.Employee");
+            image = emp.getImage(Util.getIntValue(request.getParameter("cid")), Util.getIntValue(request.getParameter("eid")));
+            if (image == null) {
+                java.net.URL resFileURL = getImage.class.getResource("/resources/user_image.png");
+                image = ImageIO.read(resFileURL);
+            }
+        } else {
             java.net.URL resFileURL = getImage.class.getResource("/resources/user_image.png");
             image = ImageIO.read(resFileURL);
         }
-        ImageIO.write((RenderedImage)image, "jpg", out);
-         out.close();
+
+        ImageIO.write((RenderedImage) image, "jpg", out);
+        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

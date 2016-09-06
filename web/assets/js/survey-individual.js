@@ -79,12 +79,17 @@ $(document).ready(function () {
                 onSlideNextStart: function () {
                     showProgressValue(true);
                     showSubmitButton();
-                    fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
+                    if ($('.swiper-slide-active:visible').find('.questionType').val() === "WE") {
+                        fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
+                    }
+
                 },
                 onSlidePrevStart: function () {
                     showProgressValue(false);
                     showSubmitButton();
-                    fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
+                    if ($('.swiper-slide-active:visible').find('.questionType').val() === "WE") {
+                        fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
+                    }
                 }
             });
         }
@@ -209,7 +214,7 @@ $(document).ready(function () {
 //            $(this).children('div').css('margin-left', '-200px');
             $('.mobile-filter-row > div').hide();
         });
-       
+
 //        $('.no-key-selected-mobile > div').hide();
 
         $('#closeFilter').on('click', function () {
@@ -318,8 +323,8 @@ $(document).ready(function () {
 
                 $('.black_overlay').show();
                 $('.submit-popup').show();
-                
-            //TO DISABLE PAGE SCROLL IF SUBMIT POPUP VISIBLE
+
+                //TO DISABLE PAGE SCROLL IF SUBMIT POPUP VISIBLE
                 $('*').not('.submit-popup').bind('touchmove', false);
             });
 
@@ -328,7 +333,7 @@ $(document).ready(function () {
                 event.stopPropagation();
                 $('.black_overlay').hide();
                 $('.submit-popup').hide();
-            //TO ENABLE PAGE SCROLL AS SUBMIT BUTTON IS DISMISSED
+                //TO ENABLE PAGE SCROLL AS SUBMIT BUTTON IS DISMISSED
                 $('*').unbind('touchmove', false);
             });
 
@@ -823,7 +828,7 @@ function fetchSmartData(questionId) {
     var smartData = {'questionId': questionId, 'rel_type': relId};
     $('.overlay_form').show();
     var url = "/individual/survey-filter.jsp";
-    if($('#subModuleName').val() === "ihcl"){
+    if ($('#subModuleName').val() === "ihcl") {
         url = "/ihcl/survey-filter.jsp";
     }
     jQuery.ajax({
