@@ -1,5 +1,6 @@
 var countProgress = 0;
 var uniqueEmpArr = [];
+
 $(document).ready(function () {
     showProgressValue(true);
     showSubmitButton();
@@ -90,7 +91,8 @@ $(document).ready(function () {
                     if ($('.swiper-slide-active:visible').find('.questionType').val() === "WE") {
                         fetchSmartData($('.swiper-slide-active:visible').find('.questionId').val());
                     }
-                }
+                },
+                slidesPerView: 1
             });
         }
     });
@@ -347,7 +349,6 @@ $(document).ready(function () {
                 //SUBMIT ALL RESPONSES HERE
                 var jArray = $('#ques_list').val();
                 var jsonObj = $.parseJSON(jArray);
-
                 // store the responses for all answered questions
                 jQuery.each(jsonObj, function (index, value) {
                     var questionId = value.questionId;
@@ -356,11 +357,15 @@ $(document).ready(function () {
                         //submit WE answer
                         var count = $('#list-mobile-' + questionId + ' p').length;
                         if (count > 0) {
+                            console.log("submitting we question : " + questionId);
                             submitWeData(questionId);
+                            console.log("submitted we question : " + questionId);
                         }
                     } else {
                         // submit ME answer
+                        console.log("submitting me question : " + questionId);
                         submitMeData(questionId);
+                        console.log("submitted me question : " + questionId);
                     }
                 });
 
@@ -407,13 +412,6 @@ $(document).ready(function () {
     });
 
     showHideNavigation();
-});
-
-//HIDE OVERLAY ON WINDOW LOAD
-$(window).load(function() {
-    setTimeout (function (){
-    $('#ihcl-overlay-form').hide();
-}, 0);
 });
 
 function ratingStar(obj) {
