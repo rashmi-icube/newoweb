@@ -129,8 +129,9 @@ $(document).ready(function () {
 //        fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
 //    });
 
-    $('#ihcl-search-button').on('click', function () {
-        fetchOrgnizationSearch($('.search-colleague').val(), $('.search-colleague').attr('ques_id'), this);
+    $('.ihcl-search-button').on('click', function () {
+        var quesId = $(this).attr('ques_id');
+        fetchOrgnizationSearch($('#ihcl-search-'+quesId).val(), quesId, this);
     });
 
     $('.filter-row .filter-menu li li').on('click', function () {
