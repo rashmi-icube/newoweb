@@ -409,6 +409,12 @@ $(document).ready(function () {
     showHideNavigation();
 });
 
+//HIDE OVERLAY ON WINDOW LOAD
+$(window).load(function() {
+    setTimeout (function (){
+    $('#ihcl-overlay-form').hide();
+}, 0);
+});
 
 function ratingStar(obj) {
     var row = $(obj).parent();

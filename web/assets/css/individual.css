@@ -3574,7 +3574,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
 
     .people-list-box input + button {
         width: 48px;
-        height: 27px;
+        height: 36px;
         margin-left: -4px;
         display: initial;
         /*vertical-align: -1px;*/
