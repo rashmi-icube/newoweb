@@ -125,8 +125,12 @@ $(document).ready(function () {
         searchIsotope();
     }
 
-    $('.search-colleague').on('input', function () {
-        fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
+//    $('.search-colleague').on('input', function () {
+//        fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
+//    });
+
+    $('#ihcl-search-button').on('click', function () {
+        fetchOrgnizationSearch($('.search-colleague').val(), $('.search-colleague').attr('ques_id'), this);
     });
 
     $('.filter-row .filter-menu li li').on('click', function () {
