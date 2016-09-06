@@ -3484,19 +3484,25 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         margin: 0;
         margin-top: 12px;
     }
-
-    .people-list-box>input {
+/*FOR OWEN*/
+/*    .people-list-box>input {
         width: calc(100% - 105px);
         outline: 0;
         height: 27px;
         vertical-align: top;
-    }
-
-    #ihcl-search{
+    }*/
+    
+    .people-list-box>input{
         width: calc(100% - 80px);
         height: 36px;
         border: 2px solid #388e3c;
     }
+
+/*    #ihcl-search{
+        width: calc(100% - 80px);
+        height: 36px;
+        border: 2px solid #388e3c;
+    }*/
 
     #ihcl-search-button{
         height: 36px;
@@ -3571,7 +3577,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         height: 27px;
         margin-left: -4px;
         display: initial;
-        vertical-align: -1px;
+        /*vertical-align: -1px;*/
         background-color: #388e3c;
         color: #e4e4e4;
         font: 16px 'Open Sans Regular', 'Open Sans';
