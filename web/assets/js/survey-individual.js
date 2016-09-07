@@ -75,7 +75,7 @@ $(document).ready(function () {
                 paginationType: 'progress',
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
-                iOSEdgeSwipeDetection: true,
+//                iOSEdgeSwipeDetection: true,
 //            autoHeight: 'true',
                 onSlideNextStart: function () {
                     showProgressValue(true);
