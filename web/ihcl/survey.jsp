@@ -136,6 +136,7 @@
             <script language="javascript">
             </script>
             <%@include file="header.jsp" %>
+            <div class="overlay_form" id="ihcl-overlay-form" style="display: block !important;"><img src="/assets/images/ajax-loader.gif"></div>
             <%                Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
                 try {
                     List<Question> qList = question.getEmployeeQuestionList(comid, empid);
