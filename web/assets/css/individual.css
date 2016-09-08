@@ -4006,6 +4006,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
                 position: relative;*/
         height: 100%;
         overflow-y: auto;
+        width: 100%;
 
     }
     .swiper-container-horizontal>.swiper-pagination-progress {
