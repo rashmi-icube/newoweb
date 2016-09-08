@@ -370,7 +370,7 @@
                     </div>
                 </div>
                 <div class="submit-circle app">
-                    <button>&#x2714;</button>
+                    <button>&#x2714; SUBMIT</button>
                     <div class="submit-tooltip">
                         <span class="submit-title"><span>SUBMIT</span> this response</span>
                         <span class="submit-response">Please select a response</span>
@@ -380,8 +380,8 @@
                     <h2>Submit your responses ?</h2>
                     <div class="submit-popup-warning-text"></div>
                     <div class="submit-popup-buttons">
-                        <button id="yesButton">YES</button>
-                        <button>NO</button>
+                        <button id="yesButton">&#x2714; YES</button>
+                        <button>&#x2718; NO</button>
                     </div>
                 </div>
             </div>
