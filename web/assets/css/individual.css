@@ -1118,8 +1118,8 @@ nav li a {
     /*background-color: #ffc107;*/
     background-color: #4caf50;
     color: #ffffff;
-    font: 16px 'Open Sans Regular', 'Open Sans';
-    /*font-family: 'Zapf Dingbats';*/
+    /*font: 16px 'Open Sans Regular', 'Open Sans';*/
+    font-family: 'Zapf Dingbats';
     transition: transform 0.2s;
     -webkit-appearance: none;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
@@ -4136,14 +4136,17 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         padding: 8px;
         display: inline-block;
         float: none;
-        font: 16px 'Open Sans SemiBold', 'Open Sans';
+        /*font: 16px 'Open Sans SemiBold', 'Open Sans';*/
+        font-family: 'Zapf Dingbats';
         width: 49%;
+        height: 45px;
     }
 
     .submit-popup-buttons button:nth-child(odd){
         color: #ffffff;
         background:#4caf50;
         float: left;
+        content: &#x2714;
     }
 
     .submit-popup-buttons button:nth-child(even){
