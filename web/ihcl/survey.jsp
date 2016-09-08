@@ -381,7 +381,7 @@
                     <div class="submit-popup-warning-text"></div>
                     <div class="submit-popup-buttons">
                         <button id="yesButton">&#x2714; YES</button>
-                        <button>&#x2718; NO</button>
+                        <button id="noButton">GO BACK</button>
                     </div>
                 </div>
             </div>

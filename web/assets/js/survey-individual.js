@@ -319,14 +319,20 @@ $(document).ready(function () {
 //                    $('#yesButton').css('background','#fafafa');
                     $('.submit-popup-warning-text').append('<p> You have not answered any questions. Please select a response to submit </p>');
                 } else if (qList.length > 0) {
-                    $('#yesButton').prop('disabled', false);
-                    $('#yesButton').css('color', '#ffffff');
-                    $('#yesButton').css('background', '#4caf50');
+                    $('#yesButton').prop('disabled', true);
+//                    $('#yesButton').css('color', '#ffffff');
+                    $('#yesButton').css('background', '#9e9e9e');
+                    $('#noButton').text(function(i,oldText){
+                       return oldText === '\u2718 NO' ? 'GO BACK' : oldText;
+                    });
                     $('.submit-popup-warning-text').append('<p> You have ' + qList.length + ' unanswered questions </p>');
                 } else {
                     $('#yesButton').prop('disabled', false);
                     $('#yesButton').css('color', '#ffffff');
                     $('#yesButton').css('background', '#4caf50');
+                    $('#noButton').text(function(i,oldText){
+                       return oldText === 'GO BACK' ? '\u2718 NO' : oldText;
+                    });
                     $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
                 }
 //                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
