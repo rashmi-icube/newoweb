@@ -151,8 +151,8 @@
             <% }%>
             <div class="black_overlay"></div>
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next">&#x276F;</div>
-            <div class="swiper-button-prev">&#x276F;</div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
             <div class="progress-fraction">
                 <p id="progress-value">
                     <span>
@@ -345,11 +345,11 @@
                                                     <span class="question-title" id="ihcl-question-title"><% out.print(ques.getQuestionText()); %></span>
                                                     <div class="answer-box">
                                                         <div class="mood-range" ques_id="<% out.print(ques.getQuestionId()); %>">
-                                                            <div><button value="1">&#128546</button></div>
-                                                            <div><button value="2">&#128543</button></div>
-                                                            <div><button value="3">&#128528</button></div>
-                                                            <div><button value="4">&#128522</button></div>
-                                                            <div><button value="5">&#128515</button></div>
+                                                            <div><button value="1"></button></div>
+                                                            <div><button value="2"></button></div>
+                                                            <div><button value="3"></button></div>
+                                                            <div><button value="4"></button></div>
+                                                            <div><button value="5"></button></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -394,6 +394,7 @@
         <script src="<%=Constant.WEB_ASSETS%>js/jquery-ui.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/isotope.pkgd.min.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
+        <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollTablet.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/swiper.min.js"></script>

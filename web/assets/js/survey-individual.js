@@ -17,23 +17,23 @@ $(document).ready(function () {
             showHideNavigation(this);
             $('body').removeAttr('style');
         });
-        $('.list-of-people-selected').each(function (i) {
-            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-                $(this).parent().slimScrollPopup({
-                    height: '400px',
-                    width: '272px',
-                    color: '#388E3C',
-                    railVisible: true,
-                    railColor: '#D7D7D7',
-                    alwaysVisible: true,
-                    touchScrollStep: 50
-                });
-            } else {
-                $(this).parent().slimScrollPopup({
-                    destroy: true
-                });
-            }
-        });
+//        $('.list-of-people-selected').each(function (i) {
+//            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+//                $(this).parent().slimScrollPopup({
+//                    height: '400px',
+//                    width: '272px',
+//                    color: '#388E3C',
+//                    railVisible: true,
+//                    railColor: '#D7D7D7',
+//                    alwaysVisible: true,
+//                    touchScrollStep: 50
+//                });
+//            } else {
+//                $(this).parent().slimScrollPopup({
+//                    destroy: true
+//                });
+//            }
+//        });
     });
     $('.site-nav-next').on('click', function () {
         event.preventDefault();
@@ -49,23 +49,23 @@ $(document).ready(function () {
             showHideNavigation(this);
             $('body').removeAttr('style');
         });
-        $('.list-of-people-selected').each(function (i) {
-            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-                $(this).parent().slimScrollPopup({
-                    height: '400px',
-                    width: '272px',
-                    color: '#388E3C',
-                    railVisible: true,
-                    railColor: '#D7D7D7',
-                    alwaysVisible: true,
-                    touchScrollStep: 50
-                });
-            } else {
-                $(this).parent().slimScrollPopup({
-                    destroy: true
-                });
-            }
-        });
+//        $('.list-of-people-selected').each(function (i) {
+//            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+//                $(this).parent().slimScrollPopup({
+//                    height: '400px',
+//                    width: '272px',
+//                    color: '#388E3C',
+//                    railVisible: true,
+//                    railColor: '#D7D7D7',
+//                    alwaysVisible: true,
+//                    touchScrollStep: 50
+//                });
+//            } else {
+//                $(this).parent().slimScrollPopup({
+//                    destroy: true
+//                });
+//            }
+//        });
 //        clearRatings();
     });
     $(function () {
@@ -133,7 +133,7 @@ $(document).ready(function () {
 
     $('.ihcl-search-button').on('click', function () {
         var quesId = $(this).attr('ques_id');
-        fetchOrgnizationSearch($('#ihcl-search-'+quesId).val(), quesId, this);
+        fetchOrgnizationSearch($('#ihcl-search-' + quesId).val(), quesId, this);
     });
 
     $('.filter-row .filter-menu li li').on('click', function () {
@@ -199,6 +199,125 @@ $(document).ready(function () {
         }
     });
 
+    if ($('#subModuleName').val() === "ihcl") {
+
+        $('.submit-circle.app button').on('click', function () {
+            var jArray = $('#ques_list').val();
+            var jsonObj = $.parseJSON(jArray);
+
+            // check for how many questions have been answered
+            var questionsAnswered = [];
+            var qList = [];
+
+            jQuery.each(jsonObj, function (index, value) {
+                var quesId = value.questionId;
+                qList.push(quesId);
+
+                var empArr1 = jQuery.data(document.body, "emp_rating");
+                if (empArr1 !== undefined) {
+                    jQuery.each(empArr1, function (i, o) {
+                        jQuery.each(o, function (k, v) {
+                            var id = k.split("_");
+                            if (id[0] === quesId.toString()) {
+                                questionsAnswered.push(quesId);
+                            }
+                        });
+                    });
+                }
+
+                jQuery.each($('.star-rating-total'), function (i, v) {
+                    var qId = $(v).attr('ques_id');
+                    var rating = $(v).text();
+                    if (rating !== '' && rating !== '0' && qId === quesId.toString()) {
+                        questionsAnswered.push(quesId);
+                    }
+                });
+                var dataSub = {'resp_val': jQuery('#resp_val_' + quesId).val()};
+                if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
+                    questionsAnswered.push(quesId);
+                }
+            });
+
+            var totalQuestionLength = qList.length;
+            for (var n = 0; n <= qList.length; n++) {
+                for (var m = 0; m <= questionsAnswered.length; m++) {
+                    if (qList[n] === questionsAnswered[m]) {
+                        qList.splice(n, 1);
+                    }
+                }
+            }
+
+            $('.submit-popup-warning-text p').each(function (j) {
+                $(this).remove();
+            });
+
+            if (qList.length === totalQuestionLength) {
+                $('#yesButton').attr('disabled', true);
+                $('#yesButton').css('background', '#9e9e9e');
+//                    $('#yesButton').css('background','#fafafa');
+                $('.submit-popup-warning-text').append('<p> You have not answered any questions. Please select a response to submit </p>');
+            } else if (qList.length > 0) {
+                $('#yesButton').prop('disabled', true);
+//                    $('#yesButton').css('color', '#ffffff');
+                $('#yesButton').css('background', '#9e9e9e');
+                $('#noButton').text(function (i, oldText) {
+                    return oldText === '\u2718 NO' ? 'GO BACK' : oldText;
+                });
+                $('.submit-popup-warning-text').append('<p> You have ' + qList.length + ' unanswered questions </p>');
+            } else {
+                $('#yesButton').prop('disabled', false);
+                $('#yesButton').css('color', '#ffffff');
+                $('#yesButton').css('background', '#4caf50');
+                $('#noButton').text(function (i, oldText) {
+                    return oldText === 'GO BACK' ? '\u2718 NO' : oldText;
+                });
+                $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
+            }
+//                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
+
+            $('.black_overlay').show();
+            $('.submit-popup').show();
+
+            //TO DISABLE PAGE SCROLL IF SUBMIT POPUP VISIBLE
+            $('*').not('.submit-popup').bind('touchmove', false);
+        });
+
+        //NO BUTTON    
+        $('.submit-popup-buttons button:nth-child(even)').on('click', function (event) {
+            event.stopPropagation();
+            $('.black_overlay').hide();
+            $('.submit-popup').hide();
+            //TO ENABLE PAGE SCROLL AS SUBMIT BUTTON IS DISMISSED
+            $('*').unbind('touchmove', false);
+        });
+
+        //YES BUTTON
+        $('.submit-popup-buttons button:nth-child(odd)').on('click', function () {
+            //SUBMIT ALL RESPONSES HERE
+            var jArray = $('#ques_list').val();
+            var jsonObj = $.parseJSON(jArray);
+            // store the responses for all answered questions
+            jQuery.each(jsonObj, function (index, value) {
+                var questionId = value.questionId;
+                var questionType = value.questionType.value;
+                if (questionType === 1) {
+                    //submit WE answer
+                    var count = $('#list-mobile-' + questionId + ' p').length;
+                    if (count > 0) {
+                        console.log("submitting we question : " + questionId);
+                        submitWeData(questionId);
+                        console.log("submitted we question : " + questionId);
+                    }
+                } else {
+                    // submit ME answer
+                    console.log("submitting me question : " + questionId);
+                    submitMeData(questionId);
+                    console.log("submitted me question : " + questionId);
+                }
+            });
+
+        });
+    }
 
     if (document.documentElement.clientWidth <= 480) {
 
@@ -261,125 +380,6 @@ $(document).ready(function () {
             }
         });
 
-        if ($('#subModuleName').val() === "ihcl") {
-
-            $('.submit-circle.app button').on('click', function () {
-                var jArray = $('#ques_list').val();
-                var jsonObj = $.parseJSON(jArray);
-
-                // check for how many questions have been answered
-                var questionsAnswered = [];
-                var qList = [];
-
-                jQuery.each(jsonObj, function (index, value) {
-                    var quesId = value.questionId;
-                    qList.push(quesId);
-
-                    var empArr1 = jQuery.data(document.body, "emp_rating");
-                    if (empArr1 !== undefined) {
-                        jQuery.each(empArr1, function (i, o) {
-                            jQuery.each(o, function (k, v) {
-                                var id = k.split("_");
-                                if (id[0] === quesId.toString()) {
-                                    questionsAnswered.push(quesId);
-                                }
-                            });
-                        });
-                    }
-
-                    jQuery.each($('.star-rating-total'), function (i, v) {
-                        var qId = $(v).attr('ques_id');
-                        var rating = $(v).text();
-                        if (rating !== '' && rating !== '0' && qId === quesId.toString()) {
-                            questionsAnswered.push(quesId);
-                        }
-                    });
-                    var dataSub = {'resp_val': jQuery('#resp_val_' + quesId).val()};
-                    if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
-                        questionsAnswered.push(quesId);
-                    }
-                });
-
-                var totalQuestionLength = qList.length;
-                for (var n = 0; n <= qList.length; n++) {
-                    for (var m = 0; m <= questionsAnswered.length; m++) {
-                        if (qList[n] === questionsAnswered[m]) {
-                            qList.splice(n, 1);
-                        }
-                    }
-                }
-
-                $('.submit-popup-warning-text p').each(function (j) {
-                    $(this).remove();
-                });
-
-                if (qList.length === totalQuestionLength) {
-                    $('#yesButton').attr('disabled', true);
-                    $('#yesButton').css('background', '#9e9e9e');
-//                    $('#yesButton').css('background','#fafafa');
-                    $('.submit-popup-warning-text').append('<p> You have not answered any questions. Please select a response to submit </p>');
-                } else if (qList.length > 0) {
-                    $('#yesButton').prop('disabled', true);
-//                    $('#yesButton').css('color', '#ffffff');
-                    $('#yesButton').css('background', '#9e9e9e');
-                    $('#noButton').text(function(i,oldText){
-                       return oldText === '\u2718 NO' ? 'GO BACK' : oldText;
-                    });
-                    $('.submit-popup-warning-text').append('<p> You have ' + qList.length + ' unanswered questions </p>');
-                } else {
-                    $('#yesButton').prop('disabled', false);
-                    $('#yesButton').css('color', '#ffffff');
-                    $('#yesButton').css('background', '#4caf50');
-                    $('#noButton').text(function(i,oldText){
-                       return oldText === 'GO BACK' ? '\u2718 NO' : oldText;
-                    });
-                    $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
-                }
-//                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
-
-                $('.black_overlay').show();
-                $('.submit-popup').show();
-
-                //TO DISABLE PAGE SCROLL IF SUBMIT POPUP VISIBLE
-                $('*').not('.submit-popup').bind('touchmove', false);
-            });
-
-            //NO BUTTON    
-            $('.submit-popup-buttons button:nth-child(even)').on('click', function (event) {
-                event.stopPropagation();
-                $('.black_overlay').hide();
-                $('.submit-popup').hide();
-                //TO ENABLE PAGE SCROLL AS SUBMIT BUTTON IS DISMISSED
-                $('*').unbind('touchmove', false);
-            });
-
-            //YES BUTTON
-            $('.submit-popup-buttons button:nth-child(odd)').on('click', function () {
-                //SUBMIT ALL RESPONSES HERE
-                var jArray = $('#ques_list').val();
-                var jsonObj = $.parseJSON(jArray);
-                // store the responses for all answered questions
-                jQuery.each(jsonObj, function (index, value) {
-                    var questionId = value.questionId;
-                    var questionType = value.questionType.value;
-                    if (questionType === 1) {
-                        //submit WE answer
-                        var count = $('#list-mobile-' + questionId + ' p').length;
-                        if (count > 0) {
-                            console.log("submitting we question : " + questionId);
-                            submitWeData(questionId);
-                            console.log("submitted we question : " + questionId);
-                        }
-                    } else {
-                        // submit ME answer
-                        console.log("submitting me question : " + questionId);
-                        submitMeData(questionId);
-                        console.log("submitted me question : " + questionId);
-                    }
-                });
-
-            });
-        }
     }
 
     $('.survey-we .submit-circle button').on('click', function (event) {
@@ -502,23 +502,45 @@ function ratingStar(obj) {
             }
         }
     }
-    $('.list-of-people-selected').each(function (i) {
-        if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-            $(this).parent().slimScrollPopup({
-                height: '400px',
-                width: '272px',
-                color: '#388E3C',
-                railVisible: true,
-                railColor: '#D7D7D7',
-                alwaysVisible: true,
-                touchScrollStep: 50
-            });
-        } else {
-            $(this).parent().slimScrollPopup({
-                destroy: true
-            });
-        }
-    });
+    if (window.innerWidth > window.innerHeight) {
+//        if (window.orientation === "90" || window.orientation === "-90") {
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollTab({
+                    height: '400px',
+                    width: '263px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollTab({
+                    destroy: true
+                });
+            }
+        });
+//        }
+    } else {
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '260px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
+        });
+    }
 //    saveRating();
 }
 /** Search functionality using Isotope begins */

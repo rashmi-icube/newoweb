@@ -259,11 +259,38 @@
             //Apply Scroll to Survey Page List of People Selected
         } else {
             //    ADD SCROLL IF MORE PEOPLE THAN VISIBLE WITHIN DIV SIZE, FOR EVERY WE QUESTION
+                if (window.screen.width === 1024) {
+                    if (window.orientation === 90 || window.orientation === -90) {
+                        $('.list-of-people-selected').each(function (i) {
+                            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                                $(this).parent().slimScrollTab({
+                                    height: '400px',
+                                    width: '263px',
+                                    color: '#388E3C',
+                                    railVisible: true,
+                                    railColor: '#D7D7D7',
+                                    alwaysVisible: true,
+                                    touchScrollStep: 50
+                                });
+                            } else {
+                                $(this).parent().slimScrollTab({
+                                    destroy: true
+                                });
+                                $(this).parent().css('width','33%');
+                            }
+                        });
+                    }
+                }
+                else{
+            
+            
+            
+            
             $('.list-of-people-selected').each(function (i) {
                 if ($('.list-of-people-selected')[i].clientHeight >= 348) {
                     $(this).parent().slimScrollPopup({
                         height: '400px',
-                        width: '272px',
+                        width: '250px',
                         color: '#388E3C',
                         railVisible: true,
                         railColor: '#D7D7D7',
@@ -276,6 +303,7 @@
                     });
                 }
             });
+        }
         }
         saveRating();
     });

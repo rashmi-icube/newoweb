@@ -55,13 +55,13 @@
         railDraggable : true,
 
         // defautlt CSS class of the slimscroll rail
-        railClass : 'slimScrollRailPopup',
+        railClass : 'slimScrollRailTab',
 
         // defautlt CSS class of the slimscroll bar
-        barClass : 'slimScrollBarPopup',
+        barClass : 'slimScrollBarTab',
 
         // defautlt CSS class of the slimscroll wrapper
-        wrapperClass : 'slimScrollDivPopup',
+        wrapperClass : 'slimScrollTab',
 
         // check if mousewheel should scroll the window if we reach top/bottom
         allowPageScroll : false,
@@ -165,8 +165,8 @@
 			// overflow: 'hidden',
             width: o.width,
             height: o.height,
-            display: 'inline-table',
-            right: '13%'
+            display: 'inline-table'
+//            right: '13%'
           });
 
         // update style for the div

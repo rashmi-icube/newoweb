@@ -262,7 +262,7 @@
             if ($('.list-of-people-selected')[i].clientHeight >= 348) {
                 $(this).parent().slimScrollPopup({
                     height: '400px',
-                    width: '272px',
+                    width: '260px',
                     color: '#388E3C',
                     railVisible: true,
                     railColor: '#D7D7D7',
