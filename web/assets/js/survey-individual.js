@@ -429,6 +429,17 @@ $(document).ready(function () {
     showHideNavigation();
 });
 
+//RASHMI START
+if ($('.survey-we').is(':visible')) {
+    $(document).keypress(function (e) {
+        if (e.which === 13) {
+            var quesId = $('.ihcl-search-button').attr('ques_id');
+            fetchOrgnizationSearch($('#ihcl-search-' + quesId).val(), quesId, $('.ihcl-search-button'));
+        }
+    });
+}
+//RASHMI END
+
 function ratingStar(obj) {
     var row = $(obj).parent();
     var i = $(obj).index();

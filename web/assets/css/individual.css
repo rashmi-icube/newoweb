@@ -1398,7 +1398,7 @@ nav li a {
 }
 
 .people-list-box>input {
-    width: 99%;
+    width: 90%;
     height: 54px;
     padding: 1px 0 0 4px;
     margin-bottom: 10px;
@@ -1529,7 +1529,19 @@ nav li a {
 
 
 
-.people-list-box input + button { display: none; }
+.people-list-box input + button { 
+    display: block;
+    width: 70px;
+    height: 54px;
+    margin-left: -4px;
+    display: initial;
+    /* vertical-align: -1px; */
+    background-color: #388e3c;
+    color: #e4e4e4;
+    font: 26px 'Open Sans Regular', 'Open Sans';
+    vertical-align: top;
+
+}
 
 .filter-row { margin-bottom: 4px; }
 
