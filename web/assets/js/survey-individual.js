@@ -435,6 +435,7 @@ if ($('.survey-we').is(':visible')) {
         if (e.which === 13) {
             var quesId = $('.ihcl-search-button').attr('ques_id');
             fetchOrgnizationSearch($('#ihcl-search-' + quesId).val(), quesId, $('.ihcl-search-button'));
+            $(".search-colleague").blur();
         }
     });
 }
