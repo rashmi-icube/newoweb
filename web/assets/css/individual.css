@@ -4161,7 +4161,63 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         width: 90% !important;
         display: block;
     }
+    
+    #ihcl-question-title {
+        font: 16px 'Open Sans Regular', 'Open Sans';
+    }
+    
+    .mood-range > div:nth-of-type(1) button{
+    background-image: url(../images/emoji-saddest.png);
+    background-repeat: no-repeat;
+    background-size: 40px;
+    height: 40px;
+    background-position: center;
+}
 
+.mood-range > div:nth-of-type(2) button{
+    background-image: url(../images/emoji-sad.png);
+    background-repeat: no-repeat;
+    background-size: 40px;
+    height: 40px;
+    background-position: center;
+}
+
+.mood-range > div:nth-of-type(3) button{
+    background-image: url(../images/emoji-neutral.png);
+    background-repeat: no-repeat;
+    background-size: 40px;
+    height: 40px;
+    background-position: center;
+}
+
+.mood-range > div:nth-of-type(4) button{
+    background-image: url(../images/emoji-happy.png);
+    background-repeat: no-repeat;
+    background-size: 40px;
+    height: 40px;
+    background-position: center;
+}
+
+.mood-range > div:nth-of-type(5) button{
+    background-image: url(../images/emoji-happiest.png);
+    background-repeat: no-repeat;
+    background-size: 40px;
+    height: 40px;
+    background-position: center;
+}
+
+.answer-range button {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #e4e4e4;
+    border-right: 0;
+    margin-bottom: 10px;
+    display: block;
+    background-color: #f2f2f2;
+    color: #333;
+    font: 14px 'Open Sans SemiBold', 'Open Sans';
+}
     #progress-value{
         /*margin: 4px 0 14px;*/
         color: #727272;
@@ -4837,7 +4893,7 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         padding: 8px;
         display: inline-block;
         float: none;
-        /*font: 16px 'Open Sans SemiBold', 'Open Sans';*/
+        font: 16px 'Open Sans SemiBold', 'Open Sans';
         font-family: 'Zapf Dingbats';
         width: 49%;
         height: 45px;
@@ -4865,6 +4921,22 @@ textarea:-ms-input-placeholder { font: italic 12px 'Open Sans Light'; }
         top: 90%;
         z-index: 10;
     }
+    
+    .submit-circle button {
+    width: 100px;
+    /* width: 45px; */
+    height: 50px;
+    /* border-radius: 50%; */
+    border-radius: 5%;
+    /* background-color: #ffc107; */
+    background-color: #4caf50;
+    color: #ffffff;
+    font: 16px 'Open Sans Regular', 'Open Sans';
+    font-family: 'Zapf Dingbats';
+    transition: transform 0.2s;
+    -webkit-appearance: none;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
 
     .progress-fraction{
         display: block;
