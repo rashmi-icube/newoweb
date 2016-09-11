@@ -309,7 +309,7 @@ $(document).ready(function () {
                         console.log("submitted we question : " + questionId);
                         setTimeout(function () {
                             console.log("set timeout after submitted we question : " + questionId);
-                        }, 2000);
+                        }, 5000);
                     }
                 } else {
                     // submit ME answer
@@ -318,7 +318,7 @@ $(document).ready(function () {
                     console.log("submitted me question : " + questionId);
                     setTimeout(function () {
                         console.log("set timeout after submitted me question : " + questionId);
-                    }, 2000);
+                    }, 5000);
                 }
             });
 
