@@ -140,9 +140,9 @@
                 try {
                     List<Question> qList = question.getEmployeeQuestionList(comid, empid);
 
-                    System.out.println("LIST: " + qList);
+                    // System.out.println("LIST: " + qList);
                     JSONArray questionList = new JSONArray(qList);
-                    System.out.println("JSONObject " + questionList);
+                    // System.out.println("JSONObject " + questionList);
                     String jArray = questionList.toString();
                     int len = qList.size();
 
@@ -267,7 +267,7 @@
                                                 <div class="individuals-grid" id="scroll-for-individuals-grid">
                                                     <%
                                                         List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
-                                                        System.out.println("MAP LIST:" + mapSmartList);
+                                                        // System.out.println("MAP LIST:" + mapSmartList);
                                                         for (int incr = 0; incr < mapSmartList.size(); incr++) {
                                                             Employee employee = mapSmartList.get(incr);
                                                             if (empid == employee.getEmployeeId()) {

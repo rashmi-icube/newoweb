@@ -26,7 +26,7 @@
     <img src="/assets/images/ajax-loader.gif">
 </div>
 <div class="individuals-grid">    
-    <%  System.out.println("calling survey-filter.jsp");
+    <%  // System.out.println("calling survey-filter.jsp");
         List<Employee> mapSmartList = null;
         int questionId = Util.getIntValue(request.getParameter("questionId"));
         //out.println("questionId ::::::::: " + questionId);
@@ -35,9 +35,9 @@
         Question ques = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
         ques.setQuestionId(questionId);
         ques.setRelationshipTypeId(relationshipTypeId);
-        System.out.println("**********************comid : " + comid);
-        System.out.println("**********************empid : " + empid);
-        System.out.println("**********************ques : " + ques);
+        // System.out.println("**********************comid : " + comid);
+        // System.out.println("**********************empid : " + empid);
+         // System.out.println("**********************ques : " + ques);
         mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
         for (int incr = 0; incr < mapSmartList.size(); incr++) {
             Employee employee = mapSmartList.get(incr);
@@ -91,10 +91,10 @@
         var lastStar = $(row).find('.filled:last').index();
         var parent = row.parent().parent();
         var quesId = $(this).parent().find('#quesId').val();
-        console.log("quesId :::::::: " + quesId);
+        // console.log("quesId :::::::: " + quesId);
         var name = $(parent).find('span.individual-cell-name').text().trim();
         var count = $('#list-mobile-' + quesId + ' p').length;
-        console.log("count ::::::::: " + count);
+        // console.log("count ::::::::: " + count);
 
         // clear the ratings for the chosen employee
         if (lastStar === i) {
@@ -123,7 +123,7 @@
             $('#count-mobile-' + quesId + ' span').text(count);
 
         } else {
-            console.log("updating the count");
+            // console.log("updating the count");
             // add or update the stars for the given employee
             $(this).nextAll().removeClass('filled');
             for (var n = 0; n < i; n++) {
@@ -164,7 +164,7 @@
                     $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
                     $('#count-mobile-' + quesId + ' span').text('');
                     $('#count-mobile-' + quesId + ' span').text(count);
-                    console.log("count updated ::::::::: " + count);
+                    // console.log("count updated ::::::::: " + count);
                 }
             }
         }

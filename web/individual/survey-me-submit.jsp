@@ -29,7 +29,7 @@
         Question quesObj = question.getQuestion(comid, questionId);
         quesObj.setRelationshipTypeId(relaVal);
         Response respObj = (Response) ObjectFactory.getInstance("org.icube.owen.survey.Response");
-        System.out.println("HERE:"+companyId+"::"+employeeId+"::"+quesObj+"::"+respVal+"::"+feedback+"::"+quesObj.getRelationshipTypeId());
+        // System.out.println("HERE:"+companyId+"::"+employeeId+"::"+quesObj+"::"+respVal+"::"+feedback+"::"+quesObj.getRelationshipTypeId());
         
         boolean  responseSaved = respObj.saveMeResponse(companyId, employeeId, quesObj, respVal, feedback);
         JSONObject jObj = new JSONObject();

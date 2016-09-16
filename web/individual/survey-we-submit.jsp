@@ -43,9 +43,9 @@
                 employee.setCompanyId(comid);
                 employeeRating.put(employee, new Integer(ratVal));
             }
-            System.out.println("empid :::::::: " + empid);
-            System.out.println("quesObj :::::::: " + quesObj.getQuestionId());
-            System.out.println("employeeRating :::::::: " + employeeRating.toString());
+            // System.out.println("empid :::::::: " + empid);
+            // System.out.println("quesObj :::::::: " + quesObj.getQuestionId());
+            // System.out.println("employeeRating :::::::: " + employeeRating.toString());
 
             boolean subResp = respObj.saveWeResponse(comid, empid, quesObj, employeeRating);
             //boolean subResp = true;

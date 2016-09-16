@@ -73,7 +73,7 @@
             if (metricId > 0) {
                 IndividualDashboardHelper iDashboard = (IndividualDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.IndividualDashboardHelper");
                 mapSmartList = iDashboard.getSmartList(comid, empid, metricId);
-                out.println("mapSmartList ::::::::::::: " + mapSmartList.size());
+                // out.println("mapSmartList ::::::::::::: " + mapSmartList.size());
 
             }
         }

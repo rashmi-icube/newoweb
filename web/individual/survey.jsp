@@ -63,7 +63,7 @@
                 try {
                     List<Question> qList = question.getEmployeeQuestionList(comid, empid);
                     //List<Question> qList = new ArrayList<Question>();
-                    System.out.println("LIST: " + qList);
+                    // System.out.println("LIST: " + qList);
                     int len = qList.size();
                     //len = 0;
                     if (len == 0) { %>
@@ -285,7 +285,7 @@
                                     <div class="individuals-grid" id="scroll-for-individuals-grid">
                                         <%
                                             List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
-                                            System.out.println("MAP LIST:" + mapSmartList);
+                                            // System.out.println("MAP LIST:" + mapSmartList);
                                             for (int incr = 0; incr < mapSmartList.size(); incr++) {
                                                 Employee employee = mapSmartList.get(incr);
                                                 if (empid == employee.getEmployeeId()) {

@@ -304,20 +304,20 @@ $(document).ready(function () {
                     //submit WE answer
                     var count = $('#list-mobile-' + questionId + ' p').length;
                     if (count > 0) {
-                        console.log("submitting we question : " + questionId);
+                        // console.log("submitting we question : " + questionId);
                         submitWeData(questionId);
-                        console.log("submitted we question : " + questionId);
+                        // console.log("submitted we question : " + questionId);
                         setTimeout(function () {
-                            console.log("set timeout after submitted we question : " + questionId);
+                            // console.log("set timeout after submitted we question : " + questionId);
                         }, 5000);
                     }
                 } else {
                     // submit ME answer
-                    console.log("submitting me question : " + questionId);
+                    // console.log("submitting me question : " + questionId);
                     submitMeData(questionId);
-                    console.log("submitted me question : " + questionId);
+                    // console.log("submitted me question : " + questionId);
                     setTimeout(function () {
-                        console.log("set timeout after submitted me question : " + questionId);
+                        // console.log("set timeout after submitted me question : " + questionId);
                     }, 5000);
                 }
             });
@@ -867,14 +867,14 @@ function fetchFilteredDataMobile(questionId) {
         data: filterData,
         dataType: 'HTML',
         success: function (resp) {
-            console.log("inside ajax");
+            // console.log("inside ajax");
             $('.overlay_form').hide();
             $('#we_grid_' + questionId).html(resp);
             fetchAndPopulateRating();
             searchIsotope();
             $('.mobile-filter-row>div').hide('200');
             $('.mobile-filter-row').addClass('chosen');
-            console.log("after ajax");
+            // console.log("after ajax");
         }
     });
 }

@@ -26,7 +26,7 @@
     <img src="/assets/images/ajax-loader.gif">
 </div>
 <div class="individuals-grid">    
-    <%  System.out.println("calling survey-filter.jsp");  
+    <%  // System.out.println("calling survey-filter.jsp");  
         int filterIdGeo = Util.getIntValue(request.getParameter("Geography"), 0);
         int filterIdFun = Util.getIntValue(request.getParameter("Function"), 0);
         int filterIdLevel = Util.getIntValue(request.getParameter("Level"), 0);
@@ -138,10 +138,10 @@
         var lastStar = $(row).find('.filled:last').index();
         var parent = row.parent().parent();
         var quesId = $(this).parent().find('#quesId').val();
-        console.log("quesId :::::::: " + quesId);
+        // console.log("quesId :::::::: " + quesId);
         var name = $(parent).find('span.individual-cell-name').text().trim();
         var count = $('#list-mobile-' + quesId + ' p').length;
-        console.log("count ::::::::: " + count);
+        // console.log("count ::::::::: " + count);
 
         // clear the ratings for the chosen employee
         if (lastStar === i) {
@@ -170,7 +170,7 @@
             $('#count-mobile-' + quesId + ' span').text(count);
 
         } else {
-            console.log("updating the count");
+            // console.log("updating the count");
             // add or update the stars for the given employee
             $(this).nextAll().removeClass('filled');
             for (var n = 0; n < i; n++) {
@@ -211,7 +211,7 @@
                     $('#list-mobile-' + quesId).append('<p>' + name + '</p>');
                     $('#count-mobile-' + quesId + ' span').text('');
                     $('#count-mobile-' + quesId + ' span').text(count);
-                    console.log("count updated ::::::::: " + count);
+                    // console.log("count updated ::::::::: " + count);
                 }
             }
         }

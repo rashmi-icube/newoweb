@@ -78,7 +78,7 @@
             fList.add(functionFilter);
             fList.add(levelFilter);
             smartEmpList =  elist.getEmployeeSmartListForTeam(comid,fList,Util.getIntValue(initiativeType1));
-            System.out.println(smartEmpList);
+            // System.out.println(smartEmpList);
         } else {
             Employee emp = (Employee) ObjectFactory.getInstance("org.icube.owen.employee.Employee");
             List<Employee> list = new ArrayList();

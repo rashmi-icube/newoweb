@@ -97,13 +97,13 @@
     });
 
     $('.rating-star').on('click', function () {
-        console.log("calling searchOrgList");
+        // console.log("calling searchOrgList");
         var row = $(this).parent();
         var i = $(this).index();
         var lastStar = $(row).find('.filled:last').index();
         var parent = row.parent().parent();
         var quesId = $(this).parent().find('#quesId').val();
-        console.log("quesId : " + quesId);
+        // console.log("quesId : " + quesId);
         var name = $(parent).find('span.individual-cell-name').text().trim();
         if (quesId === '0') {
             var dashboardCount = $('.list-of-people-selected p').length;
@@ -116,7 +116,7 @@
             $(row).children().removeClass('filled');
             $(row).next().text('0').removeAttr('style');
             if (quesId === '0') {
-                console.log("this is for the individual dashboard");
+                // console.log("this is for the individual dashboard");
                 // remove names from the list
                 $('.list-of-people-selected p').each(function (j) {
                     if ($(this).text() === name) {

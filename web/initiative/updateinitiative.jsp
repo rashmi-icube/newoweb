@@ -91,7 +91,7 @@
             for(int empCnt=0; empCnt < keyIndividualList.length; empCnt++) {
                 Employee emp = new Employee();
                 emp.setEmployeeId(Util.getIntValue(keyIndividualList[empCnt]));
-                System.out.println("emp   "+emp.getEmployeeId());
+                // System.out.println("emp   "+emp.getEmployeeId());
                 empList.add(emp);
             }
         }
@@ -99,8 +99,8 @@
             Initiative initiative = new Initiative();
             Initiative uinitiative = initiative.get(comid,Util.getIntValue(iid));
             
-            System.out.println("Name-------- "+uinitiative.getInitiativeName());
-            System.out.println("Id-------- "+uinitiative.getInitiativeId());
+            // System.out.println("Name-------- "+uinitiative.getInitiativeName());
+            // System.out.println("Id-------- "+uinitiative.getInitiativeId());
             //uinitiative.setInitiativeCategory(category);
             //uinitiative.setFilterList(fList);
             if(initiativeComment != null && !initiativeComment.equals("")) {

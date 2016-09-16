@@ -16,7 +16,7 @@
         email = (String) session.getAttribute("email");
     }
     String url = request.getRequestURL().toString();
-    System.out.println("******common.jsp: " + url+" "+roleid + " " + comid + " " + empid);
+    // System.out.println("******common.jsp: " + url+" "+roleid + " " + comid + " " + empid);
             
     if(roleid != 2) {
         if(!url.contains("login.jsp") && !url.contains("signout.jsp") && !url.contains("individual") && !url.contains("ihcl")) {
