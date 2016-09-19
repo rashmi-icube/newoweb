@@ -21,13 +21,13 @@
 //    out.println("RATING:"+request.getParameter("emp_rating"));
     int questionId = Util.getIntValue(request.getParameter("ques_id"));
     String empRating = request.getParameter("emp_rating");
-    int relationId = Util.getIntValue(request.getParameter("rela_val"));
+//    int relationId = Util.getIntValue(request.getParameter("rela_val"));
     if (questionId > 0 && !empRating.isEmpty()) {
         try {
             JSONObject jObj = new JSONObject(request.getParameter("emp_rating"));
-            Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
-            Question quesObj = question.getQuestion(comid, questionId);
-            quesObj.setRelationshipTypeId(relationId);
+//            Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
+//            Question quesObj = question.getQuestion(comid, questionId);
+//            quesObj.setRelationshipTypeId(relationId);
             Response respObj = (Response) ObjectFactory.getInstance("org.icube.owen.survey.Response");
             //System.out.println("HERE:"+companyId+"::"+employeeId+"::"+quesObj+"::"+respVal+"::"+feedback+"::"+quesObj.getRelationshipTypeId());
             Map<Employee, Integer> employeeRating = new HashMap<Employee, Integer>();
@@ -47,7 +47,7 @@
             // System.out.println("quesObj :::::::: " + quesObj.getQuestionId());
             // System.out.println("employeeRating :::::::: " + employeeRating.toString());
 
-            boolean subResp = respObj.saveWeResponse(comid, empid, quesObj, employeeRating);
+            boolean subResp = respObj.saveWeResponse(comid, empid, questionId, employeeRating);
             //boolean subResp = true;
             JSONObject respJOBJ = new JSONObject();
             respJOBJ.put("status", subResp);

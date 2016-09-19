@@ -24,14 +24,14 @@
         int employeeId = Util.getIntValue(strEmpId);
         int questionId = Util.getIntValue(strQuesId);
         int respVal = Util.getIntValue(strResp);
-        int relaVal = Util.getIntValue(strRela);
-        Question question =  (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
-        Question quesObj = question.getQuestion(comid, questionId);
-        quesObj.setRelationshipTypeId(relaVal);
+//        int relaVal = Util.getIntValue(strRela);
+//        Question question =  (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
+//        Question quesObj = question.getQuestion(comid, questionId);
+//        quesObj.setRelationshipTypeId(relaVal);
         Response respObj = (Response) ObjectFactory.getInstance("org.icube.owen.survey.Response");
         // System.out.println("HERE:"+companyId+"::"+employeeId+"::"+quesObj+"::"+respVal+"::"+feedback+"::"+quesObj.getRelationshipTypeId());
         
-        boolean  responseSaved = respObj.saveMeResponse(companyId, employeeId, quesObj, respVal, feedback);
+        boolean  responseSaved = respObj.saveMeResponse(companyId, employeeId, questionId, respVal, feedback);
         JSONObject jObj = new JSONObject();
         //boolean responseSaved = true;
         jObj.put("status", responseSaved);
