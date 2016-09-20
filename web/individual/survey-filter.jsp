@@ -45,8 +45,8 @@
         int relationshipTypeId = Util.getIntValue(request.getParameter("rel_type"));
         //out.println(relationshipTypeId);
         Question ques = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
-        ques.setQuestionId(questionId);
-        ques.setRelationshipTypeId(relationshipTypeId);
+        // ques.setQuestionId(questionId);
+        // ques.setRelationshipTypeId(relationshipTypeId);
         if ((filterIdGeo > -1 && filterValGeo != null) || (filterIdFun > -1 && filterValFun != null) || (filterIdLevel > -1 && filterValLevel != null)) {
             EmployeeList employeeListObj = (EmployeeList) ObjectFactory.getInstance("org.icube.owen.employee.EmployeeList");
             List<Filter> listFilter = new ArrayList<Filter>();
@@ -84,7 +84,7 @@
             //        out.println(listFilter);
             mapSmartList = employeeListObj.getEmployeeListByFilters(comid, listFilter);
         } else {
-            mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
+            mapSmartList = ques.getSmartListForQuestion(comid, empid, questionId);
         }
         //out.println("HERE---------------"+mapSmartList);    
         for (int incr = 0; incr < mapSmartList.size(); incr++) {
@@ -112,14 +112,14 @@
         <span class="individual-cell-name"><%= employee.getFirstName() + " " + employee.getLastName()%></span>
         <div class="star-rating-row" >
             <div class="rating-stars">
-                <input type="hidden" id="quesId" value="<%= ques.getQuestionId()%>" />
+                <input type="hidden" id="quesId" value="<%= questionId%>" />
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
             </div>
-            <span class="star-rating-total" emp_id="<%= employee.getEmployeeId()%>" ques_id="<%= ques.getQuestionId()%>" id="rat_<%= ques.getQuestionId() + "_" + employee.getEmployeeId()%>"></span>
+            <span class="star-rating-total" emp_id="<%= employee.getEmployeeId()%>" ques_id="<%= questionId%>" id="rat_<%= questionId + "_" + employee.getEmployeeId()%>"></span>
         </div>
     </div>
     <% }%>

@@ -33,12 +33,12 @@
         int relationshipTypeId = Util.getIntValue(request.getParameter("rel_type"));
         //out.println(relationshipTypeId);
         Question ques = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
-        ques.setQuestionId(questionId);
-        ques.setRelationshipTypeId(relationshipTypeId);
+        // ques.setQuestionId(questionId);
+        // ques.setRelationshipTypeId(relationshipTypeId);
         // System.out.println("**********************comid : " + comid);
         // System.out.println("**********************empid : " + empid);
          // System.out.println("**********************ques : " + ques);
-        mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
+        mapSmartList = ques.getSmartListForQuestion(comid, empid, questionId);
         for (int incr = 0; incr < mapSmartList.size(); incr++) {
             Employee employee = mapSmartList.get(incr);
             if (empid == employee.getEmployeeId()) {
@@ -65,14 +65,14 @@
         <span class="individual-cell-name"><%= employee.getFirstName() + " " + employee.getLastName()%></span>
         <div class="star-rating-row" >
             <div class="rating-stars">
-                <input type="hidden" id="quesId" value="<%= ques.getQuestionId()%>" />
+                <input type="hidden" id="quesId" value="<%= questionId%>" />
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
                 <span class="rating-star"></span>
             </div>
-            <span class="star-rating-total" emp_id="<%= employee.getEmployeeId()%>" ques_id="<%= ques.getQuestionId()%>" id="rat_<%= ques.getQuestionId() + "_" + employee.getEmployeeId()%>"></span>
+            <span class="star-rating-total" emp_id="<%= employee.getEmployeeId()%>" ques_id="<%= questionId%>" id="rat_<%= ques.getQuestionId() + "_" + employee.getEmployeeId()%>"></span>
         </div>
     </div>
     <% }%>

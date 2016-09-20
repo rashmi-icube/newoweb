@@ -37,7 +37,7 @@
             mapSmartList = iDashboard.getSmartList(comid, empid, metricId);
         } else {
             Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
-            mapSmartList = question.getSmartListForQuestion(comid, empid, question.getQuestion(comid, ques));
+            mapSmartList = question.getSmartListForQuestion(comid, empid, ques);
         }
         if (mapSmartList != null) {
             for (int incr = 0; incr < mapSmartList.size(); incr++) {
