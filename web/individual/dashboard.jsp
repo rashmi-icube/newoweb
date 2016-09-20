@@ -30,7 +30,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>OWEN - Dashboard</title>
         <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/slick.css">
-        <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/individual.css">
+        <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/individual_engage.css">
         <link rel="apple-touch-icon" sizes="57x57" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="<%=Constant.WEB_ASSETS%>images/favicon_Individual/apple-icon-72x72.png">

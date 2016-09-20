@@ -17,23 +17,23 @@ $(document).ready(function () {
             showHideNavigation(this);
             $('body').removeAttr('style');
         });
-//        $('.list-of-people-selected').each(function (i) {
-//            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-//                $(this).parent().slimScrollPopup({
-//                    height: '400px',
-//                    width: '272px',
-//                    color: '#388E3C',
-//                    railVisible: true,
-//                    railColor: '#D7D7D7',
-//                    alwaysVisible: true,
-//                    touchScrollStep: 50
-//                });
-//            } else {
-//                $(this).parent().slimScrollPopup({
-//                    destroy: true
-//                });
-//            }
-//        });
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '272px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
+        });
     });
     $('.site-nav-next').on('click', function () {
         event.preventDefault();
@@ -49,23 +49,23 @@ $(document).ready(function () {
             showHideNavigation(this);
             $('body').removeAttr('style');
         });
-//        $('.list-of-people-selected').each(function (i) {
-//            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-//                $(this).parent().slimScrollPopup({
-//                    height: '400px',
-//                    width: '272px',
-//                    color: '#388E3C',
-//                    railVisible: true,
-//                    railColor: '#D7D7D7',
-//                    alwaysVisible: true,
-//                    touchScrollStep: 50
-//                });
-//            } else {
-//                $(this).parent().slimScrollPopup({
-//                    destroy: true
-//                });
-//            }
-//        });
+        $('.list-of-people-selected').each(function (i) {
+            if ($('.list-of-people-selected')[i].clientHeight >= 348) {
+                $(this).parent().slimScrollPopup({
+                    height: '400px',
+                    width: '272px',
+                    color: '#388E3C',
+                    railVisible: true,
+                    railColor: '#D7D7D7',
+                    alwaysVisible: true,
+                    touchScrollStep: 50
+                });
+            } else {
+                $(this).parent().slimScrollPopup({
+                    destroy: true
+                });
+            }
+        });
 //        clearRatings();
     });
     $(function () {
@@ -126,16 +126,19 @@ $(document).ready(function () {
     if ($('.survey-we').is(':visible')) {
         searchIsotope();
     }
-
-//    $('.search-colleague').on('input', function () {
-//        fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
-//    });
-
-    $('.ihcl-search-button').on('click', function () {
-        var quesId = $(this).attr('ques_id');
-        fetchOrgnizationSearch($('#ihcl-search-' + quesId).val(), quesId, this);
-    });
-
+    
+    if ($('#subModuleName').val() !== "ihcl") {
+        $('.search-colleague').on('input', function () {
+            fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
+        });
+    }
+    
+    if ($('#subModuleName').val() === "ihcl") {
+        $('.ihcl-search-button').on('click', function () {
+            var quesId = $(this).attr('ques_id');
+            fetchOrgnizationSearch($('#ihcl-search-' + quesId).val(), quesId, this);
+        });
+    }
     $('.filter-row .filter-menu li li').on('click', function () {
         $(this).children('span').css('visibility', 'visible');
         $(this).parents('li').children('span').addClass('highlight');

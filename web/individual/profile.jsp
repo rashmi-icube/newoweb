@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Profile</title>
-    <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/individual.css">
+    <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/individual_engage.css">
     <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/jquery-ui.css">
     <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/jquery.ui.theme.css">    
     <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/kendo-ui/kendo.common.min.css">  
