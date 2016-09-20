@@ -523,11 +523,11 @@ function ratingStar(obj) {
             }
         }
     }
-    if (window.innerWidth > window.innerHeight) {
+    if ($('#subModuleName').val() === 'ihcl') {
 //        if (window.orientation === "90" || window.orientation === "-90") {
         $('.list-of-people-selected').each(function (i) {
             if ($('.list-of-people-selected')[i].clientHeight >= 348) {
-                $(this).parent().slimScrollTab({
+                $(this).parent().slimScrollPopup({
                     height: '400px',
                     width: '263px',
                     color: '#388E3C',
@@ -537,7 +537,7 @@ function ratingStar(obj) {
                     touchScrollStep: 50
                 });
             } else {
-                $(this).parent().slimScrollTab({
+                $(this).parent().slimScrollPopup({
                     destroy: true
                 });
             }

@@ -284,7 +284,7 @@
 
                                     <div class="individuals-grid" id="scroll-for-individuals-grid">
                                         <%
-                                            List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques.getQuestionId());
+                                            List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
                                             // System.out.println("MAP LIST:" + mapSmartList);
                                             for (int incr = 0; incr < mapSmartList.size(); incr++) {
                                                 Employee employee = mapSmartList.get(incr);
