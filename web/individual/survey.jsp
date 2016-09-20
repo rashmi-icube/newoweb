@@ -23,7 +23,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>OWEN - Survey</title>
-        <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/individual.css">
+        <link rel="stylesheet" href="<%=Constant.WEB_ASSETS%>css/individual_engage.css">
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
 
@@ -284,7 +284,7 @@
 
                                     <div class="individuals-grid" id="scroll-for-individuals-grid">
                                         <%
-                                            List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
+                                            List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques.getQuestionId());
                                             // System.out.println("MAP LIST:" + mapSmartList);
                                             for (int incr = 0; incr < mapSmartList.size(); incr++) {
                                                 Employee employee = mapSmartList.get(incr);

@@ -30,15 +30,15 @@
         List<Employee> mapSmartList = null;
         int questionId = Util.getIntValue(request.getParameter("questionId"));
         //out.println("questionId ::::::::: " + questionId);
-        int relationshipTypeId = Util.getIntValue(request.getParameter("rel_type"));
+        // int relationshipTypeId = Util.getIntValue(request.getParameter("rel_type"));
         //out.println(relationshipTypeId);
         Question ques = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
-        ques.setQuestionId(questionId);
-        ques.setRelationshipTypeId(relationshipTypeId);
+        // ques.setQuestionId(questionId);
+        // ques.setRelationshipTypeId(relationshipTypeId);
         // System.out.println("**********************comid : " + comid);
         // System.out.println("**********************empid : " + empid);
          // System.out.println("**********************ques : " + ques);
-        mapSmartList = ques.getSmartListForQuestion(comid, empid, ques);
+        mapSmartList = ques.getSmartListForQuestion(comid, empid, questionId);
         for (int incr = 0; incr < mapSmartList.size(); incr++) {
             Employee employee = mapSmartList.get(incr);
             if (empid == employee.getEmployeeId()) {
