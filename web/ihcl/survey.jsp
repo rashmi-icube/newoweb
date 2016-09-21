@@ -202,7 +202,7 @@
                                             <span>Strongly agree</span>
                                         </div>
 
-                                        <div class="answer-range" ques_id="<% out.print(ques.getQuestionId()); %>">
+                                        <div class="answer-range" ques_id="<% out.print(ques.getQuestionId()); %>" id="answer-range-<%=ques.getQuestionId()%>">
                                             <div><button value="1">1</button></div>
                                             <div><button value="2">2</button></div>
                                             <div><button value="3">3</button></div>
@@ -399,5 +399,6 @@
         <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/swiper.min.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/swiper.jquery.min.js"></script>
+        <script src="<%=Constant.WEB_ASSETS%>js/isInViewport.js"></script>
     </body>
 </html>

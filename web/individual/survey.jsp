@@ -121,7 +121,7 @@
                                     <span>Strongly agree</span>
                                 </div>
 
-                                <div class="answer-range" ques_id="<% out.print(ques.getQuestionId()); %>">
+                                <div class="answer-range" ques_id="<% out.print(ques.getQuestionId()); %>" id="answer-range-<%=ques.getQuestionId()%>">
                                     <div><button value="1">1</button></div>
                                     <div><button value="2">2</button></div>
                                     <div><button value="3">3</button></div>
@@ -364,7 +364,7 @@
                 <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.min.js"></script>-->
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscrollPopup.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/jquery.slimscroll.js"></script>
+                <script src="<%=Constant.WEB_ASSETS%>js/isInViewport.js"></script>
                 <script src="<%=Constant.WEB_ASSETS%>js/survey-individual.js"></script>
-
                 </body>
                 </html>

@@ -75,6 +75,9 @@ $(document).ready(function () {
                 paginationType: 'progress',
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
+                // DO NOT DEPLOY
+                keyboardControl: true,
+                mousewheelControl: true,
 //                iOSEdgeSwipeDetection: true,
 //            autoHeight: 'true',
                 onSlideNextStart: function () {
@@ -109,6 +112,30 @@ $(document).ready(function () {
         }
     });
 
+//Create a key value pair for matching keypresses with ME Q value
+    var map = {"49": "1", "50": "2", "51": "3", "52": "4", "53": "5", "97": "1", "98": "2", "99": "3", "100": "4", "101": "5"}
+    function getKeyValue(k) {
+        return map[k];
+    }
+//Check which key pressed and accordingly highlight on screen
+    $(document).keypress(function (e) {
+
+        var key = e.which;
+        $(this).find('.answer-range')
+        var quesId = $('.answer-range:in-viewport').attr('ques_id');
+        //var quesId = $('.answer-range button').parent().parent().attr('ques_id');
+        $('#answer-range-' + quesId + ' button[value=' + getKeyValue(key) + ']').toggleClass('clicked').parent().toggleClass('clicked');
+
+        $('#resp_val_' + quesId).val($('.answer-range button').val());
+        $('#answer-range-' + quesId + ' button[value=' + getKeyValue(key) + ']').parent('div').siblings().removeClass('clicked').children().removeClass('clicked');
+        if ($('#answer-range-' + quesId + ' button[value=' + getKeyValue(key) + ']').parent().find('.clicked').length === 0) {
+            $('#resp_val_' + quesId).val('');
+        }
+
+
+    });
+
+
     $('.survey-me .submit-circle button').on('click', function (event) {
         var quesId = $(this).val();
         submitMeData(quesId);
@@ -126,13 +153,13 @@ $(document).ready(function () {
     if ($('.survey-we').is(':visible')) {
         searchIsotope();
     }
-    
+
     if ($('#subModuleName').val() !== "ihcl") {
         $('.search-colleague').on('input', function () {
             fetchOrgnizationSearch($(this).val(), $(this).attr('ques_id'), this);
         });
     }
-    
+
     if ($('#subModuleName').val() === "ihcl") {
         $('.ihcl-search-button').on('click', function () {
             var quesId = $(this).attr('ques_id');
