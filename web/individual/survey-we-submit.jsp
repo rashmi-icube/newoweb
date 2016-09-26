@@ -42,19 +42,21 @@
                 employee.setEmployeeId(ratEmpId);
                 employee.setCompanyId(comid);
                 employeeRating.put(employee, new Integer(ratVal));
+                System.out.println("submit-we-submit.jsp ::" + comid + "::" + empid + "::" + questionId + "::" + ratEmpId + "::" + ratVal);
             }
             // System.out.println("empid :::::::: " + empid);
             // System.out.println("quesObj :::::::: " + quesObj.getQuestionId());
             // System.out.println("employeeRating :::::::: " + employeeRating.toString());
-
             boolean subResp = respObj.saveWeResponse(comid, empid, questionId, employeeRating);
             //boolean subResp = true;
             JSONObject respJOBJ = new JSONObject();
             respJOBJ.put("status", subResp);
             if (subResp) {
                 respJOBJ.put("message", "Successfully Saved");
+                System.out.println("Successfully saved we response for question : " + questionId);
             } else {
                 respJOBJ.put("message", "Saving failed");
+                System.out.println("Could not save we response for question : " + questionId);
             }
             out.print(respJOBJ.toString());
 

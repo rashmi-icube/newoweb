@@ -326,6 +326,7 @@ $(document).ready(function () {
             //SUBMIT ALL RESPONSES HERE
             var jArray = $('#ques_list').val();
             var jsonObj = $.parseJSON(jArray);
+            console.log("jsonObj length : " + jsonObj.length);
             // store the responses for all answered questions
             jQuery.each(jsonObj, function (index, value) {
                 var questionId = value.questionId;
@@ -334,20 +335,20 @@ $(document).ready(function () {
                     //submit WE answer
                     var count = $('#list-mobile-' + questionId + ' p').length;
                     if (count > 0) {
-                        // console.log("submitting we question : " + questionId);
+                        console.log("Emp ID:: " + $('.usernameapp span').text() + "submitting we question : " + questionId);
                         submitWeData(questionId);
-                        // console.log("submitted we question : " + questionId);
+                        console.log("Emp ID:: " + $('.usernameapp span').text() + "submitted we question : " + questionId);
                         setTimeout(function () {
-                            // console.log("set timeout after submitted we question : " + questionId);
+                            console.log("set timeout after submitted we question : " + questionId);
                         }, 5000);
                     }
                 } else {
                     // submit ME answer
-                    // console.log("submitting me question : " + questionId);
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitting me question : " + questionId);
                     submitMeData(questionId);
-                    // console.log("submitted me question : " + questionId);
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitted me question : " + questionId);
                     setTimeout(function () {
-                        // console.log("set timeout after submitted me question : " + questionId);
+                        console.log("set timeout after submitted me question : " + questionId);
                     }, 5000);
                 }
             });
@@ -960,6 +961,7 @@ function submitMeData(quesId) {
         }
     } else {
         var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
+        console.log("submitMeData dataSub : " + dataSub);
         if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
             jQuery.ajax({
                 type: "POST",
@@ -1025,6 +1027,7 @@ function submitWeData(quesId) {
     });
 
     var postData = {'ques_id': quesId, 'emp_rating': JSON.stringify(empRating), 'rela_val': jQuery('#rela_val_' + quesId).val()};
+    console.log("submitWeData postData : " + postData);
     $.ajax({
         type: "POST",
         url: "/individual/survey-we-submit.jsp",

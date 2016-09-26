@@ -29,7 +29,7 @@
 //        Question quesObj = question.getQuestion(comid, questionId);
 //        quesObj.setRelationshipTypeId(relaVal);
         Response respObj = (Response) ObjectFactory.getInstance("org.icube.owen.survey.Response");
-        // System.out.println("HERE:"+companyId+"::"+employeeId+"::"+quesObj+"::"+respVal+"::"+feedback+"::"+quesObj.getRelationshipTypeId());
+        System.out.println("submit-me-submit.jsp ::"+companyId+"::"+employeeId+"::"+questionId+"::"+respVal+"::"+feedback);
         
         boolean  responseSaved = respObj.saveMeResponse(companyId, employeeId, questionId, respVal, feedback);
         JSONObject jObj = new JSONObject();
@@ -38,8 +38,10 @@
         
         if(responseSaved) {
             jObj.put("message", "Successfully Saved");
+            System.out.println("Successfully saved me response for question : " + questionId);
         }else {
             jObj.put("message", "Saving failed");
+            System.out.println("Could not save me response for question : " + questionId);
         }
         out.print(jObj.toString());
     }catch(Exception e) {
