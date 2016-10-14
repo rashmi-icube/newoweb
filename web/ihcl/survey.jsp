@@ -202,7 +202,7 @@
                                             <span>Strongly agree</span>
                                         </div>
 
-                                        <div class="answer-range" ques_id="<% out.print(ques.getQuestionId()); %>" id="answer-range-<%=ques.getQuestionId()%>">
+                                        <div class="answer-range" ques_id="<% out.print(ques.getQuestionId());%>" id="answer-range-<%=ques.getQuestionId()%>">
                                             <div><button value="1">1</button></div>
                                             <div><button value="2">2</button></div>
                                             <div><button value="3">3</button></div>
@@ -274,7 +274,7 @@
                                                                 continue;
                                                             }
                                                             //employee.g
-                                                    %>
+%>
                                                     <div class="individual-cell clearfix">
                                                         <button class="get-person-info">
                                                             <span>i</span>
@@ -282,9 +282,9 @@
                                                         <div class="individual-card">
                                                             <div class="front-card">
                                                                 <div style="background-image: url('<%=Constant.WEB_ASSETS%>images/user_image.png');" class="person-pic"></div>
-<!--                                                                <div class="person-pic">
-                                                                    <img src="<%=Constant.WEB_ASSETS%>images/user_image.png">
-                                                                </div>-->
+                                                                <!--                                                                <div class="person-pic">
+                                                                                                                                    <img src="<%=Constant.WEB_ASSETS%>images/user_image.png">
+                                                                                                                                </div>-->
                                                             </div>
                                                             <div class="back-card">
                                                                 <ul>
@@ -400,5 +400,6 @@
         <script src="<%=Constant.WEB_ASSETS%>js/swiper.min.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/swiper.jquery.min.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/isInViewport.js"></script>
+        <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.lazyscript.js"></script>-->
     </body>
 </html>

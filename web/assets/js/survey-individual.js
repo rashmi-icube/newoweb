@@ -2,6 +2,13 @@ var countProgress = 0;
 var uniqueEmpArr = [];
 
 $(document).ready(function () {
+//    $(window).lazyScript({
+//        selectorClass: 'person-pic',
+//        callback: jQuery.noop,
+//        threshold: 0,
+//        scrollInterval: 500
+//    });
+
     showProgressValue(true);
     showSubmitButton();
     $('.site-nav-prev').on('click', function () {
@@ -77,7 +84,7 @@ $(document).ready(function () {
                 prevButton: '.swiper-button-prev',
                 // DO NOT DEPLOY
                 keyboardControl: true,
-                mousewheelControl: true,
+//                mousewheelControl: true,
 //                iOSEdgeSwipeDetection: true,
 //            autoHeight: 'true',
                 onSlideNextStart: function () {
@@ -323,6 +330,7 @@ $(document).ready(function () {
 
         //YES BUTTON
         $('.submit-popup-buttons button:nth-child(odd)').on('click', function () {
+            saveRating();
             //SUBMIT ALL RESPONSES HERE
             var jArray = $('#ques_list').val();
             var jsonObj = $.parseJSON(jArray);
@@ -331,17 +339,22 @@ $(document).ready(function () {
             jQuery.each(jsonObj, function (index, value) {
                 var questionId = value.questionId;
                 var questionType = value.questionType.value;
+                console.log("Submitting Question Type : " + questionType);
                 if (questionType === 1) {
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + " BEFORE submitting we question : " + questionId);
                     //submit WE answer
+                    console.log("Element count ::  " + $('#list-mobile-' + questionId + ' p') + " FOR we question : " + questionId);
                     var count = $('#list-mobile-' + questionId + ' p').length;
-                    if (count > 0) {
-                        console.log("Emp ID:: " + $('.usernameapp span').text() + "submitting we question : " + questionId);
-                        submitWeData(questionId);
-                        console.log("Emp ID:: " + $('.usernameapp span').text() + "submitted we question : " + questionId);
-                        setTimeout(function () {
-                            console.log("set timeout after submitted we question : " + questionId);
-                        }, 5000);
-                    }
+                    console.log("Count::  " + count + " FOR we question : " + questionId);
+
+                    //if (count > 0) {
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitting we question : " + questionId);
+                    submitWeData(questionId);
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitted we question : " + questionId);
+                    setTimeout(function () {
+                        console.log("set timeout after submitted we question : " + questionId);
+                    }, 5000);
+                    //}
                 } else {
                     // submit ME answer
                     console.log("Emp ID:: " + $('.usernameapp span').text() + "submitting me question : " + questionId);
@@ -460,7 +473,6 @@ $(document).ready(function () {
     showHideNavigation();
 });
 
-//RASHMI START
 if ($('.survey-we').is(':visible')) {
     $(document).keypress(function (e) {
         if (e.which === 13) {
@@ -470,7 +482,6 @@ if ($('.survey-we').is(':visible')) {
         }
     });
 }
-//RASHMI END
 
 function ratingStar(obj) {
     var row = $(obj).parent();
@@ -950,6 +961,7 @@ function clearRatings() {
     });
 }
 function submitMeData(quesId) {
+    console.log("entering submitMeData ques : " + quesId);
     if ($('#subModuleName').val() !== "ihcl" && $('.answer-range .clicked').length === 0) {
         $('.submit-tooltip').children('.submit-title').hide();
         $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
@@ -968,7 +980,9 @@ function submitMeData(quesId) {
                 url: "/individual/survey-me-submit.jsp",
                 data: dataSub,
                 dataType: 'JSON',
+                async: false,
                 success: function (resp) {
+                    console.log("submitMeData inside ajax success ");
                     var totalQues = parseInt($('#remaining_ques').val());
                     totalQues = totalQues - 1;
                     $('#remaining_ques').val(totalQues + "");
@@ -993,12 +1007,19 @@ function submitMeData(quesId) {
                             window.location.href = 'dashboard.jsp';
                         }
                     }
+                    setTimeout(function () {
+                        console.log("set timeout in ajax after successfully submitting me question : " + questionId);
+                    }, 5000);
+                },
+                error: function (resp, err) {
+                    console.log("submitMeData error message : " + err);
                 }
             });
         }
     }
 }
 function submitWeData(quesId) {
+    console.log("entering submitWeData ques : " + quesId);
 //    var quesId = $(obj).val();
     var empArr = [];
     var empRating = {};
@@ -1033,7 +1054,9 @@ function submitWeData(quesId) {
         url: "/individual/survey-we-submit.jsp",
         data: postData,
         dataType: 'JSON',
+        async: false,
         success: function (resp) {
+            console.log("submitWeData inside ajax success ");
             var totalQues = parseInt($('#remaining_ques').val());
             totalQues = totalQues - 1;
             $('#remaining_ques').val(totalQues + "");
@@ -1066,6 +1089,12 @@ function submitWeData(quesId) {
                     }
                 }
             }
+            setTimeout(function () {
+                console.log("set timeout in ajax after successfully submitting we question : " + questionId);
+            }, 5000);
+        },
+        error: function (resp, err) {
+            console.log("submitWeData error message : " + err);
         }
     });
 }
