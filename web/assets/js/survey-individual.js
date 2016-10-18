@@ -961,8 +961,11 @@ function clearRatings() {
     });
 }
 function submitMeData(quesId) {
-    console.log("entering submitMeData ques : " + quesId);
+    var remainingQuestions = $('#remaining_ques').val();
+    var empid = $('#empid').val();
+    console.log("entering submitMeData for quesId : " + quesId + " and empId : " + empid + " remaining questions : " + remainingQuestions);
     if ($('#subModuleName').val() !== "ihcl" && $('.answer-range .clicked').length === 0) {
+        console.log("no answer selected to submit for quesId : " + quesId);
         $('.submit-tooltip').children('.submit-title').hide();
         $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
         if (document.documentElement.clientWidth <= 480) {
@@ -972,6 +975,7 @@ function submitMeData(quesId) {
             }, 400);
         }
     } else {
+        console.log("answer found for submission for me quesId : " + quesId);
         var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
         console.log("submitMeData dataSub : " + dataSub);
         if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
@@ -989,6 +993,8 @@ function submitMeData(quesId) {
                     var $currentDiv = $('.question_div:visible');
                     var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
                     if ($nextDiv.length) {
+                        var remainingQuestions = $('#remaining_ques').val();
+                        console.log("submitMeData inside ajax success if there are more me questions " + remainingQuestions);
                         $('.site-nav a').addClass('active');
                         $('body').css('overflow', 'hidden');
                         $currentDiv.hide('slide', {direction: 'left'}, 200);
@@ -1000,6 +1006,7 @@ function submitMeData(quesId) {
                             $('body').removeAttr('style');
                         });
                     } else {
+                        console.log("submitMeData inside ajax success if there are no more me questions ");
                         $currentDiv.remove();
                         if ($('#subModuleName').val() === "ihcl") {
                             window.location.href = 'thankyou.jsp';
@@ -1017,13 +1024,14 @@ function submitMeData(quesId) {
             });
         }
     }
+    console.log("exiting submitMeData button for quesId : " + quesId);
 }
 function submitWeData(quesId) {
-    console.log("entering submitWeData ques : " + quesId);
-//    var quesId = $(obj).val();
+    var empid = $('#empid').val();
+    console.log("entering submitWeData ques : " + quesId + " and empId : " + empid);
     var empArr = [];
     var empRating = {};
-
+    console.log("submitWeData analyzing emp_rating");
     var empArr1 = jQuery.data(document.body, "emp_rating");
     if (empArr1 !== undefined) {
         jQuery.each(empArr1, function (i, o) {
@@ -1036,7 +1044,7 @@ function submitWeData(quesId) {
             });
         });
     }
-
+    console.log("submitWeData analyzing star rating total");
     jQuery.each($('.star-rating-total'), function (i, v) {
         var qId = $(v).attr('ques_id');
         var empId = $(v).attr('emp_id');
@@ -1046,7 +1054,7 @@ function submitWeData(quesId) {
             empArr.push(empRating);
         }
     });
-
+    console.log("submitWeData empArr : " + empArr);
     var postData = {'ques_id': quesId, 'emp_rating': JSON.stringify(empRating), 'rela_val': jQuery('#rela_val_' + quesId).val()};
     console.log("submitWeData postData : " + postData);
     $.ajax({
@@ -1063,6 +1071,8 @@ function submitWeData(quesId) {
             var $currentDiv = $('.question_div:visible');
             var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
             if ($nextDiv.length) {
+                var remainingQuestions = $('#remaining_ques').val();
+                console.log("submitWeData if there are more questions " + remainingQuestions);
                 $('.site-nav a').addClass('active');
                 $('body').css('overflow', 'hidden');
                 $currentDiv.hide('slide', {direction: 'left'}, 200);
@@ -1076,6 +1086,7 @@ function submitWeData(quesId) {
                 //jQuery.data(document.body, "emp_rating", []);
                 //clearRatings();
             } else {
+                console.log("submitWeData if there are no more questions ");
                 //jQuery.data(document.body, "emp_rating", []);
                 //clearRatings();
                 $currentDiv.remove();
@@ -1097,6 +1108,7 @@ function submitWeData(quesId) {
             console.log("submitWeData error message : " + err);
         }
     });
+    console.log("exiting submitWeData");
 }
 
 function showProgressValue(isPrev) {
