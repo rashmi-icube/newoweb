@@ -1033,7 +1033,7 @@ function submitMeData(quesId) {
                         console.log("submitMeData inside ajax success if there are no more me questions ");
                         $currentDiv.remove();
                         if ($('#subModuleName').val() === "ihcl") {
-                            window.location.href = 'thankyou.jsp';
+                                window.location.href = 'thankyou.jsp';
                         } else {
                             window.location.href = 'dashboard.jsp';
                         }
@@ -1121,10 +1121,10 @@ function submitWeData(quesId) {
                 //clearRatings();
                 $currentDiv.remove();
                 if ($('#subModuleName').val() === "ihcl") {
-                    window.location.href = 'thankyou.jsp';
+                        window.location.href = 'thankyou.jsp';
                 } else {
                     if ($('#subModuleName').val() === "ihcl") {
-                        window.location.href = 'thankyou.jsp';
+                                window.location.href = 'thankyou.jsp';
                     } else {
                         window.location.href = 'dashboard.jsp';
                     }

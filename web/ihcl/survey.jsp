@@ -298,6 +298,7 @@
                                                         <div class="star-rating-row clearfix">
                                                             <div class="rating-stars">
                                                                 <input type="hidden" id="quesId" value="<%= ques.getQuestionId()%>" />
+                                                                <input type="hidden" id="empId" value="<%= employee.getEmployeeId()%>" />
                                                                 <span class="rating-star"></span>
                                                                 <span class="rating-star"></span>
                                                                 <span class="rating-star"></span>
@@ -338,6 +339,7 @@
                                         <div class="swiper-slide">
                                             <div class="wrapper survey-me question_div app">
                                                 <%}%>
+                                                <input type="hidden" class="questionType" value="<%= ques.getQuestionType()%>" />
                                                 <input type="hidden" class="questionId" value="<%= ques.getQuestionId()%>" />
                                                 <input type="hidden" class="question_no" value="<%= i%>" />
                                                 <div class="me-survey-box clearfix">
