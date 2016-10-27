@@ -9,7 +9,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="com.owen.web.Util"%>
 <%@page import="org.json.JSONObject"%>
-<%@page import="org.icube.owen.survey.Response"%>
+<%@page import="org.icube.owen.survey.ResponseHelper"%>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="org.icube.owen.survey.Question"%>
 <%@page import="org.icube.owen.ObjectFactory"%>
@@ -17,23 +17,19 @@
 <%@page import="java.util.List"%>
 
 <%@include file="../common.jsp" %>
-<%//    out.println("QUESTION:"+request.getParameter("ques_id"));
-//    out.println("RATING:"+request.getParameter("emp_rating"));
+<%System.out.println("IHCL :::Entering survey-we-submit.jsp for empId : " + empid);
     int questionId = Util.getIntValue(request.getParameter("ques_id"));
     String empRating = request.getParameter("emp_rating");
-    int relationId = Util.getIntValue(request.getParameter("rela_val"));
+    System.out.println("IHCL :::Starting survey-we-submit.jsp for empId : " + empid + " questionID : " + questionId);
     if (questionId > 0 && !empRating.isEmpty()) {
         try {
+            System.out.println("IHCL :::Entering the try block in survey-we-submit.jsp for empID : " + empid + " question : " + questionId);
             JSONObject jObj = new JSONObject(request.getParameter("emp_rating"));
-//            Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
-//            Question quesObj = question.getQuestion(comid, questionId);
-//            quesObj.setRelationshipTypeId(relationId);
-            Response respObj = (Response) ObjectFactory.getInstance("org.icube.owen.survey.Response");
-            //System.out.println("HERE:"+companyId+"::"+employeeId+"::"+quesObj+"::"+respVal+"::"+feedback+"::"+quesObj.getRelationshipTypeId());
+            ResponseHelper respObj = (ResponseHelper) ObjectFactory.getInstance("org.icube.owen.survey.ResponseHelper");
             Map<Employee, Integer> employeeRating = new HashMap<Employee, Integer>();
-
             Iterator<String> keys = jObj.keys();
             while (keys.hasNext()) {
+                System.out.println("IHCL :::survey-we-submit.jsp for empId : " + empid + " questionID : " + questionId + " iterating through the jsonObj");
                 String key = (String) keys.next();
                 String rating = jObj.getString(key);
                 int ratEmpId = Util.getIntValue(key);
@@ -42,21 +38,22 @@
                 employee.setEmployeeId(ratEmpId);
                 employee.setCompanyId(comid);
                 employeeRating.put(employee, new Integer(ratVal));
+                System.out.println("IHCL :::submit-we-submit.jsp ::" + comid + "::" + empid + "::" + questionId + "::" + ratEmpId + "::" + ratVal);
             }
-            // System.out.println("empid :::::::: " + empid);
-            // System.out.println("quesObj :::::::: " + quesObj.getQuestionId());
-            // System.out.println("employeeRating :::::::: " + employeeRating.toString());
-
+            System.out.println("IHCL :::survey-we-submit.jsp for empId : " + empid + " questionID : " + questionId + " exiting the while loop");
             boolean subResp = respObj.saveWeResponse(comid, empid, questionId, employeeRating);
             //boolean subResp = true;
             JSONObject respJOBJ = new JSONObject();
             respJOBJ.put("status", subResp);
             if (subResp) {
                 respJOBJ.put("message", "Successfully Saved");
+                System.out.println("IHCL :::Successfully saved we response for empId : " + empid + " question : " + questionId);
             } else {
                 respJOBJ.put("message", "Saving failed");
+                System.out.println("IHCL :::Could not save we response for empId : " + empid + " question : " + questionId);
             }
             out.print(respJOBJ.toString());
+            System.out.println("IHCL :::Exiting survey-we-submit.jsp for empId : " + empid + " questionID : " + questionId);
 
         } catch (Exception e) {
             e.printStackTrace();

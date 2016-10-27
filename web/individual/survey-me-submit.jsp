@@ -5,7 +5,7 @@
 --%>
 <%@page import="com.owen.web.Util"%>
 <%@page import="org.json.JSONObject"%>
-<%@page import="org.icube.owen.survey.Response"%>
+<%@page import="org.icube.owen.survey.ResponseHelper"%>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="org.icube.owen.survey.Question"%>
 <%@page import="org.icube.owen.ObjectFactory"%>
@@ -25,7 +25,7 @@
         int employeeId = Util.getIntValue(strEmpId);
         int questionId = Util.getIntValue(strQuesId);
         int respVal = Util.getIntValue(strResp);
-        Response respObj = (Response) ObjectFactory.getInstance("org.icube.owen.survey.Response");
+        ResponseHelper respObj = (ResponseHelper) ObjectFactory.getInstance("org.icube.owen.survey.ResponseHelper");
         System.out.println("submit-me-submit.jsp ::" + companyId + "::" + employeeId + "::" + questionId + "::" + respVal + "::" + feedback);
 
         boolean responseSaved = respObj.saveMeResponse(companyId, employeeId, questionId, respVal, feedback);

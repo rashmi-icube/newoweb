@@ -13,7 +13,6 @@
 <%@page import="org.icube.owen.filter.Filter"%>
 <%@page import="com.owen.web.Util"%>
 <%@page import="org.json.JSONObject"%>
-<%@page import="org.icube.owen.survey.Response"%>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="org.icube.owen.survey.Question"%>
 <%@page import="org.icube.owen.ObjectFactory"%>

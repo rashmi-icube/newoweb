@@ -9,7 +9,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="com.owen.web.Util"%>
 <%@page import="org.json.JSONObject"%>
-<%@page import="org.icube.owen.survey.Response"%>
+<%@page import="org.icube.owen.survey.ResponseHelper"%>
 <%@page import="com.owen.web.Constant"%>
 <%@page import="org.icube.owen.survey.Question"%>
 <%@page import="org.icube.owen.ObjectFactory"%>
@@ -25,7 +25,7 @@
         try {
             System.out.println("Entering the try block in survey-we-submit.jsp for empID : " + empid + " question : " + questionId);
             JSONObject jObj = new JSONObject(request.getParameter("emp_rating"));
-            Response respObj = (Response) ObjectFactory.getInstance("org.icube.owen.survey.Response");
+            ResponseHelper respObj = (ResponseHelper) ObjectFactory.getInstance("org.icube.owen.survey.ResponseHelper");
             Map<Employee, Integer> employeeRating = new HashMap<Employee, Integer>();
             Iterator<String> keys = jObj.keys();
             while (keys.hasNext()) {

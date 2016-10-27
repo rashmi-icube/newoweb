@@ -336,10 +336,28 @@ $(document).ready(function () {
             var jsonObj = $.parseJSON(jArray);
             console.log("jsonObj length : " + jsonObj.length);
             // store the responses for all answered questions
+            var weAnswers = [];
             jQuery.each(jsonObj, function (index, value) {
                 var questionId = value.questionId;
                 var questionType = value.questionType.value;
                 console.log("Submitting Question Type : " + questionType);
+
+//                var empArr = [];
+//                var empRating = {};
+//
+//                var empArr1 = jQuery.data(document.body, "emp_rating");
+//                if (empArr1 !== undefined) {
+//                    jQuery.each(empArr1, function (i, o) {
+//                        jQuery.each(o, function (k, v) {
+//                            var id = k.split("_");
+//                            empRating[id[1]] = v;
+//                            empArr.push(empRating);
+//                            weAnswers[id[0]] = empArr;
+//                        });
+//                    });
+//                }
+//                console.log("weAnswers :::::: " + weAnswers);
+
                 if (questionType === 1) {
                     console.log("Emp ID:: " + $('.usernameapp span').text() + " BEFORE submitting we question : " + questionId);
                     //submit WE answer
@@ -978,10 +996,16 @@ function submitMeData(quesId) {
         console.log("answer found for submission for me quesId : " + quesId);
         var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
         console.log("submitMeData dataSub : " + dataSub);
+        var url = "";
+        if ($('#subModuleName').val() === "ihcl") {
+            url = "/ihcl/survey-me-submit.jsp";
+        } else {
+            url = "/individual/survey-we-submit.jsp";
+        }
         if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
             jQuery.ajax({
                 type: "POST",
-                url: "/individual/survey-me-submit.jsp",
+                url: url,
                 data: dataSub,
                 dataType: 'JSON',
                 async: false,
@@ -1057,9 +1081,15 @@ function submitWeData(quesId) {
     console.log("submitWeData empArr : " + empArr);
     var postData = {'ques_id': quesId, 'emp_rating': JSON.stringify(empRating), 'rela_val': jQuery('#rela_val_' + quesId).val()};
     console.log("submitWeData postData : " + postData);
+    var url = "";
+    if ($('#subModuleName').val() === "ihcl") {
+        url = "/ihcl/survey-we-submit.jsp";
+    } else {
+        url = "/individual/survey-we-submit.jsp";
+    }
     $.ajax({
         type: "POST",
-        url: "/individual/survey-we-submit.jsp",
+        url: url,
         data: postData,
         dataType: 'JSON',
         async: false,
