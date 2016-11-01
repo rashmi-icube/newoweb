@@ -20,10 +20,17 @@ $(document).ready(function () {
         createHeatmap(chartHeatmapId);
 
         var chartStackedBarId = 'stackedBarContainer';
-        createStackedBar(chartStackedBarId);
+        var result = $('#result').val();
 
-        var chartScatterId = 'scatterContainer'
-        createScatterPlot(chartScatterId)
+        var obj = JSON.parse(result);
+
+        //result = result.substr(1, result.length-2);
+        //var obj = result.split(",");
+
+        createStackedBar(chartStackedBarId, obj);
+
+        var chartScatterId = 'scatterContainer';
+        createScatterPlot(chartScatterId);
 
         $(document).on('click', '.tabs a', function (e) { // on tab selection event
             jQuery(".chartContainer").each(function () { // target each element with the .contains-chart class
@@ -39,7 +46,7 @@ $(document).ready(function () {
 //createGaugeChart(chartIdArray);
 
 
-function createHeatmap(chartId) {
+function createHeatmap(chartId, result) {
     var data = {
         'South-East Asia': {
             'Sri Lanka': {
@@ -1181,7 +1188,7 @@ function createGaugeChart(chartId) {
     });
 }
 
-function createStackedBar(chartId) {
+function createStackedBar(chartId, result) {
 
 //    var result = $('#result1').val();
 //    jQuery.each(result, function(i, j){
@@ -1238,7 +1245,8 @@ function createStackedBar(chartId) {
             text: 'Stacked bar chart'
         },
         xAxis: {
-            categories: ['All day Dining', 'Bakery', 'Chambers']
+            // categories: ['All day Dining', 'Bakery', 'Chambers']
+            categories: Object.keys(result)
         },
         yAxis: {
             min: 0,
@@ -1257,19 +1265,19 @@ function createStackedBar(chartId) {
         },
         series: [{
                 name: 'Strongly Agree',
-                data: [5, 3, 4]
+                data: [result.Bakery.stronglyAgree, result.Dining.stronglyAgree, result.Banquets.stronglyAgree]
             }, {
                 name: 'Agree',
-                data: [2, 2, 3]
+                data: [result.Bakery.agree, result.Dining.agree, result.Banquets.agree]
             }, {
                 name: 'Neutral',
-                data: [3, 4, 4]
+                data: [result.Bakery.neutral, result.Dining.neutral, result.Banquets.neutral]
             }, {
                 name: 'Disagree',
-                data: [3, 4, 4]
+                data: [result.Bakery.disagree, result.Dining.disagree, result.Banquets.disagree]
             }, {
                 name: 'Strongly Disagree',
-                data: [3, 4, 4]
+                data: [result.Bakery.stronglyDisagree, result.Dining.stronglyDisagree, result.Banquets.stronglyDisagree]
             }]
     });
 

@@ -9,6 +9,9 @@
 <%@page import="org.icube.owen.ObjectFactory"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.icube.owen.dashboard.HrDashboardHelper"%>
+<%@page import="org.icube.owen.dashboard.ReportObject"%>
+<%@page import="org.json.JSONObject"%>
+
 <%
     String moduleName = "report";
     String subModuleName = "ihcl";
@@ -88,9 +91,11 @@
                     </div>
                     <%
                         HrDashboardHelper obj = (HrDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.HrDashboardHelper");
-                        Map<String, int[]> result1 = obj.getReportData1("group", "subGroup");
+                        Map<String, ReportObject> result1 = obj.getReportData1("group", "subGroup");
+                        JSONObject json = new JSONObject(result1);
+                        
                     %>
-                    <input type="hidden" id="result1" value='<%= result1%>'/>
+                    <input type="hidden" id="result" value='<%= json%>'/>
                     <div id="stackedBarContainer" class = "chartContainer"></div>
                 </div>
                 <div id="test3" class="col s12">
