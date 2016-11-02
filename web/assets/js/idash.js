@@ -20,13 +20,7 @@ $(document).ready(function () {
         createHeatmap(chartHeatmapId);
 
         var chartStackedBarId = 'stackedBarContainer';
-        var result = $('#result').val();
-
-        var obj = JSON.parse(result);
-
-        //result = result.substr(1, result.length-2);
-        //var obj = result.split(",");
-
+        var obj = JSON.parse($('#result').val());
         createStackedBar(chartStackedBarId, obj);
 
         var chartScatterId = 'scatterContainer';
@@ -37,7 +31,7 @@ $(document).ready(function () {
                 var chart = jQuery(this).highcharts(); // target the chart itself
                 chart.reflow(); // reflow that chart
             });
-        })
+        });
     }
 });
 
@@ -1190,11 +1184,6 @@ function createGaugeChart(chartId) {
 
 function createStackedBar(chartId, result) {
 
-//    var result = $('#result1').val();
-//    jQuery.each(result, function(i, j){
-//        //result == {All Day Dining : [1,2,3,4,5], Banquet : [1,2,3,4,5]...}
-//        
-//    });
     (function (Highcharts) {
         var each = Highcharts.each;
 
@@ -1220,7 +1209,7 @@ function createStackedBar(chartId, result) {
                         });
                     }
                 });
-            }
+            };
             element.onmouseout = function () {
                 each(collection, function (seriesItem) {
                     if (seriesItem !== item) {
@@ -1233,11 +1222,12 @@ function createStackedBar(chartId, result) {
                         });
                     }
                 });
-            }
+            };
 
         });
     }(Highcharts));
-    Highcharts.chart(chartId, {
+
+    var options = {
         chart: {
             type: 'bar'
         },
@@ -1245,8 +1235,7 @@ function createStackedBar(chartId, result) {
             text: 'Stacked bar chart'
         },
         xAxis: {
-            // categories: ['All day Dining', 'Bakery', 'Chambers']
-            categories: Object.keys(result)
+            categories: []
         },
         yAxis: {
             min: 0,
@@ -1259,27 +1248,35 @@ function createStackedBar(chartId, result) {
         },
         plotOptions: {
             series: {
-//                RASHMI:: Changing to 'normal' will plot actual values
                 stacking: 'percent'
             }
         },
-        series: [{
-                name: 'Strongly Agree',
-                data: [result.Bakery.stronglyAgree, result.Dining.stronglyAgree, result.Banquets.stronglyAgree]
-            }, {
-                name: 'Agree',
-                data: [result.Bakery.agree, result.Dining.agree, result.Banquets.agree]
-            }, {
-                name: 'Neutral',
-                data: [result.Bakery.neutral, result.Dining.neutral, result.Banquets.neutral]
-            }, {
-                name: 'Disagree',
-                data: [result.Bakery.disagree, result.Dining.disagree, result.Banquets.disagree]
-            }, {
-                name: 'Strongly Disagree',
-                data: [result.Bakery.stronglyDisagree, result.Dining.stronglyDisagree, result.Banquets.stronglyDisagree]
-            }]
+        series: []
+    };
+
+    $.each(Object.keys(result), function (index, team) {
+        options.xAxis.categories.push(team);
     });
+
+    var series = [];
+    // to create the empty array for the series based on the number of properties 
+    $.each(Object.values(result)[0], function (name, value) {
+        var arr = {name: name, data: []};
+        series.push(arr);
+    });
+    $.each(Object.keys(result), function (index, team) {
+        $.each(result[team], function (response, value) {
+            $.each(series, function (index, responseObject) {
+                if (responseObject.name === response) {
+                    responseObject.data.push(value);
+                }
+            });
+        });
+    });
+
+    options.series = series;
+
+    new Highcharts.Chart(chartId, options);
 
 }
 

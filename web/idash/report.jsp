@@ -72,9 +72,9 @@
                     <div class="input-field col s12 m3">
                         <select>
                             <!--<optgroup label="Choose your option">-->
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
                             <!--</optgroup>-->
                         </select>
                         <label>Choose an option</label>
@@ -82,18 +82,28 @@
                     <div id="heatmapContainer" class = "chartContainer"></div>
                 </div>
                 <div id="test2" class="col s12">
-                    <div class="input-field col s12 m3">
-                        <select>
-                            <option value="a">Option A</option>
-                            <option value="b">Option B</option>
-                        </select>
-                        <label>Select any one</label>
-                    </div>
+                    <form action="resources" method="post" >
+
+                        <div class="input-field col s12 m3">
+                            <select id="dropdown">
+                                <option value="a">Option A</option>
+                                <option value="b">Option B</option>
+                            </select>
+                            <label>Select any one</label>
+                        </div>
+                    </form>
                     <%
+                        String clickedPhoneId = request.getParameter("dropdown");
+
                         HrDashboardHelper obj = (HrDashboardHelper) ObjectFactory.getInstance("org.icube.owen.dashboard.HrDashboardHelper");
-                        Map<String, ReportObject> result1 = obj.getReportData1("group", "subGroup");
+                        Map<String, ReportObject> result1;
+                        if (clickedPhoneId == "a") {
+                            result1 = obj.getReportData1("group", "subGroup");
+                        } else {
+                            result1 = obj.getReportData2("group", "subGroup");
+                        }
                         JSONObject json = new JSONObject(result1);
-                        
+
                     %>
                     <input type="hidden" id="result" value='<%= json%>'/>
                     <div id="stackedBarContainer" class = "chartContainer"></div>
