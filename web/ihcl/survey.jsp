@@ -163,6 +163,7 @@
                 <input type="hidden" id="ques_list" value='<%= jArray%>'/>
                 <input type="hidden" id="total_ques" value="<%= len%>" />
                 <input type="hidden" id="remaining_ques" value="<%= len%>" />
+               <input type="hidden" id="empId" value="<%= empid%>" />
                 <%
                     int i = 0;
                     for (i = 0; i < len; i++) {
@@ -298,7 +299,6 @@
                                                         <div class="star-rating-row clearfix">
                                                             <div class="rating-stars">
                                                                 <input type="hidden" id="quesId" value="<%= ques.getQuestionId()%>" />
-                                                                <input type="hidden" id="empId" value="<%= employee.getEmployeeId()%>" />
                                                                 <span class="rating-star"></span>
                                                                 <span class="rating-star"></span>
                                                                 <span class="rating-star"></span>
