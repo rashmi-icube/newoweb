@@ -120,7 +120,7 @@ $(document).ready(function () {
     });
 
 //Create a key value pair for matching keypresses with ME Q value
-    var map = {"49": "1", "50": "2", "51": "3", "52": "4", "53": "5", "97": "1", "98": "2", "99": "3", "100": "4", "101": "5"}
+    var map = {"49": "1", "50": "2", "51": "3", "52": "4", "53": "5", "97": "1", "98": "2", "99": "3", "100": "4", "101": "5"};
     function getKeyValue(k) {
         return map[k];
     }
@@ -128,7 +128,7 @@ $(document).ready(function () {
     $(document).keypress(function (e) {
 
         var key = e.which;
-        $(this).find('.answer-range')
+        $(this).find('.answer-range');
         var quesId = $('.answer-range:in-viewport').attr('ques_id');
         //var quesId = $('.answer-range button').parent().parent().attr('ques_id');
         $('#answer-range-' + quesId + ' button[value=' + getKeyValue(key) + ']').toggleClass('clicked').parent().toggleClass('clicked');
@@ -310,8 +310,6 @@ $(document).ready(function () {
                 });
                 $('.submit-popup-warning-text').append('<p> You have answered all questions </p>');
             }
-//                $('.submit-popup-warning-text').append('<p>You will not be able to take the survey again or change your responses, if you submit your responses now.</p>');
-
             $('.black_overlay').show();
             $('.submit-popup').show();
 
@@ -336,7 +334,6 @@ $(document).ready(function () {
             var jsonObj = $.parseJSON(jArray);
             console.log("jsonObj length : " + jsonObj.length);
             // store the responses for all answered questions
-            var weAnswers = jQuery.data(document.body, "emp_rating");
             singleSubmitWeData();
 
             jQuery.each(jsonObj, function (index, value) {
@@ -344,42 +341,21 @@ $(document).ready(function () {
                 var questionType = value.questionType.value;
                 console.log("Submitting Question Type : " + questionType);
 
-
-
-//                if (questionType === 1) {
-//                    console.log("Emp ID:: " + $('.usernameapp span').text() + " BEFORE submitting we question : " + questionId);
-//                    //submit WE answer
-//                    console.log("Element count ::  " + $('#list-mobile-' + questionId + ' p') + " FOR we question : " + questionId);
-//                    var count = $('#list-mobile-' + questionId + ' p').length;
-//                    console.log("Count::  " + count + " FOR we question : " + questionId);
-//
-//                    //if (count > 0) {
-//                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitting we question : " + questionId);
-//                    submitWeData(questionId);
-//                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitted we question : " + questionId);
-//                    setTimeout(function () {
-//                        console.log("set timeout after submitted we question : " + questionId);
-//                    }, 5000);
-//                    //}
-//                } else {
-//                    // submit ME answer
-//                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitting me question : " + questionId);
-//                    submitMeData(questionId);
-//                    console.log("Emp ID:: " + $('.usernameapp span').text() + "submitted me question : " + questionId);
-//                    setTimeout(function () {
-//                        console.log("set timeout after submitted me question : " + questionId);
-//                    }, 5000);
-//                }
+                if (questionType !== 1) {
+                    // submit ME answer
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + "saving me question : " + questionId);
+                    saveMeRating(questionId);
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + "saving me question : " + questionId);
+                }
             });
+            singleSubmitMeData();
 
         });
     }
 
     if (document.documentElement.clientWidth <= 480) {
-
-
         $('.search-colleague').attr('placeholder', 'Search for a colleague');
-
+        
         $('#chooseMobileFilter').attr('disabled', true);
 
         $('.mobile-filter-row').on('click', function (event) {
@@ -393,11 +369,8 @@ $(document).ready(function () {
             $(this).children('div').css('z-index', '1');
             $(this).children('div').css('top', '0');
             $(this).children('div').css('left', '0');
-//            $(this).children('div').css('margin-left', '-200px');
             $('.mobile-filter-row > div').hide();
         });
-
-//        $('.no-key-selected-mobile > div').hide();
 
         $('#closeFilter').on('click', function () {
             event.stopPropagation();
@@ -454,20 +427,6 @@ $(document).ready(function () {
                 }, 400);
             }
         }
-
-//        if ($(this).parent().parent().find('#we_grid_' + quesId).find('.rating-stars .filled').length === 0) {
-//            $('.submit-tooltip').children('.submit-title').hide();
-//            $('.submit-tooltip').children('.submit-response').show();
-//            if (document.documentElement.clientWidth <= 480) {
-//                $('.submit-tooltip').css('visibility', 'visible');
-//                setTimeout(function () {
-//                    $('.submit-tooltip').css('visibility', 'hidden');
-//                }, 400);
-//            }
-//        } else {
-//            submitWeData(this);
-//        }
-
         $(this).on('mouseout', function () {
             setTimeout(function () {
                 $('.submit-tooltip').children('.submit-title').show();
@@ -569,7 +528,7 @@ function ratingStar(obj) {
         }
     }
     if ($('#subModuleName').val() === 'ihcl') {
-//        if (window.orientation === "90" || window.orientation === "-90") {
+
         $('.list-of-people-selected').each(function (i) {
             if ($('.list-of-people-selected')[i].clientHeight >= 348) {
                 $(this).parent().slimScrollPopup({
@@ -587,7 +546,7 @@ function ratingStar(obj) {
                 });
             }
         });
-//        }
+
     } else {
         $('.list-of-people-selected').each(function (i) {
             if ($('.list-of-people-selected')[i].clientHeight >= 348) {
@@ -618,28 +577,6 @@ function searchIsotope() {
         layoutMode: 'fitRows'
     });
     $('.individuals-grid').css('top', '0px');
-//    for (var i = 0; i < ($('.individuals-grid').length); i++) {
-//        if ($('.individuals-grid')[i].style.height.replace("px","") > 400) {
-//            if ($('.individuals-grid').width() > 290) {
-//                $('.individuals-grid')[i].slimScroll({
-//                    height: '400px',
-//                    color: '#388E3C',
-//                    railVisible: true,
-//                    railColor: '#D7D7D7',
-//                    alwaysVisible: true,
-//                    touchScrollStep: 50
-//                });
-//            } else {
-//                $('.individuals-grid')[i].slimScroll({
-//                    destroy: true
-//                });
-//            }
-//        } else {
-//            $('.individuals-grid')[i].slimScroll({
-//                destroy: true
-//            });
-//        }
-//    }
 //Check screen width - Only Desktop must show scroll, NOT Mobile
     if (document.documentElement.clientWidth > 480) {
         //Check for every occurrence of individuals-grid
@@ -677,13 +614,6 @@ function searchIsotope() {
             destroy: true
         });
     }
-//    $('.list-of-selected-people-popup').css('top', '0px');
-
-//    if ($('.individuals-grid:visible').height() <= 400) {
-//        $('.individuals-box-scroll').css('visibility', 'hidden');
-//    } else {
-//        $('.individuals-box-scroll').removeAttr('style');
-//    }
 }
 
 // debounce so isotope filtering doesn't happen every millisecond
@@ -708,7 +638,7 @@ function showHideNavigation(obj) {
     totalQuestions = parseInt(totalQuestions);
     remainingQuestions = parseInt(remainingQuestions);
     $('.site-nav-dash').hide();
-    if (visibleQues.val() == 0) {
+    if (visibleQues.val() === 0) {
         $('.site-nav-prev').hide();
         $('.site-nav-next').show();
     } else if (remainingQuestions <= visibleQues.val()) {
@@ -717,7 +647,7 @@ function showHideNavigation(obj) {
         if ((totalQuestions - 1) > visibleQues.val()) {
             $('.site-nav-next').show();
         }
-    } else if ((totalQuestions - 1) == visibleQues.val()) {
+    } else if ((totalQuestions - 1) === visibleQues.val()) {
         $('.site-nav-prev').show();
         $('.site-nav-next').hide();
         $('.site-nav-dash').show();
@@ -725,7 +655,7 @@ function showHideNavigation(obj) {
         $('.site-nav-prev').show();
         $('.site-nav-next').show();
     }
-    if (obj != undefined) {
+    if (obj !== undefined) {
         var prevDiv = $(obj).prevAll("div.question_div").eq(0);
         if (prevDiv.length === 0) {
             $('.site-nav-prev').hide();
@@ -745,7 +675,7 @@ function showHideNavigation(obj) {
 
 function saveRating() {
     var empArr = jQuery.data(document.body, "emp_rating");
-    if (empArr == undefined) {
+    if (empArr === undefined) {
         empArr = [];
     }
     jQuery.each($('.star-rating-total'), function (i, v) {
@@ -758,7 +688,6 @@ function saveRating() {
             empArr.push(empRating);
         }
     });
-
     if (empArr !== undefined && empArr.length > 0) {
         jQuery.each(empArr, function (i1, obj1) {
             jQuery.each(obj1, function (ques_emp1, rating1) {
@@ -782,7 +711,6 @@ function saveRating() {
                                     updated = true;
                                 }
                             }
-
                         });
                         if (deleted) {
                             return false;
@@ -798,6 +726,8 @@ function saveRating() {
     empArr = $.merge([], uniqueEmpArr);
     jQuery.data(document.body, "emp_rating", empArr);
 }
+
+
 
 function displayRatings(id, score) {
     if (score === '0') {
@@ -816,7 +746,7 @@ function displayRatings(id, score) {
 
 function fetchAndPopulateRating() {
     var empRatingArr = jQuery.data(document.body, "emp_rating");
-    if (empRatingArr != undefined) {
+    if (empRatingArr !== undefined) {
         jQuery.each(empRatingArr, function (i, o) {
             jQuery.each(o, function (k, v) {
                 displayRatings('rat_' + k, v);
@@ -966,6 +896,7 @@ function clearRatings() {
         $(v).text('');
     });
 }
+
 function submitMeData(quesId) {
     var remainingQuestions = $('#remaining_ques').val();
     var empid = $('#empid').val();
@@ -1027,7 +958,7 @@ function submitMeData(quesId) {
                         }
                     }
                     setTimeout(function () {
-                        console.log("set timeout in ajax after successfully submitting me question : " + questionId);
+                        console.log("set timeout in ajax after successfully submitting me question : " + quesId);
                     }, 5000);
                 },
                 error: function (resp, err) {
@@ -1038,6 +969,50 @@ function submitMeData(quesId) {
     }
     console.log("exiting submitMeData button for quesId : " + quesId);
 }
+
+
+function saveMeRating(quesId) {
+    var empArr = jQuery.data(document.body, "emp_me_rating");
+    if (empArr === undefined) {
+        empArr = [];
+    }
+    var empRating = {};
+    empRating[quesId] = jQuery('#resp_val_' + quesId).val();
+    empArr.push(empRating);
+    jQuery.data(document.body, "emp_me_rating", empArr);
+}
+
+function singleSubmitMeData() {
+    var empid = $('#empId').val();
+    console.log("entering singleSubmitWeData for empId : " + empid);
+    var empRating = {};
+    console.log("singleSubmitWeData analyzing emp_rating");
+    var empArr1 = jQuery.data(document.body, "emp_me_rating");
+    if (empArr1 !== undefined) {
+        jQuery.each(empArr1, function (i, o) {
+            jQuery.each(o, function (k, v) {
+                empRating[k] = v;
+            });
+        });
+    }
+    console.log("singleSubmitWeData empArr : " + empArr1);
+    var postData = {'emp_rating': JSON.stringify(empRating)};
+    jQuery.ajax({
+        type: "POST",
+        url: "/ihcl/survey-me-submit.jsp",
+        data: postData,
+        dataType: 'JSON',
+        async: false,
+        success: function (resp) {
+                window.location.href = 'thankyou.jsp';
+        },
+        error: function (resp, err) {
+            console.log("singleSubmitMeData error message : " + err);
+        }
+    });
+    console.log("exiting singleSubmitMeData button");
+}
+
 function submitWeData(quesId) {
     var empid = $('#empid').val();
     console.log("entering submitWeData ques : " + quesId + " and empId : " + empid);
@@ -1117,7 +1092,7 @@ function submitWeData(quesId) {
                 }
             }
             setTimeout(function () {
-                console.log("set timeout in ajax after successfully submitting we question : " + questionId);
+                console.log("set timeout in ajax after successfully submitting we question : " + quesId);
             }, 5000);
         },
         error: function (resp, err) {
@@ -1137,7 +1112,6 @@ function singleSubmitWeData() {
     if (empArr1 !== undefined) {
         jQuery.each(empArr1, function (i, o) {
             jQuery.each(o, function (k, v) {
-                var id = k.split("_");
                 empRating[k] = v;
                 empArr.push(empRating);
             });
@@ -1154,32 +1128,7 @@ function singleSubmitWeData() {
         async: false,
         success: function (resp) {
             console.log("singleSubmitWeData inside ajax success ");
-            var totalQues = parseInt($('#remaining_ques').val());
-            totalQues = totalQues - 1;
-            $('#remaining_ques').val(totalQues + "");
-            var $currentDiv = $('.question_div:visible');
-            var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
-            if ($nextDiv.length) {
-                var remainingQuestions = $('#remaining_ques').val();
-                console.log("singleSubmitWeData if there are more questions " + remainingQuestions);
-                $('.site-nav a').addClass('active');
-                $('body').css('overflow', 'hidden');
-                $currentDiv.hide('slide', {direction: 'left'}, 200);
-                $nextDiv.show('slide', {direction: 'right'}, 400, function () {
-                    $('.site-nav a').removeClass('active');
-                    searchIsotope();
-                    $currentDiv.remove();
-                    showHideNavigation(this);
-                    $('body').removeAttr('style');
-                });
-            } else {
-                console.log("singleSubmitWeData if there are no more questions ");
-                $currentDiv.remove();
                 window.location.href = 'thankyou.jsp';
-            }
-            setTimeout(function () {
-                console.log("set timeout in ajax after successfully submitting we question : " + questionId);
-            }, 5000);
         },
         error: function (resp, err) {
             console.log("singleSubmitWeData error message : " + err);
