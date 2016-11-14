@@ -1,5 +1,3 @@
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>--%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="org.icube.owen.filter.FilterList"%>
@@ -55,7 +53,6 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="OWEN">       
         <script language="JAVASCRIPT">
-<!--//
             var expdate = new Date();
             expdate.setTime(expdate.getTime() + (24 * 60 * 60 * 1000 * 365)); // 1 yr from now 
 
@@ -115,7 +112,6 @@
             }
             /* ####################### end of delete cookie ####################### */
 
-//-->
         </script>
 
         <script language="javascript">
@@ -139,13 +135,9 @@
             <%                Question question = (Question) ObjectFactory.getInstance("org.icube.owen.survey.Question");
                 try {
                     List<Question> qList = question.getEmployeeQuestionList(comid, empid);
-
-                    // System.out.println("LIST: " + qList);
                     JSONArray questionList = new JSONArray(qList);
-                    // System.out.println("JSONObject " + questionList);
                     String jArray = questionList.toString();
                     int len = qList.size();
-
                     if (len == 0) {
                         response.sendRedirect("thankyou.jsp");%>
             <% }%>
@@ -163,7 +155,8 @@
                 <input type="hidden" id="ques_list" value='<%= jArray%>'/>
                 <input type="hidden" id="total_ques" value="<%= len%>" />
                 <input type="hidden" id="remaining_ques" value="<%= len%>" />
-               <input type="hidden" id="empId" value="<%= empid%>" />
+                <input type="hidden" id="empId" value="<%= empid%>" />
+                <input type="hidden" id="comId" value="<%= comid%>" />
                 <%
                     int i = 0;
                     for (i = 0; i < len; i++) {
@@ -176,7 +169,7 @@
                 <input type="hidden" id="question_id_<%= ques.getQuestionId()%>" value="<% out.print(ques.getQuestionId());%>" />
                 <input type="hidden" id="resp_val_<%= ques.getQuestionId()%>" value="" />
                 <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
-
+                <input type="hidden" id="ques_type_<%= ques.getQuestionId()%>" value="<%= QuestionType.ME%>" />
                 <%
                     if (len == 1 || i == 0) {
                 %>
@@ -238,6 +231,7 @@
                                         <input type="hidden" class="questionId" value="<%= ques.getQuestionId()%>" />
                                         <input type="hidden" class="question_no" value="<%= i%>" />
                                         <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
+
                                         <!--<h2></h2>-->
                                         <h3><%= ques.getQuestionText()%></h3>
                                         <div class="people-list-box clearfix">
@@ -268,14 +262,12 @@
                                                 <div class="individuals-grid" id="scroll-for-individuals-grid">
                                                     <%
                                                         List<Employee> mapSmartList = ques.getSmartListForQuestion(comid, empid, ques.getQuestionId());
-                                                        // System.out.println("MAP LIST:" + mapSmartList);
                                                         for (int incr = 0; incr < mapSmartList.size(); incr++) {
                                                             Employee employee = mapSmartList.get(incr);
                                                             if (empid == employee.getEmployeeId()) {
                                                                 continue;
                                                             }
-                                                            //employee.g
-%>
+                                                    %>
                                                     <div class="individual-cell clearfix">
                                                         <button class="get-person-info">
                                                             <span>i</span>
@@ -329,7 +321,7 @@
                                 <input type="hidden" id="question_id_<%= ques.getQuestionId()%>" value="<% out.print(ques.getQuestionId());%>" />
                                 <input type="hidden" id="resp_val_<%= ques.getQuestionId()%>" value="" />
                                 <input type="hidden" id="rela_val_<%= ques.getQuestionId()%>" value="<%= ques.getRelationshipTypeId()%>" />
-
+                                <input type="hidden" id="ques_type_<%= ques.getQuestionId()%>" value="<%= QuestionType.MOOD%>" />
                                 <% if (len == 1 || i == 0) {
                                 %>
 
@@ -402,6 +394,5 @@
         <script src="<%=Constant.WEB_ASSETS%>js/swiper.min.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/swiper.jquery.min.js"></script>
         <script src="<%=Constant.WEB_ASSETS%>js/isInViewport.js"></script>
-        <!--<script src="<%=Constant.WEB_ASSETS%>js/jquery.lazyscript.js"></script>-->
     </body>
 </html>

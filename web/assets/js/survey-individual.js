@@ -2,13 +2,6 @@ var countProgress = 0;
 var uniqueEmpArr = [];
 
 $(document).ready(function () {
-//    $(window).lazyScript({
-//        selectorClass: 'person-pic',
-//        callback: jQuery.noop,
-//        threshold: 0,
-//        scrollInterval: 500
-//    });
-
     showProgressValue(true);
     showSubmitButton();
     $('.site-nav-prev').on('click', function () {
@@ -46,7 +39,6 @@ $(document).ready(function () {
         event.preventDefault();
         var $currentDiv = $('.question_div:visible');
         var $nextDiv = $currentDiv.nextAll("div.question_div").eq(0);
-//        var $nextDiv = $currentDiv.parent().nextAll('.swiper-slide').find('div.question_div');
         $(this).addClass('active');
         $('body').css('overflow', 'hidden');
         $currentDiv.hide('slide', {direction: 'left'}, 200);
@@ -73,7 +65,6 @@ $(document).ready(function () {
                 });
             }
         });
-//        clearRatings();
     });
     $(function () {
         if ($('#subModuleName').val() === "ihcl") {
@@ -82,11 +73,7 @@ $(document).ready(function () {
                 paginationType: 'progress',
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
-                // DO NOT DEPLOY
                 keyboardControl: true,
-//                mousewheelControl: true,
-//                iOSEdgeSwipeDetection: true,
-//            autoHeight: 'true',
                 onSlideNextStart: function () {
                     showProgressValue(true);
                     showSubmitButton();
@@ -141,7 +128,6 @@ $(document).ready(function () {
 
 
     });
-
 
     $('.survey-me .submit-circle button').on('click', function (event) {
         var quesId = $(this).val();
@@ -291,11 +277,9 @@ $(document).ready(function () {
             if (qList.length === totalQuestionLength) {
                 $('#yesButton').attr('disabled', true);
                 $('#yesButton').css('background', '#9e9e9e');
-//                    $('#yesButton').css('background','#fafafa');
                 $('.submit-popup-warning-text').append('<p> You have not answered any questions. Please select a response to submit </p>');
             } else if (qList.length > 0) {
                 $('#yesButton').prop('disabled', true);
-//                    $('#yesButton').css('color', '#ffffff');
                 $('#yesButton').css('background', '#9e9e9e');
                 $('#noButton').text(function (i, oldText) {
                     return oldText === '\u2718 NO' ? 'GO BACK' : oldText;
@@ -334,30 +318,26 @@ $(document).ready(function () {
             var jsonObj = $.parseJSON(jArray);
             console.log("jsonObj length : " + jsonObj.length);
             // store the responses for all answered questions
-            singleSubmitWeData();
-
+            console.log("Saving responses for WE Question");
+            saveWeRating();
+            console.log("Saving responses for ME/MOOD Question");
             jQuery.each(jsonObj, function (index, value) {
                 var questionId = value.questionId;
                 var questionType = value.questionType.value;
-                console.log("Submitting Question Type : " + questionType);
-
                 if (questionType !== 1) {
-                    // submit ME answer
+                    // save ME answer
                     console.log("Emp ID:: " + $('.usernameapp span').text() + "saving me question : " + questionId);
                     saveMeRating(questionId);
-                    console.log("Emp ID:: " + $('.usernameapp span').text() + "saving me question : " + questionId);
+                    console.log("Emp ID:: " + $('.usernameapp span').text() + "saved me question : " + questionId);
                 }
             });
-            singleSubmitMeData();
-
+            singleSubmitData();
         });
     }
 
     if (document.documentElement.clientWidth <= 480) {
         $('.search-colleague').attr('placeholder', 'Search for a colleague');
-        
         $('#chooseMobileFilter').attr('disabled', true);
-
         $('.mobile-filter-row').on('click', function (event) {
             $(this).children('div').fadeToggle('200');
             $('.no-key-selected-mobile > div').hide();
@@ -415,7 +395,6 @@ $(document).ready(function () {
         var quesId = $(this).parent().parent().find('#quesId')[0].value;
         var count = $('#list-mobile-' + quesId + ' p').length;
         if (count > 0) {
-//            submitWeData(this);
             submitWeData(quesId);
         } else {
             $('.submit-tooltip').children('.submit-title').hide();
@@ -566,7 +545,6 @@ function ratingStar(obj) {
             }
         });
     }
-//    saveRating();
 }
 /** Search functionality using Isotope begins */
 function searchIsotope() {
@@ -776,7 +754,6 @@ function fetchOrgnizationSearch(q, ques, obj) {
             }
         },
         success: function (resp) {
-//            console.log("inside the ajax");
             $('.overlay_form').hide();
             $(obj).siblings('.individuals-box').html(resp);
             fetchAndPopulateRating();
@@ -786,7 +763,6 @@ function fetchOrgnizationSearch(q, ques, obj) {
             $('.filter-row .filter-menu li li span').removeAttr('style');
             $('.mobile-filter-row').removeClass('chosen');
             $('.mobile-filter-row .filter-menu input').prop('checked', false);
-//            console.log("after the success of ajax");
         }
     });
 }
@@ -845,14 +821,12 @@ function fetchFilteredDataMobile(questionId) {
         data: filterData,
         dataType: 'HTML',
         success: function (resp) {
-            // console.log("inside ajax");
             $('.overlay_form').hide();
             $('#we_grid_' + questionId).html(resp);
             fetchAndPopulateRating();
             searchIsotope();
             $('.mobile-filter-row>div').hide('200');
             $('.mobile-filter-row').addClass('chosen');
-            // console.log("after ajax");
         }
     });
 }
@@ -890,7 +864,6 @@ function fetchSmartData(questionId) {
     });
 }
 
-
 function clearRatings() {
     jQuery.each($('.star-rating-total'), function (i, v) {
         $(v).text('');
@@ -899,9 +872,9 @@ function clearRatings() {
 
 function submitMeData(quesId) {
     var remainingQuestions = $('#remaining_ques').val();
-    var empid = $('#empid').val();
+    var empid = $('#empId').val();
     console.log("entering submitMeData for quesId : " + quesId + " and empId : " + empid + " remaining questions : " + remainingQuestions);
-    if ($('#subModuleName').val() !== "ihcl" && $('.answer-range .clicked').length === 0) {
+    if ($('.answer-range .clicked').length === 0) {
         console.log("no answer selected to submit for quesId : " + quesId);
         $('.submit-tooltip').children('.submit-title').hide();
         $('.submit-tooltip').css({width: '165px', padding: '5px 0'}).children('.submit-response').show();
@@ -915,16 +888,10 @@ function submitMeData(quesId) {
         console.log("answer found for submission for me quesId : " + quesId);
         var dataSub = {'comp_id': jQuery('#comp_id_' + quesId).val(), 'emp_id': jQuery('#emp_id_' + quesId).val(), 'question_id': jQuery('#question_id_' + quesId).val(), 'feedback': jQuery('#feedback_' + quesId).val(), 'resp_val': jQuery('#resp_val_' + quesId).val(), 'rela_val': jQuery('#rela_val_' + quesId).val()};
         console.log("submitMeData dataSub : " + dataSub);
-        var url = "";
-        if ($('#subModuleName').val() === "ihcl") {
-            url = "/ihcl/survey-me-submit.jsp";
-        } else {
-            url = "/individual/survey-we-submit.jsp";
-        }
         if (dataSub.resp_val !== undefined && dataSub.resp_val !== "") {
             jQuery.ajax({
                 type: "POST",
-                url: url,
+                url: "/individual/survey-me-submit.jsp",
                 data: dataSub,
                 dataType: 'JSON',
                 async: false,
@@ -951,11 +918,7 @@ function submitMeData(quesId) {
                     } else {
                         console.log("submitMeData inside ajax success if there are no more me questions ");
                         $currentDiv.remove();
-                        if ($('#subModuleName').val() === "ihcl") {
-                            window.location.href = 'thankyou.jsp';
-                        } else {
-                            window.location.href = 'dashboard.jsp';
-                        }
+                        window.location.href = 'dashboard.jsp';
                     }
                     setTimeout(function () {
                         console.log("set timeout in ajax after successfully submitting me question : " + quesId);
@@ -970,51 +933,8 @@ function submitMeData(quesId) {
     console.log("exiting submitMeData button for quesId : " + quesId);
 }
 
-
-function saveMeRating(quesId) {
-    var empArr = jQuery.data(document.body, "emp_me_rating");
-    if (empArr === undefined) {
-        empArr = [];
-    }
-    var empRating = {};
-    empRating[quesId] = jQuery('#resp_val_' + quesId).val();
-    empArr.push(empRating);
-    jQuery.data(document.body, "emp_me_rating", empArr);
-}
-
-function singleSubmitMeData() {
-    var empid = $('#empId').val();
-    console.log("entering singleSubmitWeData for empId : " + empid);
-    var empRating = {};
-    console.log("singleSubmitWeData analyzing emp_rating");
-    var empArr1 = jQuery.data(document.body, "emp_me_rating");
-    if (empArr1 !== undefined) {
-        jQuery.each(empArr1, function (i, o) {
-            jQuery.each(o, function (k, v) {
-                empRating[k] = v;
-            });
-        });
-    }
-    console.log("singleSubmitWeData empArr : " + empArr1);
-    var postData = {'emp_rating': JSON.stringify(empRating)};
-    jQuery.ajax({
-        type: "POST",
-        url: "/ihcl/survey-me-submit.jsp",
-        data: postData,
-        dataType: 'JSON',
-        async: false,
-        success: function (resp) {
-                window.location.href = 'thankyou.jsp';
-        },
-        error: function (resp, err) {
-            console.log("singleSubmitMeData error message : " + err);
-        }
-    });
-    console.log("exiting singleSubmitMeData button");
-}
-
 function submitWeData(quesId) {
-    var empid = $('#empid').val();
+    var empid = $('#empId').val();
     console.log("entering submitWeData ques : " + quesId + " and empId : " + empid);
     var empArr = [];
     var empRating = {};
@@ -1024,13 +944,8 @@ function submitWeData(quesId) {
         jQuery.each(empArr1, function (i, o) {
             jQuery.each(o, function (k, v) {
                 var id = k.split("_");
-                if ($('#subModuleName').val() !== "ihcl" && id[0] === quesId.toString()) {
-                    empRating[id[1]] = v;
-                    empArr.push(empRating);
-                } else {
-                    empRating[id[1]] = v;
-                    empArr.push(empRating);
-                }
+                empRating[id[1]] = v;
+                empArr.push(empRating);
             });
         });
     }
@@ -1047,7 +962,6 @@ function submitWeData(quesId) {
     console.log("submitWeData empArr : " + empArr);
     var postData = {'ques_id': quesId, 'emp_rating': JSON.stringify(empRating), 'rela_val': jQuery('#rela_val_' + quesId).val()};
     console.log("submitWeData postData : " + postData);
-
     $.ajax({
         type: "POST",
         url: "/individual/survey-we-submit.jsp",
@@ -1074,22 +988,10 @@ function submitWeData(quesId) {
                     showHideNavigation(this);
                     $('body').removeAttr('style');
                 });
-                //jQuery.data(document.body, "emp_rating", []);
-                //clearRatings();
             } else {
                 console.log("submitWeData if there are no more questions ");
-                //jQuery.data(document.body, "emp_rating", []);
-                //clearRatings();
                 $currentDiv.remove();
-                if ($('#subModuleName').val() === "ihcl") {
-                    window.location.href = 'thankyou.jsp';
-                } else {
-                    if ($('#subModuleName').val() === "ihcl") {
-                        window.location.href = 'thankyou.jsp';
-                    } else {
-                        window.location.href = 'dashboard.jsp';
-                    }
-                }
+                window.location.href = 'dashboard.jsp';
             }
             setTimeout(function () {
                 console.log("set timeout in ajax after successfully submitting we question : " + quesId);
@@ -1102,40 +1004,69 @@ function submitWeData(quesId) {
     console.log("exiting submitWeData");
 }
 
-function singleSubmitWeData() {
-    var empid = $('#empId').val();
-    console.log("entering singleSubmitWeData for empId : " + empid);
+function saveMeRating(quesId) {
+    var empArr = jQuery.data(document.body, "single_submit_rating");
+    if (empArr === undefined) {
+        empArr = [];
+    }
+    var jsonObj = {
+        "companyId": $('#comId').val(),
+        "employeeId": $('#empId').val(),
+        "questionId": quesId,
+        "questionType": jQuery('#ques_type_' + quesId).val(),
+        "responseValue": jQuery('#resp_val_' + quesId).val()
+    };
+    empArr.push(jsonObj);
+    jQuery.data(document.body, "single_submit_rating", empArr);
+}
+
+function saveWeRating() {
     var empArr = [];
-    var empRating = {};
-    console.log("singleSubmitWeData analyzing emp_rating");
     var empArr1 = jQuery.data(document.body, "emp_rating");
     if (empArr1 !== undefined) {
         jQuery.each(empArr1, function (i, o) {
             jQuery.each(o, function (k, v) {
-                empRating[k] = v;
-                empArr.push(empRating);
+                var id = k.split("_");
+                var jsonObj = {
+                    "companyId": $('#comId').val(),
+                    "employeeId": $('#empId').val(),
+                    "questionId": id[0],
+                    "questionType": "WE",
+                    "responseValue": v,
+                    "targetEmployee": id[1]
+                };
+                empArr.push(jsonObj);
             });
         });
     }
-    console.log("singleSubmitWeData empArr : " + empArr1);
-    var postData = {'emp_rating': JSON.stringify(empRating)};
-    console.log("singleSubmitWeData postData : " + postData);
+    jQuery.data(document.body, "single_submit_rating", empArr);
+}
+
+function singleSubmitData() {
+    var empid = $('#empId').val();
+    console.log("entering singleSubmitData for empId : " + empid);
+    console.log("singleSubmitData analyzing single_submit_rating");
+    var empArr1 = jQuery.data(document.body, "single_submit_rating");
+    console.log("singleSubmitData empArr : " + empArr1);
+    var postData = {'emp_rating': JSON.stringify(empArr1)};
+    console.log("singleSubmitData postData : " + postData);
     $.ajax({
         type: "POST",
-        url: "/ihcl/survey-we-submit.jsp",
+        url: "/ihcl/survey-submit.jsp",
         data: postData,
         dataType: 'JSON',
         async: false,
         success: function (resp) {
-            console.log("singleSubmitWeData inside ajax success ");
-                window.location.href = 'thankyou.jsp';
+            console.log("singleSubmitData inside ajax success ");
+            window.location.href = 'thankyou.jsp';
         },
         error: function (resp, err) {
-            console.log("singleSubmitWeData error message : " + err);
+            console.log("singleSubmitData error message : " + err);
         }
     });
-    console.log("exiting singleSubmitWeData");
+    console.log("exiting singleSubmitData");
 }
+
 
 function showProgressValue(isPrev) {
     if ($('#subModuleName').val() === "ihcl") {

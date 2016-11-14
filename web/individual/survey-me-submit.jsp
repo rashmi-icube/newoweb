@@ -28,7 +28,7 @@
         ResponseHelper respObj = (ResponseHelper) ObjectFactory.getInstance("org.icube.owen.survey.ResponseHelper");
         System.out.println("submit-me-submit.jsp ::" + companyId + "::" + employeeId + "::" + questionId + "::" + respVal + "::" + feedback);
 
-        boolean responseSaved = respObj.saveMeResponse(companyId, employeeId, questionId, respVal, feedback);
+        boolean responseSaved = respObj.saveMeResponse(companyId, employeeId, questionId, respVal);
         JSONObject jObj = new JSONObject();
         jObj.put("status", responseSaved);
 

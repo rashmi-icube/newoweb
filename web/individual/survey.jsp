@@ -86,6 +86,8 @@
             <div class="main">
                 <input type="hidden" id="total_ques" value="<%= len%>" />
                 <input type="hidden" id="remaining_ques" value="<%= len%>" />
+                <input type="hidden" id="empId" value="<%= empid%>" />
+                <input type="hidden" id="comId" value="<%= comid%>" />
                 <%
                     int i = 0;
                     for (i = 0; i < len; i++) {
