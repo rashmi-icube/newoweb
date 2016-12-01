@@ -2,3 +2,4 @@ build/
 dist/
 nbproject/
 .DS_Store
+/nbbuild.xml
